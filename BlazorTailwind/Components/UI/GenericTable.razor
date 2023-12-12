@@ -1,0 +1,25 @@
+@typeparam TItem
+
+<table class="min-w-full divide-y divide-gray-300">
+  <thead>
+  <tr>
+    <th scope="col" class="pl-4 pr-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pl-0">Date</th>
+    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Temp. (C)</th>
+    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Temp. (F)</th>
+    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Summary</th>
+  </tr>
+  </thead>
+  <tbody class="divide-y divide-gray-200">
+  @foreach (TItem item in Data ?? Array.Empty<TItem>())
+  {
+    <tr>@RowTemplate(item)</tr>
+  }
+  </tbody>
+</table>
+
+@code {
+
+  [Parameter] public IEnumerable<TItem>? Data { get; set; }
+  [Parameter, EditorRequired] public RenderFragment<TItem> RowTemplate { get; set; } = default!;
+
+}

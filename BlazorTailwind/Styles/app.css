@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+    @apply font-extrabold text-7xl mb-6;
+}
+
+p {
+    @apply text-xl mb-10;
+}
+
+td {
+    @apply whitespace-nowrap px-3 py-4 text-sm text-gray-500
+}
+
+td.bold {
+    @apply whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0
+}
