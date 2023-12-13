@@ -1,4 +1,6 @@
-﻿<div class="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
+﻿@inject NavigationManager NavigationManager
+
+<div class="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
   <div class="flex h-16 shrink-0 items-center">
     <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="Your Company">
   </div>
@@ -8,41 +10,16 @@
         <ul role="list" class="-mx-2 space-y-1">
           @foreach(var item in Navigation)
           {
-            <li>
+            <li @key="item.Href">
               <CustomNavLink href="@item.Href"
                              InactiveClass="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                              ActiveClass="bg-indigo-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                              Match="NavLinkMatch.All">
-                <HomeIcon class="h-6 w-6 shrink-0 text-white" aria-hidden="true"/>
+                <DynamicComponent Type="item.Icon" Parameters="GetIconParameters(item.Href)" />
                 @item.Name
               </CustomNavLink>
             </li>
           }
-          <li>
-            <CustomNavLink href="/"
-                           InactiveClass="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                           ActiveClass="bg-indigo-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                           Match="NavLinkMatch.All">
-              <HomeIcon class="h-6 w-6 shrink-0 text-white" aria-hidden="true"/>
-              Home
-            </CustomNavLink>
-          </li>
-          <li>
-            <CustomNavLink href="counter"
-                           InactiveClass="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                           ActiveClass="bg-indigo-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-              <UsersIcon class="h-6 w-6 shrink-0 text-white" aria-hidden="true"/>
-              Counter
-            </CustomNavLink>
-          </li>
-          <li>
-            <CustomNavLink href="weather"
-                           InactiveClass="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                           ActiveClass="bg-indigo-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-              <FolderIcon class="h-6 w-6 shrink-0 text-white" aria-hidden="true"/>
-              Weather
-            </CustomNavLink>
-          </li>
         </ul>
       </li>
       <li>
@@ -60,10 +37,10 @@
         </ul>
       </li>
       <li class="mt-auto">
-        <a href="#" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
+        <NavLink href="settings" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
           <Cog6ToothIcon class="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white" aria-hidden="true"/>
           Settings
-        </a>
+        </NavLink>
       </li>
     </ul>
   </nav>
@@ -75,4 +52,25 @@
   [Parameter] public NavigationItem[] Navigation { get; set; }
   [Parameter] public NavigationItem[] ExternalLinks { get; set; }
   
+  private bool IsActivePage(string href)
+  {
+    var uri = new Uri(NavigationManager.Uri);
+    return uri.AbsolutePath == href;
+  }
+
+  private Dictionary<string, object> GetIconParameters(string href)
+  {
+    var conditional = IsActivePage(href)
+      ? "text-white"
+      : "text-indigo-200 group-hover:text-white";
+
+    var className = $"{conditional} h-6 w-6 shrink-0 ";
+
+    return new Dictionary<string, object>
+    {
+      { "class", className },
+      { "aria-hidden", "true" }
+    };
+  }
+
 }
