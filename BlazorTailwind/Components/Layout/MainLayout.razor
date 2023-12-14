@@ -2,36 +2,28 @@
 @inject NavigationManager NavigationManager
 
 <div>
-  <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
   <div class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
-    <!-- Off-canvas menu backdrop, show/hide based on off-canvas menu state. -->
-    @* <Transition Show="sidebarOpen" *@
-    @*   Enter="transition-opacity ease-linear duration-300" EnterFrom="opacity-0" EnterTo="opacity-100" *@
-    @*   Leave="transition-opacity ease-linear duration-300" LeaveFrom="opacity-100" LeaveTo="opacity-0"> *@
-    @*   <div class="fixed inset-0 bg-gray-900/80"></div> *@
-    @* </Transition> *@
-    <div class="fixed inset-0 bg-gray-900/80 transition-opacity ease-linear duration-300 @(sidebarOpen ? "opacity-0 opacity-100" : "opacity-100 opacity-0")"></div>
+    <Transition Show="@isSidebarOpen"
+                Enter="transition-opacity ease-linear duration-300" EnterFrom="opacity-0" EnterTo="opacity-100"
+                Leave="transition-opacity ease-linear duration-300" LeaveFrom="opacity-100" LeaveTo="opacity-0"
+                class="fixed inset-0 bg-gray-900/80"/>
 
     <div class="fixed inset-0 flex">
-      <!-- Off-canvas menu, show/hide based on off-canvas menu state. -->
-      <Transition Show="sidebarOpen"
-        Enter="transition ease-in-out duration-300 transform" EnterFrom="-translate-x-full" EnterTo="translate-x-0"
-        Leave="transition ease-in-out duration-300 transform" LeaveFrom="translate-x-0" LeaveTo="-translate-x-full">
-        <div class="relative mr-16 flex w-full max-w-xs flex-1">
-          <!-- Close button, show/hide based on off-canvas menu state. -->
-          <Transition Show="sidebarOpen"
-            Enter="ease-in-out duration-300" EnterFrom="opacity-0" EnterTo="opacity-100"
-            Leave="ease-in-out duration-300" LeaveFrom="opacity-100" LeaveTo="opacity-0">
-            <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
-              <button type="button" class="-m-2.5 p-2.5" @onclick="() => sidebarOpen = false">
-                <span class="sr-only">Close sidebar</span>
-                <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true"/>
-              </button>
-            </div>
-          </Transition>
+      <Transition Show="isSidebarOpen"
+                  Enter="transition ease-in-out duration-300 transform" EnterFrom="-translate-x-full" EnterTo="translate-x-0"
+                  Leave="transition ease-in-out duration-300 transform" LeaveFrom="translate-x-0" LeaveTo="-translate-x-full"
+                  class="relative mr-16 flex w-full max-w-xs flex-1">
+        <Transition Show="isSidebarOpen"
+                    Enter="ease-in-out duration-300" EnterFrom="opacity-0" EnterTo="opacity-100"
+                    Leave="ease-in-out duration-300" LeaveFrom="opacity-100" LeaveTo="opacity-0"
+                    class="absolute left-full top-0 flex w-16 justify-center pt-5">
+          <button type="button" class="-m-2.5 p-2.5" @onclick="CloseSidebar">
+            <span class="sr-only">Close sidebar</span>
+            <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true"/>
+          </button>
+        </Transition>
 
-          <Sidebar Navigation="navigation" ExternalLinks="externalLinks"/>
-        </div>
+        <Sidebar Navigation="navigation" ExternalLinks="externalLinks"/>
       </Transition>
     </div>
   </div>
@@ -43,7 +35,7 @@
 
   <div class="lg:pl-72">
     <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-      <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @onclick="() => sidebarOpen = true">
+      <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @onclick="OpenSidebar">
         <span class="sr-only">Open sidebar</span>
         <Bars3Icon class="h-6 w-6" aria-hidden="true" />
       </button>
@@ -68,24 +60,39 @@
 
           <!-- Profile dropdown -->
           <div class="relative">
-            <button type="button" class="-m-1.5 flex items-center p-1.5" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+            <button type="button" class="-m-1.5 flex items-center p-1.5" id="user-menu-button" aria-expanded="false" aria-haspopup="true" @onclick="SwitchDropdown">
               <span class="sr-only">Open user menu</span>
               <img class="h-8 w-8 rounded-full bg-gray-50" src="./images/philippe.jpeg" alt="">
               <span class="hidden lg:flex lg:items-center">
                 <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">Philippe Matray</span>
-                <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+                @if (isDropdownOpen)
+                {
+                  <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400 transform rotate-180" aria-hidden="true" />
+                }
+                else
+                {
+                  <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+                }
               </span>
             </button>
 
             <!-- Dropdown menu, show/hide based on menu state. -->
-            <Transition Show="sidebarOpen"
-              Enter="transition ease-out duration-100" EnterFrom="transform opacity-0 scale-95" EnterTo="transform opacity-100 scale-100"
-              Leave="transition ease-in duration-75" LeaveFrom="transform opacity-100 scale-100" LeaveTo="transform opacity-0 scale-95">
-              <div class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                <!-- Active: "bg-gray-50", Not Active: "" -->
-                <a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="user-menu-item-0">Your profile</a>
-                <a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="user-menu-item-1">Sign out</a>
-              </div>
+            <Transition Show="@isDropdownOpen"
+                        Enter="transition ease-out duration-100" EnterFrom="transform opacity-0 scale-95" EnterTo="transform opacity-100 scale-100"
+                        Leave="transition ease-in duration-75" LeaveFrom="transform opacity-100 scale-100" LeaveTo="transform opacity-0 scale-95"
+                        class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
+                        role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+              @foreach(var item in settings)
+              {
+                @if (NavigationManager.IsActivePage(item.Href))
+                {
+                  <a @key="@item.Name" href="@item.Href" class="block px-3 py-1 text-sm leading-6 text-gray-900 bg-gray-50" role="menuitem" tabindex="-1" id="user-menu-item-1">@item.Name</a>
+                }
+                else
+                {
+                  <a @key="@item.Name" href="@item.Href" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="user-menu-item-1">@item.Name</a>
+                }
+              }
             </Transition>
           </div>
         </div>
@@ -108,8 +115,8 @@
 
 @code {
 
-  private bool sidebarOpen = false;
-  private bool dropdownOpen = false;
+  private bool isSidebarOpen = false;
+  private bool isDropdownOpen = false;
 
   private NavigationItem[] navigation =
   [
@@ -133,14 +140,32 @@
       Href = "weather",
       Icon = typeof(FolderIcon),
       Current = false
-    },
+    }
   ];
   
   private NavigationItem[] externalLinks =
   [
-    new NavigationItem { Name = "ASP.NET", Href = "https://learn.microsoft.com/aspnet/core/", Initial = "A", Current = false },
-    new NavigationItem { Name = "Tailwind CSS", Href = "https://tailwindcss.com/", Initial = "T", Current = false },
-    new NavigationItem { Name = "Fluxor", Href = "https://github.com/mrpmorris/Fluxor", Initial = "F", Current = false },
+    new NavigationItem
+    {
+      Name = "ASP.NET",
+      Href = "https://learn.microsoft.com/aspnet/core/",
+      Initial = "A",
+      Current = false
+    },
+    new NavigationItem
+    {
+      Name = "Tailwind CSS",
+      Href = "https://tailwindcss.com/",
+      Initial = "T",
+      Current = false
+    },
+    new NavigationItem
+    {
+      Name = "Fluxor",
+      Href = "https://github.com/mrpmorris/Fluxor",
+      Initial = "F",
+      Current = false
+    }
   ];
 
   private NavigationItem[] settings =
@@ -148,5 +173,26 @@
     new NavigationItem { Name = "Your Profile", Href = "#" },
     new NavigationItem { Name = "Sign out", Href = "#" },
   ];
+  
+  private void SwitchDropdown()
+  {
+    
+    isDropdownOpen = !isDropdownOpen;
+    StateHasChanged();
+    Console.WriteLine($"isDropdownOpen {!isDropdownOpen} => {isDropdownOpen}");
+  }
+  
+  private void OpenSidebar()
+  {
+    isSidebarOpen = true;
+    StateHasChanged();
+    Console.WriteLine($"isSidebarOpen {!isSidebarOpen} => {isSidebarOpen}");
+  }
+  
+  private void CloseSidebar()
+  {
+    isSidebarOpen = false;
+    StateHasChanged();
+  }
   
 }

@@ -1,5 +1,4 @@
 ﻿@page "/counter"
-@rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 
@@ -11,15 +10,16 @@
 
 <button @onclick="Toggle">Toggle</button>
 
-<Transition Appear="@true"
-            Show="@isShowing"
-            Enter="transition-opacity duration-75"
-            EnterFrom="opacity-0"
-            EnterTo="opacity-100"
-            Leave="transition-opacity duration-150"
-            LeaveFrom="opacity-100"
-            LeaveTo="opacity-0">
-    <p>I will fade in and out</p>
+<Transition Appear
+               Show="@isShowing"
+               Enter="transition-opacity duration-75"
+               EnterFrom="opacity-0"
+               EnterTo="opacity-100"
+               Leave="transition-opacity duration-150"
+               LeaveFrom="opacity-100"
+               LeaveTo="opacity-0"
+               As="p">
+  I will fade in and out
 </Transition>
 
 @code {

@@ -52,15 +52,9 @@
   [Parameter] public NavigationItem[] Navigation { get; set; }
   [Parameter] public NavigationItem[] ExternalLinks { get; set; }
   
-  private bool IsActivePage(string href)
-  {
-    var uri = new Uri(NavigationManager.Uri);
-    return uri.AbsolutePath == href;
-  }
-
   private Dictionary<string, object> GetIconParameters(string href)
   {
-    var conditional = IsActivePage(href)
+    var conditional = NavigationManager.IsActivePage(href)
       ? "text-white"
       : "text-indigo-200 group-hover:text-white";
 
