@@ -78,7 +78,7 @@ public class Transition : ComponentBase
     /// <summary>
     /// Callback which is called after we finished the leave transition.
     /// </summary>
-    [Parameter] public Action? AfterLeave { get; set; }
+    [Parameter] public Action AfterLeave { get; set; } = () => { };
     
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
@@ -105,12 +105,12 @@ public class Transition : ComponentBase
         if (IsEntering)
         {
             IsEntering = false;
-            AfterEnter?.Invoke();
+            AfterEnter.Invoke();
         }
         else if (IsLeaving)
         {
             IsLeaving = false;
-            AfterLeave?.Invoke();
+            AfterLeave.Invoke();
         }
     }
 
@@ -157,13 +157,13 @@ public class Transition : ComponentBase
         {
             IsEntering = true;
             IsLeaving = false;
-            BeforeEnter?.Invoke();
+            BeforeEnter.Invoke();
         }
         else if (!Show && !IsLeaving)
         {
             IsEntering = false;
             IsLeaving = true;
-            BeforeLeave?.Invoke();
+            BeforeLeave.Invoke();
         }
     }
 

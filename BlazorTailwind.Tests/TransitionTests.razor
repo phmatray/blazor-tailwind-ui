@@ -70,5 +70,41 @@
         cut.MarkupMatches("<div class=\"transition-opacity duration-150 opacity-100\"></div>");
     }
 
+    [Fact]
+    public void TransitionComponent_Should_RenderAsSpecifiedElement()
+    {
+        // Arrange
+        const string asElement = "span";
+        const string content = "Test content";
 
+        // Act
+        var cut = RenderComponent<Transition>(parameters => parameters
+            .Add(p => p.As, asElement)
+            .AddChildContent(content)
+        );
+
+        // Assert
+        cut.MarkupMatches($"<{asElement}>{content}</{asElement}>");
+    }
+    
+    [Fact]
+    public void TransitionComponent_Should_RenderAdditionalAttributes()
+    {
+        // Arrange
+        var additionalAttributes = new Dictionary<string, object>
+        {
+            { "data-test", "test-value" },
+            { "aria-label", "test-label" }
+        };
+
+        // Act
+        var cut = RenderComponent<Transition>(parameters => parameters
+            .Add(p => p.AdditionalAttributes, additionalAttributes)
+        );
+
+        // Assert
+        var div = cut.Find("div");
+        div.GetAttribute("data-test").Should().Be("test-value");
+        div.GetAttribute("aria-label").Should().Be("test-label");
+    }
 }
