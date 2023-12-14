@@ -8,7 +8,7 @@
                 Leave="transition-opacity ease-linear duration-300" LeaveFrom="opacity-100" LeaveTo="opacity-0"
                 class="fixed inset-0 bg-gray-900/80"/>
 
-    <div class="fixed inset-0 flex">
+    <div class="fixed inset-0 flex" @onclick="@CloseSidebar">
       <Transition Show="isSidebarOpen"
                   Enter="transition ease-in-out duration-300 transform" EnterFrom="-translate-x-full" EnterTo="translate-x-0"
                   Leave="transition ease-in-out duration-300 transform" LeaveFrom="translate-x-0" LeaveTo="-translate-x-full"

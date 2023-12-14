@@ -1,0 +1,74 @@
+@inherits TestContext
+@code {
+
+    [Fact]
+    public void TransitionComponent_RendersEmptyDiv_WhenNoParametersAreProvided()
+    {
+        // Arrange & Act
+        var cut = RenderComponent<Transition>();
+
+        // Assert
+        cut.MarkupMatches("<div></div>");
+    }
+
+    [Fact]
+    public void TransitionComponent_Should_RenderContentWhenShowIsTrue()
+    {
+        // Arrange
+        const bool show = true;
+        const string content = "Test content";
+        
+        // Act
+        var cut = RenderComponent<Transition>(parameters => parameters
+            .Add(p => p.Show, show)
+            .AddChildContent(content)
+        );
+
+        // Assert
+        cut.MarkupMatches($"<div>{content}</div>");
+    }
+
+    [Fact]
+    public void TransitionComponent_Should_ApplyCorrectCssClass()
+    {
+        // Arrange & Act
+        var cut = RenderComponent<Transition>(parameters => parameters
+            .Add(p => p.Show, true)
+            .Add(p => p.Enter, "enter-class")
+            .Add(p => p.EnterFrom, "enter-from-class")
+        );
+
+        // Assert
+        cut.Find("div").ClassList.Should().Contain("enter-class");
+        cut.Find("div").ClassList.Should().Contain("enter-from-class");
+    }
+    
+    [Fact]
+    public void TransitionComponent_Should_InitializeWithCorrectState()
+    {
+        // Arrange & Act
+        var cut = RenderComponent<Transition>(parameters => parameters
+            .Add(p => p.Appear, true)
+            .Add(p => p.Show, true)
+            .Add(p => p.Enter, "transition-opacity duration-75")
+            .Add(p => p.EnterFrom, "opacity-0")
+            .Add(p => p.EnterTo, "opacity-100")
+            .Add(p => p.Leave, "transition-opacity duration-150")
+            .Add(p => p.LeaveFrom, "opacity-100")
+            .Add(p => p.LeaveTo, "opacity-0")
+        );
+        
+        // Assert
+        cut.MarkupMatches("<div class=\"transition-opacity duration-75 opacity-0\"></div>");
+        
+        // Act
+        cut.SetParametersAndRender(parameters => parameters
+            .Add(p => p.Show, false)
+        );
+        
+        // Assert
+        cut.MarkupMatches("<div class=\"transition-opacity duration-150 opacity-100\"></div>");
+    }
+
+
+}
