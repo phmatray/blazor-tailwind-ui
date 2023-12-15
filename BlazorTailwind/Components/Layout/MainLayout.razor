@@ -1,5 +1,5 @@
 ﻿@inherits LayoutComponentBase
-@inject NavigationManager NavigationManager
+@inject NavigationService NavigationService
 
 <div>
   <TwTransition @bind-Show="_isSidebarOpen">
@@ -90,7 +90,7 @@
                           role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
               @foreach (var item in _settings)
               {
-                @if (NavigationManager.IsActivePage(item.Href))
+                @if (NavigationService.IsActivePage(item.Href))
                 {
                   <a @key="@item.Name" href="@item.Href" class="block px-3 py-1 text-sm leading-6 text-gray-900 bg-gray-50" role="menuitem" tabindex="-1" id="user-menu-item-1">@item.Name</a>
                 }
@@ -123,63 +123,18 @@
 
   private bool _isSidebarOpen = false;
   private bool _isDropdownOpen = false;
-
-  private readonly NavigationItem[] _navigation =
-  [
-    new NavigationItem
-    {
-      Name = "Home",
-      Href = "/",
-      Icon = typeof(HomeIcon),
-      Current = true
-    },
-    new NavigationItem
-    {
-      Name = "Counter",
-      Href = "counter",
-      Icon = typeof(UsersIcon),
-      Current = false
-    },
-    new NavigationItem
-    {
-      Name = "Weather",
-      Href = "weather",
-      Icon = typeof(FolderIcon),
-      Current = false
-    }
-  ];
   
-  private readonly NavigationItem[] _externalLinks =
-  [
-    new NavigationItem
-    {
-      Name = "ASP.NET",
-      Href = "https://learn.microsoft.com/aspnet/core/",
-      Initial = "A",
-      Current = false
-    },
-    new NavigationItem
-    {
-      Name = "Tailwind CSS",
-      Href = "https://tailwindcss.com/",
-      Initial = "T",
-      Current = false
-    },
-    new NavigationItem
-    {
-      Name = "Fluxor",
-      Href = "https://github.com/mrpmorris/Fluxor",
-      Initial = "F",
-      Current = false
-    }
-  ];
+  private NavigationItem[] _navigation = [];
+  private NavigationItem[] _externalLinks = [];
+  private NavigationItem[] _settings = [];
 
-  private readonly NavigationItem[] _settings =
-  [
-    new NavigationItem { Name = "Your Profile", Href = "#" },
-    new NavigationItem { Name = "Sign out", Href = "#" },
-  ];
-  
+  protected override void OnInitialized()
+  {
+    _navigation = NavigationService.GetMainMenu();
+    _externalLinks = NavigationService.GetExternalLinks();
+    _settings = NavigationService.GetSettings();
+  }
+
   private void SwitchDropdown()
   {
     

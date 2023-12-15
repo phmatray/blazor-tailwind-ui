@@ -13,6 +13,7 @@ builder.Services.AddRazorComponents()
 
 // Add app services
 builder.Services.AddScoped<WeatherForecastService>();
+builder.Services.AddScoped<NavigationService>();
 
 var app = builder.Build();
 

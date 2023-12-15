@@ -1,4 +1,4 @@
-﻿@inject NavigationManager NavigationManager
+﻿@inject NavigationService NavigationService
 
 <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
   <div class="flex h-16 shrink-0 items-center">
@@ -11,10 +11,11 @@
           @foreach(var item in Navigation)
           {
             <li @key="item.Href">
-              <CustomNavLink href="@item.Href"
-                             InactiveClass="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                             ActiveClass="bg-indigo-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                             Match="NavLinkMatch.All">
+              <CustomNavLink
+                href="@item.Href"
+                InactiveClass="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                ActiveClass="bg-indigo-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                Match="NavLinkMatch.All">
                 <DynamicComponent Type="item.Icon" Parameters="GetIconParameters(item.Href)" />
                 @item.Name
               </CustomNavLink>
@@ -54,7 +55,7 @@
   
   private Dictionary<string, object> GetIconParameters(string href)
   {
-    var conditional = NavigationManager.IsActivePage(href)
+    var conditional = NavigationService.IsActivePage(href)
       ? "text-white"
       : "text-indigo-200 group-hover:text-white";
 
