@@ -30,7 +30,6 @@ public class TwTransition : TwTransitionBase
     private bool _oldStatus = false;
     private List<TwTransitionChild> _transitions = [];
     private bool _isFirstRender = true;
-    private string _hiddenClass = "";
     
     private bool IsTransitional
         => !string.IsNullOrWhiteSpace(Enter) || !string.IsNullOrWhiteSpace(Leave);
@@ -45,16 +44,9 @@ public class TwTransition : TwTransitionBase
         if (_oldStatus != Show && !_isFirstRender)
         {
             _oldStatus = Show;
-            
-            if (Show)
-            {
-                SetHiddenClass();
-            }
-            
             return ToggleAsync();
         }
 
-        SetHiddenClass();
         return Task.CompletedTask;
     }
 
@@ -74,23 +66,26 @@ public class TwTransition : TwTransitionBase
         //         @ChildContent
         //     </CascadingValue>
         // </div>
-        
-        builder.OpenElement(0, As);
-        var classes = $"{_hiddenClass} {TransitionClasses} {AdditionalClasses}".Trim();
-        if (classes.Length > 0)
+
+        if (Show)
         {
-            builder.AddAttribute(1, "class", classes);
+            builder.OpenElement(0, As);
+            var classes = $"{TransitionClasses} {AdditionalClasses}".Trim();
+            if (classes.Length > 0)
+            {
+                builder.AddAttribute(1, "class", classes);
+            }
+            builder.AddMultipleAttributes(2, AdditionalAttributes);
+        
+            builder.OpenComponent<CascadingValue<TwTransition>>(3);
+            builder.AddAttribute(4, "Value", this);
+            builder.AddAttribute(5, "IsFixed", true);
+            builder.AddAttribute(6, "ChildContent", 
+                (RenderFragment)(childBuilder => childBuilder.AddContent(6, ChildContent)));
+        
+            builder.CloseComponent();
+            builder.CloseElement();
         }
-        builder.AddMultipleAttributes(2, AdditionalAttributes);
-        
-        builder.OpenComponent<CascadingValue<TwTransition>>(3);
-        builder.AddAttribute(4, "Value", this);
-        builder.AddAttribute(5, "IsFixed", true);
-        builder.AddAttribute(6, "ChildContent", 
-            (RenderFragment)(childBuilder => childBuilder.AddContent(6, ChildContent)));
-        
-        builder.CloseComponent();
-        builder.CloseElement();
     }
 
     public async Task Toggle()
@@ -114,18 +109,11 @@ public class TwTransition : TwTransitionBase
         
         await Task.WhenAll(tasks);
         await ShowChanged.InvokeAsync(Show);
-
-        SetHiddenClass();
+        StateHasChanged();
     }
 
     internal void AddTransition(TwTransitionChild transition)
     {
         _transitions.Add(transition);
-    }
-    
-    private void SetHiddenClass()
-    {
-        _hiddenClass = Show ? "" : "hidden";
-        StateHasChanged();
     }
 }

@@ -49,6 +49,7 @@ public partial class TwTransitionBase : ComponentBase, ITransitionClasses, ITran
         StateHasChanged();
         await Task.Delay(1);
         TransitionClasses.Replace(EnterFrom, EnterTo);
+        StateHasChanged();
     }
 
     protected async Task HideAsync()

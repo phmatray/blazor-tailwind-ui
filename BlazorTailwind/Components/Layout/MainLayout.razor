@@ -2,34 +2,36 @@
 @inject NavigationManager NavigationManager
 
 <div>
-  <div class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
-    <TwTransition @bind-Show="_isSidebarOpen"
-                Enter="transition-opacity ease-linear duration-300" EnterFrom="opacity-0" EnterTo="opacity-100"
-                Leave="transition-opacity ease-linear duration-300" LeaveFrom="opacity-100" LeaveTo="opacity-0"
-                Duration="300"
-                AdditionalClasses="fixed inset-0 bg-gray-900/80"/>
-
-    <div class="fixed inset-0 flex" @onclick="@CloseSidebar">
+  <TwTransition @bind-Show="_isSidebarOpen">
+    <div class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
       <TwTransitionChild
-                  Enter="transition ease-in-out duration-300 transform" EnterFrom="-translate-x-full" EnterTo="translate-x-0"
-                  Leave="transition ease-in-out duration-300 transform" LeaveFrom="translate-x-0" LeaveTo="-translate-x-full"
-                  Duration="300"
-                  AdditionalClasses="relative mr-16 flex w-full max-w-xs flex-1">
-        <TwTransitionChild
-                    Enter="ease-in-out duration-300" EnterFrom="opacity-0" EnterTo="opacity-100"
-                    Leave="ease-in-out duration-300" LeaveFrom="opacity-100" LeaveTo="opacity-0"
-                    Duration="300"
-                    AdditionalClasses="absolute left-full top-0 flex w-16 justify-center pt-5">
-          <button type="button" class="-m-2.5 p-2.5" @onclick="CloseSidebar">
-            <span class="sr-only">Close sidebar</span>
-            <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true"/>
-          </button>
-        </TwTransitionChild>
+        Enter="transition-opacity ease-linear duration-300" EnterFrom="opacity-0" EnterTo="opacity-100"
+        Leave="transition-opacity ease-linear duration-300" LeaveFrom="opacity-100" LeaveTo="opacity-0"
+        Duration="300"
+        AdditionalClasses="fixed inset-0 bg-gray-900/80"/>
 
-        <Sidebar Navigation="_navigation" ExternalLinks="_externalLinks"/>
-      </TwTransitionChild>
+      <div class="fixed inset-0 flex" @onclick="@CloseSidebar">
+        <TwTransitionChild
+          Enter="transition ease-in-out duration-300 transform" EnterFrom="-translate-x-full" EnterTo="translate-x-0"
+          Leave="transition ease-in-out duration-300 transform" LeaveFrom="translate-x-0" LeaveTo="-translate-x-full"
+          Duration="300"
+          AdditionalClasses="relative mr-16 flex w-full max-w-xs flex-1">
+          <TwTransitionChild
+            Enter="ease-in-out duration-300" EnterFrom="opacity-0" EnterTo="opacity-100"
+            Leave="ease-in-out duration-300" LeaveFrom="opacity-100" LeaveTo="opacity-0"
+            Duration="300"
+            AdditionalClasses="absolute left-full top-0 flex w-16 justify-center pt-5">
+            <button type="button" class="-m-2.5 p-2.5" @onclick="CloseSidebar">
+              <span class="sr-only">Close sidebar</span>
+              <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true"/>
+            </button>
+          </TwTransitionChild>
+
+          <Sidebar Navigation="_navigation" ExternalLinks="_externalLinks"/>
+        </TwTransitionChild>
+      </div>
     </div>
-  </div>
+  </TwTransition>
 
   <!-- Static sidebar for desktop -->
   <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
@@ -40,7 +42,7 @@
     <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
       <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @onclick="OpenSidebar">
         <span class="sr-only">Open sidebar</span>
-        <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+        <Bars3Icon class="h-6 w-6" aria-hidden="true"/>
       </button>
 
       <!-- Separator -->
@@ -55,7 +57,7 @@
         <div class="flex items-center gap-x-4 lg:gap-x-6">
           <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
             <span class="sr-only">View notifications</span>
-            <BellIcon class="h-6 w-6" aria-hidden="true" />
+            <BellIcon class="h-6 w-6" aria-hidden="true"/>
           </button>
 
           <!-- Separator -->
@@ -70,23 +72,23 @@
                 <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">Philippe Matray</span>
                 @if (_isDropdownOpen)
                 {
-                  <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400 transform rotate-180" aria-hidden="true" />
+                  <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400 transform rotate-180" aria-hidden="true"/>
                 }
                 else
                 {
-                  <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400" aria-hidden="true"/>
                 }
               </span>
             </button>
 
             <!-- Dropdown menu, show/hide based on menu state. -->
             <TwTransition @bind-Show="@_isDropdownOpen"
-                        Enter="transition ease-out duration-100" EnterFrom="transform opacity-0 scale-95" EnterTo="transform opacity-100 scale-100"
-                        Leave="transition ease-in duration-75" LeaveFrom="transform opacity-100 scale-100" LeaveTo="transform opacity-0 scale-95"
-                        Duration="100"
-                        AdditionalClasses="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
-                        role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-              @foreach(var item in _settings)
+                          Enter="transition ease-out duration-100" EnterFrom="transform opacity-0 scale-95" EnterTo="transform opacity-100 scale-100"
+                          Leave="transition ease-in duration-75" LeaveFrom="transform opacity-100 scale-100" LeaveTo="transform opacity-0 scale-95"
+                          Duration="100"
+                          AdditionalClasses="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
+                          role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+              @foreach (var item in _settings)
               {
                 @if (NavigationManager.IsActivePage(item.Href))
                 {
