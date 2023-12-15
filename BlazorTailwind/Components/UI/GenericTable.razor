@@ -10,7 +10,7 @@
   </tr>
   </thead>
   <tbody class="divide-y divide-gray-200">
-  @foreach (TItem item in Data ?? Array.Empty<TItem>())
+  @foreach (var item in Data ?? Array.Empty<TItem>())
   {
     <tr>@RowTemplate(item)</tr>
   }

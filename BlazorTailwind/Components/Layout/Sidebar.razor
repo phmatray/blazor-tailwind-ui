@@ -49,8 +49,8 @@
 @code
 {
   
-  [Parameter] public NavigationItem[] Navigation { get; set; }
-  [Parameter] public NavigationItem[] ExternalLinks { get; set; }
+  [Parameter] public NavigationItem[] Navigation { get; set; } = [];
+  [Parameter] public NavigationItem[] ExternalLinks { get; set; } = [];
   
   private Dictionary<string, object> GetIconParameters(string href)
   {

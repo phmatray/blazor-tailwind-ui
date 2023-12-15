@@ -8,7 +8,7 @@ public class Transition : ComponentBase
     /// <summary>
     /// Whether the children should be shown or hidden.
     /// </summary>
-    [Parameter] public bool Show { get; set; }
+    [Parameter, EditorRequired] public bool Show { get; set; }
 
     /// <summary>
     /// The element to render in place of the Transition itself.
@@ -116,24 +116,27 @@ public class Transition : ComponentBase
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
-        builder.OpenElement(0, As);
-        
-        var classNames = GetCurrentCssClass();
-        if (!string.IsNullOrWhiteSpace(classNames))
+        if (Show)
         {
-            builder.AddAttribute(1, "class", classNames);
-        }
+            builder.OpenElement(0, As);
         
-        if (AdditionalAttributes != null)
-        {
-            foreach (var kvp in AdditionalAttributes)
+            var classNames = GetCurrentCssClass();
+            if (!string.IsNullOrWhiteSpace(classNames))
             {
-                builder.AddAttribute(2, kvp.Key, kvp.Value);
+                builder.AddAttribute(1, "class", classNames);
             }
-        }
         
-        builder.AddContent(3, ChildContent);
-        builder.CloseElement();
+            if (AdditionalAttributes != null)
+            {
+                foreach (var kvp in AdditionalAttributes)
+                {
+                    builder.AddAttribute(2, kvp.Key, kvp.Value);
+                }
+            }
+        
+            builder.AddContent(3, ChildContent);
+            builder.CloseElement();
+        }
     }
 
     private void SetInitialAnimationState()

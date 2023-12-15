@@ -5,7 +5,9 @@
     public void TransitionComponent_RendersEmptyDiv_WhenNoParametersAreProvided()
     {
         // Arrange & Act
-        var cut = RenderComponent<Transition>();
+        var cut = RenderComponent<Transition>(parameters => parameters
+            .Add(p => p.Show, true)
+        );
 
         // Assert
         cut.MarkupMatches("<div></div>");
@@ -26,6 +28,23 @@
 
         // Assert
         cut.MarkupMatches($"<div>{content}</div>");
+    }
+    
+    [Fact]
+    public void TransitionComponent_Should_RenderNothingWhenShowIsFalse()
+    {
+        // Arrange
+        const bool show = false;
+        const string content = "Test content";
+        
+        // Act
+        var cut = RenderComponent<Transition>(parameters => parameters
+            .Add(p => p.Show, show)
+            .AddChildContent(content)
+        );
+
+        // Assert
+        cut.MarkupMatches("");
     }
 
     [Fact]
@@ -60,25 +79,19 @@
         
         // Assert
         cut.MarkupMatches("<div class=\"transition-opacity duration-75 opacity-0\"></div>");
-        
-        // Act
-        cut.SetParametersAndRender(parameters => parameters
-            .Add(p => p.Show, false)
-        );
-        
-        // Assert
-        cut.MarkupMatches("<div class=\"transition-opacity duration-150 opacity-100\"></div>");
     }
 
     [Fact]
     public void TransitionComponent_Should_RenderAsSpecifiedElement()
     {
         // Arrange
+        const bool show = true;
         const string asElement = "span";
         const string content = "Test content";
 
         // Act
         var cut = RenderComponent<Transition>(parameters => parameters
+            .Add(p => p.Show, show)
             .Add(p => p.As, asElement)
             .AddChildContent(content)
         );
@@ -91,6 +104,7 @@
     public void TransitionComponent_Should_RenderAdditionalAttributes()
     {
         // Arrange
+        const bool show = true;
         var additionalAttributes = new Dictionary<string, object>
         {
             { "data-test", "test-value" },
@@ -99,7 +113,27 @@
 
         // Act
         var cut = RenderComponent<Transition>(parameters => parameters
+            .Add(p => p.Show, show)
             .Add(p => p.AdditionalAttributes, additionalAttributes)
+        );
+
+        // Assert
+        var div = cut.Find("div");
+        div.GetAttribute("data-test").Should().Be("test-value");
+        div.GetAttribute("aria-label").Should().Be("test-label");
+    }
+    
+    [Fact]
+    public void TransitionComponent_Should_PassthroughHtmlAttributes()
+    {
+        // Arrange
+        const bool show = true;
+        
+        // Act
+        var cut = RenderComponent<Transition>(parameters => parameters
+            .Add(p => p.Show, show)
+            .AddUnmatched("data-test", "test-value")
+            .AddUnmatched("aria-label", "test-label")
         );
 
         // Assert
