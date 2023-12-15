@@ -10,7 +10,7 @@
 
 <button @onclick="Toggle">Toggle</button>
 
-<Transition Appear
+<TwTransition Appear
                Show="@isShowing"
                Enter="transition-opacity duration-75"
                EnterFrom="opacity-0"
@@ -20,7 +20,7 @@
                LeaveTo="opacity-0"
                As="p">
   I will fade in and out
-</Transition>
+</TwTransition>
 
 @code {
   private int currentCount = 0;

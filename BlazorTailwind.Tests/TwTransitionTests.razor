@@ -1,3 +1,4 @@
+@using Microsoft.AspNetCore.Components.Rendering
 @inherits TestContext
 @code {
 
@@ -5,7 +6,7 @@
     public void TransitionComponent_RendersEmptyDiv_WhenNoParametersAreProvided()
     {
         // Arrange & Act
-        var cut = RenderComponent<Transition>(parameters => parameters
+        var cut = RenderComponent<TwTransition>(parameters => parameters
             .Add(p => p.Show, true)
         );
 
@@ -21,7 +22,7 @@
         const string content = "Test content";
         
         // Act
-        var cut = RenderComponent<Transition>(parameters => parameters
+        var cut = RenderComponent<TwTransition>(parameters => parameters
             .Add(p => p.Show, show)
             .AddChildContent(content)
         );
@@ -38,7 +39,7 @@
         const string content = "Test content";
         
         // Act
-        var cut = RenderComponent<Transition>(parameters => parameters
+        var cut = RenderComponent<TwTransition>(parameters => parameters
             .Add(p => p.Show, show)
             .AddChildContent(content)
         );
@@ -51,22 +52,21 @@
     public void TransitionComponent_Should_ApplyCorrectCssClass()
     {
         // Arrange & Act
-        var cut = RenderComponent<Transition>(parameters => parameters
+        var cut = RenderComponent<TwTransition>(parameters => parameters
             .Add(p => p.Show, true)
             .Add(p => p.Enter, "enter-class")
             .Add(p => p.EnterFrom, "enter-from-class")
         );
 
         // Assert
-        cut.Find("div").ClassList.Should().Contain("enter-class");
-        cut.Find("div").ClassList.Should().Contain("enter-from-class");
+        cut.MarkupMatches("<div class=\"enter-class enter-from-class\"></div>");
     }
     
     [Fact]
     public void TransitionComponent_Should_InitializeWithCorrectState()
     {
         // Arrange & Act
-        var cut = RenderComponent<Transition>(parameters => parameters
+        var cut = RenderComponent<TwTransition>(parameters => parameters
             .Add(p => p.Appear, true)
             .Add(p => p.Show, true)
             .Add(p => p.Enter, "transition-opacity duration-75")
@@ -90,7 +90,7 @@
         const string content = "Test content";
 
         // Act
-        var cut = RenderComponent<Transition>(parameters => parameters
+        var cut = RenderComponent<TwTransition>(parameters => parameters
             .Add(p => p.Show, show)
             .Add(p => p.As, asElement)
             .AddChildContent(content)
@@ -112,7 +112,7 @@
         };
 
         // Act
-        var cut = RenderComponent<Transition>(parameters => parameters
+        var cut = RenderComponent<TwTransition>(parameters => parameters
             .Add(p => p.Show, show)
             .Add(p => p.AdditionalAttributes, additionalAttributes)
         );
@@ -130,7 +130,7 @@
         const bool show = true;
         
         // Act
-        var cut = RenderComponent<Transition>(parameters => parameters
+        var cut = RenderComponent<TwTransition>(parameters => parameters
             .Add(p => p.Show, show)
             .AddUnmatched("data-test", "test-value")
             .AddUnmatched("aria-label", "test-label")
@@ -141,4 +141,72 @@
         div.GetAttribute("data-test").Should().Be("test-value");
         div.GetAttribute("aria-label").Should().Be("test-label");
     }
+    
+    [Fact]
+    public void TransitionComponent_Should_ApplyEnterClasses_WhenAppearIsTrue()
+    {
+        // Arrange & Act
+        var cut = RenderComponent<TwTransition>(parameters => parameters
+            .Add(p => p.Appear, true)
+            .Add(p => p.Show, true)
+            .Add(p => p.Enter, "enter")
+            .Add(p => p.EnterFrom, "enter-from")
+        );
+
+        // Assert
+        cut.MarkupMatches("<div class=\"enter enter-from\"></div>");
+    }
+
+    [Fact]
+    public async Task TransitionComponent_Should_CompleteTransitionInSpecifiedDuration()
+    {
+        // Arrange & Act
+        const int enterDuration = 50;
+
+        var wrapper = RenderComponent<StyleComponent>(wrapperParameters => wrapperParameters
+            .Add(p => p.EnterDuration, enterDuration)
+            .AddChildContent<TwTransition>(parameters => parameters
+                .Add(p => p.Show, false)
+                .Add(p => p.Enter, "enter")
+                .Add(p => p.EnterFrom, "from")
+                .Add(p => p.EnterTo, "to")
+                .AddChildContent("<span>Hello!</span>")
+            )
+        );
+
+        var cut = wrapper.FindComponent<TwTransition>();
+        await Task.Delay(10); // Add 10ms to ensure the transition is complete
+
+        // Assert
+        cut.MarkupMatches("");
+        
+        // Simulate a state change by setting Show to true
+        cut.SetParametersAndRender(parameters => parameters
+            .Add(p => p.Show, true)
+        );
+        
+        cut.MarkupMatches("<div class=\"enter from\"><span>Hello!</span></div>");
+        // cut.MarkupMatches("<div class=\"enter to\"><span>Hello!</span></div>");
+        
+        // Wait for the specified duration
+        await Task.Delay(enterDuration + 10); // Add 10ms to ensure the transition is complete
+
+        // Check if the transition happened correctly
+        cut.MarkupMatches("<div class=\"to\"><span>Hello!</span></div>");
+    }
+    
+    private class StyleComponent : ComponentBase
+    {
+        [Parameter] public int EnterDuration { get; set; }
+        [Parameter] public RenderFragment? ChildContent { get; set; }
+
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
+        {
+            builder.OpenElement(0, "style");
+            builder.AddContent(1, $".enter {{ transition-duration: {EnterDuration}ms; }} .from {{ opacity: 0%; }} .to {{ opacity: 100%; }}");
+            builder.CloseElement();
+            builder.AddContent(2, ChildContent);
+        }
+    }
+    
 }

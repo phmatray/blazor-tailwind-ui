@@ -3,34 +3,37 @@
 
 <div>
   <div class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
-    <Transition Show="@isSidebarOpen"
+    <TwTransition @bind-Show="_isSidebarOpen"
                 Enter="transition-opacity ease-linear duration-300" EnterFrom="opacity-0" EnterTo="opacity-100"
                 Leave="transition-opacity ease-linear duration-300" LeaveFrom="opacity-100" LeaveTo="opacity-0"
-                class="fixed inset-0 bg-gray-900/80"/>
+                Duration="300"
+                AdditionalClasses="fixed inset-0 bg-gray-900/80"/>
 
     <div class="fixed inset-0 flex" @onclick="@CloseSidebar">
-      <Transition Show="isSidebarOpen"
+      <TwTransitionChild
                   Enter="transition ease-in-out duration-300 transform" EnterFrom="-translate-x-full" EnterTo="translate-x-0"
                   Leave="transition ease-in-out duration-300 transform" LeaveFrom="translate-x-0" LeaveTo="-translate-x-full"
-                  class="relative mr-16 flex w-full max-w-xs flex-1">
-        <Transition Show="isSidebarOpen"
+                  Duration="300"
+                  AdditionalClasses="relative mr-16 flex w-full max-w-xs flex-1">
+        <TwTransitionChild
                     Enter="ease-in-out duration-300" EnterFrom="opacity-0" EnterTo="opacity-100"
                     Leave="ease-in-out duration-300" LeaveFrom="opacity-100" LeaveTo="opacity-0"
-                    class="absolute left-full top-0 flex w-16 justify-center pt-5">
+                    Duration="300"
+                    AdditionalClasses="absolute left-full top-0 flex w-16 justify-center pt-5">
           <button type="button" class="-m-2.5 p-2.5" @onclick="CloseSidebar">
             <span class="sr-only">Close sidebar</span>
             <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true"/>
           </button>
-        </Transition>
+        </TwTransitionChild>
 
-        <Sidebar Navigation="navigation" ExternalLinks="externalLinks"/>
-      </Transition>
+        <Sidebar Navigation="_navigation" ExternalLinks="_externalLinks"/>
+      </TwTransitionChild>
     </div>
   </div>
 
   <!-- Static sidebar for desktop -->
   <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-    <Sidebar Navigation="navigation" ExternalLinks="externalLinks"/>
+    <Sidebar Navigation="_navigation" ExternalLinks="_externalLinks"/>
   </div>
 
   <div class="lg:pl-72">
@@ -65,7 +68,7 @@
               <img class="h-8 w-8 rounded-full bg-gray-50" src="./images/philippe.jpeg" alt="">
               <span class="hidden lg:flex lg:items-center">
                 <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">Philippe Matray</span>
-                @if (isDropdownOpen)
+                @if (_isDropdownOpen)
                 {
                   <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400 transform rotate-180" aria-hidden="true" />
                 }
@@ -77,12 +80,13 @@
             </button>
 
             <!-- Dropdown menu, show/hide based on menu state. -->
-            <Transition Show="@isDropdownOpen"
+            <TwTransition @bind-Show="@_isDropdownOpen"
                         Enter="transition ease-out duration-100" EnterFrom="transform opacity-0 scale-95" EnterTo="transform opacity-100 scale-100"
                         Leave="transition ease-in duration-75" LeaveFrom="transform opacity-100 scale-100" LeaveTo="transform opacity-0 scale-95"
-                        class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
+                        Duration="100"
+                        AdditionalClasses="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-              @foreach(var item in settings)
+              @foreach(var item in _settings)
               {
                 @if (NavigationManager.IsActivePage(item.Href))
                 {
@@ -93,7 +97,7 @@
                   <a @key="@item.Name" href="@item.Href" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="user-menu-item-1">@item.Name</a>
                 }
               }
-            </Transition>
+            </TwTransition>
           </div>
         </div>
       </div>
@@ -115,10 +119,10 @@
 
 @code {
 
-  private bool isSidebarOpen = false;
-  private bool isDropdownOpen = false;
+  private bool _isSidebarOpen = false;
+  private bool _isDropdownOpen = false;
 
-  private NavigationItem[] navigation =
+  private readonly NavigationItem[] _navigation =
   [
     new NavigationItem
     {
@@ -143,7 +147,7 @@
     }
   ];
   
-  private NavigationItem[] externalLinks =
+  private readonly NavigationItem[] _externalLinks =
   [
     new NavigationItem
     {
@@ -168,7 +172,7 @@
     }
   ];
 
-  private NavigationItem[] settings =
+  private readonly NavigationItem[] _settings =
   [
     new NavigationItem { Name = "Your Profile", Href = "#" },
     new NavigationItem { Name = "Sign out", Href = "#" },
@@ -177,22 +181,23 @@
   private void SwitchDropdown()
   {
     
-    isDropdownOpen = !isDropdownOpen;
+    _isDropdownOpen = !_isDropdownOpen;
     StateHasChanged();
-    Console.WriteLine($"isDropdownOpen {!isDropdownOpen} => {isDropdownOpen}");
+    Console.WriteLine($"isDropdownOpen {!_isDropdownOpen} => {_isDropdownOpen}");
   }
   
   private void OpenSidebar()
   {
-    isSidebarOpen = true;
+    _isSidebarOpen = true;
     StateHasChanged();
-    Console.WriteLine($"isSidebarOpen {!isSidebarOpen} => {isSidebarOpen}");
+    Console.WriteLine($"isSidebarOpen {!_isSidebarOpen} => {_isSidebarOpen}");
   }
   
   private void CloseSidebar()
   {
-    isSidebarOpen = false;
+    _isSidebarOpen = false;
     StateHasChanged();
+    Console.WriteLine($"isSidebarOpen {!_isSidebarOpen} => {_isSidebarOpen}");
   }
   
 }
