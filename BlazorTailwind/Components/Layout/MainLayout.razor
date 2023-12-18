@@ -37,7 +37,7 @@
   <Sidebar Navigation="_navigation" ExternalLinks="_externalLinks"/>
 </div>
 
-<div class="lg:pl-72">
+<div class="h-full lg:pl-72">
   <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
     <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @onclick="OpenSidebar">
       <span class="sr-only">Open sidebar</span>
@@ -105,18 +105,23 @@
     </div>
   </div>
 
+  <!-- Main content -->
   <main class="py-10">
     <div class="px-4 sm:px-6 lg:px-8">
       @Body
     </div>
   </main>
+  
+  <!-- Blazor error UI -->
+  <div id="blazor-error-ui" class="px-4 sm:px-6 lg:px-8 hidden">
+    <div class="bg-yellow-100 p-2 shadow-md">
+      An unhandled error has occurred.<br/>
+      <a href="" class="reload">Reload</a>
+      <a class="dismiss">🔃</a>
+    </div>
+  </div>
 </div>
     
-<div id="blazor-error-ui" class="bg-yellow-100 shadow-md hidden p-2">
-  An unhandled error has occurred.
-  <a href="" class="reload">Reload</a>
-  <a class="dismiss">🗙</a>
-</div>
 
 @code {
 
