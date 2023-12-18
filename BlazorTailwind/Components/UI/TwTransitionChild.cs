@@ -16,7 +16,11 @@ public class TwTransitionChild : TwTransitionBase
         // </div>
         
         builder.OpenElement(0, As);
-        builder.AddAttribute(1, "class", $"{TransitionClasses} {AdditionalClasses}");
+        var classes = $"{TransitionClasses} {AdditionalClasses}".Trim();
+        if (classes.Length > 0)
+        {
+            builder.AddAttribute(1, "class", classes);
+        }
         builder.AddMultipleAttributes(2, AdditionalAttributes);
         builder.AddContent(3, ChildContent);
         builder.CloseElement();

@@ -33,16 +33,8 @@
     </Target>
 
     <!-- Build Tailwind CSS in release mode (minified) -->
-    <Target Name="BuildCSS" BeforeTargets="Compile">
-        <Exec EnvironmentVariables="NODE_ENV=production"
-              Command="npx tailwindcss -i ./Styles/app.css -o ./wwwroot/tailwind/app.min.css --minify"
-              Condition=" '$(Configuration)' == 'Release' "/>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="npm run build:css" />
     </Target>
-    
-    <!-- Build Tailwind CSS in debug mode (unminified) -->
-    <Target Name="BuildCSSDebug" BeforeTargets="Compile">
-        <Exec EnvironmentVariables="NODE_ENV=development"
-              Command="npx tailwindcss -i ./Styles/app.css -o ./wwwroot/tailwind/app.css"
-              Condition=" '$(Configuration)' == 'Debug' "/>
-    </Target>
+
 </Project>
