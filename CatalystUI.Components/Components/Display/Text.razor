@@ -1,0 +1,6 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<p data-slot="text" class="@CombineClasses(GetTextClasses())" @attributes="GetAttributes()">
+    @ChildContent
+</p>

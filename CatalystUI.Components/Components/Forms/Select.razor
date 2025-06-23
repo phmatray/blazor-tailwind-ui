@@ -1,0 +1,25 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+@typeparam TValue
+
+<div class="@CombineClasses("catalyst-select-container", "relative", ContainerClass)">
+    <select @ref="Element"
+            value="@CurrentValueAsString"
+            @onchange="OnChange"
+            name="@Name"
+            class="@CombineClasses(GetSelectClasses())"
+            @attributes="GetAttributes()">
+        @if (!string.IsNullOrWhiteSpace(Placeholder))
+        {
+            <option value="" disabled selected="@(Value == null || Value.Equals(default(TValue)))">
+                @Placeholder
+            </option>
+        }
+        @ChildContent
+    </select>
+    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+        <svg class="h-5 w-5 text-zinc-400 dark:text-zinc-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+        </svg>
+    </div>
+</div>

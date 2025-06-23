@@ -1,0 +1,20 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+@typeparam TValue
+
+<label class="@CombineClasses("catalyst-radio-container", "inline-flex", "items-center", "gap-x-3", ContainerClass)">
+    <input type="radio"
+           @ref="Element"
+           name="@Name"
+           value="@OptionValue"
+           checked="@IsChecked"
+           @onchange="OnChange"
+           class="@CombineClasses(GetRadioClasses())"
+           @attributes="GetAttributes()" />
+    @if (ChildContent != null)
+    {
+        <span class="@LabelClasses">
+            @ChildContent
+        </span>
+    }
+</label>

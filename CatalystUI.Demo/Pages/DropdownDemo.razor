@@ -1,0 +1,222 @@
+@page "/dropdown"
+
+<PageTitle>Dropdown - CatalystUI Demo</PageTitle>
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8 text-zinc-900 dark:text-white">Dropdown Component</h1>
+
+    <div class="space-y-8">
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Basic Dropdown</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Dropdown>
+                    <DropdownButton>
+                        Options
+                        <svg data-slot="icon" class="size-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 16 16">
+                            <path d="M5.75 9.75L8 12L10.25 9.75M10.25 6.25L8 4L5.75 6.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </DropdownButton>
+                    <DropdownMenu>
+                        <DropdownItem OnClick="@(() => ShowMessage("Edit clicked"))">
+                            <svg data-slot="icon" fill="none" stroke="currentColor" viewBox="0 0 16 16">
+                                <path d="M13.5 2.5L10.5 5.5M2.5 10.5L5.5 7.5L10.5 2.5L13.5 5.5L8.5 10.5L2.5 13.5V10.5Z" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                            <DropdownLabel>Edit</DropdownLabel>
+                        </DropdownItem>
+                        <DropdownItem OnClick="@(() => ShowMessage("Duplicate clicked"))">
+                            <svg data-slot="icon" fill="none" stroke="currentColor" viewBox="0 0 16 16">
+                                <path d="M3.5 3.5V11.5H11.5V3.5H3.5ZM5.5 5.5V13.5H13.5V5.5H5.5Z" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                            <DropdownLabel>Duplicate</DropdownLabel>
+                        </DropdownItem>
+                        <DropdownDivider />
+                        <DropdownItem OnClick="@(() => ShowMessage("Delete clicked"))" Class="text-red-600 hover:bg-red-600 hover:text-white">
+                            <svg data-slot="icon" fill="none" stroke="currentColor" viewBox="0 0 16 16">
+                                <path d="M5 3V1.5H11V3M2 3H14M3.5 3V13.5C3.5 14.0523 3.94772 14.5 4.5 14.5H11.5C12.0523 14.5 12.5 14.0523 12.5 13.5V3M6 6V11M10 6V11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <DropdownLabel>Delete</DropdownLabel>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+                
+                @if (!string.IsNullOrWhiteSpace(Message))
+                {
+                    <div class="mt-4 p-2 bg-blue-100 text-blue-800 rounded">@Message</div>
+                }
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Dropdown with Sections</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Dropdown>
+                    <DropdownButton>
+                        Account
+                        <svg data-slot="icon" class="size-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 16 16">
+                            <path d="M5.75 9.75L8 12L10.25 9.75M10.25 6.25L8 4L5.75 6.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </DropdownButton>
+                    <DropdownMenu>
+                        <DropdownHeader>
+                            <div class="flex items-center gap-3">
+                                <Avatar Src="https://catalyst-demo.tailwindui.com/users/erica.jpg" Size="Avatar.AvatarSize.Small" />
+                                <div>
+                                    <Text><Strong>Erica Martin</Strong></Text>
+                                    <Text Class="text-zinc-500">erica@example.com</Text>
+                                </div>
+                            </div>
+                        </DropdownHeader>
+                        <DropdownDivider />
+                        <DropdownSection>
+                            <DropdownHeading>Account</DropdownHeading>
+                            <DropdownItem Href="/profile">
+                                <DropdownLabel>Profile</DropdownLabel>
+                            </DropdownItem>
+                            <DropdownItem Href="/settings">
+                                <DropdownLabel>Settings</DropdownLabel>
+                            </DropdownItem>
+                        </DropdownSection>
+                        <DropdownDivider />
+                        <DropdownSection>
+                            <DropdownHeading>Support</DropdownHeading>
+                            <DropdownItem Href="/help">
+                                <DropdownLabel>Help Center</DropdownLabel>
+                            </DropdownItem>
+                            <DropdownItem Href="/contact">
+                                <DropdownLabel>Contact Support</DropdownLabel>
+                            </DropdownItem>
+                        </DropdownSection>
+                        <DropdownDivider />
+                        <DropdownItem OnClick="SignOut">
+                            <DropdownLabel>Sign Out</DropdownLabel>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Dropdown with Descriptions</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Dropdown>
+                    <DropdownButton>
+                        View Options
+                        <svg data-slot="icon" class="size-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 16 16">
+                            <path d="M5.75 9.75L8 12L10.25 9.75M10.25 6.25L8 4L5.75 6.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </DropdownButton>
+                    <DropdownMenu>
+                        <DropdownItem>
+                            <DropdownLabel>Compact View</DropdownLabel>
+                            <DropdownDescription>Show more items with less detail</DropdownDescription>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <DropdownLabel>Comfortable View</DropdownLabel>
+                            <DropdownDescription>Balance between content and whitespace</DropdownDescription>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <DropdownLabel>Spacious View</DropdownLabel>
+                            <DropdownDescription>Show fewer items with more detail</DropdownDescription>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Dropdown with Keyboard Shortcuts</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Dropdown>
+                    <DropdownButton>
+                        File
+                        <svg data-slot="icon" class="size-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 16 16">
+                            <path d="M5.75 9.75L8 12L10.25 9.75M10.25 6.25L8 4L5.75 6.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </DropdownButton>
+                    <DropdownMenu>
+                        <DropdownItem>
+                            <DropdownLabel>New File</DropdownLabel>
+                            <DropdownShortcut Keys="⌘N" />
+                        </DropdownItem>
+                        <DropdownItem>
+                            <DropdownLabel>Open...</DropdownLabel>
+                            <DropdownShortcut Keys="⌘O" />
+                        </DropdownItem>
+                        <DropdownItem>
+                            <DropdownLabel>Save</DropdownLabel>
+                            <DropdownShortcut Keys="⌘S" />
+                        </DropdownItem>
+                        <DropdownDivider />
+                        <DropdownItem>
+                            <DropdownLabel>Cut</DropdownLabel>
+                            <DropdownShortcut Keys="⌘X" />
+                        </DropdownItem>
+                        <DropdownItem>
+                            <DropdownLabel>Copy</DropdownLabel>
+                            <DropdownShortcut Keys="⌘C" />
+                        </DropdownItem>
+                        <DropdownItem>
+                            <DropdownLabel>Paste</DropdownLabel>
+                            <DropdownShortcut Keys="⌘V" />
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Disabled Items</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Dropdown>
+                    <DropdownButton>
+                        Actions
+                        <svg data-slot="icon" class="size-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 16 16">
+                            <path d="M5.75 9.75L8 12L10.25 9.75M10.25 6.25L8 4L5.75 6.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </DropdownButton>
+                    <DropdownMenu>
+                        <DropdownItem>
+                            <DropdownLabel>Save Draft</DropdownLabel>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <DropdownLabel>Publish</DropdownLabel>
+                        </DropdownItem>
+                        <DropdownItem Disabled="true">
+                            <DropdownLabel>Schedule</DropdownLabel>
+                            <DropdownDescription>Coming soon</DropdownDescription>
+                        </DropdownItem>
+                        <DropdownDivider />
+                        <DropdownItem Disabled="true">
+                            <DropdownLabel>Archive</DropdownLabel>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <DropdownLabel>Delete</DropdownLabel>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            </div>
+        </section>
+    </div>
+</div>
+
+@code {
+    private string Message = "";
+    
+    private void ShowMessage(string message)
+    {
+        Message = message;
+        StateHasChanged();
+        
+        // Clear message after 3 seconds
+        Task.Delay(3000).ContinueWith(_ => 
+        {
+            Message = "";
+            InvokeAsync(StateHasChanged);
+        });
+    }
+    
+    private void SignOut()
+    {
+        ShowMessage("Sign out clicked");
+    }
+}

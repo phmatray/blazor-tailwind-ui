@@ -1,0 +1,20 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+@typeparam TValue
+
+<div class="@GetOptionClasses()"
+     @onclick="HandleClick"
+     @onmouseenter="HandleMouseEnter">
+    <span class="@GetContentClasses()">
+        @ChildContent
+    </span>
+    @if (IsSelected)
+    {
+        <svg class="relative col-start-2 size-5 self-center stroke-current sm:size-4"
+             viewBox="0 0 16 16"
+             fill="none"
+             aria-hidden="true">
+            <path d="M4 8.5l3 3L12 4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    }
+</div>

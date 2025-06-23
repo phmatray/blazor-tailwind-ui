@@ -1,0 +1,69 @@
+@page "/"
+@using CatalystUI.Demo.Components
+@using CatalystUI.Demo.Services
+@using CatalystUI.Demo.Models
+@inject DataService DataService
+
+<PageTitle>Home - CatalystUI</PageTitle>
+
+<Heading>Good afternoon, Erica</Heading>
+<div class="mt-8 flex items-end justify-between">
+    <Subheading>Overview</Subheading>
+    <div>
+        <Select TValue="string" Name="period">
+            <option value="last_week">Last week</option>
+            <option value="last_two">Last two weeks</option>
+            <option value="last_month">Last month</option>
+            <option value="last_quarter">Last quarter</option>
+        </Select>
+    </div>
+</div>
+<div class="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+    <Stat Title="Total revenue" Value="$2.6M" Change="+4.5%" />
+    <Stat Title="Average order value" Value="$455" Change="-0.5%" />
+    <Stat Title="Tickets sold" Value="5,888" Change="+4.5%" />
+    <Stat Title="Pageviews" Value="823,067" Change="+21.2%" />
+</div>
+<Subheading Class="mt-14">Recent orders</Subheading>
+<Table Class="mt-4 [--gutter:--spacing(6)] lg:[--gutter:--spacing(10)]">
+    <TableHead>
+        <TableRow>
+            <TableHeader>Order number</TableHeader>
+            <TableHeader>Purchase date</TableHeader>
+            <TableHeader>Customer</TableHeader>
+            <TableHeader>Event</TableHeader>
+            <TableHeader Class="text-right">Amount</TableHeader>
+        </TableRow>
+    </TableHead>
+    <TableBody>
+        @if (recentOrders != null)
+        {
+            @foreach (var order in recentOrders)
+            {
+                <TableRow>
+                    <TableCell>
+                        <HyperLink Href="@order.Url">@order.Id</HyperLink>
+                    </TableCell>
+                    <TableCell Class="text-zinc-500">@order.Date</TableCell>
+                    <TableCell>@order.Customer.Name</TableCell>
+                    <TableCell>
+                        <div class="flex items-center gap-2">
+                            <Avatar Src="@order.Event.ThumbUrl" Class="size-6" />
+                            <span>@order.Event.Name</span>
+                        </div>
+                    </TableCell>
+                    <TableCell Class="text-right">US@order.Amount.Usd</TableCell>
+                </TableRow>
+            }
+        }
+    </TableBody>
+</Table>
+
+@code {
+    private List<Order>? recentOrders;
+
+    protected override async Task OnInitializedAsync()
+    {
+        recentOrders = await DataService.GetRecentOrdersAsync();
+    }
+}

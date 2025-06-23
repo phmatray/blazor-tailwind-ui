@@ -1,0 +1,36 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<span class="@CombineClasses("relative")">
+    @if (Current)
+    {
+        <span class="absolute inset-y-2 -left-4 w-0.5 rounded-full bg-zinc-950 dark:bg-white"></span>
+    }
+    
+    @if (!string.IsNullOrWhiteSpace(Href))
+    {
+        <a href="@Href" class="@GetItemClasses()" data-current="@(Current ? "true" : null)" @onclick="HandleClick">
+            <span class="absolute left-max right-0 top-0 @(TouchTarget ? "" : "hidden group-hover:block") sm:hidden">
+                <svg class="size-7" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <rect width="100%" height="100%" fill="transparent" />
+                    </g>
+                </svg>
+            </span>
+            @ChildContent
+        </a>
+    }
+    else
+    {
+        <button class="@CombineClasses("cursor-default", GetItemClasses())" data-current="@(Current ? "true" : null)" @onclick="HandleClick" @attributes="GetAttributes()">
+            <span class="absolute left-max right-0 top-0 @(TouchTarget ? "" : "hidden group-hover:block") sm:hidden">
+                <svg class="size-7" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <rect width="100%" height="100%" fill="transparent" />
+                    </g>
+                </svg>
+            </span>
+            @ChildContent
+        </button>
+    }
+</span>

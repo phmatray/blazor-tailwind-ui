@@ -1,0 +1,20 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<label class="@CombineClasses("catalyst-switch-container", "inline-flex", "items-center", "gap-x-3", ContainerClass)">
+    <button type="button"
+            role="switch"
+            aria-checked="@Value.ToString().ToLower()"
+            @ref="Element"
+            @onclick="Toggle"
+            class="@CombineClasses(GetSwitchClasses())"
+            @attributes="GetAttributes()">
+        <span class="@GetThumbClasses()"></span>
+    </button>
+    @if (ChildContent != null)
+    {
+        <span class="@LabelClasses">
+            @ChildContent
+        </span>
+    }
+</label>

@@ -1,0 +1,50 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+@if (IsButton)
+{
+    @if (!string.IsNullOrWhiteSpace(Href))
+    {
+        <a href="@Href" class="@CombineClasses(GetButtonClasses())" @attributes="GetAttributes()">
+            <span class="absolute inset-0"></span>
+            @RenderAvatar()
+        </a>
+    }
+    else
+    {
+        <button type="button" @onclick="HandleClick" class="@CombineClasses(GetButtonClasses())" @attributes="GetAttributes()">
+            <span class="absolute inset-0"></span>
+            @RenderAvatar()
+        </button>
+    }
+}
+else
+{
+    @RenderAvatar()
+}
+
+@code {
+
+    private RenderFragment RenderAvatar()
+        => @<span data-slot="avatar" class="@CombineClasses(GetAvatarClasses())" @attributes="@(!IsButton ? GetAttributes() : null)">
+               @if (!string.IsNullOrWhiteSpace(Initials) && string.IsNullOrWhiteSpace(Src))
+               {
+                   <svg class="@GetSvgClasses()"
+                        viewBox="0 0 100 100"
+                        aria-hidden="@(string.IsNullOrWhiteSpace(Alt) ? "true" : null)">
+                       @if (!string.IsNullOrWhiteSpace(Alt))
+                       {
+                           <title>@Alt</title>
+                       }
+                       <text x="50%" y="50%" alignment-baseline="middle" dominant-baseline="middle" text-anchor="middle" dy=".125em">
+                           @Initials.ToUpper()
+                       </text>
+                   </svg>
+               }
+               @if (!string.IsNullOrWhiteSpace(Src))
+               {
+                   <img class="size-full" src="@Src" alt="@(Alt ?? "")"/>
+               }
+           </span>;
+
+}

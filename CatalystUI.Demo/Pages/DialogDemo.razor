@@ -1,0 +1,207 @@
+@page "/dialog"
+
+<PageTitle>Dialog - CatalystUI Demo</PageTitle>
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8 text-zinc-900 dark:text-white">Dialog Component</h1>
+
+    <div class="space-y-8">
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Basic Dialog</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Button OnClick="() => ShowBasicDialog = true">Open Basic Dialog</Button>
+                
+                <Dialog @bind-Open="ShowBasicDialog">
+                    <DialogTitle>Basic Dialog</DialogTitle>
+                    <DialogDescription>
+                        This is a basic dialog with a title and description. Click outside or use the close button to dismiss.
+                    </DialogDescription>
+                    <DialogBody>
+                        <p>Dialog body content goes here. You can put any content you want in the dialog body.</p>
+                    </DialogBody>
+                    <DialogActions>
+                        <Button Variant="Button.ButtonVariant.Plain" OnClick="() => ShowBasicDialog = false">
+                            Cancel
+                        </Button>
+                        <Button OnClick="() => ShowBasicDialog = false">
+                            Confirm
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Dialog Sizes</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <div class="flex flex-wrap gap-2">
+                    <Button OnClick="() => ShowSizeDialog(Dialog.DialogSize.Xs)">Extra Small</Button>
+                    <Button OnClick="() => ShowSizeDialog(Dialog.DialogSize.Sm)">Small</Button>
+                    <Button OnClick="() => ShowSizeDialog(Dialog.DialogSize.Md)">Medium</Button>
+                    <Button OnClick="() => ShowSizeDialog(Dialog.DialogSize.Lg)">Large</Button>
+                    <Button OnClick="() => ShowSizeDialog(Dialog.DialogSize.Xl)">Extra Large</Button>
+                    <Button OnClick="() => ShowSizeDialog(Dialog.DialogSize.Xxl)">2XL</Button>
+                </div>
+                
+                <Dialog @bind-Open="ShowSizedDialog" Size="@CurrentDialogSize">
+                    <DialogTitle>@CurrentDialogSize.ToString() Dialog</DialogTitle>
+                    <DialogDescription>
+                        This dialog demonstrates the @CurrentDialogSize.ToString() size variant.
+                    </DialogDescription>
+                    <DialogBody>
+                        <p>The dialog width adjusts based on the size prop. This helps maintain consistency across different use cases.</p>
+                    </DialogBody>
+                    <DialogActions>
+                        <Button OnClick="() => ShowSizedDialog = false">Close</Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Form Dialog</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Button OnClick="() => ShowFormDialog = true">Open Form Dialog</Button>
+                
+                <Dialog @bind-Open="ShowFormDialog" Size="Dialog.DialogSize.Md">
+                    <DialogTitle>Create New Project</DialogTitle>
+                    <DialogDescription>
+                        Fill out the form below to create a new project.
+                    </DialogDescription>
+                    <DialogBody>
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                                    Project Name
+                                </label>
+                                <Input TValue="string" @bind-Value="ProjectName" placeholder="Enter project name" Class="mt-1" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                                    Description
+                                </label>
+                                <Textarea @bind-Value="ProjectDescription" placeholder="Enter project description" Class="mt-1" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                                    Visibility
+                                </label>
+                                <Select TValue="string" TValue="string" @bind-Value="ProjectVisibility" Class="mt-1">
+                                    <option value="public">Public</option>
+                                    <option value="private">Private</option>
+                                    <option value="internal">Internal</option>
+                                </Select>
+                            </div>
+                        </form>
+                    </DialogBody>
+                    <DialogActions>
+                        <Button Variant="Button.ButtonVariant.Plain" OnClick="CancelForm">
+                            Cancel
+                        </Button>
+                        <Button OnClick="SubmitForm">
+                            Create Project
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Non-Dismissible Dialog</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Button OnClick="() => ShowNonDismissible = true">Open Non-Dismissible Dialog</Button>
+                
+                <Dialog @bind-Open="ShowNonDismissible" CloseOnBackdropClick="false">
+                    <DialogTitle>Important Action Required</DialogTitle>
+                    <DialogDescription>
+                        This dialog cannot be dismissed by clicking outside. You must use one of the action buttons.
+                    </DialogDescription>
+                    <DialogBody>
+                        <Alert>
+                            <Strong>Note:</Strong> This action cannot be undone. Please review carefully before proceeding.
+                        </Alert>
+                    </DialogBody>
+                    <DialogActions>
+                        <Button Variant="Button.ButtonVariant.Plain" OnClick="() => ShowNonDismissible = false">
+                            Cancel
+                        </Button>
+                        <Button Color="Button.ButtonColor.Red" OnClick="() => ShowNonDismissible = false">
+                            Delete Permanently
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Scrollable Dialog</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Button OnClick="() => ShowScrollableDialog = true">Open Scrollable Dialog</Button>
+                
+                <Dialog @bind-Open="ShowScrollableDialog" Size="Dialog.DialogSize.Lg">
+                    <DialogTitle>Terms of Service</DialogTitle>
+                    <DialogDescription>
+                        Please read and accept our terms of service to continue.
+                    </DialogDescription>
+                    <DialogBody>
+                        <div class="max-h-96 overflow-y-auto">
+                            @for (int i = 1; i <= 20; i++)
+                            {
+                                <p class="mb-4">
+                                    <Strong>Section @i:</Strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                            }
+                        </div>
+                    </DialogBody>
+                    <DialogActions>
+                        <Button Variant="Button.ButtonVariant.Plain" OnClick="() => ShowScrollableDialog = false">
+                            Decline
+                        </Button>
+                        <Button OnClick="() => ShowScrollableDialog = false">
+                            Accept Terms
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
+        </section>
+    </div>
+</div>
+
+@code {
+    private bool ShowBasicDialog = false;
+    private bool ShowSizedDialog = false;
+    private bool ShowFormDialog = false;
+    private bool ShowNonDismissible = false;
+    private bool ShowScrollableDialog = false;
+    
+    private Dialog.DialogSize CurrentDialogSize = Dialog.DialogSize.Md;
+    
+    // Form fields
+    private string ProjectName = "";
+    private string ProjectDescription = "";
+    private string ProjectVisibility = "public";
+
+    private void ShowSizeDialog(Dialog.DialogSize size)
+    {
+        CurrentDialogSize = size;
+        ShowSizedDialog = true;
+    }
+
+    private void CancelForm()
+    {
+        // Reset form
+        ProjectName = "";
+        ProjectDescription = "";
+        ProjectVisibility = "public";
+        ShowFormDialog = false;
+    }
+
+    private void SubmitForm()
+    {
+        // Handle form submission
+        Console.WriteLine($"Creating project: {ProjectName}");
+        CancelForm();
+    }
+}

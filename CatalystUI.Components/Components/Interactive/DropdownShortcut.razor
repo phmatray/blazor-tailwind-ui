@@ -1,0 +1,11 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<kbd class="@CombineClasses("col-start-5", "row-start-1", "flex", "justify-self-end")" @attributes="GetAttributes()">
+    @foreach (var key in GetKeys())
+    {
+        <kbd class="@GetKeyClasses(key)">
+            @key
+        </kbd>
+    }
+</kbd>

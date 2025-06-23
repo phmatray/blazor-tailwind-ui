@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>CatalystUI.Components</RootNamespace>
+    <AssemblyName>CatalystUI.Components</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>CatalystUI.Components</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>CatalystUI</Authors>
+    <Description>A Blazor component library based on Catalyst UI Kit</Description>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.6" />
+  </ItemGroup>
+
+</Project>

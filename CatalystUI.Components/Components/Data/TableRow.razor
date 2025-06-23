@@ -1,0 +1,9 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+@implements IDisposable
+
+<CascadingValue Value="this">
+    <tr class="@CombineClasses(GetRowClasses())" @attributes="GetAttributes()">
+        @ChildContent
+    </tr>
+</CascadingValue>

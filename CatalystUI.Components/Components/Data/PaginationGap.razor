@@ -1,0 +1,13 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<span aria-hidden="true" class="@CombineClasses("w-9", "text-center", "text-sm/6", "font-semibold", "text-zinc-950", "select-none", "dark:text-white")" @attributes="GetAttributes()">
+    @if (ChildContent != null)
+    {
+        @ChildContent
+    }
+    else
+    {
+        @:…
+    }
+</span>

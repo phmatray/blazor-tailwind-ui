@@ -1,0 +1,33 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+@if (IsButton)
+{
+    @if (!string.IsNullOrWhiteSpace(Href))
+    {
+        <a href="@Href" class="@CombineClasses(GetButtonClasses())" @attributes="GetAttributes()">
+            <span class="absolute inset-0"></span>
+            @RenderBadge()
+        </a>
+    }
+    else
+    {
+        <button type="button" @onclick="HandleClick" class="@CombineClasses(GetButtonClasses())" @attributes="GetAttributes()">
+            <span class="absolute inset-0"></span>
+            @RenderBadge()
+        </button>
+    }
+}
+else
+{
+    @RenderBadge()
+}
+
+@code {
+
+    private RenderFragment RenderBadge()
+        => @<span class="@CombineClasses(GetBadgeClasses())" @attributes="@(!IsButton ? GetAttributes() : null)">
+               @ChildContent
+           </span>;
+
+}

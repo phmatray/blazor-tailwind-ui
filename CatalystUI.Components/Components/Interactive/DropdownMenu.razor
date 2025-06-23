@@ -1,0 +1,11 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+@if (IsVisible)
+{
+    <div class="@CombineClasses(GetMenuClasses())" @attributes="GetAttributes()" @ref="menuElement">
+        <CascadingValue Value="this">
+            @ChildContent
+        </CascadingValue>
+    </div>
+}

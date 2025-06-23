@@ -1,0 +1,21 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<span class="@CombineClasses("flex", "grow", "basis-0", "justify-end")">
+    <Button Href="@Href" Disabled="@(string.IsNullOrWhiteSpace(Href))" Variant="Button.ButtonVariant.Plain" aria-label="Next page">
+        @if (ChildContent != null)
+        {
+            @ChildContent
+        }
+        else
+        {
+            <text>Next</text>
+        }
+        <svg class="stroke-current" data-slot="icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M13.25 8L2.75 8M13.25 8L10.75 10.5M13.25 8L10.75 5.5"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+        </svg>
+    </Button>
+</span>
