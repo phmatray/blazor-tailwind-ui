@@ -466,14 +466,17 @@ module.exports = {
 - [x] Implement AsChild pattern
 - [x] Create comprehensive demo page
 
-#### 15. Checkbox
-- [ ] Create Checkbox.razor and Checkbox.razor.cs
-- [ ] Implement checked/indeterminate states
-- [ ] Add size variants
-- [ ] Support color prop
-- [ ] Add disabled state
-- [ ] Implement onChange callback
-- [ ] Create demo page
+#### 15. Checkbox ✅
+- [x] Create Checkbox.razor and Checkbox.razor.cs
+- [x] Implement checked/indeterminate/unchecked states
+- [x] Add size variants (1-3)
+- [x] Support variant prop (surface, classic, soft)
+- [x] Support color prop (all color palette)
+- [x] Add disabled state
+- [x] Implement controlled and uncontrolled modes
+- [x] Support two-way binding with bool and CheckboxState
+- [x] Add high contrast mode
+- [x] Create comprehensive demo page
 
 #### 16. Radio
 - [ ] Create Radio.razor and Radio.razor.cs

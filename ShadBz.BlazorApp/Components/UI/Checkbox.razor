@@ -1,0 +1,24 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
+
+<button type="button" 
+        role="checkbox" 
+        @attributes="GetCheckboxAttributes()"
+        @onclick="HandleClick"
+        disabled="@Disabled"
+        aria-checked="@GetAriaChecked()">
+    <span class="rt-BaseCheckboxIndicator rt-CheckboxIndicator">
+        @if (CheckedState == CheckboxState.Checked)
+        {
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.5 3L4.5 9L2.5 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        }
+        else if (CheckedState == CheckboxState.Indeterminate)
+        {
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 6H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        }
+    </span>
+</button>

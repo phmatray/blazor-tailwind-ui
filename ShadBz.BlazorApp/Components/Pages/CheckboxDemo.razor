@@ -1,0 +1,515 @@
+@page "/checkbox-demo"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Checkbox Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">Checkbox Component</Heading>
+                <Text Size="4" Color="gray">Interactive checkbox with multiple states and variants.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic Checkboxes</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox DefaultChecked="CheckboxState.Checked" />
+                            <Text>Checked by default</Text>
+                        </Flex>
+                    </Text>
+                    
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox />
+                            <Text>Unchecked by default</Text>
+                        </Flex>
+                    </Text>
+                    
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox DefaultChecked="CheckboxState.Indeterminate" />
+                            <Text>Indeterminate state</Text>
+                        </Flex>
+                    </Text>
+                    
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Disabled="true" />
+                            <Text Color="gray">Disabled checkbox</Text>
+                        </Flex>
+                    </Text>
+                    
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Disabled="true" DefaultChecked="CheckboxState.Checked" />
+                            <Text Color="gray">Disabled checked</Text>
+                        </Flex>
+                    </Text>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Checkbox Sizes</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Text As="label" Size="1">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Size="CheckboxSize.Size1" DefaultChecked="CheckboxState.Checked" />
+                            <Text Size="1">Size 1 - Small checkbox</Text>
+                        </Flex>
+                    </Text>
+                    
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Size="CheckboxSize.Size2" DefaultChecked="CheckboxState.Checked" />
+                            <Text Size="2">Size 2 - Default size</Text>
+                        </Flex>
+                    </Text>
+                    
+                    <Text As="label" Size="3">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Size="CheckboxSize.Size3" DefaultChecked="CheckboxState.Checked" />
+                            <Text Size="3">Size 3 - Large checkbox</Text>
+                        </Flex>
+                    </Text>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Checkbox Variants</Heading>
+                <Grid Columns="3" Gap="4">
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Surface (Default)</Text>
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Checkbox Variant="CheckboxVariant.Surface" DefaultChecked="CheckboxState.Checked" />
+                                        <Text>Option 1</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Checkbox Variant="CheckboxVariant.Surface" />
+                                        <Text>Option 2</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Checkbox Variant="CheckboxVariant.Surface" DefaultChecked="CheckboxState.Indeterminate" />
+                                        <Text>Option 3</Text>
+                                    </Flex>
+                                </Text>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Classic</Text>
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Checkbox Variant="CheckboxVariant.Classic" DefaultChecked="CheckboxState.Checked" />
+                                        <Text>Option 1</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Checkbox Variant="CheckboxVariant.Classic" />
+                                        <Text>Option 2</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Checkbox Variant="CheckboxVariant.Classic" DefaultChecked="CheckboxState.Indeterminate" />
+                                        <Text>Option 3</Text>
+                                    </Flex>
+                                </Text>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Soft</Text>
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Checkbox Variant="CheckboxVariant.Soft" DefaultChecked="CheckboxState.Checked" />
+                                        <Text>Option 1</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Checkbox Variant="CheckboxVariant.Soft" />
+                                        <Text>Option 2</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Checkbox Variant="CheckboxVariant.Soft" DefaultChecked="CheckboxState.Indeterminate" />
+                                        <Text>Option 3</Text>
+                                    </Flex>
+                                </Text>
+                            </Flex>
+                        </Flex>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Checkbox Colors</Heading>
+                <Grid Columns="4" Gap="3">
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="gray" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Gray</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="gold" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Gold</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="bronze" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Bronze</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="brown" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Brown</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="yellow" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Yellow</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="amber" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Amber</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="orange" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Orange</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="tomato" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Tomato</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="red" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Red</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="ruby" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Ruby</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="crimson" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Crimson</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="pink" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Pink</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="plum" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Plum</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="purple" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Purple</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="violet" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Violet</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="iris" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Iris</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="indigo" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Indigo</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="blue" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Blue</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="cyan" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Cyan</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="teal" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Teal</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="jade" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Jade</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="green" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Green</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="grass" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Grass</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="lime" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Lime</Text>
+                        </Flex>
+                    </Text>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">High Contrast</Heading>
+                <Flex Gap="4">
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="indigo" DefaultChecked="CheckboxState.Checked" />
+                            <Text>Normal contrast</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Checkbox Color="indigo" HighContrast="true" DefaultChecked="CheckboxState.Checked" />
+                            <Text>High contrast</Text>
+                        </Flex>
+                    </Text>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Interactive Example</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Text Size="3" Weight="TextWeight.Medium">Select your preferences:</Text>
+                        
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Checkbox @bind-Checked="emailNotifications" />
+                                    <Text>Email notifications</Text>
+                                </Flex>
+                            </Text>
+                            
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Checkbox @bind-Checked="pushNotifications" />
+                                    <Text>Push notifications</Text>
+                                </Flex>
+                            </Text>
+                            
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Checkbox @bind-Checked="marketingEmails" />
+                                    <Text>Marketing emails</Text>
+                                </Flex>
+                            </Text>
+                        </Flex>
+                        
+                        <Separator My="2" />
+                        
+                        <Text Size="2" Color="gray">
+                            Selected: 
+                            @if (emailNotifications) { <Badge Size="BadgeSize.Size1" Mr="1">Email</Badge> }
+                            @if (pushNotifications) { <Badge Size="BadgeSize.Size1" Mr="1">Push</Badge> }
+                            @if (marketingEmails) { <Badge Size="BadgeSize.Size1">Marketing</Badge> }
+                            @if (!emailNotifications && !pushNotifications && !marketingEmails) { <Text>None</Text> }
+                        </Text>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Terms and Conditions</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Heading Size="3">User Agreement</Heading>
+                        
+                        <Box Style="max-height: 150px; overflow-y: auto; padding: var(--space-3); background: var(--gray-2); border-radius: var(--radius-2);">
+                            <Text Size="2">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </Text>
+                        </Box>
+                        
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Start">
+                                <Checkbox @bind-Checked="termsAccepted" />
+                                <Text>I have read and agree to the terms and conditions</Text>
+                            </Flex>
+                        </Text>
+                        
+                        <Button Disabled="@(!termsAccepted)" Variant="ButtonVariant.Solid">
+                            Continue
+                        </Button>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Task List</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="2">
+                        <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center" Mb="2">
+                            <Heading Size="3">Today's Tasks</Heading>
+                            <Badge Color="blue" Size="BadgeSize.Size1">@GetCompletedCount() / 5</Badge>
+                        </Flex>
+                        
+                        <Text As="label">
+                            <Flex Gap="2" Align="FlexAlign.Center" P="2" Style="@(task1 ? "text-decoration: line-through; opacity: 0.6;" : "")">
+                                <Checkbox @bind-Checked="task1" />
+                                <Text Size="2">Review pull requests</Text>
+                            </Flex>
+                        </Text>
+                        
+                        <Separator />
+                        
+                        <Text As="label">
+                            <Flex Gap="2" Align="FlexAlign.Center" P="2" Style="@(task2 ? "text-decoration: line-through; opacity: 0.6;" : "")">
+                                <Checkbox @bind-Checked="task2" />
+                                <Text Size="2">Update documentation</Text>
+                            </Flex>
+                        </Text>
+                        
+                        <Separator />
+                        
+                        <Text As="label">
+                            <Flex Gap="2" Align="FlexAlign.Center" P="2" Style="@(task3 ? "text-decoration: line-through; opacity: 0.6;" : "")">
+                                <Checkbox @bind-Checked="task3" />
+                                <Text Size="2">Fix critical bug in production</Text>
+                            </Flex>
+                        </Text>
+                        
+                        <Separator />
+                        
+                        <Text As="label">
+                            <Flex Gap="2" Align="FlexAlign.Center" P="2" Style="@(task4 ? "text-decoration: line-through; opacity: 0.6;" : "")">
+                                <Checkbox @bind-Checked="task4" />
+                                <Text Size="2">Team standup meeting</Text>
+                            </Flex>
+                        </Text>
+                        
+                        <Separator />
+                        
+                        <Text As="label">
+                            <Flex Gap="2" Align="FlexAlign.Center" P="2" Style="@(task5 ? "text-decoration: line-through; opacity: 0.6;" : "")">
+                                <Checkbox @bind-Checked="task5" />
+                                <Text Size="2">Deploy to staging environment</Text>
+                            </Flex>
+                        </Text>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">With Multi-line Text</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Text As="label">
+                            <Flex Gap="2" Align="FlexAlign.Start">
+                                <Checkbox DefaultChecked="CheckboxState.Checked" />
+                                <Box>
+                                    <Text Size="2" Weight="TextWeight.Medium">Enable automatic updates</Text>
+                                    <Text Size="1" Color="gray">
+                                        We'll automatically install security updates and bug fixes. 
+                                        Major version updates will still require manual approval.
+                                    </Text>
+                                </Box>
+                            </Flex>
+                        </Text>
+                        
+                        <Text As="label">
+                            <Flex Gap="2" Align="FlexAlign.Start">
+                                <Checkbox />
+                                <Box>
+                                    <Text Size="2" Weight="TextWeight.Medium">Share usage data</Text>
+                                    <Text Size="1" Color="gray">
+                                        Help us improve the product by sharing anonymous usage statistics. 
+                                        No personal information will be collected.
+                                    </Text>
+                                </Box>
+                            </Flex>
+                        </Text>
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
+
+@code {
+    private bool emailNotifications = true;
+    private bool pushNotifications = false;
+    private bool marketingEmails = false;
+    private bool termsAccepted = false;
+    
+    private bool task1 = true;
+    private bool task2 = true;
+    private bool task3 = false;
+    private bool task4 = false;
+    private bool task5 = false;
+    
+    private int GetCompletedCount()
+    {
+        var count = 0;
+        if (task1) count++;
+        if (task2) count++;
+        if (task3) count++;
+        if (task4) count++;
+        if (task5) count++;
+        return count;
+    }
+}
