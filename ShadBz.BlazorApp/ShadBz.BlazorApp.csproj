@@ -6,4 +6,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <Target Name="NpmInstall" BeforeTargets="BuildCSS">
+    <Exec Command="npm install" WorkingDirectory="$(MSBuildProjectDirectory)" />
+  </Target>
+
+  <Target Name="BuildCSS" BeforeTargets="Build">
+    <Message Text="Building Radix UI CSS..." Importance="high" />
+    <Exec Command="npm run build:css" WorkingDirectory="$(MSBuildProjectDirectory)" />
+  </Target>
+
+  <ItemGroup>
+    <Content Remove="Styles\**" />
+    <None Include="Styles\**" />
+  </ItemGroup>
+
 </Project>

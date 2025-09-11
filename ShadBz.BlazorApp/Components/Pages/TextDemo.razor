@@ -1,0 +1,232 @@
+@page "/text-demo"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Text Demo</PageTitle>
+
+<div class="demo-container">
+    <h1>Text Component Demo</h1>
+
+    <div class="demo-section">
+        <h2>Sizes</h2>
+        <div class="demo-content">
+            <Text Size="1">Size 1: The quick brown fox jumps over the lazy dog</Text>
+            <Text Size="2">Size 2: The quick brown fox jumps over the lazy dog</Text>
+            <Text Size="3">Size 3: The quick brown fox jumps over the lazy dog</Text>
+            <Text Size="4">Size 4: The quick brown fox jumps over the lazy dog</Text>
+            <Text Size="5">Size 5: The quick brown fox jumps over the lazy dog</Text>
+            <Text Size="6">Size 6: The quick brown fox jumps over the lazy dog</Text>
+            <Text Size="7">Size 7: The quick brown fox jumps over the lazy dog</Text>
+            <Text Size="8">Size 8: The quick brown fox jumps over the lazy dog</Text>
+            <Text Size="9">Size 9: The quick brown fox jumps over the lazy dog</Text>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Weights</h2>
+        <div class="demo-content">
+            <Text Size="4" Weight="TextWeight.Light">Light: The quick brown fox jumps over the lazy dog</Text>
+            <Text Size="4" Weight="TextWeight.Regular">Regular: The quick brown fox jumps over the lazy dog</Text>
+            <Text Size="4" Weight="TextWeight.Medium">Medium: The quick brown fox jumps over the lazy dog</Text>
+            <Text Size="4" Weight="TextWeight.Bold">Bold: The quick brown fox jumps over the lazy dog</Text>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Colors</h2>
+        <div class="demo-content">
+            <Text Size="4">Default color text</Text>
+            <Text Size="4" Color="gray">Gray text</Text>
+            <Text Size="4" Color="blue">Blue text</Text>
+            <Text Size="4" Color="green">Green text</Text>
+            <Text Size="4" Color="red">Red text</Text>
+            <Text Size="4" Color="purple">Purple text</Text>
+            <Text Size="4" Color="amber">Amber text</Text>
+            <Text Size="4" Color="cyan">Cyan text</Text>
+            <Text Size="4" Color="pink">Pink text</Text>
+            <Text Size="4" Color="indigo">Indigo text</Text>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>High Contrast</h2>
+        <div class="demo-content">
+            <Text Size="4" Color="blue">Normal contrast blue text</Text>
+            <Text Size="4" Color="blue" HighContrast="true">High contrast blue text</Text>
+            <Text Size="4" Color="green">Normal contrast green text</Text>
+            <Text Size="4" Color="green" HighContrast="true">High contrast green text</Text>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Text Alignment</h2>
+        <div class="demo-content" style="width: 100%;">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="3" Align="TextAlign.Left" As="div">Left aligned text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+            </Box>
+            <Box P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="3" Align="TextAlign.Center" As="div">Center aligned text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+            </Box>
+            <Box P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="3" Align="TextAlign.Right" As="div">Right aligned text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>As Prop (Element Types)</h2>
+        <div class="demo-content">
+            <Text As="span" Size="3">This is a span element (default)</Text>
+            <Text As="div" Size="3">This is a div element</Text>
+            <Text As="p" Size="3">This is a paragraph element</Text>
+            <Text As="label" Size="3">This is a label element (with tap highlight on mobile)</Text>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Truncate</h2>
+        <div class="demo-content">
+            <Box Width="300px" P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="3" Truncate="false">
+                    Without truncate: This is a very long text that will wrap to multiple lines when it exceeds the container width
+                </Text>
+            </Box>
+            <Box Width="300px" P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="3" Truncate="true">
+                    With truncate: This is a very long text that will be truncated with ellipsis when it exceeds the container width
+                </Text>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Text Wrap Options</h2>
+        <div class="demo-content">
+            <Box Width="300px" P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="3" Wrap="TextWrap.Wrap" As="div">
+                    Wrap: This text will wrap normally to the next line when it reaches the edge of its container.
+                </Text>
+            </Box>
+            <Box Width="300px" P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2); overflow: auto;">
+                <Text Size="3" Wrap="TextWrap.NoWrap" As="div">
+                    NoWrap: This text will not wrap and will continue on the same line even when it reaches the edge of its container.
+                </Text>
+            </Box>
+            <Box Width="300px" P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="3" Wrap="TextWrap.Pretty" As="div">
+                    Pretty: This text uses optimized wrapping for better readability and typography.
+                </Text>
+            </Box>
+            <Box Width="300px" P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="3" Wrap="TextWrap.Balance" As="div">
+                    Balance: This text balances line lengths for headings and short text blocks.
+                </Text>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Leading Trim</h2>
+        <div class="demo-content">
+            <Box Display="flex" style="gap: var(--space-4);">
+                <Box P="3" style="background: var(--blue-a3); border-radius: var(--radius-2);">
+                    <Text Size="6" Trim="false">Without Trim</Text>
+                    <Box style="background: var(--red-a5); height: 1px; margin-top: -1px;"></Box>
+                </Box>
+                <Box P="3" style="background: var(--blue-a3); border-radius: var(--radius-2);">
+                    <Text Size="6" Trim="true">With Trim</Text>
+                    <Box style="background: var(--red-a5); height: 1px; margin-top: -1px;"></Box>
+                </Box>
+            </Box>
+            <Text Size="2" Color="gray" Mt="2">
+                Leading trim removes extra space above and below text for better alignment
+            </Text>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Margin Props</h2>
+        <div class="demo-content">
+            <Box style="background: var(--gray-a2); padding: var(--space-4); border-radius: var(--radius-2);">
+                <Text Size="3" M="0" style="background: var(--blue-a3);">No margin (M="0")</Text>
+                <Text Size="3" M="2" style="background: var(--green-a3);">Margin 2 all sides</Text>
+                <Text Size="3" Mx="4" My="1" style="background: var(--amber-a3);">Margin X=4, Y=1</Text>
+                <Text Size="3" Mt="3" Mb="3" style="background: var(--purple-a3);">Margin top & bottom = 3</Text>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Combinations</h2>
+        <div class="demo-content">
+            <Text Size="6" Weight="TextWeight.Bold" Color="blue">
+                Large Bold Blue Heading
+            </Text>
+            <Text Size="3" Color="gray" Mt="2">
+                Regular body text in gray color with margin top
+            </Text>
+            <Text Size="2" Weight="TextWeight.Light" Color="gray" Mt="1">
+                Small light gray caption text
+            </Text>
+            <Box Mt="4" P="3" style="background: var(--amber-a2); border-radius: var(--radius-2);">
+                <Text Size="4" Weight="TextWeight.Medium" Color="amber" HighContrast="true">
+                    ⚠️ Warning message with high contrast amber color
+                </Text>
+            </Box>
+            <Box Mt="2" P="3" style="background: var(--red-a2); border-radius: var(--radius-2);">
+                <Text Size="4" Weight="TextWeight.Medium" Color="red" HighContrast="true">
+                    ❌ Error message with high contrast red color
+                </Text>
+            </Box>
+            <Box Mt="2" P="3" style="background: var(--green-a2); border-radius: var(--radius-2);">
+                <Text Size="4" Weight="TextWeight.Medium" Color="green" HighContrast="true">
+                    ✅ Success message with high contrast green color
+                </Text>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Label Example with Form</h2>
+        <div class="demo-content">
+            <div style="display: flex; flex-direction: column; gap: var(--space-3); max-width: 300px;">
+                <div>
+                    <Text As="label" Size="2" Weight="TextWeight.Medium" Mb="1" style="display: block;">
+                        Email Address
+                    </Text>
+                    <input type="email" placeholder="Enter your email" style="width: 100%; padding: var(--space-2); border: 1px solid var(--gray-6); border-radius: var(--radius-2);" />
+                </div>
+                <div>
+                    <Text As="label" Size="2" Weight="TextWeight.Medium" Mb="1" style="display: block;">
+                        Password
+                    </Text>
+                    <input type="password" placeholder="Enter your password" style="width: 100%; padding: var(--space-2); border: 1px solid var(--gray-6); border-radius: var(--radius-2);" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .demo-container {
+        padding: var(--space-4);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .demo-section {
+        margin-bottom: var(--space-6);
+    }
+
+    .demo-section h2 {
+        margin-bottom: var(--space-3);
+        font-size: var(--font-size-4);
+        font-weight: var(--font-weight-bold);
+        color: var(--gray-12);
+    }
+
+    .demo-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+</style>

@@ -1,0 +1,21 @@
+@namespace ShadBz.BlazorApp.Components.UI
+
+@if (AsChild)
+{
+    @* When AsChild is true, render only the child content with appropriate attributes *@
+    <CascadingValue Value="@GetBoxAttributes()" Name="BoxAttributes">
+        @ChildContent
+    </CascadingValue>
+}
+else if (As == "span")
+{
+    <span @attributes="GetAllAttributes()" class="@CssClass">
+        @ChildContent
+    </span>
+}
+else
+{
+    <div @attributes="GetAllAttributes()" class="@CssClass">
+        @ChildContent
+    </div>
+}

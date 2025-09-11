@@ -1,0 +1,375 @@
+@page "/flex-demo"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Flex Demo</PageTitle>
+
+<div class="demo-container">
+    <h1>Flex Component Demo</h1>
+
+    <div class="demo-section">
+        <h2>Direction</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Row (default)</Text>
+                <Flex Gap="2">
+                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Column</Text>
+                <Flex Direction="FlexDirection.Column" Gap="2">
+                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Row Reverse</Text>
+                <Flex Direction="FlexDirection.RowReverse" Gap="2">
+                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Column Reverse</Text>
+                <Flex Direction="FlexDirection.ColumnReverse" Gap="2">
+                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Alignment</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Align Start</Text>
+                <Flex Align="FlexAlign.Start" Gap="2" Height="100px" style="background: var(--gray-a3);">
+                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="3" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="1" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Align Center</Text>
+                <Flex Align="FlexAlign.Center" Gap="2" Height="100px" style="background: var(--gray-a3);">
+                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="1" style="background: var(--green-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Align End</Text>
+                <Flex Align="FlexAlign.End" Gap="2" Height="100px" style="background: var(--gray-a3);">
+                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="3" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="1" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Align Baseline</Text>
+                <Flex Align="FlexAlign.Baseline" Gap="2" style="background: var(--gray-a3);">
+                    <Text Size="5">Large</Text>
+                    <Text Size="3">Medium</Text>
+                    <Text Size="1">Small</Text>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Align Stretch</Text>
+                <Flex Align="FlexAlign.Stretch" Gap="2" Height="100px" style="background: var(--gray-a3);">
+                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Justification</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Justify Start</Text>
+                <Flex Justify="FlexJustify.Start" Gap="2" style="background: var(--gray-a3);">
+                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Justify Center</Text>
+                <Flex Justify="FlexJustify.Center" Gap="2" style="background: var(--gray-a3);">
+                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Justify End</Text>
+                <Flex Justify="FlexJustify.End" Gap="2" style="background: var(--gray-a3);">
+                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Justify Between</Text>
+                <Flex Justify="FlexJustify.Between" style="background: var(--gray-a3);">
+                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Gap</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Gap 0</Text>
+                <Flex Gap="0">
+                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--blue-6); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Gap 2</Text>
+                <Flex Gap="2">
+                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--green-6); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Gap 4</Text>
+                <Flex Gap="4">
+                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--amber-6); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Custom Gap (20px)</Text>
+                <Flex Gap="20px">
+                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="2" style="background: var(--purple-6); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1);">Item 3</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Different Gap X and Y</Text>
+                <Flex Direction="FlexDirection.Column" GapX="6" GapY="2">
+                    <Flex>
+                        <Box P="2" style="background: var(--cyan-5); border-radius: var(--radius-1);">Row 1 Item 1</Box>
+                        <Box P="2" style="background: var(--cyan-5); border-radius: var(--radius-1);">Row 1 Item 2</Box>
+                    </Flex>
+                    <Flex>
+                        <Box P="2" style="background: var(--cyan-5); border-radius: var(--radius-1);">Row 2 Item 1</Box>
+                        <Box P="2" style="background: var(--cyan-5); border-radius: var(--radius-1);">Row 2 Item 2</Box>
+                    </Flex>
+                </Flex>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Wrap</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">No Wrap (default)</Text>
+                <Box Width="300px" style="background: var(--gray-a3); overflow: auto;">
+                    <Flex Wrap="FlexWrap.NoWrap" Gap="2">
+                        <Box P="2" MinWidth="100px" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 1</Box>
+                        <Box P="2" MinWidth="100px" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 2</Box>
+                        <Box P="2" MinWidth="100px" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 3</Box>
+                        <Box P="2" MinWidth="100px" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 4</Box>
+                    </Flex>
+                </Box>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Wrap</Text>
+                <Box Width="300px" style="background: var(--gray-a3);">
+                    <Flex Wrap="FlexWrap.Wrap" Gap="2">
+                        <Box P="2" MinWidth="100px" style="background: var(--green-5); border-radius: var(--radius-1);">Item 1</Box>
+                        <Box P="2" MinWidth="100px" style="background: var(--green-5); border-radius: var(--radius-1);">Item 2</Box>
+                        <Box P="2" MinWidth="100px" style="background: var(--green-5); border-radius: var(--radius-1);">Item 3</Box>
+                        <Box P="2" MinWidth="100px" style="background: var(--green-5); border-radius: var(--radius-1);">Item 4</Box>
+                    </Flex>
+                </Box>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Wrap Reverse</Text>
+                <Box Width="300px" style="background: var(--gray-a3);">
+                    <Flex Wrap="FlexWrap.WrapReverse" Gap="2">
+                        <Box P="2" MinWidth="100px" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 1</Box>
+                        <Box P="2" MinWidth="100px" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 2</Box>
+                        <Box P="2" MinWidth="100px" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 3</Box>
+                        <Box P="2" MinWidth="100px" style="background: var(--amber-5); border-radius: var(--radius-1);">Item 4</Box>
+                    </Flex>
+                </Box>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Display</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Inline Flex</Text>
+                <Text>
+                    This is text with an 
+                    <Flex Display="FlexDisplay.InlineFlex" Gap="1" style="background: var(--blue-a3); padding: 2px; border-radius: var(--radius-1);">
+                        <span>inline</span>
+                        <span>flex</span>
+                        <span>container</span>
+                    </Flex>
+                    inside it.
+                </Text>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Display None</Text>
+                <Flex Gap="2">
+                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">Visible</Box>
+                    <Flex Display="FlexDisplay.None">
+                        <Box P="2" style="background: var(--red-5); border-radius: var(--radius-1);">Hidden</Box>
+                    </Flex>
+                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">Visible</Box>
+                </Flex>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>As Prop</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">As Div (default)</Text>
+                <Flex As="div" Gap="2">
+                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">Div Item 1</Box>
+                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">Div Item 2</Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">As Span</Text>
+                <Text>
+                    This has a 
+                    <Flex As="span" Display="FlexDisplay.InlineFlex" Gap="1" style="background: var(--green-a3); padding: 2px; border-radius: var(--radius-1);">
+                        <span>span</span>
+                        <span>flex</span>
+                    </Flex>
+                    element inside.
+                </Text>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Complex Layouts</h2>
+        <div class="demo-content">
+            <Box P="4" style="background: var(--gray-a2); border-radius: var(--radius-3);">
+                <Heading Size="4" Mb="3">Card Layout</Heading>
+                <Flex Gap="3">
+                    <Box FlexGrow="1" P="3" style="background: white; border-radius: var(--radius-2); box-shadow: var(--shadow-2);">
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Heading Size="3">Card Title</Heading>
+                            <Text Size="2" Color="gray">Card subtitle with supporting text</Text>
+                            <Box FlexGrow="1">
+                                <Text Size="2">Main content area that can expand to fill available space.</Text>
+                            </Box>
+                            <Flex Justify="FlexJustify.End" Gap="2">
+                                <Button Variant="ButtonVariant.Outline" Size="2">Cancel</Button>
+                                <Button Size="2">Action</Button>
+                            </Flex>
+                        </Flex>
+                    </Box>
+                </Flex>
+            </Box>
+            
+            <Box P="4" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-3);">
+                <Heading Size="4" Mb="3">Navigation Bar</Heading>
+                <Flex Align="FlexAlign.Center" Justify="FlexJustify.Between" P="3" style="background: white; border-radius: var(--radius-2); box-shadow: var(--shadow-2);">
+                    <Flex Align="FlexAlign.Center" Gap="4">
+                        <Text Size="3" Weight="TextWeight.Bold">Logo</Text>
+                        <Flex Gap="3">
+                            <Text Size="2">Home</Text>
+                            <Text Size="2">About</Text>
+                            <Text Size="2">Services</Text>
+                            <Text Size="2">Contact</Text>
+                        </Flex>
+                    </Flex>
+                    <Flex Gap="2">
+                        <Button Variant="ButtonVariant.Ghost" Size="2">Sign In</Button>
+                        <Button Size="2">Sign Up</Button>
+                    </Flex>
+                </Flex>
+            </Box>
+            
+            <Box P="4" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-3);">
+                <Heading Size="4" Mb="3">Responsive Grid</Heading>
+                <Flex Wrap="FlexWrap.Wrap" Gap="3">
+                    @for (int i = 1; i <= 6; i++)
+                    {
+                        <Box FlexBasis="calc(33.333% - var(--space-3))" MinWidth="200px" P="3" 
+                             style="background: white; border-radius: var(--radius-2); box-shadow: var(--shadow-2);">
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Box Height="100px" style="background: var(--gray-3); border-radius: var(--radius-1);"></Box>
+                                <Heading Size="3">Item @i</Heading>
+                                <Text Size="2" Color="gray">Description for item @i</Text>
+                            </Flex>
+                        </Box>
+                    }
+                </Flex>
+            </Box>
+        </div>
+    </div>
+</div>
+
+<style>
+    .demo-container {
+        padding: var(--space-4);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .demo-section {
+        margin-bottom: var(--space-6);
+    }
+
+    .demo-section h2 {
+        margin-bottom: var(--space-3);
+        font-size: var(--font-size-4);
+        font-weight: var(--font-weight-bold);
+        color: var(--gray-12);
+    }
+
+    .demo-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+</style>
