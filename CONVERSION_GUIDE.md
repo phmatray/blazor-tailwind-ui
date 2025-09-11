@@ -400,11 +400,11 @@ module.exports = {
 - [x] Support all layout props
 - [x] Create demo page
 
-#### 8. Section
-- [ ] Create Section.razor and Section.razor.cs
-- [ ] Implement size variants (1-3)
-- [ ] Support all layout props
-- [ ] Create demo page
+#### 8. Section ✅
+- [x] Create Section.razor and Section.razor.cs
+- [x] Implement size variants (1-4)
+- [x] Support all layout props
+- [x] Create demo page
 
 #### 9. Card
 - [ ] Create Card.razor and Card.razor.cs

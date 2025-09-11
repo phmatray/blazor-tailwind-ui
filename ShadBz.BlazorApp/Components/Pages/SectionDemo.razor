@@ -1,0 +1,365 @@
+@page "/section-demo"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Section Demo</PageTitle>
+
+<div class="demo-container">
+    <h1>Section Component Demo</h1>
+
+    <div class="demo-section">
+        <h2>Section Sizes</h2>
+        <div class="demo-content">
+            <Box style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Section Size="SectionSize.Size1" style="background: var(--blue-a3);">
+                    <Container Size="ContainerSize.Size3">
+                        <Heading Size="4">Size 1 Section (24px padding)</Heading>
+                        <Text Size="2" Mt="2">This section has the smallest vertical padding of 24px. It's suitable for compact layouts where space is limited.</Text>
+                    </Container>
+                </Section>
+            </Box>
+            
+            <Box Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Section Size="SectionSize.Size2" style="background: var(--green-a3);">
+                    <Container Size="ContainerSize.Size3">
+                        <Heading Size="4">Size 2 Section (40px padding)</Heading>
+                        <Text Size="2" Mt="2">This section has moderate vertical padding of 40px. It provides a good balance between content density and breathing room.</Text>
+                    </Container>
+                </Section>
+            </Box>
+            
+            <Box Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Section Size="SectionSize.Size3" style="background: var(--amber-a3);">
+                    <Container Size="ContainerSize.Size3">
+                        <Heading Size="4">Size 3 Section (64px padding - default)</Heading>
+                        <Text Size="2" Mt="2">This is the default section size with 64px vertical padding. It's ideal for main content sections that need clear visual separation.</Text>
+                    </Container>
+                </Section>
+            </Box>
+            
+            <Box Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Section Size="SectionSize.Size4" style="background: var(--purple-a3);">
+                    <Container Size="ContainerSize.Size3">
+                        <Heading Size="4">Size 4 Section (80px padding)</Heading>
+                        <Text Size="2" Mt="2">This section has the largest vertical padding of 80px. Perfect for hero sections or areas that need significant visual emphasis.</Text>
+                    </Container>
+                </Section>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Display Property</h2>
+        <div class="demo-content">
+            <Box style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Section Size="SectionSize.Size2" style="background: var(--blue-a3);">
+                    <Container Size="ContainerSize.Size3">
+                        <Text Size="3">First Section (visible)</Text>
+                    </Container>
+                </Section>
+                <Section Size="SectionSize.Size2" Display="SectionDisplay.None" style="background: var(--red-a3);">
+                    <Container Size="ContainerSize.Size3">
+                        <Text Size="3">Second Section (hidden with display: none)</Text>
+                    </Container>
+                </Section>
+                <Section Size="SectionSize.Size2" style="background: var(--green-a3);">
+                    <Container Size="ContainerSize.Size3">
+                        <Text Size="3">Third Section (visible)</Text>
+                    </Container>
+                </Section>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Section with Custom Padding</h2>
+        <div class="demo-content">
+            <Box style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Section Py="2" Px="4" style="background: var(--cyan-a3);">
+                    <Container Size="ContainerSize.Size3">
+                        <Heading Size="4">Custom Padding Section</Heading>
+                        <Text Size="2" Mt="2">This section overrides the default size-based padding with custom padding values (Py="2" Px="4").</Text>
+                    </Container>
+                </Section>
+            </Box>
+            
+            <Box Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Section P="6" style="background: var(--pink-a3);">
+                    <Container Size="ContainerSize.Size3">
+                        <Heading Size="4">Uniform Custom Padding</Heading>
+                        <Text Size="2" Mt="2">This section has uniform padding on all sides (P="6").</Text>
+                    </Container>
+                </Section>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Section with Margins</h2>
+        <div class="demo-content">
+            <Box style="background: var(--gray-a2); border-radius: var(--radius-2); padding: var(--space-2);">
+                <Section Size="SectionSize.Size2" M="3" style="background: var(--indigo-a3);">
+                    <Container Size="ContainerSize.Size3">
+                        <Heading Size="4">Section with Margin</Heading>
+                        <Text Size="2" Mt="2">This section has margin on all sides (M="3"), creating space between it and its container.</Text>
+                    </Container>
+                </Section>
+                
+                <Section Size="SectionSize.Size2" Mx="5" My="2" style="background: var(--orange-a3);">
+                    <Container Size="ContainerSize.Size3">
+                        <Heading Size="4">Section with X/Y Margins</Heading>
+                        <Text Size="2" Mt="2">This section has different horizontal (Mx="5") and vertical (My="2") margins.</Text>
+                    </Container>
+                </Section>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Nested Sections</h2>
+        <div class="demo-content">
+            <Section Size="SectionSize.Size3" style="background: var(--gray-a3);">
+                <Container Size="ContainerSize.Size4">
+                    <Heading Size="5" Mb="3">Outer Section</Heading>
+                    <Section Size="SectionSize.Size2" style="background: var(--blue-a3); border-radius: var(--radius-2);">
+                        <Container Size="ContainerSize.Size3">
+                            <Heading Size="4">Inner Section</Heading>
+                            <Text Size="2" Mt="2">Sections can be nested to create complex layouts with different spacing levels.</Text>
+                        </Container>
+                    </Section>
+                </Container>
+            </Section>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Section with Layout Props</h2>
+        <div class="demo-content">
+            <Section 
+                Size="SectionSize.Size2" 
+                MinHeight="300px" 
+                Position="relative" 
+                style="background: var(--gradient-1);">
+                <Container Size="ContainerSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Align="FlexAlign.Center" Justify="FlexJustify.Center" MinHeight="300px">
+                        <Heading Size="5" style="color: white;">Centered Content Section</Heading>
+                        <Text Size="3" Mt="2" style="color: var(--gray-3);">
+                            This section has a minimum height and uses flexbox to center its content.
+                        </Text>
+                    </Flex>
+                </Container>
+            </Section>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Practical Examples</h2>
+        <div class="demo-content">
+            <Box style="border-radius: var(--radius-3); overflow: hidden; box-shadow: var(--shadow-4);">
+                <!-- Hero Section -->
+                <Section Size="SectionSize.Size4" style="background: linear-gradient(135deg, var(--blue-9), var(--purple-9));">
+                    <Container Size="ContainerSize.Size3" Align="ContainerAlign.Center">
+                        <Flex Direction="FlexDirection.Column" Align="FlexAlign.Center" style="text-align: center;">
+                            <Heading Size="8" style="color: white;">Welcome to Our Platform</Heading>
+                            <Text Size="4" Mt="3" style="color: var(--gray-3);">
+                                Build amazing experiences with our powerful component library
+                            </Text>
+                            <Flex Gap="3" Mt="5">
+                                <Button Size="ButtonSize.ExtraLarge">Get Started</Button>
+                                <Button Variant="ButtonVariant.Outline" Size="ButtonSize.ExtraLarge" style="color: white; border-color: white;">
+                                    Learn More
+                                </Button>
+                            </Flex>
+                        </Flex>
+                    </Container>
+                </Section>
+                
+                <!-- Features Section -->
+                <Section Size="SectionSize.Size3" style="background: white;">
+                    <Container Size="ContainerSize.Size3">
+                        <Heading Size="6" Align="TextAlign.Center" Mb="5">Key Features</Heading>
+                        <Grid Columns="3" Gap="4">
+                            @for (int i = 1; i <= 3; i++)
+                            {
+                                <Flex Direction="FlexDirection.Column" Align="FlexAlign.Center" style="text-align: center;">
+                                    <Box Width="60px" Height="60px" Mb="3" style="background: var(--blue-5); border-radius: var(--radius-3);"></Box>
+                                    <Heading Size="3">Feature @i</Heading>
+                                    <Text Size="2" Color="gray" Mt="2">
+                                        Description of this amazing feature that helps users achieve their goals.
+                                    </Text>
+                                </Flex>
+                            }
+                        </Grid>
+                    </Container>
+                </Section>
+                
+                <!-- CTA Section -->
+                <Section Size="SectionSize.Size3" style="background: var(--gray-2);">
+                    <Container Size="ContainerSize.Size2" Align="ContainerAlign.Center">
+                        <Flex Direction="FlexDirection.Column" Align="FlexAlign.Center" style="text-align: center;">
+                            <Heading Size="6">Ready to Get Started?</Heading>
+                            <Text Size="3" Color="gray" Mt="2" Mb="4">
+                                Join thousands of developers building with our components
+                            </Text>
+                            <Button Size="ButtonSize.ExtraLarge">Start Building Today</Button>
+                        </Flex>
+                    </Container>
+                </Section>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Blog Post Layout</h2>
+        <div class="demo-content">
+            <Box style="background: var(--gray-1);">
+                <!-- Article Header -->
+                <Section Size="SectionSize.Size3" style="background: var(--gray-12); color: white;">
+                    <Container Size="ContainerSize.Size2">
+                        <Heading Size="7" style="color: white;">Understanding Modern Web Architecture</Heading>
+                        <Flex Gap="3" Mt="3">
+                            <Text Size="2" style="color: var(--gray-11);">By Jane Doe</Text>
+                            <Text Size="2" style="color: var(--gray-11);">•</Text>
+                            <Text Size="2" style="color: var(--gray-11);">December 15, 2024</Text>
+                            <Text Size="2" style="color: var(--gray-11);">•</Text>
+                            <Text Size="2" style="color: var(--gray-11);">10 min read</Text>
+                        </Flex>
+                    </Container>
+                </Section>
+                
+                <!-- Article Content -->
+                <Section Size="SectionSize.Size2" style="background: white;">
+                    <Container Size="ContainerSize.Size2">
+                        <Text Size="3" Mb="3">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </Text>
+                        <Heading Size="5" Mt="4" Mb="2">Introduction</Heading>
+                        <Text Size="3" Mb="3">
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </Text>
+                        <Heading Size="5" Mt="4" Mb="2">Key Concepts</Heading>
+                        <Text Size="3">
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </Text>
+                    </Container>
+                </Section>
+                
+                <!-- Author Bio -->
+                <Section Size="SectionSize.Size2" style="background: var(--gray-2);">
+                    <Container Size="ContainerSize.Size2">
+                        <Flex Gap="3">
+                            <Box Width="80px" Height="80px" FlexShrink="0" style="background: var(--gray-5); border-radius: var(--radius-round);"></Box>
+                            <Box>
+                                <Heading Size="4">About the Author</Heading>
+                                <Text Size="2" Color="gray" Mt="1">
+                                    Jane Doe is a senior software engineer with over 10 years of experience in web development.
+                                </Text>
+                            </Box>
+                        </Flex>
+                    </Container>
+                </Section>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>AsChild Pattern</h2>
+        <div class="demo-content">
+            <Section Size="SectionSize.Size2" AsChild="true">
+                <article style="background: var(--indigo-a3);">
+                    <Container Size="ContainerSize.Size3">
+                        <Heading Size="4">Custom Article Element</Heading>
+                        <Text Size="2" Mt="2">
+                            When using AsChild, the Section's padding and spacing are applied to the child element directly. 
+                            This article element receives the section's vertical padding.
+                        </Text>
+                    </Container>
+                </article>
+            </Section>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Full Page Layout Example</h2>
+        <div class="demo-content">
+            <Box style="background: white; border-radius: var(--radius-3); overflow: hidden; box-shadow: var(--shadow-5);">
+                <!-- Header -->
+                <Box P="3" style="background: white; border-bottom: 1px solid var(--gray-4);">
+                    <Container Size="ContainerSize.Size4">
+                        <Flex Align="FlexAlign.Center" Justify="FlexJustify.Between">
+                            <Text Size="3" Weight="TextWeight.Bold">Logo</Text>
+                            <Flex Gap="4">
+                                <Text Size="2">Products</Text>
+                                <Text Size="2">Solutions</Text>
+                                <Text Size="2">Pricing</Text>
+                                <Text Size="2">Contact</Text>
+                            </Flex>
+                        </Flex>
+                    </Container>
+                </Box>
+                
+                <!-- Sections -->
+                <Section Size="SectionSize.Size1" style="background: var(--gray-2);">
+                    <Container Size="ContainerSize.Size4">
+                        <Text Size="2" Color="gray">Small announcement bar with minimal padding</Text>
+                    </Container>
+                </Section>
+                
+                <Section Size="SectionSize.Size3" style="background: white;">
+                    <Container Size="ContainerSize.Size4">
+                        <Grid Columns="2" Gap="5">
+                            <Box>
+                                <Heading Size="6">Main Content Area</Heading>
+                                <Text Size="3" Mt="3">
+                                    This section demonstrates how different section sizes can be combined to create a cohesive page layout.
+                                </Text>
+                            </Box>
+                            <Box P="4" style="background: var(--gray-2); border-radius: var(--radius-2);">
+                                <Heading Size="4">Sidebar</Heading>
+                                <Text Size="2" Mt="2">Related information and links</Text>
+                            </Box>
+                        </Grid>
+                    </Container>
+                </Section>
+                
+                <!-- Footer -->
+                <Section Size="SectionSize.Size2" style="background: var(--gray-12); color: white;">
+                    <Container Size="ContainerSize.Size4">
+                        <Flex Justify="FlexJustify.Between">
+                            <Text Size="2" style="color: var(--gray-11);">© 2024 Company Name</Text>
+                            <Flex Gap="3">
+                                <Text Size="2" style="color: var(--gray-11);">Privacy</Text>
+                                <Text Size="2" style="color: var(--gray-11);">Terms</Text>
+                                <Text Size="2" style="color: var(--gray-11);">Support</Text>
+                            </Flex>
+                        </Flex>
+                    </Container>
+                </Section>
+            </Box>
+        </div>
+    </div>
+</div>
+
+<style>
+    .demo-container {
+        padding: var(--space-4);
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .demo-section {
+        margin-bottom: var(--space-6);
+    }
+
+    .demo-section h2 {
+        margin-bottom: var(--space-3);
+        font-size: var(--font-size-4);
+        font-weight: var(--font-weight-bold);
+        color: var(--gray-12);
+    }
+
+    .demo-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+</style>

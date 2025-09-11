@@ -1,0 +1,14 @@
+@namespace ShadBz.BlazorApp.Components.UI
+
+@if (AsChild)
+{
+    <CascadingValue Value="@GetSectionAttributes()" Name="SectionAttributes">
+        @ChildContent
+    </CascadingValue>
+}
+else
+{
+    <section @attributes="GetAllAttributes()" class="@CssClass" style="@GetInlineStyles()">
+        @ChildContent
+    </section>
+}
