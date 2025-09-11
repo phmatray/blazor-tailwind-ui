@@ -1,0 +1,23 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@typeparam TValue
+
+<div class="@ItemCssClass" @onclick="HandleClick" @attributes="AdditionalAttributes">
+    <span class="rt-SelectItemIndicator">
+        @if (IsSelected)
+        {
+            <svg width="9" height="9" viewBox="0 0 9 9" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.53547 0.62293C8.88226 0.849446 8.97976 1.3142 8.75324 1.66099L4.51891 8.27993C4.39132 8.4793 4.17567 8.60518 3.93883 8.61609C3.702 8.627 3.47564 8.52146 3.33116 8.33213L0.332292 4.44207C0.0768692 4.11861 0.134548 3.64573 0.457941 3.39023C0.781334 3.13473 1.25438 3.19248 1.5098 3.51595L3.84514 6.35877L7.42916 0.72007C7.65568 0.373281 8.12037 0.275776 8.46716 0.502293L8.53547 0.62293Z"></path>
+            </svg>
+        }
+    </span>
+    <span class="rt-SelectItemText">
+        @if (ChildContent != null)
+        {
+            @ChildContent
+        }
+        else
+        {
+            @Value?.ToString()
+        }
+    </span>
+</div>

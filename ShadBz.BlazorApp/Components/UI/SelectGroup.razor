@@ -1,0 +1,9 @@
+@namespace ShadBz.BlazorApp.Components.UI
+
+<div class="rt-SelectGroup">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

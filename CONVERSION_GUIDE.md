@@ -527,15 +527,18 @@ module.exports = {
 - [x] Two-way binding support
 - [x] Create comprehensive demo page
 
-#### 20. Select
-- [ ] Create Select.razor and Select.razor.cs
-- [ ] Create SelectTrigger, SelectContent, SelectItem
-- [ ] Implement size variants
-- [ ] Add variant prop
-- [ ] Support placeholder
-- [ ] Add disabled state
-- [ ] Support color prop
-- [ ] Create demo page
+#### 20. Select ✅
+- [x] Create SelectRoot.razor and SelectRoot.razor.cs with generic type support
+- [x] Create SelectTrigger, SelectContent, SelectItem sub-components
+- [x] Create SelectGroup, SelectLabel, SelectSeparator sub-components
+- [x] Implement size variants (1-3)
+- [x] Add trigger variant prop (classic, surface, soft, ghost)
+- [x] Add content variant prop (solid, soft)
+- [x] Support placeholder and disabled states
+- [x] Support color prop (all color palette)
+- [x] Add radius prop (none, small, medium, large, full)
+- [x] Two-way binding support with generic types
+- [x] Create comprehensive demo page
 
 #### 21. Slider
 - [ ] Create Slider.razor and Slider.razor.cs
