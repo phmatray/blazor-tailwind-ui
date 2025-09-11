@@ -1,17 +1,18 @@
 @namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
 
 @if (AsChild)
 {
     <CascadingValue Value="@GetContainerAttributes()" Name="ContainerAttributes">
-        <div class="@InnerCssClass" style="@GetInnerStyles()">
+        <div class="@InnerCssClass" style="@GetInlineStyles()">
             @ChildContent
         </div>
     </CascadingValue>
 }
 else
 {
-    <div @attributes="GetAllAttributes()" class="@CssClass" style="@GetOuterStyles()">
-        <div class="@InnerCssClass" style="@GetInnerStyles()">
+    <div @attributes="GetAllAttributes()" class="@CssClass" style="@GetInlineStyles()">
+        <div class="@InnerCssClass" style="@GetInlineStyles()">
             @ChildContent
         </div>
     </div>

@@ -141,26 +141,3 @@ public partial class Text : ComponentBase
         return attributes;
     }
 }
-
-public enum TextWeight
-{
-    Light,
-    Regular,
-    Medium,
-    Bold
-}
-
-public enum TextAlign
-{
-    Left,
-    Center,
-    Right
-}
-
-public enum TextWrap
-{
-    Wrap,
-    NoWrap,
-    Pretty,
-    Balance
-}
