@@ -1,0 +1,83 @@
+@page "/button-demo"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Button Demo</PageTitle>
+
+<h1>Button Component Demo</h1>
+
+<div class="demo-section">
+    <h2>Sizes</h2>
+    <div class="button-group">
+        <Button Size="ButtonSize.Small">Small</Button>
+        <Button Size="ButtonSize.Medium">Medium</Button>
+        <Button Size="ButtonSize.Large">Large</Button>
+        <Button Size="ButtonSize.ExtraLarge">Extra Large</Button>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Variants</h2>
+    <div class="button-group">
+        <Button Variant="ButtonVariant.Classic">Classic</Button>
+        <Button Variant="ButtonVariant.Solid">Solid</Button>
+        <Button Variant="ButtonVariant.Soft">Soft</Button>
+        <Button Variant="ButtonVariant.Surface">Surface</Button>
+        <Button Variant="ButtonVariant.Outline">Outline</Button>
+        <Button Variant="ButtonVariant.Ghost">Ghost</Button>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>States</h2>
+    <div class="button-group">
+        <Button>Normal</Button>
+        <Button Disabled="true">Disabled</Button>
+        <Button Loading="true">Loading</Button>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>With Click Handler</h2>
+    <div class="button-group">
+        <Button OnClick="HandleClick">Click Me</Button>
+        <span>Clicked: @clickCount times</span>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Custom Colors</h2>
+    <div class="button-group">
+        <Button Color="red">Red</Button>
+        <Button Color="green">Green</Button>
+        <Button Color="blue">Blue</Button>
+        <Button Color="purple">Purple</Button>
+    </div>
+</div>
+
+@code {
+    private int clickCount = 0;
+
+    private void HandleClick()
+    {
+        clickCount++;
+    }
+}
+
+<style>
+    .demo-section {
+        margin-bottom: 2rem;
+    }
+
+    .demo-section h2 {
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+</style>

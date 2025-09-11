@@ -1,0 +1,24 @@
+@namespace ShadBz.BlazorApp.Components.UI
+
+<button @attributes="AdditionalAttributes" 
+        class="@CssClass" 
+        disabled="@IsDisabled"
+        data-disabled="@(IsDisabled ? "true" : null)"
+        data-accent-color="@Color"
+        data-radius="@Radius"
+        @onclick="OnClick">
+    @if (Loading)
+    {
+        <span style="display: contents; visibility: hidden;" aria-hidden="true">
+            @ChildContent
+        </span>
+        <span class="visually-hidden">@ChildContent</span>
+        <span class="spinner-container">
+            <span class="spinner @GetSpinnerSize()"></span>
+        </span>
+    }
+    else
+    {
+        @ChildContent
+    }
+</button>
