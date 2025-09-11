@@ -478,14 +478,17 @@ module.exports = {
 - [x] Add high contrast mode
 - [x] Create comprehensive demo page
 
-#### 16. Radio
-- [ ] Create Radio.razor and Radio.razor.cs
-- [ ] Create RadioGroup.razor
-- [ ] Implement size variants
-- [ ] Support color prop
-- [ ] Add disabled state
-- [ ] Handle group value management
-- [ ] Create demo page
+#### 16. Radio ✅
+- [x] Create Radio.razor and Radio.razor.cs
+- [x] Create RadioGroup.razor and RadioGroup.razor.cs
+- [x] Implement size variants (1-3)
+- [x] Support variant prop (surface, classic, soft)
+- [x] Support color prop (all color palette)
+- [x] Add disabled state (individual and group level)
+- [x] Handle group value management (controlled/uncontrolled)
+- [x] Support horizontal and vertical orientation
+- [x] Add high contrast mode
+- [x] Create comprehensive demo page with RadioGroupItem helper
 
 #### 17. Switch
 - [ ] Create Switch.razor and Switch.razor.cs
