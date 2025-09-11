@@ -414,10 +414,17 @@ module.exports = {
 - [x] Support interactive elements (a, button, label)
 - [x] Create demo page
 
-#### 10. Link
-- [ ] Create Link.razor and Link.razor.cs
-- [ ] Implement size variants
-- [ ] Add weight variants
+#### 10. Link ✅
+- [x] Create Link.razor and Link.razor.cs
+- [x] Implement size variants (1-9)
+- [x] Add weight variants
+- [x] Support underline prop (auto, always, hover, none)
+- [x] Add color support
+- [x] Implement high contrast mode
+- [x] Support button rendering when no href
+- [x] Add text properties (truncate, wrap, trim)
+- [x] Support AsChild pattern
+- [x] Create demo page
 - [ ] Support underline prop
 - [ ] Add color prop
 - [ ] Support AsChild pattern
