@@ -1,0 +1,42 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
+
+<span @attributes="GetRootAttributes()">
+    <CascadingValue Value="this" IsFixed="true">
+        @if (LeftSlot != null)
+        {
+            <span class="rt-TextFieldSlot" data-side="left">
+                @LeftSlot
+            </span>
+        }
+        
+        <input class="rt-reset rt-TextFieldInput"
+               type="@Type"
+               placeholder="@Placeholder"
+               value="@Value"
+               @onchange="HandleChange"
+               @oninput="HandleInput"
+               disabled="@Disabled"
+               readonly="@ReadOnly"
+               required="@Required"
+               minlength="@MinLength"
+               maxlength="@MaxLength"
+               min="@Min"
+               max="@Max"
+               step="@Step"
+               pattern="@Pattern"
+               autocomplete="@AutoComplete"
+               name="@Name"
+               id="@Id"
+               spellcheck="false" />
+        
+        @if (RightSlot != null)
+        {
+            <span class="rt-TextFieldSlot" data-side="right">
+                @RightSlot
+            </span>
+        }
+        
+        @ChildContent
+    </CascadingValue>
+</span>

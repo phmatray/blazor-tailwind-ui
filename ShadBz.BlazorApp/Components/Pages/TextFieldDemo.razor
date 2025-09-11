@@ -1,0 +1,377 @@
+@page "/text-field-demo"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>TextField Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">TextField Component</Heading>
+                <Text Size="4" Color="gray">Text input field with various styles and slot support.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic TextFields</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <TextFieldRoot Placeholder="Enter your name..." />
+                    <TextFieldRoot Placeholder="Email address..." Type="email" />
+                    <TextFieldRoot Placeholder="Password..." Type="password" />
+                    <TextFieldRoot Placeholder="Search..." Type="search" />
+                    <TextFieldRoot Placeholder="Disabled field..." Disabled="true" />
+                    <TextFieldRoot Value="Read-only value" ReadOnly="true" />
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">TextField Sizes</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <TextFieldRoot Size="TextFieldSize.Size1" Placeholder="Size 1 - Small" />
+                    <TextFieldRoot Size="TextFieldSize.Size2" Placeholder="Size 2 - Default" />
+                    <TextFieldRoot Size="TextFieldSize.Size3" Placeholder="Size 3 - Large" />
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">TextField Variants</Heading>
+                <Grid Columns="3" Gap="4">
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Surface (Default)</Text>
+                        <TextFieldRoot Variant="TextFieldVariant.Surface" Placeholder="Surface variant" />
+                    </Box>
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Classic</Text>
+                        <TextFieldRoot Variant="TextFieldVariant.Classic" Placeholder="Classic variant" />
+                    </Box>
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Soft</Text>
+                        <TextFieldRoot Variant="TextFieldVariant.Soft" Placeholder="Soft variant" />
+                    </Box>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">TextField Colors</Heading>
+                <Grid Columns="3" Gap="3">
+                    <TextFieldRoot Color="gray" Placeholder="Gray" />
+                    <TextFieldRoot Color="gold" Placeholder="Gold" />
+                    <TextFieldRoot Color="bronze" Placeholder="Bronze" />
+                    <TextFieldRoot Color="brown" Placeholder="Brown" />
+                    <TextFieldRoot Color="yellow" Placeholder="Yellow" />
+                    <TextFieldRoot Color="amber" Placeholder="Amber" />
+                    <TextFieldRoot Color="orange" Placeholder="Orange" />
+                    <TextFieldRoot Color="tomato" Placeholder="Tomato" />
+                    <TextFieldRoot Color="red" Placeholder="Red" />
+                    <TextFieldRoot Color="ruby" Placeholder="Ruby" />
+                    <TextFieldRoot Color="crimson" Placeholder="Crimson" />
+                    <TextFieldRoot Color="pink" Placeholder="Pink" />
+                    <TextFieldRoot Color="plum" Placeholder="Plum" />
+                    <TextFieldRoot Color="purple" Placeholder="Purple" />
+                    <TextFieldRoot Color="violet" Placeholder="Violet" />
+                    <TextFieldRoot Color="iris" Placeholder="Iris" />
+                    <TextFieldRoot Color="indigo" Placeholder="Indigo" />
+                    <TextFieldRoot Color="blue" Placeholder="Blue" />
+                    <TextFieldRoot Color="cyan" Placeholder="Cyan" />
+                    <TextFieldRoot Color="teal" Placeholder="Teal" />
+                    <TextFieldRoot Color="jade" Placeholder="Jade" />
+                    <TextFieldRoot Color="green" Placeholder="Green" />
+                    <TextFieldRoot Color="grass" Placeholder="Grass" />
+                    <TextFieldRoot Color="lime" Placeholder="Lime" />
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">TextField Radius</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <TextFieldRoot Radius="none" Placeholder="No radius" />
+                    <TextFieldRoot Radius="small" Placeholder="Small radius" />
+                    <TextFieldRoot Radius="medium" Placeholder="Medium radius" />
+                    <TextFieldRoot Radius="large" Placeholder="Large radius" />
+                    <TextFieldRoot Radius="full" Placeholder="Full radius" />
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">With Icons (Using Slots)</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <TextFieldRoot Placeholder="Search...">
+                        <TextFieldSlot Side="SlotSide.Left">
+                            <Text Size="2">🔍</Text>
+                        </TextFieldSlot>
+                    </TextFieldRoot>
+                    
+                    <TextFieldRoot Placeholder="Email address...">
+                        <TextFieldSlot Side="SlotSide.Left">
+                            <Text Size="2">✉️</Text>
+                        </TextFieldSlot>
+                    </TextFieldRoot>
+                    
+                    <TextFieldRoot Placeholder="Username...">
+                        <TextFieldSlot Side="SlotSide.Left">
+                            <Text Size="2">👤</Text>
+                        </TextFieldSlot>
+                    </TextFieldRoot>
+                    
+                    <TextFieldRoot Placeholder="Amount..." Type="number">
+                        <TextFieldSlot Side="SlotSide.Left">
+                            <Text Size="2">$</Text>
+                        </TextFieldSlot>
+                        <TextFieldSlot Side="SlotSide.Right">
+                            <Text Size="2">.00</Text>
+                        </TextFieldSlot>
+                    </TextFieldRoot>
+                    
+                    <TextFieldRoot Placeholder="Website URL...">
+                        <TextFieldSlot Side="SlotSide.Left">
+                            <Text Size="2">https://</Text>
+                        </TextFieldSlot>
+                    </TextFieldRoot>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">With Buttons in Slots</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <TextFieldRoot Placeholder="Password..." Type="password">
+                        <TextFieldSlot Side="SlotSide.Right">
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                <Text Size="1">👁️</Text>
+                            </IconButton>
+                        </TextFieldSlot>
+                    </TextFieldRoot>
+                    
+                    <TextFieldRoot Placeholder="Search..." @bind-Value="searchValue">
+                        <TextFieldSlot Side="SlotSide.Right">
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small" OnClick="ClearSearch">
+                                <Text Size="1">✕</Text>
+                            </IconButton>
+                        </TextFieldSlot>
+                    </TextFieldRoot>
+                    
+                    <TextFieldRoot Placeholder="Enter code...">
+                        <TextFieldSlot Side="SlotSide.Right">
+                            <Button Size="ButtonSize.Small" Variant="ButtonVariant.Soft">Verify</Button>
+                        </TextFieldSlot>
+                    </TextFieldRoot>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Interactive Form Example</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Heading Size="3">Create Account</Heading>
+                        
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="1">Full Name</Text>
+                                <TextFieldRoot @bind-Value="fullName" Placeholder="John Doe" Required="true" />
+                            </Box>
+                            
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="1">Email Address</Text>
+                                <TextFieldRoot @bind-Value="email" Type="email" Placeholder="john@example.com" Required="true">
+                                    <TextFieldSlot Side="SlotSide.Left">
+                                        <Text Size="2">✉️</Text>
+                                    </TextFieldSlot>
+                                </TextFieldRoot>
+                            </Box>
+                            
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="1">Username</Text>
+                                <TextFieldRoot @bind-Value="username" Placeholder="Choose a username" Required="true" MinLength="3" MaxLength="20">
+                                    <TextFieldSlot Side="SlotSide.Left">
+                                        <Text Size="2">@("@")</Text>
+                                    </TextFieldSlot>
+                                </TextFieldRoot>
+                            </Box>
+                            
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="1">Password</Text>
+                                <TextFieldRoot @bind-Value="password" Type="@(showPassword ? "text" : "password")" Placeholder="Enter password" Required="true" MinLength="8">
+                                    <TextFieldSlot Side="SlotSide.Right">
+                                        <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small" OnClick="TogglePassword">
+                                            <Text Size="1">@(showPassword ? "🙈" : "👁️")</Text>
+                                        </IconButton>
+                                    </TextFieldSlot>
+                                </TextFieldRoot>
+                            </Box>
+                            
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="1">Phone Number</Text>
+                                <TextFieldRoot @bind-Value="phone" Type="tel" Placeholder="555-0123" Pattern="[0-9]{3}-[0-9]{4}">
+                                    <TextFieldSlot Side="SlotSide.Left">
+                                        <Text Size="2">📱</Text>
+                                    </TextFieldSlot>
+                                </TextFieldRoot>
+                            </Box>
+                        </Flex>
+                        
+                        <Separator My="2" />
+                        
+                        <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                            <Text Size="2" Color="gray">
+                                @if (!string.IsNullOrEmpty(fullName) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                                {
+                                    <span>✅ All required fields filled</span>
+                                }
+                                else
+                                {
+                                    <span>Please fill all required fields</span>
+                                }
+                            </Text>
+                            <Button Variant="ButtonVariant.Solid" Disabled="@(string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))">
+                                Create Account
+                            </Button>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Input Types</Heading>
+                <Grid Columns="2" Gap="3">
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">Text</Text>
+                        <TextFieldRoot Type="text" Placeholder="Regular text input" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">Email</Text>
+                        <TextFieldRoot Type="email" Placeholder="email@example.com" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">Password</Text>
+                        <TextFieldRoot Type="password" Placeholder="Secure password" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">Number</Text>
+                        <TextFieldRoot Type="number" Placeholder="123" Min="0" Max="100" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">Tel</Text>
+                        <TextFieldRoot Type="tel" Placeholder="555-0123" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">URL</Text>
+                        <TextFieldRoot Type="url" Placeholder="https://example.com" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">Date</Text>
+                        <TextFieldRoot Type="date" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">Time</Text>
+                        <TextFieldRoot Type="time" />
+                    </Box>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Validation States</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">Required Field</Text>
+                        <TextFieldRoot Placeholder="This field is required" Required="true" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">With Min/Max Length</Text>
+                        <TextFieldRoot Placeholder="Between 5 and 10 characters" MinLength="5" MaxLength="10" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">With Pattern</Text>
+                        <TextFieldRoot Placeholder="XXX-XXX" Pattern="[A-Z]{3}-[A-Z]{3}" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">Number with Range</Text>
+                        <TextFieldRoot Type="number" Placeholder="1-100" Min="1" Max="100" Step="1" />
+                    </Box>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Search Bar</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <TextFieldRoot Placeholder="Search documentation..." Size="TextFieldSize.Size3" @bind-Value="docSearch">
+                            <TextFieldSlot Side="SlotSide.Left">
+                                <Text Size="3">🔍</Text>
+                            </TextFieldSlot>
+                            <TextFieldSlot Side="SlotSide.Right">
+                                <Flex Gap="1" Align="FlexAlign.Center">
+                                    <Badge Size="BadgeSize.Size1" Variant="BadgeVariant.Soft">⌘K</Badge>
+                                </Flex>
+                            </TextFieldSlot>
+                        </TextFieldRoot>
+                        
+                        @if (!string.IsNullOrEmpty(docSearch))
+                        {
+                            <Box P="3" Style="background: var(--gray-2); border-radius: var(--radius-2);">
+                                <Text Size="2" Color="gray">Searching for: "@docSearch"</Text>
+                            </Box>
+                        }
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Credit Card Form</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="1">Card Number</Text>
+                            <TextFieldRoot Placeholder="1234 5678 9012 3456" MaxLength="19">
+                                <TextFieldSlot Side="SlotSide.Left">
+                                    <Text Size="2">💳</Text>
+                                </TextFieldSlot>
+                            </TextFieldRoot>
+                        </Box>
+                        
+                        <Grid Columns="2" Gap="3">
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="1">Expiry Date</Text>
+                                <TextFieldRoot Placeholder="MM/YY" MaxLength="5" />
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="1">CVV</Text>
+                                <TextFieldRoot Type="number" Placeholder="123" MaxLength="3">
+                                    <TextFieldSlot Side="SlotSide.Right">
+                                        <Text Size="1">🔒</Text>
+                                    </TextFieldSlot>
+                                </TextFieldRoot>
+                            </Box>
+                        </Grid>
+                        
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="1">Cardholder Name</Text>
+                            <TextFieldRoot Placeholder="John Doe" />
+                        </Box>
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
+
+@code {
+    private string? searchValue = "";
+    private string? fullName = "";
+    private string? email = "";
+    private string? username = "";
+    private string? password = "";
+    private string? phone = "";
+    private bool showPassword = false;
+    private string? docSearch = "";
+    
+    private void ClearSearch()
+    {
+        searchValue = "";
+    }
+    
+    private void TogglePassword()
+    {
+        showPassword = !showPassword;
+    }
+}
