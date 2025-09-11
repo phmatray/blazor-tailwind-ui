@@ -406,12 +406,13 @@ module.exports = {
 - [x] Support all layout props
 - [x] Create demo page
 
-#### 9. Card
-- [ ] Create Card.razor and Card.razor.cs
-- [ ] Implement variant prop (classic, surface, ghost)
-- [ ] Add size prop
-- [ ] Support AsChild pattern
-- [ ] Create demo page
+#### 9. Card ✅
+- [x] Create Card.razor and Card.razor.cs
+- [x] Implement variant prop (classic, surface, ghost)
+- [x] Add size prop (1-5)
+- [x] Support AsChild pattern
+- [x] Support interactive elements (a, button, label)
+- [x] Create demo page
 
 #### 10. Link
 - [ ] Create Link.razor and Link.razor.cs

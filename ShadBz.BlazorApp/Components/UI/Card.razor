@@ -1,0 +1,33 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
+
+@if (AsChild)
+{
+    <CascadingValue Value="@GetCardAttributes()" Name="CardAttributes">
+        @ChildContent
+    </CascadingValue>
+}
+else if (As == "a")
+{
+    <a @attributes="GetCardAttributes()">
+        @ChildContent
+    </a>
+}
+else if (As == "button")
+{
+    <button @attributes="GetCardAttributes()">
+        @ChildContent
+    </button>
+}
+else if (As == "label")
+{
+    <label @attributes="GetCardAttributes()">
+        @ChildContent
+    </label>
+}
+else
+{
+    <div @attributes="GetCardAttributes()">
+        @ChildContent
+    </div>
+}

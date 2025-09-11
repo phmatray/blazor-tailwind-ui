@@ -29,6 +29,7 @@
                     @RenderCard("Grid", "CSS Grid layout component for complex layouts", "/grid-demo", true)
                     @RenderCard("Container", "Responsive container with max-width constraints", "/container-demo", true)
                     @RenderCard("Section", "Semantic section component with vertical spacing", "/section-demo", true)
+                    @RenderCard("Card", "Container component for grouping related content", "/card-demo", true)
                 </Grid>
             </Box>
 
@@ -38,7 +39,6 @@
                 </Heading>
                 
                 <Grid Columns="3" Gap="4">
-                    @RenderCard("Card", "Container component for grouping related content", null, false)
                     @RenderCard("Avatar", "User avatar with image fallback and initials", null, false)
                     @RenderCard("Badge", "Small label component for status and counts", null, false)
                     @RenderCard("Dialog", "Modal dialog for important interactions", null, false)
@@ -55,11 +55,11 @@
                 <Flex Direction="FlexDirection.Column" Gap="3">
                     <Flex Align="FlexAlign.Center" Gap="2">
                         <Box Width="4" Height="4" Style="background: var(--green-9); border-radius: var(--radius-1);"></Box>
-                        <Text Size="3">8 Components Completed</Text>
+                        <Text Size="3">9 Components Completed</Text>
                     </Flex>
                     <Flex Align="FlexAlign.Center" Gap="2">
                         <Box Width="4" Height="4" Style="background: var(--gray-6); border-radius: var(--radius-1);"></Box>
-                        <Text Size="3">32 Components Pending</Text>
+                        <Text Size="3">31 Components Pending</Text>
                     </Flex>
                     <Flex Align="FlexAlign.Center" Gap="2">
                         <Box Width="4" Height="4" Style="background: var(--blue-9); border-radius: var(--radius-1);"></Box>
