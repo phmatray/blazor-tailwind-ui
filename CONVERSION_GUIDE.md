@@ -515,14 +515,17 @@ module.exports = {
 - [x] Two-way binding support
 - [x] Create comprehensive demo page
 
-#### 19. TextArea
-- [ ] Create TextArea.razor and TextArea.razor.cs
-- [ ] Implement size variants
-- [ ] Add variant prop
-- [ ] Support resize prop
-- [ ] Add disabled/readonly states
-- [ ] Support color prop
-- [ ] Create demo page
+#### 19. TextArea ✅
+- [x] Create TextArea.razor and TextArea.razor.cs
+- [x] Implement size variants (1-3)
+- [x] Add variant prop (classic, surface, soft)
+- [x] Support resize prop (none, vertical, horizontal, both)
+- [x] Add disabled/readonly states
+- [x] Support color prop (all color palette)
+- [x] Add radius prop (none, small, medium, large, full)
+- [x] Support validation attributes (required, min/max length)
+- [x] Two-way binding support
+- [x] Create comprehensive demo page
 
 #### 20. Select
 - [ ] Create Select.razor and Select.razor.cs
