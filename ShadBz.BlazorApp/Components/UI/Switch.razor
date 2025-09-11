@@ -1,0 +1,11 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
+
+<button type="button" 
+        role="switch" 
+        @attributes="GetSwitchAttributes()"
+        @onclick="HandleClick"
+        disabled="@Disabled"
+        aria-checked="@IsChecked.ToString().ToLower()">
+    <span class="rt-SwitchThumb"></span>
+</button>

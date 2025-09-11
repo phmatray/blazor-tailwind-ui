@@ -490,14 +490,17 @@ module.exports = {
 - [x] Add high contrast mode
 - [x] Create comprehensive demo page with RadioGroupItem helper
 
-#### 17. Switch
-- [ ] Create Switch.razor and Switch.razor.cs
-- [ ] Implement size variants
-- [ ] Add color prop
-- [ ] Support disabled state
-- [ ] Add radius prop
-- [ ] Implement onChange callback
-- [ ] Create demo page
+#### 17. Switch ✅
+- [x] Create Switch.razor and Switch.razor.cs
+- [x] Implement size variants (1-3)
+- [x] Support variant prop (surface, classic, soft)
+- [x] Add color prop (all color palette)
+- [x] Support disabled state
+- [x] Add radius prop (none, small, medium, large, full)
+- [x] Implement controlled and uncontrolled modes
+- [x] Support two-way binding
+- [x] Add high contrast mode
+- [x] Create comprehensive demo page
 
 #### 18. TextField
 - [ ] Create TextField.razor and TextField.razor.cs
