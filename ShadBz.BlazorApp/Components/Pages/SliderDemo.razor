@@ -1,0 +1,344 @@
+@page "/slider-demo"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Slider Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">Slider Component</Heading>
+                <Text Size="4" Color="gray">Input control for selecting numeric values along a track.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic Sliders</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Text Size="2" Mb="2">Default Slider</Text>
+                        <Slider DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Mb="2">Range Slider</Text>
+                        <Slider DefaultValue="new double[] { 25, 75 }" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Mb="2">Disabled Slider</Text>
+                        <Slider DefaultValue="new double[] { 30 }" Disabled="true" />
+                    </Box>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Slider Sizes</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Text Size="2" Mb="2">Size 1 - Small</Text>
+                        <Slider Size="SliderSize.Size1" DefaultValue="new double[] { 40 }" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Mb="2">Size 2 - Default</Text>
+                        <Slider Size="SliderSize.Size2" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Mb="2">Size 3 - Large</Text>
+                        <Slider Size="SliderSize.Size3" DefaultValue="new double[] { 60 }" />
+                    </Box>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Slider Variants</Heading>
+                <Grid Columns="3" Gap="4">
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Surface (Default)</Text>
+                        <Slider Variant="SliderVariant.Surface" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Classic</Text>
+                        <Slider Variant="SliderVariant.Classic" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Soft</Text>
+                        <Slider Variant="SliderVariant.Soft" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Slider Colors</Heading>
+                <Grid Columns="3" Gap="4">
+                    <Box>
+                        <Text Size="2" Mb="2">Gray</Text>
+                        <Slider Color="gray" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Blue</Text>
+                        <Slider Color="blue" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Green</Text>
+                        <Slider Color="green" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Red</Text>
+                        <Slider Color="red" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Purple</Text>
+                        <Slider Color="purple" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Orange</Text>
+                        <Slider Color="orange" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Slider Radius</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Text Size="2" Mb="2">No radius</Text>
+                        <Slider Radius="none" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Small radius</Text>
+                        <Slider Radius="small" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Medium radius</Text>
+                        <Slider Radius="medium" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Large radius</Text>
+                        <Slider Radius="large" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Full radius</Text>
+                        <Slider Radius="full" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">High Contrast</Heading>
+                <Grid Columns="2" Gap="4">
+                    <Box>
+                        <Text Size="2" Mb="2">Normal</Text>
+                        <Slider Color="indigo" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">High Contrast</Text>
+                        <Slider Color="indigo" HighContrast="true" DefaultValue="new double[] { 50 }" />
+                    </Box>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Interactive Examples</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Box>
+                            <Flex Justify="FlexJustify.Between" Mb="2">
+                                <Text Size="2" Weight="TextWeight.Medium">Volume Control</Text>
+                                <Badge Size="BadgeSize.Size2">@volume[0]%</Badge>
+                            </Flex>
+                            <Slider @bind-Value="volume" Min="0" Max="100" Step="1" />
+                        </Box>
+                        
+                        <Separator />
+                        
+                        <Box>
+                            <Flex Justify="FlexJustify.Between" Mb="2">
+                                <Text Size="2" Weight="TextWeight.Medium">Price Range</Text>
+                                <Badge Size="BadgeSize.Size2">$@priceRange[0] - $@priceRange[1]</Badge>
+                            </Flex>
+                            <Slider @bind-Value="priceRange" Min="0" Max="1000" Step="10" Color="green" />
+                        </Box>
+                        
+                        <Separator />
+                        
+                        <Box>
+                            <Flex Justify="FlexJustify.Between" Mb="2">
+                                <Text Size="2" Weight="TextWeight.Medium">Brightness</Text>
+                                <Badge Size="BadgeSize.Size2">@brightness[0]%</Badge>
+                            </Flex>
+                            <Slider @bind-Value="brightness" Min="0" Max="100" Step="5" Color="yellow" />
+                        </Box>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Custom Step Values</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Text Size="2" Mb="2">Step: 0.1 (Decimal precision)</Text>
+                        <Slider @bind-Value="decimalValue" Min="0" Max="10" Step="0.1" />
+                        <Text Size="1" Color="gray" Mt="1">Value: @decimalValue[0]</Text>
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Mb="2">Step: 5 (Large increments)</Text>
+                        <Slider @bind-Value="largeStepValue" Min="0" Max="100" Step="5" />
+                        <Text Size="1" Color="gray" Mt="1">Value: @largeStepValue[0]</Text>
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Mb="2">Step: 25 (Quarter increments)</Text>
+                        <Slider @bind-Value="quarterValue" Min="0" Max="100" Step="25" />
+                        <Text Size="1" Color="gray" Mt="1">Value: @quarterValue[0]</Text>
+                    </Box>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Settings Panel</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Heading Size="3">Display Settings</Heading>
+                        
+                        <Box>
+                            <Flex Justify="FlexJustify.Between" Mb="2">
+                                <Text Size="2">Screen Brightness</Text>
+                                <Text Size="2" Color="gray">@settingsBrightness[0]%</Text>
+                            </Flex>
+                            <Slider @bind-Value="settingsBrightness" Min="0" Max="100" Color="yellow" />
+                        </Box>
+                        
+                        <Box>
+                            <Flex Justify="FlexJustify.Between" Mb="2">
+                                <Text Size="2">Contrast</Text>
+                                <Text Size="2" Color="gray">@settingsContrast[0]%</Text>
+                            </Flex>
+                            <Slider @bind-Value="settingsContrast" Min="0" Max="100" />
+                        </Box>
+                        
+                        <Box>
+                            <Flex Justify="FlexJustify.Between" Mb="2">
+                                <Text Size="2">Font Size</Text>
+                                <Text Size="2" Color="gray">@((int)settingsFontSize[0])px</Text>
+                            </Flex>
+                            <Slider @bind-Value="settingsFontSize" Min="12" Max="24" Step="1" Color="blue" />
+                        </Box>
+                        
+                        <Box>
+                            <Flex Justify="FlexJustify.Between" Mb="2">
+                                <Text Size="2">Animation Speed</Text>
+                                <Text Size="2" Color="gray">@GetSpeedLabel(settingsSpeed[0])</Text>
+                            </Flex>
+                            <Slider @bind-Value="settingsSpeed" Min="0" Max="2" Step="1" Color="purple" />
+                        </Box>
+                        
+                        <Separator My="3" />
+                        
+                        <Flex Justify="FlexJustify.End" Gap="2">
+                            <Button Variant="ButtonVariant.Soft" OnClick="ResetSettings">Reset</Button>
+                            <Button Variant="ButtonVariant.Solid">Apply</Button>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Audio Mixer Example</Heading>
+                <Card Size="CardSize.Size3">
+                    <Grid Columns="4" Gap="3">
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2" Align="TextAlign.Center">Master</Text>
+                            <Flex Direction="FlexDirection.Column" Align="FlexAlign.Center">
+                                <Badge Size="BadgeSize.Size1" Mb="2">@masterVolume[0]%</Badge>
+                                <Box Height="200px">
+                                    <!-- Vertical slider would go here - for demo we use horizontal -->
+                                    <Slider @bind-Value="masterVolume" Min="0" Max="100" Color="red" Size="SliderSize.Size3" />
+                                </Box>
+                            </Flex>
+                        </Box>
+                        
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2" Align="TextAlign.Center">Bass</Text>
+                            <Flex Direction="FlexDirection.Column" Align="FlexAlign.Center">
+                                <Badge Size="BadgeSize.Size1" Mb="2">@bassVolume[0]%</Badge>
+                                <Box Height="200px">
+                                    <Slider @bind-Value="bassVolume" Min="0" Max="100" Color="purple" />
+                                </Box>
+                            </Flex>
+                        </Box>
+                        
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2" Align="TextAlign.Center">Treble</Text>
+                            <Flex Direction="FlexDirection.Column" Align="FlexAlign.Center">
+                                <Badge Size="BadgeSize.Size1" Mb="2">@trebleVolume[0]%</Badge>
+                                <Box Height="200px">
+                                    <Slider @bind-Value="trebleVolume" Min="0" Max="100" Color="cyan" />
+                                </Box>
+                            </Flex>
+                        </Box>
+                        
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2" Align="TextAlign.Center">Balance</Text>
+                            <Flex Direction="FlexDirection.Column" Align="FlexAlign.Center">
+                                <Badge Size="BadgeSize.Size1" Mb="2">@GetBalanceLabel(balanceValue[0])</Badge>
+                                <Box Height="200px">
+                                    <Slider @bind-Value="balanceValue" Min="-50" Max="50" Color="gray" />
+                                </Box>
+                            </Flex>
+                        </Box>
+                    </Grid>
+                </Card>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
+
+@code {
+    private double[] volume = new double[] { 50 };
+    private double[] priceRange = new double[] { 200, 800 };
+    private double[] brightness = new double[] { 75 };
+    private double[] decimalValue = new double[] { 5.5 };
+    private double[] largeStepValue = new double[] { 50 };
+    private double[] quarterValue = new double[] { 50 };
+    
+    private double[] settingsBrightness = new double[] { 80 };
+    private double[] settingsContrast = new double[] { 50 };
+    private double[] settingsFontSize = new double[] { 16 };
+    private double[] settingsSpeed = new double[] { 1 };
+    
+    private double[] masterVolume = new double[] { 75 };
+    private double[] bassVolume = new double[] { 60 };
+    private double[] trebleVolume = new double[] { 40 };
+    private double[] balanceValue = new double[] { 0 };
+    
+    private string GetSpeedLabel(double speed)
+    {
+        return speed switch
+        {
+            0 => "Slow",
+            1 => "Normal",
+            2 => "Fast",
+            _ => "Normal"
+        };
+    }
+    
+    private string GetBalanceLabel(double balance)
+    {
+        if (balance < -10) return "Left";
+        if (balance > 10) return "Right";
+        return "Center";
+    }
+    
+    private void ResetSettings()
+    {
+        settingsBrightness = new double[] { 80 };
+        settingsContrast = new double[] { 50 };
+        settingsFontSize = new double[] { 16 };
+        settingsSpeed = new double[] { 1 };
+    }
+}
