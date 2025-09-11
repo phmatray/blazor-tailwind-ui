@@ -1,0 +1,309 @@
+@page "/container-demo"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Container Demo</PageTitle>
+
+<div class="demo-container">
+    <h1>Container Component Demo</h1>
+
+    <div class="demo-section">
+        <h2>Container Sizes</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Size 1 (448px max-width)</Text>
+                <Container Size="ContainerSize.Size1" style="background: var(--blue-a3); border-radius: var(--radius-2);">
+                    <Box P="3">
+                        <Heading Size="4">Small Container</Heading>
+                        <Text Size="2" Mt="2">This container has a maximum width of 448px. It's perfect for narrow content like forms or cards.</Text>
+                    </Box>
+                </Container>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Size 2 (688px max-width)</Text>
+                <Container Size="ContainerSize.Size2" style="background: var(--green-a3); border-radius: var(--radius-2);">
+                    <Box P="3">
+                        <Heading Size="4">Medium Container</Heading>
+                        <Text Size="2" Mt="2">This container has a maximum width of 688px. It works well for blog posts or article content where you want to maintain good readability.</Text>
+                    </Box>
+                </Container>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Size 3 (880px max-width)</Text>
+                <Container Size="ContainerSize.Size3" style="background: var(--amber-a3); border-radius: var(--radius-2);">
+                    <Box P="3">
+                        <Heading Size="4">Large Container</Heading>
+                        <Text Size="2" Mt="2">This container has a maximum width of 880px. It's suitable for main content areas that need more breathing room while still maintaining focus.</Text>
+                    </Box>
+                </Container>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Size 4 (1136px max-width - default)</Text>
+                <Container Size="ContainerSize.Size4" style="background: var(--purple-a3); border-radius: var(--radius-2);">
+                    <Box P="3">
+                        <Heading Size="4">Extra Large Container</Heading>
+                        <Text Size="2" Mt="2">This is the default container size with a maximum width of 1136px. It's ideal for full-width layouts on desktop screens while preventing content from stretching too wide on large monitors.</Text>
+                    </Box>
+                </Container>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Container Alignment</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Left Aligned</Text>
+                <Container Size="ContainerSize.Size2" Align="ContainerAlign.Left" style="background: var(--blue-a3); border-radius: var(--radius-2);">
+                    <Box P="3">
+                        <Heading Size="4">Left Alignment</Heading>
+                        <Text Size="2" Mt="2">This container's content is aligned to the left.</Text>
+                    </Box>
+                </Container>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Center Aligned (most common)</Text>
+                <Container Size="ContainerSize.Size2" Align="ContainerAlign.Center" style="background: var(--green-a3); border-radius: var(--radius-2);">
+                    <Box P="3">
+                        <Heading Size="4">Center Alignment</Heading>
+                        <Text Size="2" Mt="2">This container's content is centered. This is the most common alignment for containers.</Text>
+                    </Box>
+                </Container>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Right Aligned</Text>
+                <Container Size="ContainerSize.Size2" Align="ContainerAlign.Right" style="background: var(--amber-a3); border-radius: var(--radius-2);">
+                    <Box P="3">
+                        <Heading Size="4">Right Alignment</Heading>
+                        <Text Size="2" Mt="2">This container's content is aligned to the right.</Text>
+                    </Box>
+                </Container>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Custom Width and Height</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Custom Width (600px)</Text>
+                <Container Width="600px" style="background: var(--cyan-a3); border-radius: var(--radius-2);">
+                    <Box P="3">
+                        <Heading Size="4">Fixed Width Container</Heading>
+                        <Text Size="2" Mt="2">This container has a custom fixed width of 600px instead of using the predefined sizes.</Text>
+                    </Box>
+                </Container>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Min and Max Width</Text>
+                <Container MinWidth="400px" MaxWidth="800px" Width="100%" style="background: var(--pink-a3); border-radius: var(--radius-2);">
+                    <Box P="3">
+                        <Heading Size="4">Responsive Width Container</Heading>
+                        <Text Size="2" Mt="2">This container has min-width: 400px, max-width: 800px, and width: 100%. It will grow and shrink responsively within these bounds.</Text>
+                    </Box>
+                </Container>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Custom Height (300px)</Text>
+                <Container Height="300px" Overflow="auto" style="background: var(--indigo-a3); border-radius: var(--radius-2);">
+                    <Box P="3">
+                        <Heading Size="4">Fixed Height Container</Heading>
+                        <Text Size="2" Mt="2">This container has a fixed height of 300px with overflow auto.</Text>
+                        <Text Size="2" Mt="2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+                        <Text Size="2" Mt="2">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
+                        <Text Size="2" Mt="2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Text>
+                        <Text Size="2" Mt="2">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
+                    </Box>
+                </Container>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Display Property</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Three containers: First visible, second hidden, third visible</Text>
+                <Container Size="ContainerSize.Size2" style="background: var(--blue-a3); border-radius: var(--radius-2); margin-bottom: var(--space-2);">
+                    <Box P="3">
+                        <Text Size="3">First Container (visible)</Text>
+                    </Box>
+                </Container>
+                <Container Size="ContainerSize.Size2" Display="ContainerDisplay.None" style="background: var(--red-a3); border-radius: var(--radius-2); margin-bottom: var(--space-2);">
+                    <Box P="3">
+                        <Text Size="3">Second Container (hidden with display: none)</Text>
+                    </Box>
+                </Container>
+                <Container Size="ContainerSize.Size2" style="background: var(--green-a3); border-radius: var(--radius-2);">
+                    <Box P="3">
+                        <Text Size="3">Third Container (visible)</Text>
+                    </Box>
+                </Container>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Container with Padding and Margin</h2>
+        <div class="demo-content">
+            <Box style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Container Size="ContainerSize.Size3" P="4" My="3" style="background: var(--purple-a3); border-radius: var(--radius-2);">
+                    <Box P="3" style="background: white; border-radius: var(--radius-2);">
+                        <Heading Size="4">Container with Spacing</Heading>
+                        <Text Size="2" Mt="2">This container has padding (P="4") and vertical margin (My="3") applied to it.</Text>
+                    </Box>
+                </Container>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Nested Containers</h2>
+        <div class="demo-content">
+            <Container Size="ContainerSize.Size4" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Box P="3">
+                    <Heading Size="4" Mb="3">Outer Container (Size 4)</Heading>
+                    <Container Size="ContainerSize.Size2" style="background: var(--blue-a3); border-radius: var(--radius-2);">
+                        <Box P="3">
+                            <Heading Size="3">Inner Container (Size 2)</Heading>
+                            <Text Size="2" Mt="2">Containers can be nested to create more complex layouts. This inner container is constrained within the outer container.</Text>
+                        </Box>
+                    </Container>
+                </Box>
+            </Container>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Practical Examples</h2>
+        <div class="demo-content">
+            <Box P="4" style="background: var(--gray-a2); border-radius: var(--radius-3);">
+                <Heading Size="4" Mb="3">Blog Post Layout</Heading>
+                <Container Size="ContainerSize.Size2" Align="ContainerAlign.Center">
+                    <article style="background: white; border-radius: var(--radius-2); padding: var(--space-5);">
+                        <Heading Size="7" Mb="2">The Art of Component Design</Heading>
+                        <Text Size="2" Color="gray" Mb="4">Published on December 15, 2024 • 5 min read</Text>
+                        
+                        <Text Size="3" Mb="3">
+                            When building modern web applications, component design plays a crucial role in creating maintainable and scalable codebases. 
+                            The key is to find the right balance between flexibility and simplicity.
+                        </Text>
+                        
+                        <Heading Size="5" Mt="4" Mb="2">Understanding Container Components</Heading>
+                        <Text Size="3" Mb="3">
+                            Container components are fundamental building blocks that help manage layout constraints and content width. 
+                            They ensure that your content remains readable across different screen sizes by setting appropriate maximum widths.
+                        </Text>
+                        
+                        <Heading Size="5" Mt="4" Mb="2">Best Practices</Heading>
+                        <Text Size="3">
+                            Always choose the container size that best fits your content type. For blog posts and articles, Size 2 (688px) 
+                            provides optimal reading length. For dashboards and complex layouts, Size 4 (1136px) gives you more flexibility.
+                        </Text>
+                    </article>
+                </Container>
+            </Box>
+            
+            <Box P="4" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-3);">
+                <Heading Size="4" Mb="3">Landing Page Hero Section</Heading>
+                <Box style="background: linear-gradient(135deg, var(--blue-9), var(--purple-9)); border-radius: var(--radius-2);">
+                    <Container Size="ContainerSize.Size4" Py="9" Align="ContainerAlign.Center">
+                        <Flex Direction="FlexDirection.Column" Align="FlexAlign.Center" style="text-align: center;">
+                            <Heading Size="9" style="color: white;" Mb="3">Welcome to Our Platform</Heading>
+                            <Container Size="ContainerSize.Size2">
+                                <Text Size="4" style="color: var(--gray-3);" Mb="5">
+                                    Build amazing experiences with our powerful component library. 
+                                    Start creating beautiful, responsive applications today.
+                                </Text>
+                            </Container>
+                            <Flex Gap="3">
+                                <Button Size="ButtonSize.ExtraLarge">Get Started</Button>
+                                <Button Variant="ButtonVariant.Outline" Size="ButtonSize.ExtraLarge" style="color: white; border-color: white;">
+                                    Learn More
+                                </Button>
+                            </Flex>
+                        </Flex>
+                    </Container>
+                </Box>
+            </Box>
+            
+            <Box P="4" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-3);">
+                <Heading Size="4" Mb="3">Dashboard Layout</Heading>
+                <Box style="background: var(--gray-1); min-height: 500px;">
+                    <Box P="3" style="background: white; border-bottom: 1px solid var(--gray-4);">
+                        <Container Size="ContainerSize.Size4">
+                            <Flex Align="FlexAlign.Center" Justify="FlexJustify.Between">
+                                <Heading Size="5">Dashboard</Heading>
+                                <Flex Gap="3" Align="FlexAlign.Center">
+                                    <Text Size="2">John Doe</Text>
+                                    <Button Size="ButtonSize.Medium">Logout</Button>
+                                </Flex>
+                            </Flex>
+                        </Container>
+                    </Box>
+                    <Container Size="ContainerSize.Size4" Py="4">
+                        <Grid Columns="repeat(auto-fit, minmax(250px, 1fr))" Gap="3">
+                            @for (int i = 1; i <= 4; i++)
+                            {
+                                <Box P="4" style="background: white; border-radius: var(--radius-2); box-shadow: var(--shadow-2);">
+                                    <Text Size="2" Color="gray" Mb="1">Metric @i</Text>
+                                    <Heading Size="6">@(12345 * i)</Heading>
+                                    <Text Size="1" Color="green" Mt="1">+@(12 + i)% from last month</Text>
+                                </Box>
+                            }
+                        </Grid>
+                    </Container>
+                </Box>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>AsChild Pattern</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Container wrapping a custom component</Text>
+                <Container Size="ContainerSize.Size2" AsChild="true">
+                    <section style="background: var(--indigo-a3); border-radius: var(--radius-2); padding: var(--space-3);">
+                        <Heading Size="4">Custom Section Element</Heading>
+                        <Text Size="2" Mt="2">
+                            When using AsChild, the Container's constraints are applied to the child element directly. 
+                            This section element receives the container's max-width constraint.
+                        </Text>
+                    </section>
+                </Container>
+            </Box>
+        </div>
+    </div>
+</div>
+
+<style>
+    .demo-container {
+        padding: var(--space-4);
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .demo-section {
+        margin-bottom: var(--space-6);
+    }
+
+    .demo-section h2 {
+        margin-bottom: var(--space-3);
+        font-size: var(--font-size-4);
+        font-weight: var(--font-weight-bold);
+        color: var(--gray-12);
+    }
+
+    .demo-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+</style>

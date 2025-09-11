@@ -393,12 +393,12 @@ module.exports = {
 - [x] Add areas prop
 - [x] Create demo page
 
-#### 7. Container
-- [ ] Create Container.razor and Container.razor.cs
-- [ ] Implement size variants (1-4)
-- [ ] Add responsive breakpoints
-- [ ] Support all layout props
-- [ ] Create demo page
+#### 7. Container ✅
+- [x] Create Container.razor and Container.razor.cs
+- [x] Implement size variants (1-4)
+- [x] Add responsive breakpoints
+- [x] Support all layout props
+- [x] Create demo page
 
 #### 8. Section
 - [ ] Create Section.razor and Section.razor.cs
