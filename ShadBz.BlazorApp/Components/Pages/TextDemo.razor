@@ -1,232 +1,378 @@
 @page "/text-demo"
 @using ShadBz.BlazorApp.Components.UI
 
-<PageTitle>Text Demo</PageTitle>
+<PageTitle>Text Component - Radix UI Blazor</PageTitle>
 
-<div class="demo-container">
-    <h1>Text Component Demo</h1>
-
-    <div class="demo-section">
-        <h2>Sizes</h2>
-        <div class="demo-content">
-            <Text Size="1">Size 1: The quick brown fox jumps over the lazy dog</Text>
-            <Text Size="2">Size 2: The quick brown fox jumps over the lazy dog</Text>
-            <Text Size="3">Size 3: The quick brown fox jumps over the lazy dog</Text>
-            <Text Size="4">Size 4: The quick brown fox jumps over the lazy dog</Text>
-            <Text Size="5">Size 5: The quick brown fox jumps over the lazy dog</Text>
-            <Text Size="6">Size 6: The quick brown fox jumps over the lazy dog</Text>
-            <Text Size="7">Size 7: The quick brown fox jumps over the lazy dog</Text>
-            <Text Size="8">Size 8: The quick brown fox jumps over the lazy dog</Text>
-            <Text Size="9">Size 9: The quick brown fox jumps over the lazy dog</Text>
-        </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>Weights</h2>
-        <div class="demo-content">
-            <Text Size="4" Weight="TextWeight.Light">Light: The quick brown fox jumps over the lazy dog</Text>
-            <Text Size="4" Weight="TextWeight.Regular">Regular: The quick brown fox jumps over the lazy dog</Text>
-            <Text Size="4" Weight="TextWeight.Medium">Medium: The quick brown fox jumps over the lazy dog</Text>
-            <Text Size="4" Weight="TextWeight.Bold">Bold: The quick brown fox jumps over the lazy dog</Text>
-        </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>Colors</h2>
-        <div class="demo-content">
-            <Text Size="4">Default color text</Text>
-            <Text Size="4" Color="gray">Gray text</Text>
-            <Text Size="4" Color="blue">Blue text</Text>
-            <Text Size="4" Color="green">Green text</Text>
-            <Text Size="4" Color="red">Red text</Text>
-            <Text Size="4" Color="purple">Purple text</Text>
-            <Text Size="4" Color="amber">Amber text</Text>
-            <Text Size="4" Color="cyan">Cyan text</Text>
-            <Text Size="4" Color="pink">Pink text</Text>
-            <Text Size="4" Color="indigo">Indigo text</Text>
-        </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>High Contrast</h2>
-        <div class="demo-content">
-            <Text Size="4" Color="blue">Normal contrast blue text</Text>
-            <Text Size="4" Color="blue" HighContrast="true">High contrast blue text</Text>
-            <Text Size="4" Color="green">Normal contrast green text</Text>
-            <Text Size="4" Color="green" HighContrast="true">High contrast green text</Text>
-        </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>Text Alignment</h2>
-        <div class="demo-content" style="width: 100%;">
-            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Text Size="3" Align="TextAlign.Left" As="div">Left aligned text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
-            </Box>
-            <Box P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Text Size="3" Align="TextAlign.Center" As="div">Center aligned text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
-            </Box>
-            <Box P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Text Size="3" Align="TextAlign.Right" As="div">Right aligned text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
-            </Box>
-        </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>As Prop (Element Types)</h2>
-        <div class="demo-content">
-            <Text As="span" Size="3">This is a span element (default)</Text>
-            <Text As="div" Size="3">This is a div element</Text>
-            <Text As="p" Size="3">This is a paragraph element</Text>
-            <Text As="label" Size="3">This is a label element (with tap highlight on mobile)</Text>
-        </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>Truncate</h2>
-        <div class="demo-content">
-            <Box Width="300px" P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Text Size="3" Truncate="false">
-                    Without truncate: This is a very long text that will wrap to multiple lines when it exceeds the container width
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="HeadingSize.Size8" Mb="2">Text</Heading>
+                <Text Size="4" Color="gray">
+                    A foundational component for rendering text with consistent typography.
                 </Text>
             </Box>
-            <Box Width="300px" P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Text Size="3" Truncate="true">
-                    With truncate: This is a very long text that will be truncated with ellipsis when it exceeds the container width
-                </Text>
-            </Box>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Text Wrap Options</h2>
-        <div class="demo-content">
-            <Box Width="300px" P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Text Size="3" Wrap="TextWrap.Wrap" As="div">
-                    Wrap: This text will wrap normally to the next line when it reaches the edge of its container.
-                </Text>
+            <!-- Sizes -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Sizes</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        @for (int size = 1; size <= 9; size++)
+                        {
+                            <Box>
+                                <Text Size="@size.ToString()">
+                                    Size @size: The quick brown fox jumps over the lazy dog
+                                </Text>
+                            </Box>
+                        }
+                    </Flex>
+                </Card>
             </Box>
-            <Box Width="300px" P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2); overflow: auto;">
-                <Text Size="3" Wrap="TextWrap.NoWrap" As="div">
-                    NoWrap: This text will not wrap and will continue on the same line even when it reaches the edge of its container.
-                </Text>
-            </Box>
-            <Box Width="300px" P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Text Size="3" Wrap="TextWrap.Pretty" As="div">
-                    Pretty: This text uses optimized wrapping for better readability and typography.
-                </Text>
-            </Box>
-            <Box Width="300px" P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Text Size="3" Wrap="TextWrap.Balance" As="div">
-                    Balance: This text balances line lengths for headings and short text blocks.
-                </Text>
-            </Box>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Leading Trim</h2>
-        <div class="demo-content">
-            <Box Display="flex" style="gap: var(--space-4);">
-                <Box P="3" style="background: var(--blue-a3); border-radius: var(--radius-2);">
-                    <Text Size="6" Trim="false">Without Trim</Text>
-                    <Box style="background: var(--red-a5); height: 1px; margin-top: -1px;"></Box>
-                </Box>
-                <Box P="3" style="background: var(--blue-a3); border-radius: var(--radius-2);">
-                    <Text Size="6" Trim="true">With Trim</Text>
-                    <Box style="background: var(--red-a5); height: 1px; margin-top: -1px;"></Box>
-                </Box>
+            <!-- Weights -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Font Weights</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        @foreach (var weight in Enum.GetValues<TextWeight>())
+                        {
+                            <Box>
+                                <Text Size="4" Weight="@weight">
+                                    @weight: The quick brown fox jumps over the lazy dog
+                                </Text>
+                            </Box>
+                        }
+                    </Flex>
+                </Card>
             </Box>
-            <Text Size="2" Color="gray" Mt="2">
-                Leading trim removes extra space above and below text for better alignment
-            </Text>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Margin Props</h2>
-        <div class="demo-content">
-            <Box style="background: var(--gray-a2); padding: var(--space-4); border-radius: var(--radius-2);">
-                <Text Size="3" M="0" style="background: var(--blue-a3);">No margin (M="0")</Text>
-                <Text Size="3" M="2" style="background: var(--green-a3);">Margin 2 all sides</Text>
-                <Text Size="3" Mx="4" My="1" style="background: var(--amber-a3);">Margin X=4, Y=1</Text>
-                <Text Size="3" Mt="3" Mb="3" style="background: var(--purple-a3);">Margin top & bottom = 3</Text>
+            <!-- Colors -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Colors</Heading>
+                <Card>
+                    <Grid Columns="3" Gap="3">
+                        <Text Size="3">Default</Text>
+                        <Text Size="3" Color="gray">Gray</Text>
+                        <Text Size="3" Color="blue">Blue</Text>
+                        <Text Size="3" Color="green">Green</Text>
+                        <Text Size="3" Color="red">Red</Text>
+                        <Text Size="3" Color="purple">Purple</Text>
+                        <Text Size="3" Color="amber">Amber</Text>
+                        <Text Size="3" Color="cyan">Cyan</Text>
+                        <Text Size="3" Color="pink">Pink</Text>
+                        <Text Size="3" Color="indigo">Indigo</Text>
+                        <Text Size="3" Color="orange">Orange</Text>
+                        <Text Size="3" Color="teal">Teal</Text>
+                    </Grid>
+                </Card>
             </Box>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Combinations</h2>
-        <div class="demo-content">
-            <Text Size="6" Weight="TextWeight.Bold" Color="blue">
-                Large Bold Blue Heading
-            </Text>
-            <Text Size="3" Color="gray" Mt="2">
-                Regular body text in gray color with margin top
-            </Text>
-            <Text Size="2" Weight="TextWeight.Light" Color="gray" Mt="1">
-                Small light gray caption text
-            </Text>
-            <Box Mt="4" P="3" style="background: var(--amber-a2); border-radius: var(--radius-2);">
-                <Text Size="4" Weight="TextWeight.Medium" Color="amber" HighContrast="true">
-                    ⚠️ Warning message with high contrast amber color
-                </Text>
+            <!-- High Contrast -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">High Contrast</Heading>
+                <Card>
+                    <Grid Columns="2" Gap="4">
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Text Size="2" Weight="TextWeight.Medium" Color="gray">Normal Contrast</Text>
+                            <Text Size="4" Color="blue">Blue text</Text>
+                            <Text Size="4" Color="green">Green text</Text>
+                            <Text Size="4" Color="red">Red text</Text>
+                        </Flex>
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Text Size="2" Weight="TextWeight.Medium" Color="gray">High Contrast</Text>
+                            <Text Size="4" Color="blue" HighContrast="true">Blue text</Text>
+                            <Text Size="4" Color="green" HighContrast="true">Green text</Text>
+                            <Text Size="4" Color="red" HighContrast="true">Red text</Text>
+                        </Flex>
+                    </Grid>
+                </Card>
             </Box>
-            <Box Mt="2" P="3" style="background: var(--red-a2); border-radius: var(--radius-2);">
-                <Text Size="4" Weight="TextWeight.Medium" Color="red" HighContrast="true">
-                    ❌ Error message with high contrast red color
-                </Text>
+
+            <!-- Alignment -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Text Alignment</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        @foreach (var align in Enum.GetValues<TextAlign>())
+                        {
+                            <Box P="3" Style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                                <Text Size="3" Align="@align" As="div">
+                                    @align aligned: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                </Text>
+                            </Box>
+                        }
+                    </Flex>
+                </Card>
             </Box>
-            <Box Mt="2" P="3" style="background: var(--green-a2); border-radius: var(--radius-2);">
-                <Text Size="4" Weight="TextWeight.Medium" Color="green" HighContrast="true">
-                    ✅ Success message with high contrast green color
-                </Text>
+
+            <!-- Element Types -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Element Types (As Prop)</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Box>
+                            <Badge Size="BadgeSize.Size1" Variant="BadgeVariant.Soft" Mb="1">span</Badge>
+                            <Text As="span" Size="3">Default inline element</Text>
+                        </Box>
+                        <Box>
+                            <Badge Size="BadgeSize.Size1" Variant="BadgeVariant.Soft" Mb="1">div</Badge>
+                            <Text As="div" Size="3">Block-level container</Text>
+                        </Box>
+                        <Box>
+                            <Badge Size="BadgeSize.Size1" Variant="BadgeVariant.Soft" Mb="1">p</Badge>
+                            <Text As="p" Size="3">Paragraph with semantic meaning</Text>
+                        </Box>
+                        <Box>
+                            <Badge Size="BadgeSize.Size1" Variant="BadgeVariant.Soft" Mb="1">label</Badge>
+                            <Text As="label" Size="3">Form label with tap highlight on mobile</Text>
+                        </Box>
+                    </Flex>
+                </Card>
             </Box>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Label Example with Form</h2>
-        <div class="demo-content">
-            <div style="display: flex; flex-direction: column; gap: var(--space-3); max-width: 300px;">
-                <div>
-                    <Text As="label" Size="2" Weight="TextWeight.Medium" Mb="1" style="display: block;">
-                        Email Address
-                    </Text>
-                    <input type="email" placeholder="Enter your email" style="width: 100%; padding: var(--space-2); border: 1px solid var(--gray-6); border-radius: var(--radius-2);" />
-                </div>
-                <div>
-                    <Text As="label" Size="2" Weight="TextWeight.Medium" Mb="1" style="display: block;">
-                        Password
-                    </Text>
-                    <input type="password" placeholder="Enter your password" style="width: 100%; padding: var(--space-2); border: 1px solid var(--gray-6); border-radius: var(--radius-2);" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+            <!-- Truncation -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Text Truncation</Heading>
+                <Card>
+                    <Grid Columns="2" Gap="4">
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">Without Truncate</Text>
+                            <Box P="3" Style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                                <Text Size="3" Truncate="false">
+                                    This is a very long text that will wrap to multiple lines when it exceeds the container width
+                                </Text>
+                            </Box>
+                        </Box>
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">With Truncate</Text>
+                            <Box P="3" Style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                                <Text Size="3" Truncate="true">
+                                    This is a very long text that will be truncated with ellipsis when it exceeds the container width
+                                </Text>
+                            </Box>
+                        </Box>
+                    </Grid>
+                </Card>
+            </Box>
 
-<style>
-    .demo-container {
-        padding: var(--space-4);
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+            <!-- Wrap Control -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Wrap Control</Heading>
+                <Card>
+                    <Grid Columns="2" Gap="4">
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">Wrap (default)</Text>
+                            <Box P="3" Style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                                <Text Size="3" Wrap="TextWrap.Wrap">
+                                    This text will wrap normally when reaching container boundaries
+                                </Text>
+                            </Box>
+                        </Box>
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">No Wrap</Text>
+                            <Box P="3" Style="background: var(--gray-a2); border-radius: var(--radius-2); overflow-x: auto;">
+                                <Text Size="3" Wrap="TextWrap.NoWrap">
+                                    This text will not wrap and extends beyond container if needed
+                                </Text>
+                            </Box>
+                        </Box>
+                    </Grid>
+                </Card>
+            </Box>
 
-    .demo-section {
-        margin-bottom: var(--space-6);
-    }
+            <!-- Line Height Trim -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Line Height Trim</Heading>
+                <Card>
+                    <Grid Columns="3" Gap="4">
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">Normal</Text>
+                            <Box P="2" Style="background: var(--gray-a2); border: 1px solid var(--gray-6);">
+                                <Text Size="6" Trim="false">Ag</Text>
+                            </Box>
+                        </Box>
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">Start</Text>
+                            <Box P="2" Style="background: var(--gray-a2); border: 1px solid var(--gray-6);">
+                                <Text Size="6" Trim="true">Ag</Text>
+                            </Box>
+                        </Box>
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">End</Text>
+                            <Box P="2" Style="background: var(--gray-a2); border: 1px solid var(--gray-6);">
+                                <Text Size="6" Trim="true">Ag</Text>
+                            </Box>
+                        </Box>
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">Both</Text>
+                            <Box P="2" Style="background: var(--gray-a2); border: 1px solid var(--gray-6);">
+                                <Text Size="6" Trim="true">Ag</Text>
+                            </Box>
+                        </Box>
+                    </Grid>
+                </Card>
+            </Box>
 
-    .demo-section h2 {
-        margin-bottom: var(--space-3);
-        font-size: var(--font-size-4);
-        font-weight: var(--font-weight-bold);
-        color: var(--gray-12);
-    }
+            <!-- Interactive Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Interactive Example</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Grid Columns="3" Gap="3">
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Size</Text>
+                                <SelectRoot @bind-Value="_selectedSize">
+                                    <SelectTrigger TValue="string">
+                                        <Text>Size @_selectedSize</Text>
+                                    </SelectTrigger>
+                                    <SelectContent TValue="string">
+                                        @for (int i = 1; i <= 9; i++)
+                                        {
+                                            <SelectItem TValue="string" Value="@i.ToString()">Size @i</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Weight</Text>
+                                <SelectRoot @bind-Value="_selectedWeight">
+                                    <SelectTrigger TValue="string">
+                                        <Text>@_selectedWeight</Text>
+                                    </SelectTrigger>
+                                    <SelectContent TValue="string">
+                                        @foreach (var weight in Enum.GetValues<TextWeight>())
+                                        {
+                                            <SelectItem TValue="string" Value="@weight.ToString()">@weight</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Color</Text>
+                                <SelectRoot @bind-Value="_selectedColor">
+                                    <SelectTrigger TValue="string">
+                                        <Text>@_selectedColor</Text>
+                                    </SelectTrigger>
+                                    <SelectContent TValue="string">
+                                        <SelectItem TValue="string" Value="default">Default</SelectItem>
+                                        @foreach (var color in new[] { "gray", "blue", "green", "red", "purple", "orange" })
+                                        {
+                                            <SelectItem TValue="string" Value="@color">@color</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                        </Grid>
+                        
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Checkbox @bind-Checked="_highContrast" />
+                            <Text Size="2">High Contrast</Text>
+                            <Checkbox @bind-Checked="_truncate" />
+                            <Text Size="2">Truncate</Text>
+                        </Flex>
+                        
+                        <Separator />
+                        
+                        <Box P="4" Style="background: var(--gray-a2); border-radius: var(--radius-3);">
+                            <Text 
+                                Size="@_selectedSize"
+                                Weight="@GetTextWeight()"
+                                Color="@(_selectedColor == "default" ? null : _selectedColor)"
+                                HighContrast="@_highContrast"
+                                Truncate="@_truncate">
+                                @_sampleText
+                            </Text>
+                        </Box>
+                        
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">Sample Text</Text>
+                            <TextAreaField 
+                                Size="TextAreaSize.Size2"
+                                @bind-Value="_sampleText"
+                                Style="width: 100%;" />
+                        </Box>
+                    </Flex>
+                </Card>
+            </Box>
 
-    .demo-content {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-2);
-    }
-</style>
+            <!-- Practical Examples -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Practical Examples</Heading>
+                <Grid Columns="2" Gap="4">
+                    <!-- Article Preview -->
+                    <Card>
+                        <Heading Size="HeadingSize.Size4" Mb="3">Article Preview</Heading>
+                        <Text Size="5" Weight="TextWeight.Bold" Mb="2">
+                            Understanding Component Architecture
+                        </Text>
+                        <Flex Gap="2" Mb="3">
+                            <Text Size="2" Color="gray">By Jane Doe</Text>
+                            <Text Size="2" Color="gray">•</Text>
+                            <Text Size="2" Color="gray">5 min read</Text>
+                        </Flex>
+                        <Text Size="3" Color="gray">
+                            Learn how to build scalable and maintainable component systems using modern patterns and best practices...
+                        </Text>
+                        <Link Size="2" Mt="3">Read more →</Link>
+                    </Card>
+                    
+                    <!-- Product Card -->
+                    <Card>
+                        <Badge Size="BadgeSize.Size1" Color="green" Mb="2">In Stock</Badge>
+                        <Heading Size="HeadingSize.Size4" Mb="2">Premium Headphones</Heading>
+                        <Text Size="2" Color="gray" Mb="3">
+                            Wireless • Noise Cancelling • 30hr Battery
+                        </Text>
+                        <Flex Align="FlexAlign.Baseline" Gap="2" Mb="3">
+                            <Text Size="6" Weight="TextWeight.Bold">$299</Text>
+                            <Text Size="3" Color="gray" Style="text-decoration: line-through;">$399</Text>
+                            <Badge Size="BadgeSize.Size1" Color="red">-25%</Badge>
+                        </Flex>
+                        <Button Size="ButtonSize.Medium" Style="width: 100%;">Add to Cart</Button>
+                    </Card>
+                    
+                    <!-- Notification -->
+                    <Card>
+                        <Flex Gap="3">
+                            <Avatar Size="AvatarSize.Size2">
+                                <Fallback>JD</Fallback>
+                            </Avatar>
+                            <Box Style="flex: 1;">
+                                <Text Size="2" Weight="TextWeight.Medium">John Doe</Text>
+                                <Text Size="2" Color="gray">
+                                    mentioned you in a comment
+                                </Text>
+                                <Text Size="1" Color="gray" Mt="1">2 hours ago</Text>
+                            </Box>
+                        </Flex>
+                    </Card>
+                    
+                    <!-- Code Block -->
+                    <Card>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="2">Code Example</Text>
+                        <Box P="3" Style="background: var(--gray-12); border-radius: var(--radius-2);">
+                            <Text Size="2" As="pre" Style="color: var(--gray-1); font-family: monospace;">
+                                const greeting = "Hello";
+                                const name = "World";
+                                console.log(`${greeting}, ${name}!`);
+                            </Text>
+                        </Box>
+                    </Card>
+                </Grid>
+            </Box>
+        </Flex>
+    </Section>
+</Container>
+
+@code {
+    private string _selectedSize = "3";
+    private string _selectedWeight = "Regular";
+    private string _selectedColor = "default";
+    private bool _highContrast = false;
+    private bool _truncate = false;
+    private string _sampleText = "The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs.";
+    
+    private TextWeight GetTextWeight() => Enum.Parse<TextWeight>(_selectedWeight);
+}

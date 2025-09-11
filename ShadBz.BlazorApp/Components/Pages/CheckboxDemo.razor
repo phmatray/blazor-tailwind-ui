@@ -3,17 +3,18 @@
 
 <PageTitle>Checkbox Component Demo</PageTitle>
 
-<Section Size="SectionSize.Size3">
-    <Container Size="ContainerSize.Size4">
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
         <Flex Direction="FlexDirection.Column" Gap="6">
             <Box>
-                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">Checkbox Component</Heading>
+                <Heading Size="HeadingSize.Size8">Checkbox</Heading>
                 <Text Size="4" Color="gray">Interactive checkbox with multiple states and variants.</Text>
             </Box>
 
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic Checkboxes</Heading>
-                <Flex Direction="FlexDirection.Column" Gap="3">
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Heading Size="4" Weight="TextWeight.Medium">Basic Checkboxes</Heading>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
                     <Text As="label" Size="2">
                         <Flex Gap="2" Align="FlexAlign.Center">
                             <Checkbox DefaultChecked="CheckboxState.Checked" />
@@ -48,12 +49,14 @@
                             <Text Color="gray">Disabled checked</Text>
                         </Flex>
                     </Text>
+                    </Flex>
                 </Flex>
-            </Box>
+            </Card>
 
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Checkbox Sizes</Heading>
-                <Flex Direction="FlexDirection.Column" Gap="3">
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Heading Size="4" Weight="TextWeight.Medium">Checkbox Sizes</Heading>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
                     <Text As="label" Size="1">
                         <Flex Gap="2" Align="FlexAlign.Center">
                             <Checkbox Size="CheckboxSize.Size1" DefaultChecked="CheckboxState.Checked" />
@@ -74,12 +77,14 @@
                             <Text Size="3">Size 3 - Large checkbox</Text>
                         </Flex>
                     </Text>
+                    </Flex>
                 </Flex>
-            </Box>
+            </Card>
 
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Checkbox Variants</Heading>
-                <Grid Columns="3" Gap="4">
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Heading Size="4" Weight="TextWeight.Medium">Checkbox Variants</Heading>
+                    <Grid Columns="3" Gap="4">
                     <Card Size="CardSize.Size2">
                         <Flex Direction="FlexDirection.Column" Gap="3">
                             <Text Size="3" Weight="TextWeight.Medium">Surface (Default)</Text>
@@ -157,12 +162,14 @@
                             </Flex>
                         </Flex>
                     </Card>
-                </Grid>
-            </Box>
+                    </Grid>
+                </Flex>
+            </Card>
 
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Checkbox Colors</Heading>
-                <Grid Columns="4" Gap="3">
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Heading Size="4" Weight="TextWeight.Medium">Checkbox Colors</Heading>
+                    <Grid Columns="4" Gap="3">
                     <Text As="label" Size="2">
                         <Flex Gap="2" Align="FlexAlign.Center">
                             <Checkbox Color="gray" DefaultChecked="CheckboxState.Checked" />
@@ -307,12 +314,14 @@
                             <Text>Lime</Text>
                         </Flex>
                     </Text>
-                </Grid>
-            </Box>
+                    </Grid>
+                </Flex>
+            </Card>
 
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">High Contrast</Heading>
-                <Flex Gap="4">
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Heading Size="4" Weight="TextWeight.Medium">High Contrast</Heading>
+                    <Flex Gap="4">
                     <Text As="label" Size="2">
                         <Flex Gap="2" Align="FlexAlign.Center">
                             <Checkbox Color="indigo" DefaultChecked="CheckboxState.Checked" />
@@ -325,12 +334,14 @@
                             <Text>High contrast</Text>
                         </Flex>
                     </Text>
+                    </Flex>
                 </Flex>
-            </Box>
+            </Card>
 
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Interactive Example</Heading>
-                <Card Size="CardSize.Size3">
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Heading Size="4" Weight="TextWeight.Medium">Interactive Example</Heading>
+                    <Box>
                     <Flex Direction="FlexDirection.Column" Gap="3">
                         <Text Size="3" Weight="TextWeight.Medium">Select your preferences:</Text>
                         
@@ -367,12 +378,14 @@
                             @if (!emailNotifications && !pushNotifications && !marketingEmails) { <Text>None</Text> }
                         </Text>
                     </Flex>
-                </Card>
-            </Box>
+                    </Box>
+                </Flex>
+            </Card>
 
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Terms and Conditions</Heading>
-                <Card Size="CardSize.Size3">
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Heading Size="4" Weight="TextWeight.Medium">In Context: Terms and Conditions</Heading>
+                    <Box>
                     <Flex Direction="FlexDirection.Column" Gap="3">
                         <Heading Size="3">User Agreement</Heading>
                         
@@ -396,12 +409,14 @@
                             Continue
                         </Button>
                     </Flex>
-                </Card>
-            </Box>
+                    </Box>
+                </Flex>
+            </Card>
 
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Task List</Heading>
-                <Card Size="CardSize.Size3">
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Heading Size="4" Weight="TextWeight.Medium">In Context: Task List</Heading>
+                    <Box>
                     <Flex Direction="FlexDirection.Column" Gap="2">
                         <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center" Mb="2">
                             <Heading Size="3">Today's Tasks</Heading>
@@ -451,12 +466,14 @@
                             </Flex>
                         </Text>
                     </Flex>
-                </Card>
-            </Box>
+                    </Box>
+                </Flex>
+            </Card>
 
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">With Multi-line Text</Heading>
-                <Card Size="CardSize.Size3">
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Heading Size="4" Weight="TextWeight.Medium">With Multi-line Text</Heading>
+                    <Box>
                     <Flex Direction="FlexDirection.Column" Gap="3">
                         <Text As="label">
                             <Flex Gap="2" Align="FlexAlign.Start">
@@ -484,11 +501,12 @@
                             </Flex>
                         </Text>
                     </Flex>
-                </Card>
-            </Box>
+                    </Box>
+                </Flex>
+            </Card>
         </Flex>
-    </Container>
-</Section>
+    </Section>
+</Container>
 
 @code {
     private bool emailNotifications = true;

@@ -1,202 +1,368 @@
 @page "/button-demo"
 @using ShadBz.BlazorApp.Components.UI
 
-<PageTitle>Button Demo</PageTitle>
+<PageTitle>Button Component - Radix UI Blazor</PageTitle>
 
-<div class="demo-container">
-    <h1>Button Component Demo</h1>
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="HeadingSize.Size8" Mb="2">Button</Heading>
+                <Text Size="4" Color="gray">
+                    A versatile button component with multiple variants, sizes, and states.
+                </Text>
+            </Box>
 
-    <div class="demo-section">
-        <h2>Sizes</h2>
-        <div class="button-group">
-            <Button Size="ButtonSize.Small">Size 1</Button>
-            <Button Size="ButtonSize.Medium">Size 2</Button>
-            <Button Size="ButtonSize.Large">Size 3</Button>
-            <Button Size="ButtonSize.ExtraLarge">Size 4</Button>
-        </div>
-    </div>
+            <!-- Sizes -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Sizes</Heading>
+                <Card>
+                    <Flex Gap="3" Align="FlexAlign.Center" Wrap="FlexWrap.Wrap">
+                        <Button Size="ButtonSize.Small">Size 1</Button>
+                        <Button Size="ButtonSize.Medium">Size 2</Button>
+                        <Button Size="ButtonSize.Large">Size 3</Button>
+                        <Button Size="ButtonSize.ExtraLarge">Size 4</Button>
+                    </Flex>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>Variants</h2>
-        <div class="button-group">
-            <Button Variant="ButtonVariant.Classic">Classic</Button>
-            <Button Variant="ButtonVariant.Solid">Solid</Button>
-            <Button Variant="ButtonVariant.Soft">Soft</Button>
-            <Button Variant="ButtonVariant.Surface">Surface</Button>
-            <Button Variant="ButtonVariant.Outline">Outline</Button>
-            <Button Variant="ButtonVariant.Ghost">Ghost</Button>
-        </div>
-    </div>
+            <!-- Variants -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Variants</Heading>
+                <Card>
+                    <Grid Columns="3" Gap="3">
+                        @foreach (var variant in Enum.GetValues<ButtonVariant>())
+                        {
+                            <Button Variant="@variant">@variant</Button>
+                        }
+                    </Grid>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>Colors</h2>
-        <div class="button-group">
-            <Button Color="gray">Gray</Button>
-            <Button Color="gold">Gold</Button>
-            <Button Color="bronze">Bronze</Button>
-            <Button Color="brown">Brown</Button>
-            <Button Color="yellow">Yellow</Button>
-            <Button Color="amber">Amber</Button>
-            <Button Color="orange">Orange</Button>
-            <Button Color="tomato">Tomato</Button>
-            <Button Color="red">Red</Button>
-            <Button Color="ruby">Ruby</Button>
-            <Button Color="crimson">Crimson</Button>
-            <Button Color="pink">Pink</Button>
-            <Button Color="plum">Plum</Button>
-            <Button Color="purple">Purple</Button>
-            <Button Color="violet">Violet</Button>
-            <Button Color="iris">Iris</Button>
-            <Button Color="indigo">Indigo</Button>
-            <Button Color="blue">Blue</Button>
-            <Button Color="cyan">Cyan</Button>
-            <Button Color="teal">Teal</Button>
-            <Button Color="jade">Jade</Button>
-            <Button Color="green">Green</Button>
-            <Button Color="grass">Grass</Button>
-            <Button Color="lime">Lime</Button>
-            <Button Color="mint">Mint</Button>
-            <Button Color="sky">Sky</Button>
-        </div>
-    </div>
+            <!-- Colors -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Colors</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        @foreach (var colorGroup in GetColorGroups())
+                        {
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Color="gray" Mb="2">@colorGroup.Name</Text>
+                                <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                                    @foreach (var color in colorGroup.Colors)
+                                    {
+                                        <Button Size="ButtonSize.Small" Color="@color">@color</Button>
+                                    }
+                                </Flex>
+                            </Box>
+                        }
+                    </Flex>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>High Contrast</h2>
-        <div class="button-group">
-            <Button HighContrast="false">Normal</Button>
-            <Button HighContrast="true">High Contrast</Button>
-            <Button Variant="ButtonVariant.Classic" HighContrast="false">Classic Normal</Button>
-            <Button Variant="ButtonVariant.Classic" HighContrast="true">Classic High Contrast</Button>
-        </div>
-    </div>
+            <!-- High Contrast -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">High Contrast</Heading>
+                <Card>
+                    <Grid Columns="2" Gap="4">
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">Normal</Text>
+                            <Flex Gap="2" Direction="FlexDirection.Column">
+                                @foreach (var variant in new[] { ButtonVariant.Solid, ButtonVariant.Soft, ButtonVariant.Outline })
+                                {
+                                    <Button Variant="@variant" HighContrast="false">@variant</Button>
+                                }
+                            </Flex>
+                        </Box>
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">High Contrast</Text>
+                            <Flex Gap="2" Direction="FlexDirection.Column">
+                                @foreach (var variant in new[] { ButtonVariant.Solid, ButtonVariant.Soft, ButtonVariant.Outline })
+                                {
+                                    <Button Variant="@variant" HighContrast="true">@variant HC</Button>
+                                }
+                            </Flex>
+                        </Box>
+                    </Grid>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>Radius</h2>
-        <div class="button-group">
-            <Button Radius="none">None</Button>
-            <Button Radius="small">Small</Button>
-            <Button Radius="medium">Medium</Button>
-            <Button Radius="large">Large</Button>
-            <Button Radius="full">Full</Button>
-        </div>
-    </div>
+            <!-- Radius -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Radius</Heading>
+                <Card>
+                    <Flex Gap="3" Align="FlexAlign.Center" Wrap="FlexWrap.Wrap">
+                        <Button Radius="none">None</Button>
+                        <Button Radius="small">Small</Button>
+                        <Button Radius="medium">Medium</Button>
+                        <Button Radius="large">Large</Button>
+                        <Button Radius="full">Full</Button>
+                    </Flex>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>States</h2>
-        <div class="button-group">
-            <Button>Normal</Button>
-            <Button Disabled="true">Disabled</Button>
-            <Button Loading="true">Loading</Button>
-        </div>
-    </div>
+            <!-- States -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">States</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Button>Normal</Button>
+                            <Button Disabled="true">Disabled</Button>
+                            <Button Loading="true">Loading</Button>
+                        </Flex>
+                        <Separator />
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Button Variant="ButtonVariant.Soft">Normal</Button>
+                            <Button Variant="ButtonVariant.Soft" Disabled="true">Disabled</Button>
+                            <Button Variant="ButtonVariant.Soft" Loading="true">Loading</Button>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>Loading States with Different Sizes</h2>
-        <div class="button-group">
-            <Button Size="ButtonSize.Small" Loading="true">Small Loading</Button>
-            <Button Size="ButtonSize.Medium" Loading="true">Medium Loading</Button>
-            <Button Size="ButtonSize.Large" Loading="true">Large Loading</Button>
-            <Button Size="ButtonSize.ExtraLarge" Loading="true">Extra Large Loading</Button>
-        </div>
-    </div>
+            <!-- AsChild Pattern -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">AsChild Pattern</Heading>
+                <Card>
+                    <Flex Gap="3">
+                        <Button AsChild="true">
+                            <a href="#" style="text-decoration: none;">Link as Button</a>
+                        </Button>
+                        <Button Variant="ButtonVariant.Outline" AsChild="true">
+                            <a href="#" style="text-decoration: none;">Outline Link</a>
+                        </Button>
+                    </Flex>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>With Icons (Simulated)</h2>
-        <div class="button-group">
-            <Button>
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 2.75C8 2.47386 7.77614 2.25 7.5 2.25C7.22386 2.25 7 2.47386 7 2.75V7H2.75C2.47386 7 2.25 7.22386 2.25 7.5C2.25 7.77614 2.47386 8 2.75 8H7V12.25C7 12.5261 7.22386 12.75 7.5 12.75C7.77614 12.75 8 12.5261 8 12.25V8H12.25C12.5261 8 12.75 7.77614 12.75 7.5C12.75 7.22386 12.5261 7 12.25 7H8V2.75Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-                </svg>
-                Add Item
-            </Button>
-            <Button Variant="ButtonVariant.Soft">
-                Edit
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M11.8536 1.14645C11.6583 0.951184 11.3417 0.951184 11.1464 1.14645L3.71068 8.58214C3.62004 8.67278 3.55263 8.78362 3.51412 8.90583L2.05255 13.3199C1.98595 13.5266 2.02896 13.7532 2.16517 13.9177C2.30137 14.0822 2.51113 14.1593 2.71401 14.0932L7.09366 12.6319C7.21578 12.5934 7.32662 12.526 7.41726 12.4354L14.8536 5.00001C15.0488 4.80475 15.0488 4.48816 14.8536 4.2929L10.7071 0.146452C10.5119 -0.0488137 10.1953 -0.0488137 10 0.146452L11.8536 1.14645ZM7.12132 11.7176L4.08754 12.7917L5.16151 9.75787L11.5 3.41937L10.5808 2.50023L4.24229 8.83873L7.12132 11.7176Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-                </svg>
-            </Button>
-        </div>
-    </div>
+            <!-- With Icons -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">With Icons</Heading>
+                <Card>
+                    <Flex Gap="3" Align="FlexAlign.Center" Wrap="FlexWrap.Wrap">
+                        <Button>
+                            <Text As="span" Style="margin-right: 8px;">←</Text>
+                            Previous
+                        </Button>
+                        <Button>
+                            Next
+                            <Text As="span" Style="margin-left: 8px;">→</Text>
+                        </Button>
+                        <Button Variant="ButtonVariant.Soft">
+                            <Text As="span" Style="margin-right: 8px;">⚙️</Text>
+                            Settings
+                        </Button>
+                        <Button Variant="ButtonVariant.Ghost" Color="red">
+                            <Text As="span" Style="margin-right: 8px;">🗑️</Text>
+                            Delete
+                        </Button>
+                    </Flex>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>Ghost Variant with Margins</h2>
-        <div class="button-group" style="background: var(--gray-a3); padding: var(--space-4); border-radius: var(--radius-3);">
-            <Button Variant="ButtonVariant.Ghost">No margin</Button>
-            <Button Variant="ButtonVariant.Ghost" M="2">Margin 2</Button>
-            <Button Variant="ButtonVariant.Ghost" Mx="3">Margin X 3</Button>
-            <Button Variant="ButtonVariant.Ghost" My="2">Margin Y 2</Button>
-        </div>
-    </div>
+            <!-- Interactive Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Interactive Example</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Grid Columns="3" Gap="3">
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Size</Text>
+                                <SelectRoot @bind-Value="_selectedSize">
+                                    <SelectTrigger TValue="string">
+                                        <Text>@GetSizeName()</Text>
+                                    </SelectTrigger>
+                                    <SelectContent TValue="string">
+                                        @foreach (var size in Enum.GetValues<ButtonSize>())
+                                        {
+                                            <SelectItem TValue="string" Value="@size.ToString()">@size</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Variant</Text>
+                                <SelectRoot @bind-Value="_selectedVariant">
+                                    <SelectTrigger TValue="string">
+                                        <Text>@_selectedVariant</Text>
+                                    </SelectTrigger>
+                                    <SelectContent TValue="string">
+                                        @foreach (var variant in Enum.GetValues<ButtonVariant>())
+                                        {
+                                            <SelectItem TValue="string" Value="@variant.ToString()">@variant</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Color</Text>
+                                <SelectRoot @bind-Value="_selectedColor">
+                                    <SelectTrigger TValue="string">
+                                        <Text>@_selectedColor</Text>
+                                    </SelectTrigger>
+                                    <SelectContent TValue="string">
+                                        <SelectItem TValue="string" Value="default">Default</SelectItem>
+                                        @foreach (var color in new[] { "blue", "green", "red", "purple", "orange", "pink" })
+                                        {
+                                            <SelectItem TValue="string" Value="@color">@color</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                        </Grid>
+                        
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Checkbox @bind-Checked="_highContrast" />
+                            <Text Size="2">High Contrast</Text>
+                            <Checkbox @bind-Checked="_disabled" />
+                            <Text Size="2">Disabled</Text>
+                            <Checkbox @bind-Checked="_loading" />
+                            <Text Size="2">Loading</Text>
+                        </Flex>
+                        
+                        <Separator />
+                        
+                        <Flex Justify="FlexJustify.Center">
+                            <Button 
+                                Size="@GetButtonSize()"
+                                Variant="@GetButtonVariant()"
+                                Color="@(_selectedColor == "default" ? null : _selectedColor)"
+                                HighContrast="@_highContrast"
+                                Disabled="@_disabled"
+                                Loading="@_loading"
+                                @onclick="HandleClick">
+                                @if (_loading)
+                                {
+                                    <Text>Loading...</Text>
+                                }
+                                else
+                                {
+                                    <Text>@_buttonText</Text>
+                                }
+                            </Button>
+                        </Flex>
+                        
+                        @if (_clickCount > 0)
+                        {
+                            <Box>
+                                <Text Size="2" Align="TextAlign.Center" Color="gray">
+                                    Button clicked @_clickCount @(_clickCount == 1 ? "time" : "times")
+                                </Text>
+                            </Box>
+                        }
+                    </Flex>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>Interactive Example</h2>
-        <div class="button-group">
-            <Button OnClick="HandleClick">Click Me</Button>
-            <Button Variant="ButtonVariant.Soft" OnClick="HandleReset">Reset</Button>
-            <span>Clicked: @clickCount times</span>
-        </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>All Variants with Colors</h2>
-        @foreach (var variant in Enum.GetValues<ButtonVariant>())
-        {
-            <h3>@variant</h3>
-            <div class="button-group">
-                <Button Variant="variant" Color="blue">Blue</Button>
-                <Button Variant="variant" Color="green">Green</Button>
-                <Button Variant="variant" Color="red">Red</Button>
-                <Button Variant="variant" Color="purple">Purple</Button>
-                <Button Variant="variant" Color="amber">Amber</Button>
-            </div>
-        }
-    </div>
-</div>
+            <!-- Practical Examples -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Practical Examples</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <!-- Form Actions -->
+                    <Card>
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Heading Size="HeadingSize.Size4">Form Actions</Heading>
+                            <Flex Gap="2" Justify="FlexJustify.End">
+                                <Button Variant="ButtonVariant.Ghost">Cancel</Button>
+                                <Button Variant="ButtonVariant.Soft">Save as Draft</Button>
+                                <Button>Submit</Button>
+                            </Flex>
+                        </Flex>
+                    </Card>
+                    
+                    <!-- Destructive Actions -->
+                    <Card>
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Heading Size="HeadingSize.Size4">Destructive Actions</Heading>
+                            <Flex Gap="2">
+                                <Button Color="red" Variant="ButtonVariant.Soft">
+                                    Remove Item
+                                </Button>
+                                <Button Color="red" HighContrast="true">
+                                    Delete Account
+                                </Button>
+                            </Flex>
+                        </Flex>
+                    </Card>
+                    
+                    <!-- Button Groups -->
+                    <Card>
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Heading Size="HeadingSize.Size4">Button Groups</Heading>
+                            <Flex Style="border: 1px solid var(--gray-6); border-radius: var(--radius-3); overflow: hidden; width: fit-content;">
+                                <Button Variant="ButtonVariant.Ghost" Style="border-radius: 0; border-right: 1px solid var(--gray-6);">Left</Button>
+                                <Button Variant="ButtonVariant.Ghost" Style="border-radius: 0; border-right: 1px solid var(--gray-6);">Center</Button>
+                                <Button Variant="ButtonVariant.Ghost" Style="border-radius: 0;">Right</Button>
+                            </Flex>
+                        </Flex>
+                    </Card>
+                </Flex>
+            </Box>
+        </Flex>
+    </Section>
+</Container>
 
 @code {
-    private int clickCount = 0;
-
+    private string _selectedSize = "Medium";
+    private string _selectedVariant = "Solid";
+    private string _selectedColor = "default";
+    private bool _highContrast = false;
+    private bool _disabled = false;
+    private bool _loading = false;
+    private int _clickCount = 0;
+    private string _buttonText = "Click Me";
+    
     private void HandleClick()
     {
-        clickCount++;
+        if (!_disabled && !_loading)
+        {
+            _clickCount++;
+        }
     }
     
-    private void HandleReset()
+    private ButtonSize GetButtonSize() => Enum.Parse<ButtonSize>(_selectedSize);
+    private ButtonVariant GetButtonVariant() => Enum.Parse<ButtonVariant>(_selectedVariant);
+    private string GetSizeName() => _selectedSize;
+    
+    private class ColorGroup
     {
-        clickCount = 0;
-    }
-}
-
-<style>
-    .demo-container {
-        padding: var(--space-4);
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .demo-section {
-        margin-bottom: var(--space-6);
-    }
-
-    .demo-section h2 {
-        margin-bottom: var(--space-3);
-        font-size: var(--font-size-4);
-        font-weight: var(--font-weight-bold);
-        color: var(--gray-12);
+        public string Name { get; set; } = "";
+        public string[] Colors { get; set; } = Array.Empty<string>();
     }
     
-    .demo-section h3 {
-        margin-top: var(--space-3);
-        margin-bottom: var(--space-2);
-        font-size: var(--font-size-2);
-        font-weight: var(--font-weight-medium);
-        color: var(--gray-11);
-    }
-
-    .button-group {
-        display: flex;
-        gap: var(--space-2);
-        align-items: center;
-        flex-wrap: wrap;
-    }
-</style>
+    private ColorGroup[] GetColorGroups() => new[]
+    {
+        new ColorGroup 
+        { 
+            Name = "Grays", 
+            Colors = new[] { "gray", "mauve", "slate", "sage", "olive", "sand" }
+        },
+        new ColorGroup 
+        { 
+            Name = "Reds", 
+            Colors = new[] { "tomato", "red", "ruby", "crimson", "pink", "plum" }
+        },
+        new ColorGroup 
+        { 
+            Name = "Purples", 
+            Colors = new[] { "purple", "violet", "iris", "indigo" }
+        },
+        new ColorGroup 
+        { 
+            Name = "Blues", 
+            Colors = new[] { "blue", "cyan", "teal", "sky" }
+        },
+        new ColorGroup 
+        { 
+            Name = "Greens", 
+            Colors = new[] { "jade", "green", "grass", "mint", "lime" }
+        },
+        new ColorGroup 
+        { 
+            Name = "Yellows & Oranges", 
+            Colors = new[] { "yellow", "amber", "orange", "brown" }
+        }
+    };
+}
