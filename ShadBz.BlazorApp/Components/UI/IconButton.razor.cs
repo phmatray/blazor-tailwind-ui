@@ -71,15 +71,15 @@ public partial class IconButton : SpacingComponentBase, IAsChildSupport
         }
     }
     
-    protected string GetSpinnerSize()
+    protected SpinnerSize GetSpinnerSize()
     {
         return Size switch
         {
-            ButtonSize.Small => "1",
-            ButtonSize.Medium => "2",
-            ButtonSize.Large => "2",
-            ButtonSize.ExtraLarge => "3",
-            _ => "2"
+            ButtonSize.Small => SpinnerSize.Size1,
+            ButtonSize.Medium => SpinnerSize.Size2,
+            ButtonSize.Large => SpinnerSize.Size2,
+            ButtonSize.ExtraLarge => SpinnerSize.Size3,
+            _ => SpinnerSize.Size2
         };
     }
     
