@@ -425,27 +425,27 @@ module.exports = {
 - [x] Add text properties (truncate, wrap, trim)
 - [x] Support AsChild pattern
 - [x] Create demo page
-- [ ] Support underline prop
-- [ ] Add color prop
-- [ ] Support AsChild pattern
-- [ ] Create demo page
 
-#### 11. Badge
-- [ ] Create Badge.razor and Badge.razor.cs
-- [ ] Implement variant prop
-- [ ] Add size prop
-- [ ] Support color prop
-- [ ] Add radius prop
-- [ ] Create demo page
+#### 11. Badge ✅
+- [x] Create Badge.razor and Badge.razor.cs
+- [x] Implement variant prop (solid, soft, surface, outline)
+- [x] Add size prop (1-3)
+- [x] Support color prop (all color palette)
+- [x] Add radius prop (none, small, medium, large, full)
+- [x] Implement high contrast mode
+- [x] Support AsChild pattern
+- [x] Create comprehensive demo page
 
-#### 12. Avatar
-- [ ] Create Avatar.razor and Avatar.razor.cs
-- [ ] Implement size variants
-- [ ] Add fallback support
-- [ ] Support variant prop
-- [ ] Add radius prop
-- [ ] Support color prop
-- [ ] Create demo page
+#### 12. Avatar ✅
+- [x] Create Avatar.razor and Avatar.razor.cs
+- [x] Implement size variants (1-9)
+- [x] Add fallback support with initials
+- [x] Support variant prop (solid, soft)
+- [x] Add radius prop
+- [x] Support color prop
+- [x] Implement image loading states
+- [x] Add high contrast mode
+- [x] Create demo page
 
 #### 13. Separator
 - [ ] Create Separator.razor and Separator.razor.cs

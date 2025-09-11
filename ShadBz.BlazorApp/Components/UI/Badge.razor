@@ -1,0 +1,15 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
+
+@if (AsChild)
+{
+    <CascadingValue Value="@GetBadgeAttributes()" Name="BadgeAttributes">
+        @ChildContent
+    </CascadingValue>
+}
+else
+{
+    <span @attributes="GetBadgeAttributes()">
+        @ChildContent
+    </span>
+}

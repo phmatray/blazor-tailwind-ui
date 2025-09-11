@@ -1,0 +1,30 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
+
+@if (AsChild)
+{
+    <CascadingValue Value="@GetAvatarAttributes()" Name="AvatarAttributes">
+        @ChildContent
+    </CascadingValue>
+}
+else
+{
+    <span @attributes="GetAvatarAttributes()">
+        @if (ShouldShowFallback())
+        {
+            <span class="@FallbackCssClass">
+                @Fallback
+            </span>
+        }
+        
+        @if (!string.IsNullOrEmpty(Src))
+        {
+            <img class="rt-AvatarImage" 
+                 src="@Src" 
+                 alt="@Alt"
+                 @onload="HandleImageLoad"
+                 @onerror="HandleImageError"
+                 style="@(imageStatus == ImageLoadStatus.Loaded ? "" : "display: none;")" />
+        }
+    </span>
+}

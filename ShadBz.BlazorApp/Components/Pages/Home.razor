@@ -31,6 +31,8 @@
                     @RenderCard("Section", "Semantic section component with vertical spacing", "/section-demo", true)
                     @RenderCard("Card", "Container component for grouping related content", "/card-demo", true)
                     @RenderCard("Link", "Text-based navigation component with underline styles", "/link-demo", true)
+                    @RenderCard("Avatar", "User avatar with image fallback and initials", "/avatar-demo", true)
+                    @RenderCard("Badge", "Small label component for status and counts", "/badge-demo", true)
                 </Grid>
             </Box>
 
@@ -40,8 +42,7 @@
                 </Heading>
                 
                 <Grid Columns="3" Gap="4">
-                    @RenderCard("Avatar", "User avatar with image fallback and initials", null, false)
-                    @RenderCard("Badge", "Small label component for status and counts", null, false)
+                    @RenderCard("Callout", "Informational panel with icon support", null, false)
                     @RenderCard("Dialog", "Modal dialog for important interactions", null, false)
                     @RenderCard("Select", "Customizable dropdown selection component", null, false)
                     @RenderCard("Table", "Data table with sorting and filtering", null, false)
@@ -56,11 +57,11 @@
                 <Flex Direction="FlexDirection.Column" Gap="3">
                     <Flex Align="FlexAlign.Center" Gap="2">
                         <Box Width="4" Height="4" Style="background: var(--green-9); border-radius: var(--radius-1);"></Box>
-                        <Text Size="3">10 Components Completed</Text>
+                        <Text Size="3">12 Components Completed</Text>
                     </Flex>
                     <Flex Align="FlexAlign.Center" Gap="2">
                         <Box Width="4" Height="4" Style="background: var(--gray-6); border-radius: var(--radius-1);"></Box>
-                        <Text Size="3">30 Components Pending</Text>
+                        <Text Size="3">28 Components Pending</Text>
                     </Flex>
                     <Flex Align="FlexAlign.Center" Gap="2">
                         <Box Width="4" Height="4" Style="background: var(--blue-9); border-radius: var(--radius-1);"></Box>

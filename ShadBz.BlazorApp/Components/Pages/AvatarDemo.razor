@@ -1,0 +1,294 @@
+@page "/avatar-demo"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Avatar Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">Avatar Component</Heading>
+                <Text Size="4" Color="gray">User avatar with image fallback and initials support.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic Avatars</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <Avatar Src="https://i.pravatar.cc/150?img=1" Alt="User 1">
+                        <Fallback>U1</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Src="https://i.pravatar.cc/150?img=2" Alt="User 2">
+                        <Fallback>U2</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Src="https://i.pravatar.cc/150?img=3" Alt="User 3">
+                        <Fallback>U3</Fallback>
+                    </Avatar>
+                    
+                    @* Avatar with broken image to show fallback *@
+                    <Avatar Src="https://broken-image-url.com/image.jpg" Alt="Broken">
+                        <Fallback>JD</Fallback>
+                    </Avatar>
+                    
+                    @* Avatar without src to show fallback *@
+                    <Avatar>
+                        <Fallback>AB</Fallback>
+                    </Avatar>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Avatar Sizes</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <Avatar Size="AvatarSize.Size1" Src="https://i.pravatar.cc/150?img=4">
+                        <Fallback>S1</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Size="AvatarSize.Size2" Src="https://i.pravatar.cc/150?img=5">
+                        <Fallback>S2</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Size="AvatarSize.Size3" Src="https://i.pravatar.cc/150?img=6">
+                        <Fallback>S3</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Size="AvatarSize.Size4" Src="https://i.pravatar.cc/150?img=7">
+                        <Fallback>S4</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Size="AvatarSize.Size5" Src="https://i.pravatar.cc/150?img=8">
+                        <Fallback>S5</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Size="AvatarSize.Size6" Src="https://i.pravatar.cc/150?img=9">
+                        <Fallback>S6</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Size="AvatarSize.Size7" Src="https://i.pravatar.cc/150?img=10">
+                        <Fallback>S7</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Size="AvatarSize.Size8" Src="https://i.pravatar.cc/150?img=11">
+                        <Fallback>S8</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Size="AvatarSize.Size9" Src="https://i.pravatar.cc/150?img=12">
+                        <Fallback>S9</Fallback>
+                    </Avatar>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Avatar Variants</Heading>
+                <Grid Columns="2" Gap="4">
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Soft Variant (Default)</Text>
+                            <Flex Gap="3" Align="FlexAlign.Center">
+                                <Avatar Variant="AvatarVariant.Soft" Color="indigo">
+                                    <Fallback>IN</Fallback>
+                                </Avatar>
+                                <Avatar Variant="AvatarVariant.Soft" Color="cyan">
+                                    <Fallback>CY</Fallback>
+                                </Avatar>
+                                <Avatar Variant="AvatarVariant.Soft" Color="orange">
+                                    <Fallback>OR</Fallback>
+                                </Avatar>
+                                <Avatar Variant="AvatarVariant.Soft" Color="crimson">
+                                    <Fallback>CR</Fallback>
+                                </Avatar>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Solid Variant</Text>
+                            <Flex Gap="3" Align="FlexAlign.Center">
+                                <Avatar Variant="AvatarVariant.Solid" Color="indigo">
+                                    <Fallback>IN</Fallback>
+                                </Avatar>
+                                <Avatar Variant="AvatarVariant.Solid" Color="cyan">
+                                    <Fallback>CY</Fallback>
+                                </Avatar>
+                                <Avatar Variant="AvatarVariant.Solid" Color="orange">
+                                    <Fallback>OR</Fallback>
+                                </Avatar>
+                                <Avatar Variant="AvatarVariant.Solid" Color="crimson">
+                                    <Fallback>CR</Fallback>
+                                </Avatar>
+                            </Flex>
+                        </Flex>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Avatar Colors</Heading>
+                <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                    <Avatar Color="gray"><Fallback>GR</Fallback></Avatar>
+                    <Avatar Color="gold"><Fallback>GO</Fallback></Avatar>
+                    <Avatar Color="bronze"><Fallback>BR</Fallback></Avatar>
+                    <Avatar Color="brown"><Fallback>BN</Fallback></Avatar>
+                    <Avatar Color="yellow"><Fallback>YE</Fallback></Avatar>
+                    <Avatar Color="amber"><Fallback>AM</Fallback></Avatar>
+                    <Avatar Color="orange"><Fallback>OR</Fallback></Avatar>
+                    <Avatar Color="tomato"><Fallback>TO</Fallback></Avatar>
+                    <Avatar Color="red"><Fallback>RE</Fallback></Avatar>
+                    <Avatar Color="ruby"><Fallback>RU</Fallback></Avatar>
+                    <Avatar Color="crimson"><Fallback>CR</Fallback></Avatar>
+                    <Avatar Color="pink"><Fallback>PI</Fallback></Avatar>
+                    <Avatar Color="plum"><Fallback>PL</Fallback></Avatar>
+                    <Avatar Color="purple"><Fallback>PU</Fallback></Avatar>
+                    <Avatar Color="violet"><Fallback>VI</Fallback></Avatar>
+                    <Avatar Color="iris"><Fallback>IR</Fallback></Avatar>
+                    <Avatar Color="indigo"><Fallback>IN</Fallback></Avatar>
+                    <Avatar Color="blue"><Fallback>BL</Fallback></Avatar>
+                    <Avatar Color="cyan"><Fallback>CY</Fallback></Avatar>
+                    <Avatar Color="teal"><Fallback>TE</Fallback></Avatar>
+                    <Avatar Color="jade"><Fallback>JA</Fallback></Avatar>
+                    <Avatar Color="green"><Fallback>GN</Fallback></Avatar>
+                    <Avatar Color="grass"><Fallback>GS</Fallback></Avatar>
+                    <Avatar Color="lime"><Fallback>LI</Fallback></Avatar>
+                    <Avatar Color="mint"><Fallback>MI</Fallback></Avatar>
+                    <Avatar Color="sky"><Fallback>SK</Fallback></Avatar>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Avatar Radius</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <Avatar Size="AvatarSize.Size4" Radius="none">
+                        <Fallback>NO</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Size="AvatarSize.Size4" Radius="small">
+                        <Fallback>SM</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Size="AvatarSize.Size4" Radius="medium">
+                        <Fallback>MD</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Size="AvatarSize.Size4" Radius="large">
+                        <Fallback>LG</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Size="AvatarSize.Size4" Radius="full">
+                        <Fallback>FL</Fallback>
+                    </Avatar>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Fallback Examples</Heading>
+                <Grid Columns="3" Gap="3">
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="2" Align="FlexAlign.Center">
+                            <Avatar Size="AvatarSize.Size5">
+                                <Fallback>A</Fallback>
+                            </Avatar>
+                            <Text Size="2">Single Letter</Text>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="2" Align="FlexAlign.Center">
+                            <Avatar Size="AvatarSize.Size5">
+                                <Fallback>JD</Fallback>
+                            </Avatar>
+                            <Text Size="2">Two Letters</Text>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="2" Align="FlexAlign.Center">
+                            <Avatar Size="AvatarSize.Size5">
+                                <Fallback>
+                                    <Box Style="font-size: var(--font-size-3);">👤</Box>
+                                </Fallback>
+                            </Avatar>
+                            <Text Size="2">Custom Content</Text>
+                        </Flex>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">High Contrast</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <Avatar Color="indigo">
+                        <Fallback>NM</Fallback>
+                    </Avatar>
+                    
+                    <Avatar Color="indigo" HighContrast="true">
+                        <Fallback>HC</Fallback>
+                    </Avatar>
+                    
+                    <Text Size="2" Color="gray">Normal vs High Contrast</Text>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Avatar in Context</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Flex Align="FlexAlign.Center" Gap="3">
+                            <Avatar Size="AvatarSize.Size4" Src="https://i.pravatar.cc/150?img=20">
+                                <Fallback>JW</Fallback>
+                            </Avatar>
+                            <Box>
+                                <Heading Size="3">Jane Wilson</Heading>
+                                <Text Size="2" Color="gray">Senior Developer</Text>
+                            </Box>
+                        </Flex>
+                        
+                        <Text Size="2">
+                            Experienced software engineer with expertise in web technologies and cloud architecture.
+                        </Text>
+                        
+                        <Flex Gap="3">
+                            <Flex Align="FlexAlign.Center" Gap="2">
+                                <Avatar Size="AvatarSize.Size1">
+                                    <Fallback>T1</Fallback>
+                                </Avatar>
+                                <Avatar Size="AvatarSize.Size1">
+                                    <Fallback>T2</Fallback>
+                                </Avatar>
+                                <Avatar Size="AvatarSize.Size1">
+                                    <Fallback>T3</Fallback>
+                                </Avatar>
+                                <Text Size="1" Color="gray">+5 team members</Text>
+                            </Flex>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Avatar Groups</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Text Size="2" Color="gray">Stacked avatars with negative margin</Text>
+                    <Flex>
+                        <Avatar Size="AvatarSize.Size3" Src="https://i.pravatar.cc/150?img=30">
+                            <Fallback>U1</Fallback>
+                        </Avatar>
+                        <Avatar Size="AvatarSize.Size3" Src="https://i.pravatar.cc/150?img=31" Ml="-2">
+                            <Fallback>U2</Fallback>
+                        </Avatar>
+                        <Avatar Size="AvatarSize.Size3" Src="https://i.pravatar.cc/150?img=32" Ml="-2">
+                            <Fallback>U3</Fallback>
+                        </Avatar>
+                        <Avatar Size="AvatarSize.Size3" Src="https://i.pravatar.cc/150?img=33" Ml="-2">
+                            <Fallback>U4</Fallback>
+                        </Avatar>
+                        <Avatar Size="AvatarSize.Size3" Color="gray" Ml="-2">
+                            <Fallback>+3</Fallback>
+                        </Avatar>
+                    </Flex>
+                </Flex>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
