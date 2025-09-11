@@ -447,13 +447,14 @@ module.exports = {
 - [x] Add high contrast mode
 - [x] Create demo page
 
-#### 13. Separator
-- [ ] Create Separator.razor and Separator.razor.cs
-- [ ] Implement orientation prop
-- [ ] Add size prop
-- [ ] Support color prop
-- [ ] Add decorative prop
-- [ ] Create demo page
+#### 13. Separator ✅
+- [x] Create Separator.razor and Separator.razor.cs
+- [x] Implement orientation prop (horizontal, vertical)
+- [x] Add size prop (1-4)
+- [x] Support color prop (all color palette)
+- [x] Add decorative prop (semantic vs visual)
+- [x] Support margin props from base class
+- [x] Create comprehensive demo page
 
 #### 14. IconButton
 - [ ] Create IconButton.razor and IconButton.razor.cs

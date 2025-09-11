@@ -1,0 +1,257 @@
+@page "/separator-demo"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Separator Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">Separator Component</Heading>
+                <Text Size="4" Color="gray">Visually or semantically separates content.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Horizontal Separators</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Text Size="3">Content above separator</Text>
+                        <Separator Size="SeparatorSize.Size1" />
+                        <Text Size="3">Size 1 (default)</Text>
+                        <Separator Size="SeparatorSize.Size2" />
+                        <Text Size="3">Size 2</Text>
+                        <Separator Size="SeparatorSize.Size3" />
+                        <Text Size="3">Size 3</Text>
+                        <Separator Size="SeparatorSize.Size4" />
+                        <Text Size="3">Size 4 (full width)</Text>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Vertical Separators</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Align="FlexAlign.Center" Gap="3" Height="100px">
+                        <Text Size="3">Left</Text>
+                        <Separator Orientation="SeparatorOrientation.Vertical" Size="SeparatorSize.Size1" />
+                        <Text Size="3">Size 1</Text>
+                        <Separator Orientation="SeparatorOrientation.Vertical" Size="SeparatorSize.Size2" />
+                        <Text Size="3">Size 2</Text>
+                        <Separator Orientation="SeparatorOrientation.Vertical" Size="SeparatorSize.Size3" />
+                        <Text Size="3">Size 3</Text>
+                        <Separator Orientation="SeparatorOrientation.Vertical" Size="SeparatorSize.Size4" />
+                        <Text Size="3">Size 4</Text>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Separator Colors</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Flex Align="FlexAlign.Center" Gap="2">
+                            <Text Size="2" MinWidth="80px">Gray</Text>
+                            <Box Style="flex: 1;">
+                                <Separator Color="gray" Size="SeparatorSize.Size2" />
+                            </Box>
+                        </Flex>
+                        <Flex Align="FlexAlign.Center" Gap="2">
+                            <Text Size="2" MinWidth="80px">Indigo</Text>
+                            <Box Style="flex: 1;">
+                                <Separator Color="indigo" Size="SeparatorSize.Size2" />
+                            </Box>
+                        </Flex>
+                        <Flex Align="FlexAlign.Center" Gap="2">
+                            <Text Size="2" MinWidth="80px">Cyan</Text>
+                            <Box Style="flex: 1;">
+                                <Separator Color="cyan" Size="SeparatorSize.Size2" />
+                            </Box>
+                        </Flex>
+                        <Flex Align="FlexAlign.Center" Gap="2">
+                            <Text Size="2" MinWidth="80px">Orange</Text>
+                            <Box Style="flex: 1;">
+                                <Separator Color="orange" Size="SeparatorSize.Size2" />
+                            </Box>
+                        </Flex>
+                        <Flex Align="FlexAlign.Center" Gap="2">
+                            <Text Size="2" MinWidth="80px">Crimson</Text>
+                            <Box Style="flex: 1;">
+                                <Separator Color="crimson" Size="SeparatorSize.Size2" />
+                            </Box>
+                        </Flex>
+                        <Flex Align="FlexAlign.Center" Gap="2">
+                            <Text Size="2" MinWidth="80px">Green</Text>
+                            <Box Style="flex: 1;">
+                                <Separator Color="green" Size="SeparatorSize.Size2" />
+                            </Box>
+                        </Flex>
+                        <Flex Align="FlexAlign.Center" Gap="2">
+                            <Text Size="2" MinWidth="80px">Purple</Text>
+                            <Box Style="flex: 1;">
+                                <Separator Color="purple" Size="SeparatorSize.Size2" />
+                            </Box>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Decorative vs Semantic</Heading>
+                <Grid Columns="2" Gap="4">
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Decorative (Default)</Text>
+                            <Text Size="2" Color="gray">No semantic meaning, purely visual</Text>
+                            <Separator Decorative="true" Size="SeparatorSize.Size2" />
+                            <Text Size="1" Color="gray">role: none</Text>
+                        </Flex>
+                    </Card>
+                    
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Semantic</Text>
+                            <Text Size="2" Color="gray">Has semantic meaning for screen readers</Text>
+                            <Separator Decorative="false" Size="SeparatorSize.Size2" />
+                            <Text Size="1" Color="gray">role: separator</Text>
+                        </Flex>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Navigation Menu</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="2">
+                        <Link Href="#" Size="2">Dashboard</Link>
+                        <Link Href="#" Size="2">Projects</Link>
+                        <Link Href="#" Size="2">Tasks</Link>
+                        <Separator My="2" />
+                        <Link Href="#" Size="2">Team</Link>
+                        <Link Href="#" Size="2">Members</Link>
+                        <Separator My="2" />
+                        <Link Href="#" Size="2">Settings</Link>
+                        <Link Href="#" Size="2" Color="red">Sign Out</Link>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Breadcrumbs</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Align="FlexAlign.Center" Gap="2">
+                        <Link Href="#" Size="2">Home</Link>
+                        <Separator Orientation="SeparatorOrientation.Vertical" Size="SeparatorSize.Size1" />
+                        <Link Href="#" Size="2">Products</Link>
+                        <Separator Orientation="SeparatorOrientation.Vertical" Size="SeparatorSize.Size1" />
+                        <Link Href="#" Size="2">Electronics</Link>
+                        <Separator Orientation="SeparatorOrientation.Vertical" Size="SeparatorSize.Size1" />
+                        <Text Size="2" Color="gray">Laptop</Text>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Card Sections</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Box>
+                            <Heading Size="3">Project Overview</Heading>
+                            <Text Size="2" Color="gray">Active development projects</Text>
+                        </Box>
+                        
+                        <Separator Size="SeparatorSize.Size4" />
+                        
+                        <Grid Columns="3" Gap="3">
+                            <Flex Direction="FlexDirection.Column" Gap="1">
+                                <Text Size="1" Color="gray" Weight="TextWeight.Medium">IN PROGRESS</Text>
+                                <Text Size="5" Weight="TextWeight.Bold">12</Text>
+                            </Flex>
+                            <Flex Direction="FlexDirection.Column" Gap="1">
+                                <Text Size="1" Color="gray" Weight="TextWeight.Medium">COMPLETED</Text>
+                                <Text Size="5" Weight="TextWeight.Bold">45</Text>
+                            </Flex>
+                            <Flex Direction="FlexDirection.Column" Gap="1">
+                                <Text Size="1" Color="gray" Weight="TextWeight.Medium">PENDING</Text>
+                                <Text Size="5" Weight="TextWeight.Bold">8</Text>
+                            </Flex>
+                        </Grid>
+                        
+                        <Separator Size="SeparatorSize.Size4" />
+                        
+                        <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                            <Text Size="2" Color="gray">Last updated: 2 hours ago</Text>
+                            <Button Size="ButtonSize.Small" Variant="ButtonVariant.Soft">View All</Button>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Footer Links</Heading>
+                <Card Size="CardSize.Size3" Variant="CardVariant.Surface">
+                    <Flex Align="FlexAlign.Center" Gap="3">
+                        <Link Href="#" Size="1" Color="gray">Terms</Link>
+                        <Separator Orientation="SeparatorOrientation.Vertical" Size="SeparatorSize.Size1" />
+                        <Link Href="#" Size="1" Color="gray">Privacy</Link>
+                        <Separator Orientation="SeparatorOrientation.Vertical" Size="SeparatorSize.Size1" />
+                        <Link Href="#" Size="1" Color="gray">Cookies</Link>
+                        <Separator Orientation="SeparatorOrientation.Vertical" Size="SeparatorSize.Size1" />
+                        <Link Href="#" Size="1" Color="gray">Contact</Link>
+                        <Box Style="flex: 1;"></Box>
+                        <Text Size="1" Color="gray">© 2024 Company Inc.</Text>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Mixed Orientations</Heading>
+                <Card Size="CardSize.Size3">
+                    <Grid Columns="3" Gap="4">
+                        <Flex Direction="FlexDirection.Column" Gap="2" Align="FlexAlign.Center">
+                            <Avatar Size="AvatarSize.Size4">
+                                <Fallback>U1</Fallback>
+                            </Avatar>
+                            <Text Size="2" Weight="TextWeight.Medium">User One</Text>
+                            <Text Size="1" Color="gray">Developer</Text>
+                            <Separator Size="SeparatorSize.Size2" Width="50%" My="2" />
+                            <Flex Gap="2">
+                                <Badge Size="BadgeSize.Size1">React</Badge>
+                                <Badge Size="BadgeSize.Size1">Node</Badge>
+                            </Flex>
+                        </Flex>
+                        
+                        <Separator Orientation="SeparatorOrientation.Vertical" Size="SeparatorSize.Size1" />
+                        
+                        <Flex Direction="FlexDirection.Column" Gap="2" Align="FlexAlign.Center">
+                            <Avatar Size="AvatarSize.Size4">
+                                <Fallback>U2</Fallback>
+                            </Avatar>
+                            <Text Size="2" Weight="TextWeight.Medium">User Two</Text>
+                            <Text Size="1" Color="gray">Designer</Text>
+                            <Separator Size="SeparatorSize.Size2" Width="50%" My="2" />
+                            <Flex Gap="2">
+                                <Badge Size="BadgeSize.Size1">Figma</Badge>
+                                <Badge Size="BadgeSize.Size1">UI/UX</Badge>
+                            </Flex>
+                        </Flex>
+                        
+                        <Separator Orientation="SeparatorOrientation.Vertical" Size="SeparatorSize.Size1" />
+                        
+                        <Flex Direction="FlexDirection.Column" Gap="2" Align="FlexAlign.Center">
+                            <Avatar Size="AvatarSize.Size4">
+                                <Fallback>U3</Fallback>
+                            </Avatar>
+                            <Text Size="2" Weight="TextWeight.Medium">User Three</Text>
+                            <Text Size="1" Color="gray">Manager</Text>
+                            <Separator Size="SeparatorSize.Size2" Width="50%" My="2" />
+                            <Flex Gap="2">
+                                <Badge Size="BadgeSize.Size1">Agile</Badge>
+                                <Badge Size="BadgeSize.Size1">Scrum</Badge>
+                            </Flex>
+                        </Flex>
+                    </Grid>
+                </Card>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
