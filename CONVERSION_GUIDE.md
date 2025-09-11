@@ -382,16 +382,16 @@ module.exports = {
 - [x] Support all layout props from Box
 - [x] Create demo page
 
-#### 6. Grid
-- [ ] Create Grid.razor and Grid.razor.cs
-- [ ] Implement columns prop
-- [ ] Add rows prop
-- [ ] Support flow prop
-- [ ] Add align prop
-- [ ] Implement justify prop
-- [ ] Support gap prop (responsive)
-- [ ] Add areas prop
-- [ ] Create demo page
+#### 6. Grid ✅
+- [x] Create Grid.razor and Grid.razor.cs
+- [x] Implement columns prop
+- [x] Add rows prop
+- [x] Support flow prop
+- [x] Add align prop
+- [x] Implement justify prop
+- [x] Support gap prop (responsive)
+- [x] Add areas prop
+- [x] Create demo page
 
 #### 7. Container
 - [ ] Create Container.razor and Container.razor.cs

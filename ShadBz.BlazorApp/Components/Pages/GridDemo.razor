@@ -1,0 +1,361 @@
+@page "/grid-demo"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Grid Demo</PageTitle>
+
+<div class="demo-container">
+    <h1>Grid Component Demo</h1>
+
+    <div class="demo-section">
+        <h2>Basic Grid Columns</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">2 Columns</Text>
+                <Grid Columns="2" Gap="2">
+                    <Box P="3" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="3" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="3" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 3</Box>
+                    <Box P="3" style="background: var(--blue-5); border-radius: var(--radius-1);">Item 4</Box>
+                </Grid>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">3 Columns</Text>
+                <Grid Columns="3" Gap="2">
+                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1);">Item 1</Box>
+                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1);">Item 2</Box>
+                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1);">Item 3</Box>
+                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1);">Item 4</Box>
+                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1);">Item 5</Box>
+                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1);">Item 6</Box>
+                </Grid>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">4 Columns</Text>
+                <Grid Columns="4" Gap="2">
+                    @for (int i = 1; i <= 8; i++)
+                    {
+                        <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">@i</Box>
+                    }
+                </Grid>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Custom Column Sizes</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">1fr 2fr 1fr</Text>
+                <Grid Columns="1fr 2fr 1fr" Gap="2">
+                    <Box P="3" style="background: var(--purple-5); border-radius: var(--radius-1);">1fr</Box>
+                    <Box P="3" style="background: var(--purple-6); border-radius: var(--radius-1);">2fr (wider)</Box>
+                    <Box P="3" style="background: var(--purple-5); border-radius: var(--radius-1);">1fr</Box>
+                </Grid>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">200px 1fr 150px</Text>
+                <Grid Columns="200px 1fr 150px" Gap="2">
+                    <Box P="3" style="background: var(--cyan-5); border-radius: var(--radius-1);">Fixed 200px</Box>
+                    <Box P="3" style="background: var(--cyan-6); border-radius: var(--radius-1);">Flexible</Box>
+                    <Box P="3" style="background: var(--cyan-5); border-radius: var(--radius-1);">Fixed 150px</Box>
+                </Grid>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">repeat(auto-fit, minmax(150px, 1fr))</Text>
+                <Grid Columns="repeat(auto-fit, minmax(150px, 1fr))" Gap="2">
+                    @for (int i = 1; i <= 7; i++)
+                    {
+                        <Box P="3" style="background: var(--pink-5); border-radius: var(--radius-1);">Auto @i</Box>
+                    }
+                </Grid>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Grid Rows</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">3 Rows x 2 Columns</Text>
+                <Grid Columns="2" Rows="3" Gap="2" Height="300px">
+                    <Box P="3" style="background: var(--indigo-5); border-radius: var(--radius-1);">R1 C1</Box>
+                    <Box P="3" style="background: var(--indigo-5); border-radius: var(--radius-1);">R1 C2</Box>
+                    <Box P="3" style="background: var(--indigo-5); border-radius: var(--radius-1);">R2 C1</Box>
+                    <Box P="3" style="background: var(--indigo-5); border-radius: var(--radius-1);">R2 C2</Box>
+                    <Box P="3" style="background: var(--indigo-5); border-radius: var(--radius-1);">R3 C1</Box>
+                    <Box P="3" style="background: var(--indigo-5); border-radius: var(--radius-1);">R3 C2</Box>
+                </Grid>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Custom Row Heights: 100px auto 50px</Text>
+                <Grid Columns="2" Rows="100px auto 50px" Gap="2">
+                    <Box P="3" style="background: var(--red-5); border-radius: var(--radius-1);">100px height</Box>
+                    <Box P="3" style="background: var(--red-5); border-radius: var(--radius-1);">100px height</Box>
+                    <Box P="3" style="background: var(--red-6); border-radius: var(--radius-1);">Auto height with more content to show auto sizing</Box>
+                    <Box P="3" style="background: var(--red-6); border-radius: var(--radius-1);">Auto height</Box>
+                    <Box P="2" style="background: var(--red-5); border-radius: var(--radius-1);">50px</Box>
+                    <Box P="2" style="background: var(--red-5); border-radius: var(--radius-1);">50px</Box>
+                </Grid>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Grid Areas</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Layout with Named Areas</Text>
+                <Grid 
+                    Areas="'header header header' 'sidebar content content' 'footer footer footer'"
+                    Columns="200px 1fr 1fr"
+                    Rows="auto 1fr auto"
+                    Gap="3"
+                    Height="400px">
+                    <Box P="3" style="grid-area: header; background: var(--blue-5); border-radius: var(--radius-2);">
+                        <Heading Size="4">Header</Heading>
+                    </Box>
+                    <Box P="3" style="grid-area: sidebar; background: var(--green-5); border-radius: var(--radius-2);">
+                        <Text Size="3" Weight="TextWeight.Medium">Sidebar</Text>
+                        <Text Size="2" Mt="2">Navigation items here</Text>
+                    </Box>
+                    <Box P="3" style="grid-area: content; background: var(--amber-5); border-radius: var(--radius-2);">
+                        <Text Size="3" Weight="TextWeight.Medium">Main Content</Text>
+                        <Text Size="2" Mt="2">This is the main content area that spans two columns.</Text>
+                    </Box>
+                    <Box P="3" style="grid-area: footer; background: var(--purple-5); border-radius: var(--radius-2);">
+                        <Text Size="2">Footer content</Text>
+                    </Box>
+                </Grid>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Grid Flow</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Row Flow (default)</Text>
+                <Grid Columns="3" Flow="GridFlow.Row" Gap="2">
+                    @for (int i = 1; i <= 6; i++)
+                    {
+                        <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">@i</Box>
+                    }
+                </Grid>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Column Flow</Text>
+                <Grid Columns="3" Rows="3" Flow="GridFlow.Column" Gap="2" Height="200px">
+                    @for (int i = 1; i <= 6; i++)
+                    {
+                        <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">@i</Box>
+                    }
+                </Grid>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Dense Packing</Text>
+                <Grid Columns="3" Flow="GridFlow.Dense" Gap="2">
+                    <Box P="3" style="background: var(--amber-5); border-radius: var(--radius-1); grid-column: span 2;">Span 2</Box>
+                    <Box P="3" style="background: var(--amber-6); border-radius: var(--radius-1);">1</Box>
+                    <Box P="3" style="background: var(--amber-6); border-radius: var(--radius-1);">2</Box>
+                    <Box P="3" style="background: var(--amber-5); border-radius: var(--radius-1); grid-column: span 2;">Span 2</Box>
+                    <Box P="3" style="background: var(--amber-6); border-radius: var(--radius-1);">3</Box>
+                </Grid>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Alignment</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Align Items</Text>
+                <Flex Gap="3">
+                    <Box FlexGrow="1">
+                        <Text Size="1" Mb="1">Start</Text>
+                        <Grid Columns="2" Gap="2" Align="GridAlign.Start" Height="150px" style="background: var(--gray-a3);">
+                            <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1);">Item</Box>
+                            <Box P="3" style="background: var(--blue-5); border-radius: var(--radius-1);">Taller</Box>
+                        </Grid>
+                    </Box>
+                    <Box FlexGrow="1">
+                        <Text Size="1" Mb="1">Center</Text>
+                        <Grid Columns="2" Gap="2" Align="GridAlign.Center" Height="150px" style="background: var(--gray-a3);">
+                            <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">Item</Box>
+                            <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1);">Taller</Box>
+                        </Grid>
+                    </Box>
+                    <Box FlexGrow="1">
+                        <Text Size="1" Mb="1">End</Text>
+                        <Grid Columns="2" Gap="2" Align="GridAlign.End" Height="150px" style="background: var(--gray-a3);">
+                            <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">Item</Box>
+                            <Box P="3" style="background: var(--amber-5); border-radius: var(--radius-1);">Taller</Box>
+                        </Grid>
+                    </Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Justify Items</Text>
+                <Flex Gap="3">
+                    <Box FlexGrow="1">
+                        <Text Size="1" Mb="1">Start</Text>
+                        <Grid Columns="2" Gap="2" JustifyItems="GridJustifyItems.Start" style="background: var(--gray-a3);">
+                            <Box P="2" Width="50px" style="background: var(--purple-5); border-radius: var(--radius-1);">S</Box>
+                            <Box P="2" Width="50px" style="background: var(--purple-5); border-radius: var(--radius-1);">S</Box>
+                        </Grid>
+                    </Box>
+                    <Box FlexGrow="1">
+                        <Text Size="1" Mb="1">Center</Text>
+                        <Grid Columns="2" Gap="2" JustifyItems="GridJustifyItems.Center" style="background: var(--gray-a3);">
+                            <Box P="2" Width="50px" style="background: var(--cyan-5); border-radius: var(--radius-1);">C</Box>
+                            <Box P="2" Width="50px" style="background: var(--cyan-5); border-radius: var(--radius-1);">C</Box>
+                        </Grid>
+                    </Box>
+                    <Box FlexGrow="1">
+                        <Text Size="1" Mb="1">End</Text>
+                        <Grid Columns="2" Gap="2" JustifyItems="GridJustifyItems.End" style="background: var(--gray-a3);">
+                            <Box P="2" Width="50px" style="background: var(--pink-5); border-radius: var(--radius-1);">E</Box>
+                            <Box P="2" Width="50px" style="background: var(--pink-5); border-radius: var(--radius-1);">E</Box>
+                        </Grid>
+                    </Box>
+                </Flex>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Gap Variations</h2>
+        <div class="demo-content">
+            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Different Gap Sizes</Text>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Box>
+                        <Text Size="1" Mb="1">Gap 0</Text>
+                        <Grid Columns="3" Gap="0">
+                            <Box P="2" style="background: var(--blue-5);">1</Box>
+                            <Box P="2" style="background: var(--blue-6);">2</Box>
+                            <Box P="2" style="background: var(--blue-5);">3</Box>
+                        </Grid>
+                    </Box>
+                    <Box>
+                        <Text Size="1" Mb="1">Gap 2</Text>
+                        <Grid Columns="3" Gap="2">
+                            <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">1</Box>
+                            <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">2</Box>
+                            <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1);">3</Box>
+                        </Grid>
+                    </Box>
+                    <Box>
+                        <Text Size="1" Mb="1">Gap 4</Text>
+                        <Grid Columns="3" Gap="4">
+                            <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">1</Box>
+                            <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">2</Box>
+                            <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1);">3</Box>
+                        </Grid>
+                    </Box>
+                </Flex>
+            </Box>
+            
+            <Box P="3" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Different Gap X and Y</Text>
+                <Grid Columns="3" GapX="5" GapY="2">
+                    @for (int i = 1; i <= 9; i++)
+                    {
+                        <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1);">@i</Box>
+                    }
+                </Grid>
+            </Box>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Practical Examples</h2>
+        <div class="demo-content">
+            <Box P="4" style="background: var(--gray-a2); border-radius: var(--radius-3);">
+                <Heading Size="4" Mb="3">Dashboard Layout</Heading>
+                <Grid Columns="250px 1fr" Rows="auto 1fr auto" Gap="3" Height="500px" style="background: white; border-radius: var(--radius-2);">
+                    <Box GridColumn="1 / -1" P="3" style="background: var(--gray-12); color: white;">
+                        <Flex Align="FlexAlign.Center" Justify="FlexJustify.Between">
+                            <Heading Size="4" style="color: white;">Dashboard</Heading>
+                            <Text Size="2" style="color: white;">User Profile</Text>
+                        </Flex>
+                    </Box>
+                    <Box P="3" style="background: var(--gray-2); border-right: 1px solid var(--gray-6);">
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="3">Navigation</Text>
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Text Size="2">Dashboard</Text>
+                            <Text Size="2">Analytics</Text>
+                            <Text Size="2">Reports</Text>
+                            <Text Size="2">Settings</Text>
+                        </Flex>
+                    </Box>
+                    <Box P="4" Overflow="auto">
+                        <Heading Size="5" Mb="3">Main Content</Heading>
+                        <Grid Columns="repeat(auto-fit, minmax(200px, 1fr))" Gap="3">
+                            @for (int i = 1; i <= 4; i++)
+                            {
+                                <Box P="3" style="background: var(--gray-2); border-radius: var(--radius-2);">
+                                    <Text Size="2" Weight="TextWeight.Medium">Metric @i</Text>
+                                    <Heading Size="6" Mt="1">@(1234 * i)</Heading>
+                                </Box>
+                            }
+                        </Grid>
+                    </Box>
+                    <Box GridColumn="1 / -1" P="2" style="background: var(--gray-3); text-align: center;">
+                        <Text Size="1">© 2024 Dashboard Inc.</Text>
+                    </Box>
+                </Grid>
+            </Box>
+            
+            <Box P="4" Mt="3" style="background: var(--gray-a2); border-radius: var(--radius-3);">
+                <Heading Size="4" Mb="3">Card Grid</Heading>
+                <Grid Columns="repeat(auto-fill, minmax(250px, 1fr))" Gap="3">
+                    @for (int i = 1; i <= 6; i++)
+                    {
+                        <Box P="3" style="background: white; border-radius: var(--radius-2); box-shadow: var(--shadow-2);">
+                            <Box Height="150px" Mb="2" style="background: var(--gray-3); border-radius: var(--radius-1);"></Box>
+                            <Heading Size="3">Card Title @i</Heading>
+                            <Text Size="2" Color="gray" Mt="1">Card description with some details about the content.</Text>
+                            <Flex Justify="FlexJustify.Between" Mt="3">
+                                <Button Variant="ButtonVariant.Ghost" Size="ButtonSize.Large">View</Button>
+                                <Button Size="ButtonSize.Large">Action</Button>
+                            </Flex>
+                        </Box>
+                    }
+                </Grid>
+            </Box>
+        </div>
+    </div>
+</div>
+
+<style>
+    .demo-container {
+        padding: var(--space-4);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .demo-section {
+        margin-bottom: var(--space-6);
+    }
+
+    .demo-section h2 {
+        margin-bottom: var(--space-3);
+        font-size: var(--font-size-4);
+        font-weight: var(--font-weight-bold);
+        color: var(--gray-12);
+    }
+
+    .demo-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+</style>
