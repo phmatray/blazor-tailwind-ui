@@ -456,12 +456,15 @@ module.exports = {
 - [x] Support margin props from base class
 - [x] Create comprehensive demo page
 
-#### 14. IconButton
-- [ ] Create IconButton.razor and IconButton.razor.cs
-- [ ] Inherit from BaseButton
-- [ ] Implement all button variants
-- [ ] Add proper icon sizing
-- [ ] Create demo page
+#### 14. IconButton ✅
+- [x] Create IconButton.razor and IconButton.razor.cs
+- [x] Inherit from SpacingComponentBase (shares Button logic)
+- [x] Implement all 6 button variants (classic, solid, soft, surface, outline, ghost)
+- [x] Support all 4 sizes with proper icon scaling
+- [x] Add loading state with spinner
+- [x] Support high contrast mode
+- [x] Implement AsChild pattern
+- [x] Create comprehensive demo page
 
 #### 15. Checkbox
 - [ ] Create Checkbox.razor and Checkbox.razor.cs

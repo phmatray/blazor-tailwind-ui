@@ -1,0 +1,31 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
+
+@if (AsChild)
+{
+    <CascadingValue Value="@GetAllAttributes()" Name="ButtonAttributes">
+        @ChildContent
+    </CascadingValue>
+}
+else
+{
+    <button @attributes="GetAllAttributes()"
+            @onclick="HandleClick"
+            type="@ButtonType"
+            disabled="@IsDisabled">
+        @if (Loading)
+        {
+            <span style="display: contents; visibility: hidden;" aria-hidden="true">
+                @ChildContent
+            </span>
+            <span class="visually-hidden">@ChildContent</span>
+            <span class="rt-Flex spinner-container">
+                <Spinner Size="@GetSpinnerSize()" />
+            </span>
+        }
+        else
+        {
+            @ChildContent
+        }
+    </button>
+}
