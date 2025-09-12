@@ -1,0 +1,14 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
+@implements IDisposable
+
+@if (DropdownMenuRoot?.IsOpen == true)
+{
+    @if (DropdownMenuRoot.Modal)
+    {
+        <div class="rt-DropdownMenuOverlay" @onclick="HandleOverlayClick"></div>
+    }
+    <div class="@ContentCssClass" @attributes="GetAllAttributes()" @onkeydown="HandleKeyDown" style="@GetPositionStyle()" tabindex="-1">
+        @ChildContent
+    </div>
+}

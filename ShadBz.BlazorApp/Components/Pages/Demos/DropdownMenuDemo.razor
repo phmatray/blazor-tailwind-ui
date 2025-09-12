@@ -1,0 +1,335 @@
+@page "/demos/dropdown-menu"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>DropdownMenu Component - Radix UI Blazor</PageTitle>
+
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="HeadingSize.Size8" Mb="2">DropdownMenu</Heading>
+                <Text Size="4" Color="gray">
+                    Displays a menu to the user — such as a set of actions or functions — triggered by a button.
+                </Text>
+            </Box>
+
+            <!-- Basic DropdownMenu -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Basic DropdownMenu</Heading>
+                <Card>
+                    <DropdownMenuRoot>
+                        <DropdownMenuTrigger>
+                            <Button Variant="ButtonVariant.Outline">Options</Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuItem OnSelect="@(() => _lastAction = "New Tab")">New Tab</DropdownMenuItem>
+                            <DropdownMenuItem OnSelect="@(() => _lastAction = "New Window")">New Window</DropdownMenuItem>
+                            <DropdownMenuItem OnSelect="@(() => _lastAction = "New Private Window")" Disabled="true">
+                                New Private Window
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem OnSelect="@(() => _lastAction = "Print")">Print</DropdownMenuItem>
+                            <DropdownMenuItem OnSelect="@(() => _lastAction = "Save Page As")">Save Page As...</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem OnSelect="@(() => _lastAction = "Exit")">Exit</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenuRoot>
+                    
+                    @if (!string.IsNullOrEmpty(_lastAction))
+                    {
+                        <Box Mt="3">
+                            <Text Size="2">Last action: @_lastAction</Text>
+                        </Box>
+                    }
+                </Card>
+            </Box>
+
+            <!-- DropdownMenu with Icons and Shortcuts -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">With Icons and Shortcuts</Heading>
+                <Card>
+                    <DropdownMenuRoot>
+                        <DropdownMenuTrigger>
+                            <Button>
+                                <Flex Align="FlexAlign.Center" Gap="2">
+                                    <span>Edit</span>
+                                </Flex>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuItem Shortcut="⌘Z">
+                                Undo
+                            </DropdownMenuItem>
+                            <DropdownMenuItem Shortcut="⇧⌘Z">
+                                Redo
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem Shortcut="⌘X">
+                                Cut
+                            </DropdownMenuItem>
+                            <DropdownMenuItem Shortcut="⌘C">
+                                Copy
+                            </DropdownMenuItem>
+                            <DropdownMenuItem Shortcut="⌘V">
+                                Paste
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem Shortcut="⌘A">
+                                Select All
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenuRoot>
+                </Card>
+            </Box>
+
+            <!-- DropdownMenu with Labels -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">With Labels and Groups</Heading>
+                <Card>
+                    <DropdownMenuRoot>
+                        <DropdownMenuTrigger>
+                            <Button Variant="ButtonVariant.Soft">My Account</Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuLabel>Account</DropdownMenuLabel>
+                            <DropdownMenuItem>Profile</DropdownMenuItem>
+                            <DropdownMenuItem>Settings</DropdownMenuItem>
+                            <DropdownMenuItem>Billing</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuLabel>Team</DropdownMenuLabel>
+                            <DropdownMenuItem>Invite Users</DropdownMenuItem>
+                            <DropdownMenuItem>Team Settings</DropdownMenuItem>
+                            <DropdownMenuItem>Create New Team</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem Color="red">Log Out</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenuRoot>
+                </Card>
+            </Box>
+
+            <!-- Right-Click Context Menu -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Context Menu (Right-Click)</Heading>
+                <Card>
+                    <DropdownMenuRoot>
+                        <DropdownMenuTrigger>
+                            <Box P="6" Style="background: var(--gray-a2); border: 2px dashed var(--gray-a6); border-radius: var(--radius-3); text-align: center; cursor: context-menu;">
+                                <Text Size="3">Right-click this area</Text>
+                            </Box>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuItem OnSelect="@(() => _contextAction = "Back")">Back</DropdownMenuItem>
+                            <DropdownMenuItem OnSelect="@(() => _contextAction = "Forward")" Disabled="true">Forward</DropdownMenuItem>
+                            <DropdownMenuItem OnSelect="@(() => _contextAction = "Reload")">Reload</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem OnSelect="@(() => _contextAction = "Save As")">Save As...</DropdownMenuItem>
+                            <DropdownMenuItem OnSelect="@(() => _contextAction = "Print")">Print...</DropdownMenuItem>
+                            <DropdownMenuItem OnSelect="@(() => _contextAction = "Cast")">Cast...</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem OnSelect="@(() => _contextAction = "View Page Source")">View Page Source</DropdownMenuItem>
+                            <DropdownMenuItem OnSelect="@(() => _contextAction = "Inspect")">Inspect</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenuRoot>
+                    
+                    @if (!string.IsNullOrEmpty(_contextAction))
+                    {
+                        <Box Mt="3">
+                            <Text Size="2">Context action: @_contextAction</Text>
+                        </Box>
+                    }
+                </Card>
+            </Box>
+
+            <!-- Controlled DropdownMenu -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Controlled DropdownMenu</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Switch @bind-Checked="_isMenuOpen" />
+                            <Text Size="2">Menu is @(_isMenuOpen ? "open" : "closed")</Text>
+                        </Flex>
+                        
+                        <DropdownMenuRoot @bind-Open="_isMenuOpen">
+                            <DropdownMenuTrigger>
+                                <Button>Toggle Menu</Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                                <DropdownMenuItem>Option 1</DropdownMenuItem>
+                                <DropdownMenuItem>Option 2</DropdownMenuItem>
+                                <DropdownMenuItem>Option 3</DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenuRoot>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <!-- Complex Example - File Menu -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">File Menu Example</Heading>
+                <Card>
+                    <DropdownMenuRoot>
+                        <DropdownMenuTrigger>
+                            <Button Variant="ButtonVariant.Ghost">File</Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuItem Shortcut="⌘N">New File</DropdownMenuItem>
+                            <DropdownMenuItem Shortcut="⌘O">Open...</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuLabel>Recent Files</DropdownMenuLabel>
+                            <DropdownMenuItem>document.txt</DropdownMenuItem>
+                            <DropdownMenuItem>presentation.pptx</DropdownMenuItem>
+                            <DropdownMenuItem>spreadsheet.xlsx</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem Shortcut="⌘S">Save</DropdownMenuItem>
+                            <DropdownMenuItem Shortcut="⇧⌘S">Save As...</DropdownMenuItem>
+                            <DropdownMenuItem>Save All</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>Export</DropdownMenuItem>
+                            <DropdownMenuItem>Share</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem Shortcut="⌘W">Close</DropdownMenuItem>
+                            <DropdownMenuItem Shortcut="⌘Q">Quit</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenuRoot>
+                </Card>
+            </Box>
+
+            <!-- Complex Example - User Menu -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">User Menu Example</Heading>
+                <Card>
+                    <DropdownMenuRoot>
+                        <DropdownMenuTrigger>
+                            <Button Variant="ButtonVariant.Ghost">
+                                <Flex Align="FlexAlign.Center" Gap="2">
+                                    <Avatar Size="AvatarSize.Size1">
+                                        <Fallback>U</Fallback>
+                                    </Avatar>
+                                    <span>User Menu</span>
+                                </Flex>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent MinWidth="220px">
+                            <DropdownMenuLabel>
+                                <Flex Direction="FlexDirection.Column" Gap="1">
+                                    <Text Size="2" Weight="TextWeight.Medium">John Doe</Text>
+                                    <Text Size="1" Color="gray">john.doe@example.com</Text>
+                                </Flex>
+                            </DropdownMenuLabel>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>
+                                <Flex Align="FlexAlign.Center" Gap="2">
+                                    <span>👤</span>
+                                    <span>Profile</span>
+                                </Flex>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <Flex Align="FlexAlign.Center" Gap="2">
+                                    <span>⚙️</span>
+                                    <span>Settings</span>
+                                </Flex>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <Flex Align="FlexAlign.Center" Gap="2">
+                                    <span>💳</span>
+                                    <span>Billing</span>
+                                </Flex>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>
+                                <Flex Align="FlexAlign.Center" Gap="2">
+                                    <span>📚</span>
+                                    <span>Documentation</span>
+                                </Flex>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <Flex Align="FlexAlign.Center" Gap="2">
+                                    <span>❓</span>
+                                    <span>Support</span>
+                                </Flex>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem Color="red">
+                                <Flex Align="FlexAlign.Center" Gap="2">
+                                    <span>🚪</span>
+                                    <span>Log Out</span>
+                                </Flex>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenuRoot>
+                </Card>
+            </Box>
+
+            <!-- Interactive Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Interactive Example</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Grid Columns="2" Gap="3">
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Size</Text>
+                                <SelectRoot @bind-Value="_selectedSize">
+                                    <SelectTrigger TValue="string" Placeholder="Select size" />
+                                    <SelectContent TValue="string">
+                                        @foreach (var size in Enum.GetValues<DropdownMenuSize>())
+                                        {
+                                            <SelectItem TValue="string" Value="@size.ToString()">@size</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Modal</Text>
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Switch @bind-Checked="_isModal" />
+                                    <Text Size="2">@(_isModal ? "Modal" : "Non-modal")</Text>
+                                </Flex>
+                            </Box>
+                        </Grid>
+                        
+                        <Separator />
+                        
+                        <Box Style="text-align: center;">
+                            <DropdownMenuRoot Modal="@_isModal">
+                                <DropdownMenuTrigger>
+                                    <Button>Open Custom Menu</Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent Size="@GetDropdownMenuSize()">
+                                    <DropdownMenuLabel>Custom Menu</DropdownMenuLabel>
+                                    <DropdownMenuItem OnSelect="@(() => _customAction = "Action 1")">Action 1</DropdownMenuItem>
+                                    <DropdownMenuItem OnSelect="@(() => _customAction = "Action 2")">Action 2</DropdownMenuItem>
+                                    <DropdownMenuItem OnSelect="@(() => _customAction = "Action 3")">Action 3</DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem Disabled="true">Disabled Action</DropdownMenuItem>
+                                    <DropdownMenuItem Color="red" OnSelect="@(() => _customAction = "Danger Action")">
+                                        Danger Action
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenuRoot>
+                        </Box>
+                        
+                        @if (!string.IsNullOrEmpty(_customAction))
+                        {
+                            <Box P="3" Style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                                <Text Size="2">Selected: @_customAction</Text>
+                            </Box>
+                        }
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Section>
+</Container>
+
+@code {
+    private string? _lastAction;
+    private string? _contextAction;
+    private string? _customAction;
+    private bool _isMenuOpen = false;
+    private string _selectedSize = "Size2";
+    private bool _isModal = true;
+    
+    private DropdownMenuSize GetDropdownMenuSize() => Enum.Parse<DropdownMenuSize>(_selectedSize);
+}

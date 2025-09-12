@@ -599,13 +599,13 @@ module.exports = {
 - [x] Support close on outside click
 - [x] Create demo page
 
-#### 27. DropdownMenu
-- [ ] Create DropdownMenu.razor and DropdownMenu.razor.cs
-- [ ] Create DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator
-- [ ] Implement sub-menus
-- [ ] Add keyboard navigation
-- [ ] Support icons and shortcuts
-- [ ] Create demo page
+#### 27. DropdownMenu ✅
+- [x] Create DropdownMenu.razor and DropdownMenu.razor.cs
+- [x] Create DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel
+- [x] Implement context menu support
+- [x] Add keyboard navigation
+- [x] Support icons and shortcuts
+- [x] Create demo page
 
 #### 28. ContextMenu
 - [ ] Create ContextMenu.razor and ContextMenu.razor.cs
