@@ -648,12 +648,12 @@ module.exports = {
 - [x] Create demo page
 
 #### 33. Table
-- [ ] Create Table.razor and Table.razor.cs
-- [ ] Create TableHeader, TableBody, TableRow, TableCell
-- [ ] Implement size variants
-- [ ] Add variant prop
-- [ ] Support layout prop
-- [ ] Create demo page
+- [x] Create TableRoot.razor and TableRoot.razor.cs
+- [x] Create TableHeader, TableBody, TableRow, TableCell
+- [x] Implement size variants (Size1, Size2, Size3)
+- [x] Add variant prop (Surface, Ghost)
+- [x] Support layout prop and cell alignment
+- [x] Create demo page
 
 #### 34. Callout
 - [ ] Create Callout.razor and Callout.razor.cs

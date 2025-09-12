@@ -1,0 +1,438 @@
+@page "/table"
+@using ShadBz.BlazorApp.Components.UI
+
+<div class="demo-container">
+    <h1>Table Component</h1>
+    <p>A semantic table component with customizable variants and alignment.</p>
+    
+    <div class="demo-section">
+        <h2>Basic Table</h2>
+        <div class="demo-example">
+            <TableRoot>
+                <TableHeader>
+                    <TableRow>
+                        <TableCell IsHeader="true">Name</TableCell>
+                        <TableCell IsHeader="true">Email</TableCell>
+                        <TableCell IsHeader="true">Group</TableCell>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                        <TableCell>Danilo Sousa</TableCell>
+                        <TableCell>danilo@example.com</TableCell>
+                        <TableCell>Developer</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>Zahra Ambessa</TableCell>
+                        <TableCell>zahra@example.com</TableCell>
+                        <TableCell>Admin</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>Jasper Eriksson</TableCell>
+                        <TableCell>jasper@example.com</TableCell>
+                        <TableCell>Developer</TableCell>
+                    </TableRow>
+                </TableBody>
+            </TableRoot>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>With Alignment</h2>
+        <div class="demo-example">
+            <TableRoot>
+                <TableHeader>
+                    <TableRow>
+                        <TableCell IsHeader="true" Align="TableCellAlign.Left">Product</TableCell>
+                        <TableCell IsHeader="true" Align="TableCellAlign.Center">Status</TableCell>
+                        <TableCell IsHeader="true" Align="TableCellAlign.Right">Price</TableCell>
+                        <TableCell IsHeader="true" Align="TableCellAlign.Right">Quantity</TableCell>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                        <TableCell Align="TableCellAlign.Left">Widget Pro</TableCell>
+                        <TableCell Align="TableCellAlign.Center">
+                            <Badge Color="green">Active</Badge>
+                        </TableCell>
+                        <TableCell Align="TableCellAlign.Right">$49.00</TableCell>
+                        <TableCell Align="TableCellAlign.Right">245</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell Align="TableCellAlign.Left">Gadget Plus</TableCell>
+                        <TableCell Align="TableCellAlign.Center">
+                            <Badge Color="yellow">Pending</Badge>
+                        </TableCell>
+                        <TableCell Align="TableCellAlign.Right">$89.00</TableCell>
+                        <TableCell Align="TableCellAlign.Right">52</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell Align="TableCellAlign.Left">Tool Kit</TableCell>
+                        <TableCell Align="TableCellAlign.Center">
+                            <Badge Color="red">Inactive</Badge>
+                        </TableCell>
+                        <TableCell Align="TableCellAlign.Right">$129.00</TableCell>
+                        <TableCell Align="TableCellAlign.Right">0</TableCell>
+                    </TableRow>
+                </TableBody>
+            </TableRoot>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Different Sizes</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap4">
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Size 1 (Small)</Text>
+                    <TableRoot Size="TableSize.Size1">
+                        <TableHeader>
+                            <TableRow>
+                                <TableCell IsHeader="true">Name</TableCell>
+                                <TableCell IsHeader="true">Role</TableCell>
+                                <TableCell IsHeader="true">Department</TableCell>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow>
+                                <TableCell>Alice Johnson</TableCell>
+                                <TableCell>Engineer</TableCell>
+                                <TableCell>Engineering</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>Bob Smith</TableCell>
+                                <TableCell>Designer</TableCell>
+                                <TableCell>Design</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </TableRoot>
+                </Box>
+                
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Size 2 (Medium)</Text>
+                    <TableRoot Size="TableSize.Size2">
+                        <TableHeader>
+                            <TableRow>
+                                <TableCell IsHeader="true">Name</TableCell>
+                                <TableCell IsHeader="true">Role</TableCell>
+                                <TableCell IsHeader="true">Department</TableCell>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow>
+                                <TableCell>Carol White</TableCell>
+                                <TableCell>Manager</TableCell>
+                                <TableCell>Operations</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>Dave Brown</TableCell>
+                                <TableCell>Analyst</TableCell>
+                                <TableCell>Finance</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </TableRoot>
+                </Box>
+                
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Size 3 (Large)</Text>
+                    <TableRoot Size="TableSize.Size3">
+                        <TableHeader>
+                            <TableRow>
+                                <TableCell IsHeader="true">Name</TableCell>
+                                <TableCell IsHeader="true">Role</TableCell>
+                                <TableCell IsHeader="true">Department</TableCell>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow>
+                                <TableCell>Eve Davis</TableCell>
+                                <TableCell>Director</TableCell>
+                                <TableCell>Marketing</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>Frank Miller</TableCell>
+                                <TableCell>VP</TableCell>
+                                <TableCell>Sales</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </TableRoot>
+                </Box>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Table Variants</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap4">
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Surface Variant</Text>
+                    <TableRoot Variant="TableVariant.Surface">
+                        <TableHeader>
+                            <TableRow>
+                                <TableCell IsHeader="true">Task</TableCell>
+                                <TableCell IsHeader="true">Priority</TableCell>
+                                <TableCell IsHeader="true">Status</TableCell>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow>
+                                <TableCell>Update documentation</TableCell>
+                                <TableCell>High</TableCell>
+                                <TableCell>In Progress</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>Fix bug #123</TableCell>
+                                <TableCell>Critical</TableCell>
+                                <TableCell>Open</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>Add new feature</TableCell>
+                                <TableCell>Medium</TableCell>
+                                <TableCell>Planning</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </TableRoot>
+                </Box>
+                
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Ghost Variant</Text>
+                    <TableRoot Variant="TableVariant.Ghost">
+                        <TableHeader>
+                            <TableRow>
+                                <TableCell IsHeader="true">Task</TableCell>
+                                <TableCell IsHeader="true">Priority</TableCell>
+                                <TableCell IsHeader="true">Status</TableCell>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow>
+                                <TableCell>Code review</TableCell>
+                                <TableCell>High</TableCell>
+                                <TableCell>Pending</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>Deploy to staging</TableCell>
+                                <TableCell>Medium</TableCell>
+                                <TableCell>Ready</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>Run tests</TableCell>
+                                <TableCell>High</TableCell>
+                                <TableCell>Complete</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </TableRoot>
+                </Box>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>With Width Control</h2>
+        <div class="demo-example">
+            <TableRoot>
+                <TableHeader>
+                    <TableRow>
+                        <TableCell IsHeader="true" Width="40%">Description</TableCell>
+                        <TableCell IsHeader="true" Width="20%">Category</TableCell>
+                        <TableCell IsHeader="true" Width="20%">Date</TableCell>
+                        <TableCell IsHeader="true" Width="20%">Amount</TableCell>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                        <TableCell>Office supplies and equipment</TableCell>
+                        <TableCell>Operations</TableCell>
+                        <TableCell>2024-01-15</TableCell>
+                        <TableCell>$234.50</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>Software licenses</TableCell>
+                        <TableCell>Technology</TableCell>
+                        <TableCell>2024-01-20</TableCell>
+                        <TableCell>$1,299.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>Team lunch and refreshments</TableCell>
+                        <TableCell>HR</TableCell>
+                        <TableCell>2024-01-22</TableCell>
+                        <TableCell>$187.25</TableCell>
+                    </TableRow>
+                </TableBody>
+            </TableRoot>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Complex Table with Multiple Features</h2>
+        <div class="demo-example">
+            <TableRoot Size="TableSize.Size2" Variant="TableVariant.Surface">
+                <TableHeader>
+                    <TableRow>
+                        <TableCell IsHeader="true" Width="30">
+                            <Checkbox />
+                        </TableCell>
+                        <TableCell IsHeader="true">User</TableCell>
+                        <TableCell IsHeader="true">Email</TableCell>
+                        <TableCell IsHeader="true" Align="TableCellAlign.Center">Status</TableCell>
+                        <TableCell IsHeader="true" Align="TableCellAlign.Center">Role</TableCell>
+                        <TableCell IsHeader="true" Align="TableCellAlign.Right">Last Active</TableCell>
+                        <TableCell IsHeader="true" Width="100" Align="TableCellAlign.Center">Actions</TableCell>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    @foreach (var user in GetSampleUsers())
+                    {
+                        <TableRow>
+                            <TableCell>
+                                <Checkbox />
+                            </TableCell>
+                            <TableCell>
+                                <Flex Gap="FlexGap.Gap2" Align="FlexAlign.Center">
+                                    <Avatar Size="AvatarSize.Size1">
+                                        <Fallback>@user.Initials</Fallback>
+                                    </Avatar>
+                                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium">@user.Name</Text>
+                                </Flex>
+                            </TableCell>
+                            <TableCell>
+                                <Text Size="TextSize.Size2">@user.Email</Text>
+                            </TableCell>
+                            <TableCell Align="TableCellAlign.Center">
+                                <Badge Color="@user.StatusColor" Variant="BadgeVariant.Soft">@user.Status</Badge>
+                            </TableCell>
+                            <TableCell Align="TableCellAlign.Center">
+                                <Text Size="TextSize.Size2">@user.Role</Text>
+                            </TableCell>
+                            <TableCell Align="TableCellAlign.Right">
+                                <Text Size="TextSize.Size2" Color="TextColor.Gray">@user.LastActive</Text>
+                            </TableCell>
+                            <TableCell Align="TableCellAlign.Center">
+                                <Flex Gap="FlexGap.Gap1" Justify="FlexJustify.Center">
+                                    <Button Size="ButtonSize.Small" Variant="ButtonVariant.Ghost">Edit</Button>
+                                    <Button Size="ButtonSize.Small" Variant="ButtonVariant.Ghost" Color="ButtonColor.Red">Delete</Button>
+                                </Flex>
+                            </TableCell>
+                        </TableRow>
+                    }
+                </TableBody>
+            </TableRoot>
+        </div>
+    </div>
+</div>
+
+@code {
+    private class UserData
+    {
+        public string Name { get; set; } = "";
+        public string Initials { get; set; } = "";
+        public string Email { get; set; } = "";
+        public string Status { get; set; } = "";
+        public string StatusColor { get; set; } = "";
+        public string Role { get; set; } = "";
+        public string LastActive { get; set; } = "";
+    }
+    
+    private List<UserData> GetSampleUsers()
+    {
+        return new List<UserData>
+        {
+            new UserData 
+            { 
+                Name = "Alex Rivera", 
+                Initials = "AR",
+                Email = "alex.rivera@example.com", 
+                Status = "Active", 
+                StatusColor = "green",
+                Role = "Admin",
+                LastActive = "2 hours ago"
+            },
+            new UserData 
+            { 
+                Name = "Sam Chen", 
+                Initials = "SC",
+                Email = "sam.chen@example.com", 
+                Status = "Away", 
+                StatusColor = "yellow",
+                Role = "Editor",
+                LastActive = "5 hours ago"
+            },
+            new UserData 
+            { 
+                Name = "Jordan Lee", 
+                Initials = "JL",
+                Email = "jordan.lee@example.com", 
+                Status = "Active", 
+                StatusColor = "green",
+                Role = "Viewer",
+                LastActive = "Just now"
+            },
+            new UserData 
+            { 
+                Name = "Casey Kim", 
+                Initials = "CK",
+                Email = "casey.kim@example.com", 
+                Status = "Offline", 
+                StatusColor = "gray",
+                Role = "Editor",
+                LastActive = "2 days ago"
+            }
+        };
+    }
+}
+
+<style>
+    .demo-container {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .demo-section {
+        margin-bottom: 3rem;
+    }
+    
+    .demo-section h2 {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    
+    .demo-example {
+        padding: 2rem;
+        background: var(--gray-2);
+        border-radius: var(--radius-3);
+    }
+    
+    /* Table styling */
+    .rt-TableRoot {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .rt-TableRoot.rt-variant-surface {
+        border: 1px solid var(--gray-6);
+        border-radius: var(--radius-3);
+    }
+    
+    .rt-TableHeaderCell {
+        padding: var(--space-3);
+        font-weight: 600;
+        text-align: left;
+        border-bottom: 1px solid var(--gray-6);
+    }
+    
+    .rt-TableCell {
+        padding: var(--space-3);
+        border-bottom: 1px solid var(--gray-4);
+    }
+    
+    .rt-TableRow:hover .rt-TableCell {
+        background: var(--gray-2);
+    }
+    
+    .rt-align-left { text-align: left; }
+    .rt-align-center { text-align: center; }
+    .rt-align-right { text-align: right; }
+</style>
