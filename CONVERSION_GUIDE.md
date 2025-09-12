@@ -615,21 +615,21 @@ module.exports = {
 - [x] Support modal/non-modal behavior
 - [x] Create demo page
 
-#### 29. Tooltip
-- [ ] Create Tooltip.razor and Tooltip.razor.cs
-- [ ] Create TooltipTrigger, TooltipContent
-- [ ] Implement positioning logic
-- [ ] Add delay props
-- [ ] Support multiline content
-- [ ] Create demo page
+#### 29. Tooltip ✅
+- [x] Create Tooltip.razor and Tooltip.razor.cs
+- [x] Create TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent
+- [x] Implement positioning logic with side and align options
+- [x] Add delay props with configurable duration
+- [x] Support rich content and multiline tooltips
+- [x] Create demo page
 
 #### 30. HoverCard
-- [ ] Create HoverCard.razor and HoverCard.razor.cs
-- [ ] Create HoverCardTrigger, HoverCardContent
-- [ ] Implement hover delay
-- [ ] Add size variants
-- [ ] Support positioning
-- [ ] Create demo page
+- [x] Create HoverCardRoot.razor and HoverCardRoot.razor.cs
+- [x] Create HoverCardTrigger, HoverCardContent
+- [x] Implement hover delay (OpenDelay/CloseDelay)
+- [x] Add positioning support (Side, Align)
+- [x] Support rich content display
+- [x] Create demo page
 
 #### 31. Tabs
 - [ ] Create Tabs.razor and Tabs.razor.cs

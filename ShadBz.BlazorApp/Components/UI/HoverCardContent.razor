@@ -1,0 +1,19 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
+@implements IDisposable
+
+@if (HoverCardRoot?.IsOpen == true)
+{
+    <div class="@ContentCssClass"
+         style="@GetPositionStyle()"
+         @onmouseenter="HandleMouseEnter"
+         @onmouseleave="HandleMouseLeave"
+         @attributes="AdditionalAttributes">
+        @ChildContent
+    </div>
+}
+
+@code {
+    [Parameter] public new RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public new Dictionary<string, object>? AdditionalAttributes { get; set; }
+}

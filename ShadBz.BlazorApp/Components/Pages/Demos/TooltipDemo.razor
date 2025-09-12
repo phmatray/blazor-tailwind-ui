@@ -1,0 +1,406 @@
+@page "/demos/tooltip"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Tooltip Component - Radix UI Blazor</PageTitle>
+
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="HeadingSize.Size8" Mb="2">Tooltip</Heading>
+                <Text Size="4" Color="gray">
+                    A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+                </Text>
+            </Box>
+
+            <!-- Basic Tooltip -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Basic Tooltip</Heading>
+                <Card>
+                    <TooltipProvider>
+                        <Flex Gap="3" Align="FlexAlign.Center" Justify="FlexJustify.Center">
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <Button>Hover me</Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    This is a basic tooltip
+                                </TooltipContent>
+                            </TooltipRoot>
+                            
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <IconButton>ℹ️</IconButton>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    Information tooltip
+                                </TooltipContent>
+                            </TooltipRoot>
+                            
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <Link>Hover over this link</Link>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    This link opens in a new tab
+                                </TooltipContent>
+                            </TooltipRoot>
+                        </Flex>
+                    </TooltipProvider>
+                </Card>
+            </Box>
+
+            <!-- Tooltip Positions -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Tooltip Positions</Heading>
+                <Card>
+                    <TooltipProvider DelayDuration="200">
+                        <Grid Columns="3" Gap="4" Style="max-width: 400px; margin: 0 auto;">
+                            <Box></Box>
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <Button Variant="ButtonVariant.Outline" Style="width: 100%;">Top</Button>
+                                </TooltipTrigger>
+                                <TooltipContent Side="TooltipSide.Top">
+                                    Tooltip on top
+                                </TooltipContent>
+                            </TooltipRoot>
+                            <Box></Box>
+                            
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <Button Variant="ButtonVariant.Outline" Style="width: 100%;">Left</Button>
+                                </TooltipTrigger>
+                                <TooltipContent Side="TooltipSide.Left">
+                                    Tooltip on left
+                                </TooltipContent>
+                            </TooltipRoot>
+                            <Box></Box>
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <Button Variant="ButtonVariant.Outline" Style="width: 100%;">Right</Button>
+                                </TooltipTrigger>
+                                <TooltipContent Side="TooltipSide.Right">
+                                    Tooltip on right
+                                </TooltipContent>
+                            </TooltipRoot>
+                            
+                            <Box></Box>
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <Button Variant="ButtonVariant.Outline" Style="width: 100%;">Bottom</Button>
+                                </TooltipTrigger>
+                                <TooltipContent Side="TooltipSide.Bottom">
+                                    Tooltip on bottom
+                                </TooltipContent>
+                            </TooltipRoot>
+                            <Box></Box>
+                        </Grid>
+                    </TooltipProvider>
+                </Card>
+            </Box>
+
+            <!-- Tooltip with Rich Content -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Rich Content Tooltips</Heading>
+                <Card>
+                    <TooltipProvider>
+                        <Flex Gap="3" Align="FlexAlign.Center" Justify="FlexJustify.Center">
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <Button Variant="ButtonVariant.Soft">Keyboard Shortcut</Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <Flex Direction="FlexDirection.Column" Gap="1">
+                                        <Text Size="2" Weight="TextWeight.Bold">Save Document</Text>
+                                        <Text Size="1" Color="gray">⌘S (Mac) / Ctrl+S (PC)</Text>
+                                    </Flex>
+                                </TooltipContent>
+                            </TooltipRoot>
+                            
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <Badge Color="green">Active</Badge>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <Flex Direction="FlexDirection.Column" Gap="1">
+                                        <Text Size="2">Status: Active</Text>
+                                        <Text Size="1" Color="gray">Last updated: 2 mins ago</Text>
+                                    </Flex>
+                                </TooltipContent>
+                            </TooltipRoot>
+                        </Flex>
+                    </TooltipProvider>
+                </Card>
+            </Box>
+
+            <!-- Controlled Tooltip -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Controlled Tooltip</Heading>
+                <Card>
+                    <TooltipProvider>
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Switch @bind-Checked="_isTooltipOpen" />
+                                <Text Size="2">Tooltip is @(_isTooltipOpen ? "open" : "closed")</Text>
+                            </Flex>
+                            
+                            <Box Style="text-align: center;">
+                                <TooltipRoot @bind-Open="_isTooltipOpen">
+                                    <TooltipTrigger>
+                                        <Button>Controlled Tooltip</Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        This tooltip is controlled by the switch above
+                                    </TooltipContent>
+                                </TooltipRoot>
+                            </Box>
+                        </Flex>
+                    </TooltipProvider>
+                </Card>
+            </Box>
+
+            <!-- Delay Duration -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Delay Duration</Heading>
+                <Card>
+                    <Grid Columns="3" Gap="3">
+                        <TooltipProvider DelayDuration="0">
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <Button Variant="ButtonVariant.Outline" Style="width: 100%;">Instant (0ms)</Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    No delay
+                                </TooltipContent>
+                            </TooltipRoot>
+                        </TooltipProvider>
+                        
+                        <TooltipProvider DelayDuration="500">
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <Button Variant="ButtonVariant.Outline" Style="width: 100%;">Normal (500ms)</Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    Half second delay
+                                </TooltipContent>
+                            </TooltipRoot>
+                        </TooltipProvider>
+                        
+                        <TooltipProvider DelayDuration="1000">
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <Button Variant="ButtonVariant.Outline" Style="width: 100%;">Slow (1000ms)</Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    One second delay
+                                </TooltipContent>
+                            </TooltipRoot>
+                        </TooltipProvider>
+                    </Grid>
+                </Card>
+            </Box>
+
+            <!-- Icon Grid with Tooltips -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Icon Grid with Tooltips</Heading>
+                <Card>
+                    <TooltipProvider DelayDuration="200">
+                        <Grid Columns="6" Gap="2">
+                            @foreach (var icon in _iconData)
+                            {
+                                <TooltipRoot>
+                                    <TooltipTrigger>
+                                        <IconButton Variant="ButtonVariant.Ghost">@icon.Icon</IconButton>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        @icon.Label
+                                    </TooltipContent>
+                                </TooltipRoot>
+                            }
+                        </Grid>
+                    </TooltipProvider>
+                </Card>
+            </Box>
+
+            <!-- Form with Tooltips -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Form Fields with Help Tooltips</Heading>
+                <Card>
+                    <TooltipProvider>
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Box>
+                                <Flex Align="FlexAlign.Center" Gap="2" Mb="1">
+                                    <Text Size="2" Weight="TextWeight.Medium">Username</Text>
+                                    <TooltipRoot>
+                                        <TooltipTrigger>
+                                            <IconButton Size="ButtonSize.Small" Variant="ButtonVariant.Ghost">ℹ️</IconButton>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            Username must be 3-20 characters long and contain only letters, numbers, and underscores
+                                        </TooltipContent>
+                                    </TooltipRoot>
+                                </Flex>
+                                <TextFieldRoot Size="TextFieldSize.Size2" Placeholder="Enter username" />
+                            </Box>
+                            
+                            <Box>
+                                <Flex Align="FlexAlign.Center" Gap="2" Mb="1">
+                                    <Text Size="2" Weight="TextWeight.Medium">Password</Text>
+                                    <TooltipRoot>
+                                        <TooltipTrigger>
+                                            <IconButton Size="ButtonSize.Small" Variant="ButtonVariant.Ghost">ℹ️</IconButton>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            Password must be at least 8 characters and include uppercase, lowercase, and numbers
+                                        </TooltipContent>
+                                    </TooltipRoot>
+                                </Flex>
+                                <TextFieldRoot Size="TextFieldSize.Size2" Type="password" Placeholder="Enter password" />
+                            </Box>
+                            
+                            <Box>
+                                <Flex Align="FlexAlign.Center" Gap="2" Mb="1">
+                                    <Text Size="2" Weight="TextWeight.Medium">Two-Factor Authentication</Text>
+                                    <TooltipRoot>
+                                        <TooltipTrigger>
+                                            <IconButton Size="ButtonSize.Small" Variant="ButtonVariant.Ghost">ℹ️</IconButton>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            Enable two-factor authentication for enhanced security
+                                        </TooltipContent>
+                                    </TooltipRoot>
+                                </Flex>
+                                <Switch />
+                            </Box>
+                        </Flex>
+                    </TooltipProvider>
+                </Card>
+            </Box>
+
+            <!-- Disabled Elements -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Disabled Elements with Tooltips</Heading>
+                <Card>
+                    <TooltipProvider>
+                        <Flex Gap="3" Align="FlexAlign.Center" Justify="FlexJustify.Center">
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <span tabindex="0">
+                                        <Button Disabled="true">Disabled Button</Button>
+                                    </span>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    This feature is currently unavailable
+                                </TooltipContent>
+                            </TooltipRoot>
+                            
+                            <TooltipRoot>
+                                <TooltipTrigger>
+                                    <span tabindex="0">
+                                        <IconButton Disabled="true">🔒</IconButton>
+                                    </span>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    Locked: Premium feature
+                                </TooltipContent>
+                            </TooltipRoot>
+                        </Flex>
+                    </TooltipProvider>
+                </Card>
+            </Box>
+
+            <!-- Interactive Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Interactive Example</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Grid Columns="3" Gap="3">
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Side</Text>
+                                <SelectRoot @bind-Value="_selectedSide">
+                                    <SelectTrigger TValue="string" Placeholder="Select side" />
+                                    <SelectContent TValue="string">
+                                        @foreach (var side in Enum.GetValues<TooltipSide>())
+                                        {
+                                            <SelectItem TValue="string" Value="@side.ToString()">@side</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Align</Text>
+                                <SelectRoot @bind-Value="_selectedAlign">
+                                    <SelectTrigger TValue="string" Placeholder="Select align" />
+                                    <SelectContent TValue="string">
+                                        @foreach (var align in Enum.GetValues<TooltipAlign>())
+                                        {
+                                            <SelectItem TValue="string" Value="@align.ToString()">@align</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Delay (ms)</Text>
+                                <TextFieldRoot Size="TextFieldSize.Size2" Type="number" @bind-Value="_delayDuration" />
+                            </Box>
+                        </Grid>
+                        
+                        <Separator />
+                        
+                        <Box Style="text-align: center; padding: 40px;">
+                            <TooltipProvider DelayDuration="@int.Parse(_delayDuration ?? "700")">
+                                <TooltipRoot>
+                                    <TooltipTrigger>
+                                        <Button Size="ButtonSize.Large">Custom Tooltip</Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent Side="@GetTooltipSide()" Align="@GetTooltipAlign()">
+                                        <Box>
+                                            <Text Size="2">Custom tooltip content</Text>
+                                            <Text Size="1" Color="gray">
+                                                Side: @_selectedSide, Align: @_selectedAlign, Delay: @_delayDuration ms
+                                            </Text>
+                                        </Box>
+                                    </TooltipContent>
+                                </TooltipRoot>
+                            </TooltipProvider>
+                        </Box>
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Section>
+</Container>
+
+@code {
+    private bool _isTooltipOpen = false;
+    private string _selectedSide = "Top";
+    private string _selectedAlign = "Center";
+    private string _delayDuration = "700";
+    
+    private class IconData
+    {
+        public string Icon { get; set; } = "";
+        public string Label { get; set; } = "";
+    }
+    
+    private readonly List<IconData> _iconData = new()
+    {
+        new() { Icon = "🏠", Label = "Home" },
+        new() { Icon = "👤", Label = "Profile" },
+        new() { Icon = "⚙️", Label = "Settings" },
+        new() { Icon = "📊", Label = "Analytics" },
+        new() { Icon = "📧", Label = "Messages" },
+        new() { Icon = "🔔", Label = "Notifications" },
+        new() { Icon = "🔍", Label = "Search" },
+        new() { Icon = "📁", Label = "Files" },
+        new() { Icon = "📅", Label = "Calendar" },
+        new() { Icon = "🎯", Label = "Goals" },
+        new() { Icon = "💡", Label = "Ideas" },
+        new() { Icon = "🚀", Label = "Launch" }
+    };
+    
+    private TooltipSide GetTooltipSide() => Enum.Parse<TooltipSide>(_selectedSide);
+    private TooltipAlign GetTooltipAlign() => Enum.Parse<TooltipAlign>(_selectedAlign);
+}

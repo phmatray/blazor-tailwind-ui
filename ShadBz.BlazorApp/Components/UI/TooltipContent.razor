@@ -1,0 +1,10 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ComponentBase
+
+@if (TooltipRoot?.IsOpen == true)
+{
+    <div class="@ContentCssClass" style="@GetPositionStyle()" role="tooltip">
+        <div class="rt-TooltipArrow"></div>
+        @ChildContent
+    </div>
+}
