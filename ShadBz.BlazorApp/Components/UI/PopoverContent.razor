@@ -1,0 +1,15 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
+@implements IDisposable
+
+@if (PopoverRoot?.IsOpen == true)
+{
+    @if (PopoverRoot.Modal)
+    {
+        <div class="rt-PopoverOverlay" @onclick="HandleOverlayClick"></div>
+    }
+    <div class="@ContentCssClass" @attributes="GetAllAttributes()" @onkeydown="HandleKeyDown" style="@GetPositionStyle()">
+        <div class="rt-PopoverArrow"></div>
+        @ChildContent
+    </div>
+}

@@ -1,0 +1,20 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ComponentBase
+
+@if (AsChild)
+{
+    @ChildContent
+}
+else
+{
+    <button @onclick="HandleClick" class="rt-PopoverClose">
+        @if (ChildContent != null)
+        {
+            @ChildContent
+        }
+        else
+        {
+            <span>✕</span>
+        }
+    </button>
+}

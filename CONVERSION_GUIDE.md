@@ -591,13 +591,13 @@ module.exports = {
 - [x] Add size variants
 - [x] Create demo page
 
-#### 26. Popover
-- [ ] Create Popover.razor and Popover.razor.cs
-- [ ] Create PopoverTrigger, PopoverContent
-- [ ] Implement positioning logic
-- [ ] Add size variants
-- [ ] Support close on outside click
-- [ ] Create demo page
+#### 26. Popover ✅
+- [x] Create Popover.razor and Popover.razor.cs
+- [x] Create PopoverTrigger, PopoverContent, PopoverClose
+- [x] Implement positioning logic
+- [x] Add size variants
+- [x] Support close on outside click
+- [x] Create demo page
 
 #### 27. DropdownMenu
 - [ ] Create DropdownMenu.razor and DropdownMenu.razor.cs
