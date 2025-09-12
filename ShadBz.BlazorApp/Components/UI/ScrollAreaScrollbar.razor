@@ -1,0 +1,18 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ComponentBase
+@implements IDisposable
+
+<div class="@ScrollbarCssClass" 
+     data-orientation="@Orientation.ToString().ToLower()"
+     style="@GetStyle()"
+     @attributes="AdditionalAttributes">
+    <div class="rt-ScrollAreaThumb"></div>
+</div>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    
+    private string ScrollbarCssClass => new CssBuilder("rt-ScrollAreaScrollbar")
+        .AddClass($"rt-orientation-{Orientation.ToString().ToLower()}")
+        .Build();
+}

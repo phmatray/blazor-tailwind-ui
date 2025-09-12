@@ -1,0 +1,310 @@
+@page "/scroll-area"
+@using ShadBz.BlazorApp.Components.UI
+
+<div class="demo-container">
+    <h1>ScrollArea Component</h1>
+    <p>Augments native scroll functionality for custom, cross-browser styling.</p>
+    
+    <div class="demo-section">
+        <h2>Basic ScrollArea</h2>
+        <div class="demo-example">
+            <ScrollAreaRoot Height="200px" Width="350px">
+                <ScrollAreaViewport>
+                    <Box P="4">
+                        <Heading Size="HeadingSize.Size4">The Principles of Good Design</Heading>
+                        @foreach (var i in Enumerable.Range(1, 10))
+                        {
+                            <Box Mt="2">
+                                <Text Size="TextSize.Size2">
+                                    Good design is innovative. The possibilities for innovation are not, by any means, exhausted. 
+                                    Technological development is always offering new opportunities for innovative design. 
+                                    But innovative design always develops in tandem with innovative technology, 
+                                    and can never be an end in itself.
+                                </Text>
+                            </Box>
+                        }
+                    </Box>
+                </ScrollAreaViewport>
+                <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Vertical" />
+                <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Horizontal" />
+            </ScrollAreaRoot>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Different Scrollbar Types</h2>
+        <div class="demo-example">
+            <Grid Columns="2" Gap="GridGap.Gap4">
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Auto (default)</Text>
+                    <ScrollAreaRoot Type="ScrollAreaType.Auto" Height="150px">
+                        <ScrollAreaViewport>
+                            <Box P="3">
+                                @foreach (var i in Enumerable.Range(1, 5))
+                                {
+                                    <Box Mb="2">
+                                        <Text Size="TextSize.Size2">
+                                            Line @i: Scrollbars appear automatically when content overflows.
+                                        </Text>
+                                    </Box>
+                                }
+                            </Box>
+                        </ScrollAreaViewport>
+                        <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Vertical" />
+                    </ScrollAreaRoot>
+                </Box>
+                
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Always</Text>
+                    <ScrollAreaRoot Type="ScrollAreaType.Always" Height="150px">
+                        <ScrollAreaViewport>
+                            <Box P="3">
+                                @foreach (var i in Enumerable.Range(1, 5))
+                                {
+                                    <Box Mb="2">
+                                        <Text Size="TextSize.Size2">
+                                            Line @i: Scrollbars are always visible.
+                                        </Text>
+                                    </Box>
+                                }
+                            </Box>
+                        </ScrollAreaViewport>
+                        <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Vertical" />
+                    </ScrollAreaRoot>
+                </Box>
+                
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Hover</Text>
+                    <ScrollAreaRoot Type="ScrollAreaType.Hover" Height="150px">
+                        <ScrollAreaViewport>
+                            <Box P="3">
+                                @foreach (var i in Enumerable.Range(1, 5))
+                                {
+                                    <Box Mb="2">
+                                        <Text Size="TextSize.Size2">
+                                            Line @i: Scrollbars appear on hover.
+                                        </Text>
+                                    </Box>
+                                }
+                            </Box>
+                        </ScrollAreaViewport>
+                        <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Vertical" />
+                    </ScrollAreaRoot>
+                </Box>
+                
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Scroll</Text>
+                    <ScrollAreaRoot Type="ScrollAreaType.Scroll" Height="150px">
+                        <ScrollAreaViewport>
+                            <Box P="3">
+                                @foreach (var i in Enumerable.Range(1, 5))
+                                {
+                                    <Box Mb="2">
+                                        <Text Size="TextSize.Size2">
+                                            Line @i: Scrollbars visible during scrolling.
+                                        </Text>
+                                    </Box>
+                                }
+                            </Box>
+                        </ScrollAreaViewport>
+                        <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Vertical" />
+                    </ScrollAreaRoot>
+                </Box>
+            </Grid>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Horizontal Scrolling</h2>
+        <div class="demo-example">
+            <ScrollAreaRoot Width="400px" Type="ScrollAreaType.Always">
+                <ScrollAreaViewport>
+                    <Flex Gap="FlexGap.Gap3" Style="width: 800px;">
+                        @foreach (var i in Enumerable.Range(1, 10))
+                        {
+                            <Card Style="min-width: 150px;">
+                                <Heading Size="HeadingSize.Size3">Card @i</Heading>
+                                <Text Size="TextSize.Size2" Color="TextColor.Gray">
+                                    This is card number @i
+                                </Text>
+                            </Card>
+                        }
+                    </Flex>
+                </ScrollAreaViewport>
+                <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Horizontal" />
+            </ScrollAreaRoot>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Both Scrollbars</h2>
+        <div class="demo-example">
+            <ScrollAreaRoot Height="300px" Width="400px" Type="ScrollAreaType.Always">
+                <ScrollAreaViewport>
+                    <Box Style="width: 600px; padding: 20px;">
+                        <Heading Size="HeadingSize.Size4" Mb="3">Wide and Tall Content</Heading>
+                        <Grid Columns="3" Gap="GridGap.Gap3">
+                            @foreach (var i in Enumerable.Range(1, 15))
+                            {
+                                <Card>
+                                    <Heading Size="HeadingSize.Size3">Item @i</Heading>
+                                    <Text Size="TextSize.Size2">
+                                        This is a card with some content that makes the container scroll both ways.
+                                    </Text>
+                                </Card>
+                            }
+                        </Grid>
+                    </Box>
+                </ScrollAreaViewport>
+                <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Vertical" />
+                <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Horizontal" />
+            </ScrollAreaRoot>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Different Sizes</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap4">
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Size 1 (Small)</Text>
+                    <ScrollAreaRoot Size="ScrollAreaSize.Size1" Height="100px" Width="300px">
+                        <ScrollAreaViewport>
+                            <Box P="2">
+                                @foreach (var i in Enumerable.Range(1, 5))
+                                {
+                                    <Box Mb="1">
+                                        <Text Size="TextSize.Size1">
+                                            Small size scrollbar - Line @i
+                                        </Text>
+                                    </Box>
+                                }
+                            </Box>
+                        </ScrollAreaViewport>
+                        <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Vertical" />
+                    </ScrollAreaRoot>
+                </Box>
+                
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Size 2 (Medium)</Text>
+                    <ScrollAreaRoot Size="ScrollAreaSize.Size2" Height="100px" Width="300px">
+                        <ScrollAreaViewport>
+                            <Box P="2">
+                                @foreach (var i in Enumerable.Range(1, 5))
+                                {
+                                    <Box Mb="1">
+                                        <Text Size="TextSize.Size2">
+                                            Medium size scrollbar - Line @i
+                                        </Text>
+                                    </Box>
+                                }
+                            </Box>
+                        </ScrollAreaViewport>
+                        <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Vertical" />
+                    </ScrollAreaRoot>
+                </Box>
+                
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Size 3 (Large)</Text>
+                    <ScrollAreaRoot Size="ScrollAreaSize.Size3" Height="100px" Width="300px">
+                        <ScrollAreaViewport>
+                            <Box P="2">
+                                @foreach (var i in Enumerable.Range(1, 5))
+                                {
+                                    <Box Mb="1">
+                                        <Text Size="TextSize.Size3">
+                                            Large size scrollbar - Line @i
+                                        </Text>
+                                    </Box>
+                                }
+                            </Box>
+                        </ScrollAreaViewport>
+                        <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Vertical" />
+                    </ScrollAreaRoot>
+                </Box>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>In a Card</h2>
+        <div class="demo-example">
+            <Card Style="width: 400px;">
+                <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                    <Box>
+                        <Heading Size="HeadingSize.Size4">Messages</Heading>
+                        <Text Size="TextSize.Size2" Color="TextColor.Gray">Your recent conversations</Text>
+                    </Box>
+                    <ScrollAreaRoot Height="250px">
+                        <ScrollAreaViewport>
+                            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap2">
+                                @foreach (var i in Enumerable.Range(1, 20))
+                                {
+                                    <Flex Gap="FlexGap.Gap3" P="2" Style="border-bottom: 1px solid var(--gray-4);">
+                                        <Avatar Size="AvatarSize.Size2">
+                                            <Fallback>U@i</Fallback>
+                                        </Avatar>
+                                        <Box Style="flex: 1;">
+                                            <Flex Justify="FlexJustify.Between" Mb="1">
+                                                <Text Size="TextSize.Size2" Weight="TextWeight.Medium">User @i</Text>
+                                                <Text Size="TextSize.Size1" Color="TextColor.Gray">@i min ago</Text>
+                                            </Flex>
+                                            <Text Size="TextSize.Size2" Color="TextColor.Gray">
+                                                This is message number @i in the conversation...
+                                            </Text>
+                                        </Box>
+                                    </Flex>
+                                }
+                            </Flex>
+                        </ScrollAreaViewport>
+                        <ScrollAreaScrollbar Orientation="ScrollbarOrientation.Vertical" />
+                    </ScrollAreaRoot>
+                </Flex>
+            </Card>
+        </div>
+    </div>
+</div>
+
+<style>
+    .demo-container {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .demo-section {
+        margin-bottom: 3rem;
+    }
+    
+    .demo-section h2 {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    
+    .demo-example {
+        padding: 2rem;
+        background: var(--gray-2);
+        border-radius: var(--radius-3);
+    }
+    
+    /* Custom scrollbar styles */
+    .rt-ScrollAreaViewport::-webkit-scrollbar {
+        width: var(--scrollbar-size);
+        height: var(--scrollbar-size);
+    }
+    
+    .rt-ScrollAreaViewport::-webkit-scrollbar-track {
+        background: var(--gray-3);
+        border-radius: var(--radius-2);
+    }
+    
+    .rt-ScrollAreaViewport::-webkit-scrollbar-thumb {
+        background: var(--gray-8);
+        border-radius: var(--radius-2);
+    }
+    
+    .rt-ScrollAreaViewport::-webkit-scrollbar-thumb:hover {
+        background: var(--gray-9);
+    }
+</style>

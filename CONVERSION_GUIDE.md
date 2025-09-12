@@ -640,11 +640,12 @@ module.exports = {
 - [x] Create demo page
 
 #### 32. ScrollArea
-- [ ] Create ScrollArea.razor and ScrollArea.razor.cs
-- [ ] Implement custom scrollbar styling
-- [ ] Add size prop
-- [ ] Support type prop (auto, always, scroll, hover)
-- [ ] Create demo page
+- [x] Create ScrollAreaRoot.razor and ScrollAreaRoot.razor.cs
+- [x] Create ScrollAreaViewport and ScrollAreaScrollbar components
+- [x] Implement custom scrollbar styling
+- [x] Add size prop (Size1, Size2, Size3)
+- [x] Support type prop (auto, always, scroll, hover)
+- [x] Create demo page
 
 #### 33. Table
 - [ ] Create Table.razor and Table.razor.cs
