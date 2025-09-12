@@ -575,14 +575,14 @@ module.exports = {
 - [x] Inherit from SpacingComponentBase for margin support
 - [x] Create comprehensive demo page
 
-#### 24. Dialog
-- [ ] Create Dialog.razor and Dialog.razor.cs
-- [ ] Create DialogTrigger, DialogContent, DialogTitle, DialogDescription
-- [ ] Implement size variants
-- [ ] Add modal/non-modal support
-- [ ] Support close button
-- [ ] Add overlay
-- [ ] Create demo page
+#### 24. Dialog ✅
+- [x] Create DialogRoot.razor and DialogRoot.razor.cs
+- [x] Create DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose
+- [x] Implement size variants (Size1-Size4)
+- [x] Add modal/non-modal support
+- [x] Support close button with DialogClose component
+- [x] Add overlay with click-to-close functionality
+- [x] Create comprehensive demo page with multiple examples
 
 #### 25. AlertDialog
 - [ ] Create AlertDialog.razor and AlertDialog.razor.cs

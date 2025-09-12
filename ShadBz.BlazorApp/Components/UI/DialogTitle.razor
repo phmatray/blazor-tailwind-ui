@@ -1,0 +1,31 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
+
+@if (As == "h1")
+{
+    <h1 class="@TitleCssClass">@ChildContent</h1>
+}
+else if (As == "h2")
+{
+    <h2 class="@TitleCssClass">@ChildContent</h2>
+}
+else if (As == "h3")
+{
+    <h3 class="@TitleCssClass">@ChildContent</h3>
+}
+else if (As == "h4")
+{
+    <h4 class="@TitleCssClass">@ChildContent</h4>
+}
+else if (As == "h5")
+{
+    <h5 class="@TitleCssClass">@ChildContent</h5>
+}
+else if (As == "h6")
+{
+    <h6 class="@TitleCssClass">@ChildContent</h6>
+}
+else
+{
+    <div class="@TitleCssClass">@ChildContent</div>
+}

@@ -1,0 +1,19 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ShadBz.BlazorApp.Components.UI.Base.SpacingComponentBase
+@implements IDisposable
+
+@if (DialogRoot?.IsOpen == true)
+{
+    <div class="rt-BaseDialogScroll rt-DialogScroll">
+        <!-- Overlay -->
+        <div class="@OverlayCssClass" @onclick="HandleOverlayClick"></div>
+        
+        <!-- Scroll Padding -->
+        <div class="rt-BaseDialogScrollPadding rt-DialogScrollPadding">
+            <!-- Content -->
+            <div @attributes="GetContentAttributes()" @onkeydown="HandleEscapeKey" tabindex="-1">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+}

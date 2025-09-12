@@ -1,0 +1,14 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ComponentBase
+@implements IDisposable
+
+@if (AsChild)
+{
+    @ChildContent
+}
+else
+{
+    <button @onclick="HandleClick" @ref="_elementRef">
+        @ChildContent
+    </button>
+}
