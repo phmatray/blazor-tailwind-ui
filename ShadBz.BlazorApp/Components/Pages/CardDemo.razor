@@ -3,185 +3,270 @@
 
 <PageTitle>Card Component Demo</PageTitle>
 
-<Section Size="SectionSize.Size3">
-    <Container Size="ContainerSize.Size4">
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
         <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
             <Box>
-                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">Card Component</Heading>
-                <Text Size="4" Color="gray">A versatile container component for grouping related content.</Text>
+                <Heading Size="HeadingSize.Size8">Card Component</Heading>
+                <Text Size="4" Color="gray">A versatile container component for grouping related content with different variants, sizes, and interactive states.</Text>
             </Box>
 
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic Cards</Heading>
-                <Flex Direction="FlexDirection.Column" Gap="3">
-                    <Card Size="CardSize.Size2">
-                        <Flex Direction="FlexDirection.Column" Gap="2">
-                            <Heading Size="3">Default Card</Heading>
-                            <Text Size="2" Color="gray">
-                                This is a basic card with default surface variant. Cards are used to group related content and actions.
-                            </Text>
-                        </Flex>
-                    </Card>
+            <!-- Basic Card Variants -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Card Variants</Heading>
+                        <Text Size="2" Color="gray">Different visual styles for various use cases.</Text>
+                    </Box>
+                    
+                    <Grid Columns="3" Gap="4">
+                        <Card Size="CardSize.Size2">
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Heading Size="HeadingSize.Size4">Surface (Default)</Heading>
+                                <Text Size="2" Color="gray">
+                                    Standard card with subtle background and border.
+                                </Text>
+                            </Flex>
+                        </Card>
 
-                    <Card Size="CardSize.Size2" Variant="CardVariant.Classic">
-                        <Flex Direction="FlexDirection.Column" Gap="2">
-                            <Heading Size="3">Classic Card</Heading>
-                            <Text Size="2" Color="gray">
-                                This card uses the classic variant with a more prominent shadow effect.
-                            </Text>
-                        </Flex>
-                    </Card>
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Classic">
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Heading Size="HeadingSize.Size4">Classic</Heading>
+                                <Text Size="2" Color="gray">
+                                    Enhanced shadow effect for more prominence.
+                                </Text>
+                            </Flex>
+                        </Card>
 
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Heading Size="HeadingSize.Size4">Ghost</Heading>
+                                <Text Size="2" Color="gray">
+                                    Minimal styling with transparent background.
+                                </Text>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                </Flex>
+            </Card>
+
+            <!-- Card Sizes -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Card Sizes</Heading>
+                        <Text Size="2" Color="gray">Different padding sizes to match your content density needs.</Text>
+                    </Box>
+                    
+                    <Grid Columns="2" Gap="3">
+                        <Card Size="CardSize.Size1" Variant="CardVariant.Ghost">
+                            <Text Size="2" Weight="TextWeight.Medium">Size 1 - Compact</Text>
+                            <Text Size="1" Color="gray" Mt="1">Minimal padding for dense layouts</Text>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Text Size="2" Weight="TextWeight.Medium">Size 2 - Small</Text>
+                            <Text Size="1" Color="gray" Mt="1">Small padding for compact content</Text>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size3" Variant="CardVariant.Ghost">
+                            <Text Size="2" Weight="TextWeight.Medium">Size 3 - Medium</Text>
+                            <Text Size="1" Color="gray" Mt="1">Standard padding for most use cases</Text>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size4" Variant="CardVariant.Ghost">
+                            <Text Size="2" Weight="TextWeight.Medium">Size 4 - Large</Text>
+                            <Text Size="1" Color="gray" Mt="1">Generous padding for spacious layouts</Text>
+                        </Card>
+                    </Grid>
+                    
+                    <Card Size="CardSize.Size5" Variant="CardVariant.Ghost">
+                        <Text Size="2" Weight="TextWeight.Medium">Size 5 - Extra Large</Text>
+                        <Text Size="1" Color="gray" Mt="1">Maximum padding for hero sections and featured content</Text>
+                    </Card>
+                </Flex>
+            </Card>
+
+            <!-- Interactive Cards -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Interactive Cards</Heading>
+                        <Text Size="2" Color="gray">Cards can be interactive elements like links and buttons with hover and focus states.</Text>
+                    </Box>
+                    
+                    <Grid Columns="3" Gap="3">
+                        <Card As="a" Href="#link-card" Size="CardSize.Size2">
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Heading Size="HeadingSize.Size4">Link Card</Heading>
+                                <Text Size="2" Color="gray">
+                                    This card is a link. Hover to see the effect.
+                                </Text>
+                                <Text Size="1" Color="blue">Click to navigate →</Text>
+                            </Flex>
+                        </Card>
+
+                        <Card As="button" Size="CardSize.Size2">
+                            <Flex Direction="FlexDirection.Column" Gap="2" Align="FlexAlign.Start">
+                                <Heading Size="HeadingSize.Size4">Button Card</Heading>
+                                <Text Size="2" Color="gray" Align="TextAlign.Left">
+                                    This card is a button. Click to interact.
+                                </Text>
+                                <Text Size="1" Color="green">Click me!</Text>
+                            </Flex>
+                        </Card>
+
+                        <Card As="button" Size="CardSize.Size2" Disabled="true">
+                            <Flex Direction="FlexDirection.Column" Gap="2" Align="FlexAlign.Start">
+                                <Heading Size="HeadingSize.Size4">Disabled Card</Heading>
+                                <Text Size="2" Color="gray" Align="TextAlign.Left">
+                                    This button card is disabled.
+                                </Text>
+                                <Text Size="1" Color="gray">Unavailable</Text>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                </Flex>
+            </Card>
+
+            <!-- Practical Card Examples -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Practical Examples</Heading>
+                        <Text Size="2" Color="gray">Real-world card layouts for common use cases.</Text>
+                    </Box>
+                    
+                    <Grid Columns="2" Gap="4">
+                        <Card Size="CardSize.Size3" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">User Profile Card</Text>
+                                <Card Size="CardSize.Size3">
+                                    <Flex Direction="FlexDirection.Column" Gap="3">
+                                        <Flex Align="FlexAlign.Center" Gap="3">
+                                            <Box Width="12" Height="12" Style="background: var(--accent-9); border-radius: var(--radius-full);"></Box>
+                                            <Box>
+                                                <Heading Size="HeadingSize.Size4">Sarah Wilson</Heading>
+                                                <Text Size="2" Color="gray">@("@sarahw_dev")</Text>
+                                            </Box>
+                                        </Flex>
+                                        <Text Size="2">
+                                            Full-stack developer passionate about creating beautiful user experiences with modern web technologies.
+                                        </Text>
+                                        <Flex Gap="2">
+                                            <Button Size="ButtonSize.Small">Follow</Button>
+                                            <Button Size="ButtonSize.Small" Variant="ButtonVariant.Soft">Message</Button>
+                                        </Flex>
+                                    </Flex>
+                                </Card>
+                            </Flex>
+                        </Card>
+
+                        <Card Size="CardSize.Size3" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Product Card</Text>
+                                <Card Size="CardSize.Size3" Variant="CardVariant.Classic">
+                                    <Flex Direction="FlexDirection.Column" Gap="3">
+                                        <Box Height="120px" Style="background: var(--gray-3); border-radius: var(--radius-2);"></Box>
+                                        <Box>
+                                            <Heading Size="HeadingSize.Size4">Premium Plan</Heading>
+                                            <Text Size="2" Color="gray" Mt="1">Everything you need to scale</Text>
+                                        </Box>
+                                        <Flex Direction="FlexDirection.Column" Gap="2">
+                                            <Text Size="1" Color="gray">✓ Advanced analytics</Text>
+                                            <Text Size="1" Color="gray">✓ Priority support</Text>
+                                            <Text Size="1" Color="gray">✓ Custom integrations</Text>
+                                        </Flex>
+                                        <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                            <Box>
+                                                <Text Size="4" Weight="TextWeight.Bold">$29</Text>
+                                                <Text Size="1" Color="gray">/month</Text>
+                                            </Box>
+                                            <Button Size="ButtonSize.Small">Get Started</Button>
+                                        </Flex>
+                                    </Flex>
+                                </Card>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                    
                     <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
-                        <Flex Direction="FlexDirection.Column" Gap="2">
-                            <Heading Size="3">Ghost Card</Heading>
-                            <Text Size="2" Color="gray">
-                                This card uses the ghost variant with minimal visual styling.
-                            </Text>
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="2" Weight="TextWeight.Medium">Article Card</Text>
+                            <Card Size="CardSize.Size3">
+                                <Flex Direction="FlexDirection.Column" Gap="3">
+                                    <Box Height="160px" Style="background: var(--blue-3); border-radius: var(--radius-2);"></Box>
+                                    <Flex Direction="FlexDirection.Column" Gap="2">
+                                        <Text Size="1" Color="blue">Technology</Text>
+                                        <Heading Size="HeadingSize.Size4">Building Modern Web Applications</Heading>
+                                        <Text Size="2" Color="gray">
+                                            Learn the latest techniques and best practices for creating fast, accessible, and maintainable web applications.
+                                        </Text>
+                                    </Flex>
+                                    <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                        <Flex Align="FlexAlign.Center" Gap="2">
+                                            <Box Width="6" Height="6" Style="background: var(--gray-6); border-radius: var(--radius-full);"></Box>
+                                            <Text Size="1" Color="gray">John Doe</Text>
+                                        </Flex>
+                                        <Text Size="1" Color="gray">5 min read</Text>
+                                    </Flex>
+                                </Flex>
+                            </Card>
                         </Flex>
                     </Card>
                 </Flex>
-            </Box>
+            </Card>
 
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Card Sizes</Heading>
-                <Grid Columns="2" Gap="3">
-                    <Card Size="CardSize.Size1">
-                        <Text Size="2">Size 1 - Compact padding</Text>
-                    </Card>
-                    
-                    <Card Size="CardSize.Size2">
-                        <Text Size="2">Size 2 - Small padding</Text>
-                    </Card>
-                    
-                    <Card Size="CardSize.Size3">
-                        <Text Size="2">Size 3 - Medium padding</Text>
-                    </Card>
+            <!-- Nested Cards -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Nested Cards</Heading>
+                        <Text Size="2" Color="gray">Cards can contain other cards for complex hierarchical layouts.</Text>
+                    </Box>
                     
                     <Card Size="CardSize.Size4">
-                        <Text Size="2">Size 4 - Large padding</Text>
-                    </Card>
-                    
-                    <Box GridColumn="1 / -1">
-                        <Card Size="CardSize.Size5">
-                            <Text Size="2">Size 5 - Extra large padding</Text>
-                        </Card>
-                    </Box>
-                </Grid>
-            </Box>
-
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Interactive Cards</Heading>
-                <Grid Columns="3" Gap="3">
-                    <Card As="a" Href="#link-card" Size="CardSize.Size2">
-                        <Flex Direction="FlexDirection.Column" Gap="2">
-                            <Heading Size="3">Link Card</Heading>
-                            <Text Size="2" Color="gray">
-                                This card is a link. Hover to see the effect.
-                            </Text>
-                        </Flex>
-                    </Card>
-
-                    <Card As="button" Size="CardSize.Size2">
-                        <Flex Direction="FlexDirection.Column" Gap="2" Align="FlexAlign.Start">
-                            <Heading Size="3">Button Card</Heading>
-                            <Text Size="2" Color="gray" Align="TextAlign.Left">
-                                This card is a button. Click to interact.
-                            </Text>
-                        </Flex>
-                    </Card>
-
-                    <Card As="button" Size="CardSize.Size2" Disabled="true">
-                        <Flex Direction="FlexDirection.Column" Gap="2" Align="FlexAlign.Start">
-                            <Heading Size="3">Disabled Card</Heading>
-                            <Text Size="2" Color="gray" Align="TextAlign.Left">
-                                This button card is disabled.
-                            </Text>
-                        </Flex>
-                    </Card>
-                </Grid>
-            </Box>
-
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Complex Card Examples</Heading>
-                <Grid Columns="2" Gap="4">
-                    <Card Size="CardSize.Size3">
-                        <Flex Direction="FlexDirection.Column" Gap="3">
-                            <Flex Align="FlexAlign.Center" Gap="3">
-                                <Box Width="12" Height="12" Style="background: var(--accent-9); border-radius: var(--radius-full);"></Box>
-                                <Box>
-                                    <Heading Size="3">User Profile</Heading>
-                                    <Text Size="2" Color="gray">user.example</Text>
-                                </Box>
-                            </Flex>
-                            <Text Size="2">
-                                This is an example of a more complex card with multiple elements, including an avatar placeholder and text content.
-                            </Text>
-                            <Flex Gap="2">
-                                <Button Size="ButtonSize.Small">Follow</Button>
-                                <Button Size="ButtonSize.Small" Variant="ButtonVariant.Soft">Message</Button>
-                            </Flex>
-                        </Flex>
-                    </Card>
-
-                    <Card Size="CardSize.Size3" Variant="CardVariant.Classic">
-                        <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Flex Direction="FlexDirection.Column" Gap="4">
                             <Box>
-                                <Heading Size="4">Premium Feature</Heading>
-                                <Text Size="2" Color="gray" Mt="1">Unlock advanced capabilities</Text>
+                                <Heading Size="HeadingSize.Size5">Dashboard Overview</Heading>
+                                <Text Size="2" Color="gray">Monitor your key metrics at a glance.</Text>
                             </Box>
-                            <Box P="3" Style="background: var(--gray-a2); border-radius: var(--radius-3);">
-                                <Text Size="2">
-                                    • Enhanced performance<br/>
-                                    • Priority support<br/>
-                                    • Advanced analytics
-                                </Text>
-                            </Box>
-                            <Button Variant="ButtonVariant.Solid" Width="100%">
-                                Upgrade Now
-                            </Button>
+                            
+                            <Grid Columns="3" Gap="3">
+                                <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                                    <Flex Direction="FlexDirection.Column" Gap="2">
+                                        <Text Size="1" Color="gray">Total Users</Text>
+                                        <Text Size="6" Weight="TextWeight.Bold">1,234</Text>
+                                        <Text Size="1" Color="green">↗ +12% from last month</Text>
+                                    </Flex>
+                                </Card>
+                                
+                                <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                                    <Flex Direction="FlexDirection.Column" Gap="2">
+                                        <Text Size="1" Color="gray">Revenue</Text>
+                                        <Text Size="6" Weight="TextWeight.Bold">$5,678</Text>
+                                        <Text Size="1" Color="green">↗ +8% from last month</Text>
+                                    </Flex>
+                                </Card>
+                                
+                                <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                                    <Flex Direction="FlexDirection.Column" Gap="2">
+                                        <Text Size="1" Color="gray">Conversion</Text>
+                                        <Text Size="6" Weight="TextWeight.Bold">3.4%</Text>
+                                        <Text Size="1" Color="red">↘ -2% from last month</Text>
+                                    </Flex>
+                                </Card>
+                            </Grid>
+                            
+                            <Flex Justify="FlexJustify.End" Gap="2">
+                                <Button Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">View Details</Button>
+                                <Button Size="ButtonSize.Small">Export Report</Button>
+                            </Flex>
                         </Flex>
                     </Card>
-                </Grid>
-            </Box>
-
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Cards with Different Variants</Heading>
-                <Grid Columns="3" Gap="3">
-                    <Card Size="CardSize.Size2" Variant="CardVariant.Surface" As="button">
-                        <Text Size="2" Weight="TextWeight.Medium">Surface (Default)</Text>
-                        <Text Size="1" Color="gray" Mt="1">Click for interaction</Text>
-                    </Card>
-
-                    <Card Size="CardSize.Size2" Variant="CardVariant.Classic" As="button">
-                        <Text Size="2" Weight="TextWeight.Medium">Classic</Text>
-                        <Text Size="1" Color="gray" Mt="1">Enhanced shadow</Text>
-                    </Card>
-
-                    <Card Size="CardSize.Size2" Variant="CardVariant.Ghost" As="button">
-                        <Text Size="2" Weight="TextWeight.Medium">Ghost</Text>
-                        <Text Size="1" Color="gray" Mt="1">Minimal styling</Text>
-                    </Card>
-                </Grid>
-            </Box>
-
-            <Box>
-                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Nested Cards</Heading>
-                <Card Size="CardSize.Size4">
-                    <Flex Direction="FlexDirection.Column" Gap="3">
-                        <Heading Size="3">Parent Card</Heading>
-                        <Text Size="2" Color="gray">Cards can contain other cards for complex layouts.</Text>
-                        <Grid Columns="2" Gap="3">
-                            <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
-                                <Text Size="2">Nested Card 1</Text>
-                            </Card>
-                            <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
-                                <Text Size="2">Nested Card 2</Text>
-                            </Card>
-                        </Grid>
-                    </Flex>
-                </Card>
-            </Box>
+                </Flex>
+            </Card>
         </Flex>
-    </Container>
-</Section>
+    </Section>
+</Container>

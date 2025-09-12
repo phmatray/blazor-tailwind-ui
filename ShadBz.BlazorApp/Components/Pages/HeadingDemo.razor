@@ -3,245 +3,286 @@
 
 <PageTitle>Heading Demo</PageTitle>
 
-<div class="demo-container">
-    <h1>Heading Component Demo</h1>
-
-    <div class="demo-section">
-        <h2>Sizes</h2>
-        <div class="demo-content">
-            <Heading Size="1">Size 1: The quick brown fox</Heading>
-            <Heading Size="2">Size 2: The quick brown fox</Heading>
-            <Heading Size="3">Size 3: The quick brown fox</Heading>
-            <Heading Size="4">Size 4: The quick brown fox</Heading>
-            <Heading Size="5">Size 5: The quick brown fox</Heading>
-            <Heading Size="6">Size 6: The quick brown fox (default)</Heading>
-            <Heading Size="7">Size 7: The quick brown fox</Heading>
-            <Heading Size="8">Size 8: The quick brown fox</Heading>
-            <Heading Size="9">Size 9: The quick brown fox</Heading>
-        </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>Heading Levels (As Prop)</h2>
-        <div class="demo-content">
-            <Heading As="h1" Size="5">H1: Main Page Title</Heading>
-            <Heading As="h2" Size="4">H2: Section Heading</Heading>
-            <Heading As="h3" Size="3">H3: Subsection Heading</Heading>
-            <Heading As="h4" Size="2">H4: Minor Heading</Heading>
-            <Heading As="h5" Size="2">H5: Small Heading</Heading>
-            <Heading As="h6" Size="1">H6: Tiny Heading</Heading>
-        </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>Weights</h2>
-        <div class="demo-content">
-            <Heading Size="5" Weight="TextWeight.Light">Light: The quick brown fox</Heading>
-            <Heading Size="5" Weight="TextWeight.Regular">Regular: The quick brown fox</Heading>
-            <Heading Size="5" Weight="TextWeight.Medium">Medium: The quick brown fox</Heading>
-            <Heading Size="5" Weight="TextWeight.Bold">Bold: The quick brown fox</Heading>
-        </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>Colors</h2>
-        <div class="demo-content">
-            <Heading Size="5">Default color heading</Heading>
-            <Heading Size="5" Color="gray">Gray heading</Heading>
-            <Heading Size="5" Color="blue">Blue heading</Heading>
-            <Heading Size="5" Color="green">Green heading</Heading>
-            <Heading Size="5" Color="red">Red heading</Heading>
-            <Heading Size="5" Color="purple">Purple heading</Heading>
-            <Heading Size="5" Color="amber">Amber heading</Heading>
-            <Heading Size="5" Color="cyan">Cyan heading</Heading>
-            <Heading Size="5" Color="pink">Pink heading</Heading>
-            <Heading Size="5" Color="indigo">Indigo heading</Heading>
-        </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>High Contrast</h2>
-        <div class="demo-content">
-            <Heading Size="5" Color="blue">Normal contrast blue heading</Heading>
-            <Heading Size="5" Color="blue" HighContrast="true">High contrast blue heading</Heading>
-            <Heading Size="5" Color="green">Normal contrast green heading</Heading>
-            <Heading Size="5" Color="green" HighContrast="true">High contrast green heading</Heading>
-        </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>Text Alignment</h2>
-        <div class="demo-content" style="width: 100%;">
-            <Box P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Heading Size="4" Align="TextAlign.Left">Left aligned heading</Heading>
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="HeadingSize.Size8">Heading Component</Heading>
+                <Text Size="4" Color="gray">Typography component for displaying headings with semantic structure.</Text>
             </Box>
-            <Box P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Heading Size="4" Align="TextAlign.Center">Center aligned heading</Heading>
-            </Box>
-            <Box P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Heading Size="4" Align="TextAlign.Right">Right aligned heading</Heading>
-            </Box>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Truncate</h2>
-        <div class="demo-content">
-            <Box Width="400px" P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Heading Size="4" Truncate="false">
-                    Without truncate: This is a very long heading that will wrap to multiple lines
-                </Heading>
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Heading Sizes</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Heading Size="1">Size 1: The quick brown fox</Heading>
+                        <Heading Size="2">Size 2: The quick brown fox</Heading>
+                        <Heading Size="3">Size 3: The quick brown fox</Heading>
+                        <Heading Size="4">Size 4: The quick brown fox</Heading>
+                        <Heading Size="5">Size 5: The quick brown fox</Heading>
+                        <Heading Size="6">Size 6: The quick brown fox (default)</Heading>
+                        <Heading Size="7">Size 7: The quick brown fox</Heading>
+                        <Heading Size="8">Size 8: The quick brown fox</Heading>
+                        <Heading Size="9">Size 9: The quick brown fox</Heading>
+                    </Flex>
+                </Card>
             </Box>
-            <Box Width="400px" P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Heading Size="4" Truncate="true">
-                    With truncate: This is a very long heading that will be truncated with ellipsis
-                </Heading>
-            </Box>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Text Wrap Options</h2>
-        <div class="demo-content">
-            <Box Width="400px" P="3" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Heading Size="4" Wrap="TextWrap.Wrap">
-                    Wrap: This heading will wrap normally to the next line
-                </Heading>
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Semantic Heading Levels</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Heading As="h1" Size="5">H1: Main Page Title</Heading>
+                        <Heading As="h2" Size="4">H2: Section Heading</Heading>
+                        <Heading As="h3" Size="3">H3: Subsection Heading</Heading>
+                        <Heading As="h4" Size="2">H4: Minor Heading</Heading>
+                        <Heading As="h5" Size="2">H5: Small Heading</Heading>
+                        <Heading As="h6" Size="1">H6: Tiny Heading</Heading>
+                        <Text Size="2" Color="gray" Mt="2">
+                            Use the As prop to set the semantic HTML element while controlling visual size independently.
+                        </Text>
+                    </Flex>
+                </Card>
             </Box>
-            <Box Width="400px" P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2); overflow: auto;">
-                <Heading Size="4" Wrap="TextWrap.NoWrap">
-                    NoWrap: This heading will not wrap and continues on the same line
-                </Heading>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Font Weights</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Heading Size="5" Weight="TextWeight.Light">Light: The quick brown fox</Heading>
+                        <Heading Size="5" Weight="TextWeight.Regular">Regular: The quick brown fox</Heading>
+                        <Heading Size="5" Weight="TextWeight.Medium">Medium: The quick brown fox</Heading>
+                        <Heading Size="5" Weight="TextWeight.Bold">Bold: The quick brown fox</Heading>
+                    </Flex>
+                </Card>
             </Box>
-            <Box Width="400px" P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Heading Size="4" Wrap="TextWrap.Pretty">
-                    Pretty: This heading uses optimized wrapping for better readability
-                </Heading>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Heading Colors</Heading>
+                <Card Size="CardSize.Size3">
+                    <Grid Columns="2" Gap="3">
+                        <Heading Size="5">Default color heading</Heading>
+                        <Heading Size="5" Color="gray">Gray heading</Heading>
+                        <Heading Size="5" Color="blue">Blue heading</Heading>
+                        <Heading Size="5" Color="green">Green heading</Heading>
+                        <Heading Size="5" Color="red">Red heading</Heading>
+                        <Heading Size="5" Color="purple">Purple heading</Heading>
+                        <Heading Size="5" Color="amber">Amber heading</Heading>
+                        <Heading Size="5" Color="cyan">Cyan heading</Heading>
+                        <Heading Size="5" Color="pink">Pink heading</Heading>
+                        <Heading Size="5" Color="indigo">Indigo heading</Heading>
+                    </Grid>
+                </Card>
             </Box>
-            <Box Width="400px" P="3" Mt="2" style="background: var(--gray-a2); border-radius: var(--radius-2);">
-                <Heading Size="4" Wrap="TextWrap.Balance">
-                    Balance: This heading balances line lengths for better appearance
-                </Heading>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">High Contrast</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Heading Size="5" Color="blue">Normal contrast blue heading</Heading>
+                            <Heading Size="5" Color="blue" HighContrast="true">High contrast blue heading</Heading>
+                        </Flex>
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Heading Size="5" Color="green">Normal contrast green heading</Heading>
+                            <Heading Size="5" Color="green" HighContrast="true">High contrast green heading</Heading>
+                        </Flex>
+                    </Flex>
+                </Card>
             </Box>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Leading Trim</h2>
-        <div class="demo-content">
-            <Box Display="flex" style="gap: var(--space-4);">
-                <Box P="3" style="background: var(--blue-a3); border-radius: var(--radius-2);">
-                    <Heading Size="7" Trim="false">Without Trim</Heading>
-                    <Box style="background: var(--red-a5); height: 1px; margin-top: -1px;"></Box>
-                </Box>
-                <Box P="3" style="background: var(--blue-a3); border-radius: var(--radius-2);">
-                    <Heading Size="7" Trim="true">With Trim</Heading>
-                    <Box style="background: var(--red-a5); height: 1px; margin-top: -1px;"></Box>
-                </Box>
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Text Alignment</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Card Size="CardSize.Size3">
+                        <Heading Size="4" Align="TextAlign.Left">Left aligned heading</Heading>
+                    </Card>
+                    <Card Size="CardSize.Size3">
+                        <Heading Size="4" Align="TextAlign.Center">Center aligned heading</Heading>
+                    </Card>
+                    <Card Size="CardSize.Size3">
+                        <Heading Size="4" Align="TextAlign.Right">Right aligned heading</Heading>
+                    </Card>
+                </Flex>
             </Box>
-            <Text Size="2" Color="gray" Mt="2">
-                Leading trim removes extra space above and below headings for better alignment
-            </Text>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Margin Props</h2>
-        <div class="demo-content">
-            <Box style="background: var(--gray-a2); padding: var(--space-4); border-radius: var(--radius-2);">
-                <Heading Size="4" M="0" style="background: var(--blue-a3);">No margin (M="0")</Heading>
-                <Heading Size="4" M="2" style="background: var(--green-a3);">Margin 2 all sides</Heading>
-                <Heading Size="4" Mx="4" My="1" style="background: var(--amber-a3);">Margin X=4, Y=1</Heading>
-                <Heading Size="4" Mt="3" Mb="3" style="background: var(--purple-a3);">Margin top & bottom = 3</Heading>
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Text Truncation</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Card Size="CardSize.Size3">
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="2">Without truncate (wraps naturally)</Text>
+                        <Box Width="400px">
+                            <Heading Size="4" Truncate="false">
+                                This is a very long heading that will wrap to multiple lines when the container is narrow
+                            </Heading>
+                        </Box>
+                    </Card>
+                    <Card Size="CardSize.Size3">
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="2">With truncate (shows ellipsis)</Text>
+                        <Box Width="400px">
+                            <Heading Size="4" Truncate="true">
+                                This is a very long heading that will be truncated with ellipsis when it overflows
+                            </Heading>
+                        </Box>
+                    </Card>
+                </Flex>
             </Box>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Practical Examples</h2>
-        <div class="demo-content">
-            <Box P="4" style="background: var(--gray-a2); border-radius: var(--radius-3);">
-                <Heading Size="8" Weight="TextWeight.Bold" Color="indigo" Mb="2">
-                    Welcome to Our Platform
-                </Heading>
-                <Heading As="h2" Size="5" Color="gray" Weight="TextWeight.Regular" Mb="4">
-                    Build amazing experiences with our powerful components
-                </Heading>
-                
-                <Heading As="h3" Size="4" Weight="TextWeight.Medium" Mt="4" Mb="2">
-                    Key Features
-                </Heading>
-                <Text Size="3" Color="gray">
-                    Our component library provides everything you need to build modern web applications.
-                </Text>
-                
-                <Heading As="h3" Size="4" Weight="TextWeight.Medium" Mt="4" Mb="2">
-                    Getting Started
-                </Heading>
-                <Text Size="3" Color="gray">
-                    Installation is quick and easy. Just add our package to your project and start building.
-                </Text>
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Text Wrap Options</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Card Size="CardSize.Size2">
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="2">Normal Wrap</Text>
+                        <Box Width="400px">
+                            <Heading Size="4" Wrap="TextWrap.Wrap">
+                                This heading will wrap normally to the next line
+                            </Heading>
+                        </Box>
+                    </Card>
+                    <Card Size="CardSize.Size2">
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="2">No Wrap</Text>
+                        <Box Width="400px" Style="overflow: auto;">
+                            <Heading Size="4" Wrap="TextWrap.NoWrap">
+                                This heading will not wrap and continues on the same line
+                            </Heading>
+                        </Box>
+                    </Card>
+                    <Card Size="CardSize.Size2">
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="2">Pretty Wrap</Text>
+                        <Box Width="400px">
+                            <Heading Size="4" Wrap="TextWrap.Pretty">
+                                This heading uses optimized wrapping for better readability
+                            </Heading>
+                        </Box>
+                    </Card>
+                    <Card Size="CardSize.Size2">
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="2">Balanced Wrap</Text>
+                        <Box Width="400px">
+                            <Heading Size="4" Wrap="TextWrap.Balance">
+                                This heading balances line lengths for better appearance
+                            </Heading>
+                        </Box>
+                    </Card>
+                </Flex>
             </Box>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Article Example</h2>
-        <div class="demo-content">
-            <Box MaxWidth="800px" P="5" style="background: white; border-radius: var(--radius-3); box-shadow: var(--shadow-4);">
-                <Heading Size="7" Weight="TextWeight.Bold" Mb="2">
-                    The Future of Web Development
-                </Heading>
-                <Text Size="2" Color="gray" Mb="4">
-                    Published on December 15, 2024 • 5 min read
-                </Text>
-                
-                <Heading As="h2" Size="5" Weight="TextWeight.Medium" Mt="4" Mb="2">
-                    Introduction
-                </Heading>
-                <Text Size="3" Mb="3">
-                    Web development continues to evolve at a rapid pace, with new frameworks and tools emerging regularly.
-                </Text>
-                
-                <Heading As="h2" Size="5" Weight="TextWeight.Medium" Mt="4" Mb="2">
-                    Modern Frameworks
-                </Heading>
-                <Text Size="3" Mb="3">
-                    Today's developers have more choices than ever when it comes to building web applications.
-                </Text>
-                
-                <Heading As="h3" Size="4" Weight="TextWeight.Medium" Mt="3" Mb="2">
-                    Component-Based Architecture
-                </Heading>
-                <Text Size="3" Mb="3">
-                    The shift towards component-based development has revolutionized how we build user interfaces.
-                </Text>
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Leading Trim</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Flex Gap="4">
+                            <Box P="3" Style="background: var(--blue-a3); border-radius: var(--radius-2);">
+                                <Heading Size="7" Trim="false">Without Trim</Heading>
+                                <Box Style="background: var(--red-a5); height: 1px; margin-top: -1px;"></Box>
+                            </Box>
+                            <Box P="3" Style="background: var(--blue-a3); border-radius: var(--radius-2);">
+                                <Heading Size="7" Trim="true">With Trim</Heading>
+                                <Box Style="background: var(--red-a5); height: 1px; margin-top: -1px;"></Box>
+                            </Box>
+                        </Flex>
+                        <Text Size="2" Color="gray">
+                            Leading trim removes extra space above and below headings for better alignment with other elements.
+                        </Text>
+                    </Flex>
+                </Card>
             </Box>
-        </div>
-    </div>
-</div>
 
-<style>
-    .demo-container {
-        padding: var(--space-4);
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Spacing with Margin Props</Heading>
+                <Card Size="CardSize.Size3">
+                    <Box Style="background: var(--gray-a2); padding: var(--space-4); border-radius: var(--radius-2);">
+                        <Heading Size="4" M="0" Style="background: var(--blue-a3);">No margin (M="0")</Heading>
+                        <Heading Size="4" M="2" Style="background: var(--green-a3);">Margin 2 all sides</Heading>
+                        <Heading Size="4" Mx="4" My="1" Style="background: var(--amber-a3);">Margin X=4, Y=1</Heading>
+                        <Heading Size="4" Mt="3" Mb="3" Style="background: var(--purple-a3);">Margin top & bottom = 3</Heading>
+                    </Box>
+                </Card>
+            </Box>
 
-    .demo-section {
-        margin-bottom: var(--space-6);
-    }
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Practical Examples</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Card Size="CardSize.Size3">
+                        <Box P="4">
+                            <Heading Size="8" Weight="TextWeight.Bold" Color="indigo" Mb="2">
+                                Welcome to Our Platform
+                            </Heading>
+                            <Heading As="h2" Size="5" Color="gray" Weight="TextWeight.Regular" Mb="4">
+                                Build amazing experiences with our powerful components
+                            </Heading>
+                            
+                            <Heading As="h3" Size="4" Weight="TextWeight.Medium" Mt="4" Mb="2">
+                                Key Features
+                            </Heading>
+                            <Text Size="3" Color="gray">
+                                Our component library provides everything you need to build modern web applications.
+                            </Text>
+                            
+                            <Heading As="h3" Size="4" Weight="TextWeight.Medium" Mt="4" Mb="2">
+                                Getting Started
+                            </Heading>
+                            <Text Size="3" Color="gray">
+                                Installation is quick and easy. Just add our package to your project and start building.
+                            </Text>
+                        </Box>
+                    </Card>
+                    
+                    <Card Size="CardSize.Size3">
+                        <Box P="5" Style="background: white; border-radius: var(--radius-3); box-shadow: var(--shadow-4);">
+                            <Heading Size="7" Weight="TextWeight.Bold" Mb="2">
+                                The Future of Web Development
+                            </Heading>
+                            <Text Size="2" Color="gray" Mb="4">
+                                Published on December 15, 2024 • 5 min read
+                            </Text>
+                            
+                            <Heading As="h2" Size="5" Weight="TextWeight.Medium" Mt="4" Mb="2">
+                                Introduction
+                            </Heading>
+                            <Text Size="3" Mb="3">
+                                Web development continues to evolve at a rapid pace, with new frameworks and tools emerging regularly.
+                            </Text>
+                            
+                            <Heading As="h2" Size="5" Weight="TextWeight.Medium" Mt="4" Mb="2">
+                                Modern Frameworks
+                            </Heading>
+                            <Text Size="3" Mb="3">
+                                Today's developers have more choices than ever when it comes to building web applications.
+                            </Text>
+                            
+                            <Heading As="h3" Size="4" Weight="TextWeight.Medium" Mt="3" Mb="2">
+                                Component-Based Architecture
+                            </Heading>
+                            <Text Size="3" Mb="3">
+                                The shift towards component-based development has revolutionized how we build user interfaces.
+                            </Text>
+                        </Box>
+                    </Card>
+                </Flex>
+            </Box>
 
-    .demo-section h2 {
-        margin-bottom: var(--space-3);
-        font-size: var(--font-size-4);
-        font-weight: var(--font-weight-bold);
-        color: var(--gray-12);
-    }
-
-    .demo-content {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-2);
-    }
-</style>
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Hierarchy Demonstration</Heading>
+                <Card Size="CardSize.Size3">
+                    <Heading As="h1" Size="8" Mb="3">Document Title (H1)</Heading>
+                    <Text Size="3" Mb="4">This is the main heading of the document, semantically marked as H1 but styled as Size 8.</Text>
+                    
+                    <Heading As="h2" Size="6" Mb="2">Chapter Heading (H2)</Heading>
+                    <Text Size="3" Mb="3">Major sections use H2 tags with Size 6 styling for proper hierarchy.</Text>
+                    
+                    <Heading As="h3" Size="5" Mb="2">Section Heading (H3)</Heading>
+                    <Text Size="3" Mb="3">Subsections use H3 tags with Size 5 styling.</Text>
+                    
+                    <Heading As="h4" Size="4" Mb="2">Subsection Heading (H4)</Heading>
+                    <Text Size="3" Mb="3">Further subdivisions use H4 with Size 4.</Text>
+                    
+                    <Heading As="h5" Size="3" Mb="2">Minor Heading (H5)</Heading>
+                    <Text Size="3" Mb="3">Small sections use H5 with Size 3.</Text>
+                    
+                    <Heading As="h6" Size="2" Mb="2">Detail Heading (H6)</Heading>
+                    <Text Size="3">The smallest semantic heading uses H6 with Size 2 styling.</Text>
+                </Card>
+            </Box>
+        </Flex>
+    </Section>
+</Container>

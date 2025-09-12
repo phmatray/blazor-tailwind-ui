@@ -1,185 +1,363 @@
 @page "/box-demo"
 @using ShadBz.BlazorApp.Components.UI
 
-<PageTitle>Box Demo</PageTitle>
+<PageTitle>Box Component - Radix UI Blazor</PageTitle>
 
-<div class="demo-container">
-    <h1>Box Component Demo</h1>
-
-    <div class="demo-section">
-        <h2>Basic Box Usage</h2>
-        <Box P="4" style="background: var(--gray-a3); border-radius: var(--radius-3);">
-            This is a basic Box with padding
-        </Box>
-    </div>
-
-    <div class="demo-section">
-        <h2>As Prop (div vs span)</h2>
-        <div style="display: flex; gap: var(--space-3); align-items: center;">
-            <Box As="div" P="3" style="background: var(--blue-a3); border-radius: var(--radius-2);">
-                I'm a div (block)
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="HeadingSize.Size8" Mb="2">Box</Heading>
+                <Text Size="4" Color="gray">
+                    The foundational building block for layout and spacing.
+                </Text>
             </Box>
-            <Box As="span" P="3" style="background: var(--green-a3); border-radius: var(--radius-2);">
-                I'm a span (inline)
-            </Box>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Display Values</h2>
-        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
-            <Box Display="inline-block" P="2" style="background: var(--amber-a3);">inline-block</Box>
-            <Box Display="inline" P="2" style="background: var(--purple-a3);">inline</Box>
-            <Box Display="block" P="2" style="background: var(--red-a3);">block</Box>
-        </div>
-    </div>
+            <!-- Basic Usage -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Basic Usage</Heading>
+                <Card>
+                    <Box P="4" Style="background: var(--gray-a3); border-radius: var(--radius-3);">
+                        <Text>This is a basic Box with padding</Text>
+                    </Box>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>Margin Examples</h2>
-        <div style="background: var(--gray-a2); padding: var(--space-4);">
-            <Box M="0" P="3" style="background: var(--blue-3);">No margin (M="0")</Box>
-            <Box M="2" P="3" style="background: var(--green-3);">Margin 2 all sides</Box>
-            <Box Mx="4" My="2" P="3" style="background: var(--amber-3);">Margin X=4, Y=2</Box>
-            <Box Mt="3" Mb="3" P="3" style="background: var(--purple-3);">Margin top & bottom = 3</Box>
-        </div>
-    </div>
+            <!-- Element Type -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Element Type (As Prop)</Heading>
+                <Card>
+                    <Flex Gap="3" Align="FlexAlign.Center">
+                        <Box As="div" P="3" Style="background: var(--blue-a3); border-radius: var(--radius-2);">
+                            <Text Size="2">div (block)</Text>
+                        </Box>
+                        <Box As="span" P="3" Style="background: var(--green-a3); border-radius: var(--radius-2);">
+                            <Text Size="2">span (inline)</Text>
+                        </Box>
+                    </Flex>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>Padding Examples</h2>
-        <Box P="1" Mb="2" style="background: var(--red-a3);">Padding 1</Box>
-        <Box P="2" Mb="2" style="background: var(--blue-a3);">Padding 2</Box>
-        <Box P="3" Mb="2" style="background: var(--green-a3);">Padding 3</Box>
-        <Box P="4" Mb="2" style="background: var(--amber-a3);">Padding 4</Box>
-        <Box P="5" Mb="2" style="background: var(--purple-a3);">Padding 5</Box>
-        <Box Px="6" Py="2" style="background: var(--cyan-a3);">Padding X=6, Y=2</Box>
-    </div>
+            <!-- Display Values -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Display Property</Heading>
+                <Card>
+                    <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                        <Box Display="inline-block" P="2" Style="background: var(--amber-a3); border-radius: var(--radius-2);">
+                            <Text Size="2">inline-block</Text>
+                        </Box>
+                        <Box Display="inline" P="2" Style="background: var(--purple-a3); border-radius: var(--radius-2);">
+                            <Text Size="2">inline</Text>
+                        </Box>
+                        <Box Display="block" P="2" Style="background: var(--red-a3); border-radius: var(--radius-2);">
+                            <Text Size="2">block</Text>
+                        </Box>
+                        <Box Display="flex" P="2" Style="background: var(--blue-a3); border-radius: var(--radius-2);">
+                            <Text Size="2">flex</Text>
+                        </Box>
+                        <Box Display="grid" P="2" Style="background: var(--green-a3); border-radius: var(--radius-2);">
+                            <Text Size="2">grid</Text>
+                        </Box>
+                    </Flex>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>Size Properties</h2>
-        <Box Width="200px" Height="100px" P="3" style="background: var(--blue-a3); border: 1px solid var(--blue-6);">
-            Fixed Width & Height (200px × 100px)
-        </Box>
-        <Box Width="50%" Mt="3" P="3" style="background: var(--green-a3); border: 1px solid var(--green-6);">
-            50% Width
-        </Box>
-        <Box MinWidth="300px" MaxWidth="500px" Mt="3" P="3" style="background: var(--amber-a3); border: 1px solid var(--amber-6);">
-            Min Width: 300px, Max Width: 500px (resize window to see effect)
-        </Box>
-    </div>
+            <!-- Margin -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Margin</Heading>
+                <Card>
+                    <Box P="4" Style="background: var(--gray-a2);">
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Box M="0" P="3" Style="background: var(--blue-3); border-radius: var(--radius-2);">
+                                <Text Size="2">M="0" - No margin</Text>
+                            </Box>
+                            <Box M="2" P="3" Style="background: var(--green-3); border-radius: var(--radius-2);">
+                                <Text Size="2">M="2" - Margin on all sides</Text>
+                            </Box>
+                            <Box Mx="4" My="2" P="3" Style="background: var(--amber-3); border-radius: var(--radius-2);">
+                                <Text Size="2">Mx="4" My="2" - Different X/Y margins</Text>
+                            </Box>
+                            <Box Mt="3" Mb="3" P="3" Style="background: var(--purple-3); border-radius: var(--radius-2);">
+                                <Text Size="2">Mt="3" Mb="3" - Top & bottom margins</Text>
+                            </Box>
+                        </Flex>
+                    </Box>
+                </Card>
+            </Box>
 
-    <div class="demo-section">
-        <h2>Position Examples</h2>
-        <Box Position="relative" Height="200px" P="3" style="background: var(--gray-a2); border: 1px solid var(--gray-6);">
-            <span>Parent (relative)</span>
-            <Box Position="absolute" Top="2" Right="2" P="2" style="background: var(--red-3); border-radius: var(--radius-2);">
-                Top Right
+            <!-- Padding -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Padding</Heading>
+                <Card>
+                    <Grid Columns="2" Gap="3">
+                        @for (int i = 1; i <= 6; i++)
+                        {
+                            <Box P="@i.ToString()" Style="background: var(--accent-a3); border-radius: var(--radius-2);">
+                                <Text Size="2" Align="TextAlign.Center">P="@i"</Text>
+                            </Box>
+                        }
+                        <Box Px="6" Py="2" Style="background: var(--cyan-a3); border-radius: var(--radius-2);">
+                            <Text Size="2" Align="TextAlign.Center">Px="6" Py="2"</Text>
+                        </Box>
+                        <Box Pt="4" Pb="1" Style="background: var(--pink-a3); border-radius: var(--radius-2);">
+                            <Text Size="2" Align="TextAlign.Center">Pt="4" Pb="1"</Text>
+                        </Box>
+                    </Grid>
+                </Card>
             </Box>
-            <Box Position="absolute" Bottom="2" Left="2" P="2" style="background: var(--blue-3); border-radius: var(--radius-2);">
-                Bottom Left
-            </Box>
-            <Box Position="absolute" Inset="0" Display="flex" style="align-items: center; justify-content: center;">
-                <Box P="2" style="background: var(--green-3); border-radius: var(--radius-2);">
-                    Centered (inset=0 + flex)
-                </Box>
-            </Box>
-        </Box>
-    </div>
 
-    <div class="demo-section">
-        <h2>Overflow Control</h2>
-        <Box Width="200px" Height="100px" Overflow="auto" P="3" style="background: var(--purple-a2); border: 1px solid var(--purple-6);">
-            <Box Width="300px">
-                This content is wider than the container.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                The container has overflow="auto" so it will scroll.
+            <!-- Size Properties -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Sizing</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Box Width="200px" Height="100px" P="3" Style="background: var(--blue-a3); border: 1px solid var(--blue-6); border-radius: var(--radius-2);">
+                            <Text Size="2">Fixed: 200px × 100px</Text>
+                        </Box>
+                        <Box Width="50%" P="3" Style="background: var(--green-a3); border: 1px solid var(--green-6); border-radius: var(--radius-2);">
+                            <Text Size="2">50% Width</Text>
+                        </Box>
+                        <Box MinWidth="200px" MaxWidth="400px" P="3" Style="background: var(--amber-a3); border: 1px solid var(--amber-6); border-radius: var(--radius-2);">
+                            <Text Size="2">Min: 200px, Max: 400px</Text>
+                        </Box>
+                    </Flex>
+                </Card>
             </Box>
-        </Box>
-    </div>
 
-    <div class="demo-section">
-        <h2>Flexbox Properties</h2>
-        <div style="display: flex; gap: var(--space-2); height: 100px; background: var(--gray-a2); padding: var(--space-2);">
-            <Box FlexGrow="0" FlexShrink="0" P="2" style="background: var(--red-3);">
-                No grow/shrink
+            <!-- Position -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Positioning</Heading>
+                <Card>
+                    <Box Position="relative" Height="200px" P="3" Style="background: var(--gray-a2); border: 1px solid var(--gray-6); border-radius: var(--radius-2);">
+                        <Text Size="2">Parent (relative)</Text>
+                        <Box Position="absolute" Top="2" Right="2" P="2" Style="background: var(--red-3); border-radius: var(--radius-2);">
+                            <Text Size="1">Top Right</Text>
+                        </Box>
+                        <Box Position="absolute" Bottom="2" Left="2" P="2" Style="background: var(--blue-3); border-radius: var(--radius-2);">
+                            <Text Size="1">Bottom Left</Text>
+                        </Box>
+                        <Box Position="absolute" Inset="0" Display="flex" Style="align-items: center; justify-content: center;">
+                            <Box P="2" Style="background: var(--green-3); border-radius: var(--radius-2);">
+                                <Text Size="1">Centered</Text>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Card>
             </Box>
-            <Box FlexGrow="1" P="2" style="background: var(--blue-3);">
-                Flex grow = 1
-            </Box>
-            <Box FlexGrow="1" AlignSelf="center" P="2" style="background: var(--green-3);">
-                Flex grow = 1, align-self = center
-            </Box>
-            <Box AlignSelf="end" P="2" style="background: var(--amber-3);">
-                Align-self = end
-            </Box>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Grid Properties</h2>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); background: var(--gray-a2); padding: var(--space-2);">
-            <Box GridColumn="span 2" P="3" style="background: var(--blue-3);">
-                Spans 2 columns
+            <!-- Overflow -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Overflow Control</Heading>
+                <Card>
+                    <Grid Columns="2" Gap="4">
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">Auto (scrollable)</Text>
+                            <Box Width="100%" Height="100px" Overflow="auto" P="3" Style="background: var(--purple-a2); border: 1px solid var(--purple-6); border-radius: var(--radius-2);">
+                                <Box Width="200%">
+                                    <Text Size="2">
+                                        This content is wider than the container.
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </Text>
+                                </Box>
+                            </Box>
+                        </Box>
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">Hidden (clipped)</Text>
+                            <Box Width="100%" Height="100px" Overflow="hidden" P="3" Style="background: var(--cyan-a2); border: 1px solid var(--cyan-6); border-radius: var(--radius-2);">
+                                <Text Size="2">
+                                    This content is clipped if it exceeds the container.
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Additional content that won't be visible...
+                                </Text>
+                            </Box>
+                        </Box>
+                    </Grid>
+                </Card>
             </Box>
-            <Box P="3" style="background: var(--green-3);">
-                Normal
+
+            <!-- Flexbox Properties -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Flexbox Properties</Heading>
+                <Card>
+                    <Box Display="flex" Gap="3" P="3" Style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                        <Box FlexGrow="0" FlexShrink="0" P="2" Style="background: var(--blue-3); border-radius: var(--radius-2);">
+                            <Text Size="2">No grow/shrink</Text>
+                        </Box>
+                        <Box FlexGrow="1" P="2" Style="background: var(--green-3); border-radius: var(--radius-2);">
+                            <Text Size="2">Grow: 1</Text>
+                        </Box>
+                        <Box FlexGrow="2" P="2" Style="background: var(--amber-3); border-radius: var(--radius-2);">
+                            <Text Size="2">Grow: 2</Text>
+                        </Box>
+                    </Box>
+                </Card>
             </Box>
-            <Box P="3" style="background: var(--amber-3);">
-                Normal
+
+            <!-- Grid Properties -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Grid Properties</Heading>
+                <Card>
+                    <Box Display="grid" GridTemplateColumns="1fr 2fr 1fr" Gap="3" P="3" Style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                        <Box P="3" Style="background: var(--red-3); border-radius: var(--radius-2);">
+                            <Text Size="2">1fr</Text>
+                        </Box>
+                        <Box GridColumn="span 2" P="3" Style="background: var(--blue-3); border-radius: var(--radius-2);">
+                            <Text Size="2">Span 2 columns</Text>
+                        </Box>
+                        <Box GridRow="span 2" P="3" Style="background: var(--green-3); border-radius: var(--radius-2);">
+                            <Text Size="2">Span 2 rows</Text>
+                        </Box>
+                        <Box P="3" Style="background: var(--amber-3); border-radius: var(--radius-2);">
+                            <Text Size="2">Auto</Text>
+                        </Box>
+                    </Box>
+                </Card>
             </Box>
-            <Box GridColumn="span 3" P="3" style="background: var(--purple-3);">
-                Spans all 3 columns
+
+            <!-- Interactive Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Interactive Example</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Grid Columns="3" Gap="3">
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Padding</Text>
+                                <SelectRoot @bind-Value="_selectedPadding">
+                                    <SelectTrigger TValue="string">
+                                        <Text>P="@_selectedPadding"</Text>
+                                    </SelectTrigger>
+                                    <SelectContent TValue="string">
+                                        @for (int i = 0; i <= 6; i++)
+                                        {
+                                            <SelectItem TValue="string" Value="@i.ToString()">@i</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Margin</Text>
+                                <SelectRoot @bind-Value="_selectedMargin">
+                                    <SelectTrigger TValue="string">
+                                        <Text>M="@_selectedMargin"</Text>
+                                    </SelectTrigger>
+                                    <SelectContent TValue="string">
+                                        @for (int i = 0; i <= 6; i++)
+                                        {
+                                            <SelectItem TValue="string" Value="@i.ToString()">@i</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Display</Text>
+                                <SelectRoot @bind-Value="_selectedDisplay">
+                                    <SelectTrigger TValue="string">
+                                        <Text>@_selectedDisplay</Text>
+                                    </SelectTrigger>
+                                    <SelectContent TValue="string">
+                                        @foreach (var display in new[] { "block", "inline-block", "flex", "grid", "none" })
+                                        {
+                                            <SelectItem TValue="string" Value="@display">@display</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                        </Grid>
+                        
+                        <Separator />
+                        
+                        <Box P="4" Style="background: var(--gray-a2); border-radius: var(--radius-3);">
+                            <Box 
+                                P="@_selectedPadding" 
+                                M="@_selectedMargin" 
+                                Display="@_selectedDisplay"
+                                Style="background: var(--accent-3); border-radius: var(--radius-2); border: 2px dashed var(--accent-6);">
+                                <Text Size="3">Interactive Box</Text>
+                                <Text Size="2" Color="gray" Mt="1">
+                                    Adjust the controls to see changes
+                                </Text>
+                            </Box>
+                        </Box>
+                    </Flex>
+                </Card>
             </Box>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>Custom Values (non-space-scale)</h2>
-        <Box Width="calc(100% - 40px)" P="20px" M="20px" style="background: var(--cyan-a3); border: 2px dashed var(--cyan-6);">
-            Using custom CSS values: width="calc(100% - 40px)", padding="20px", margin="20px"
-        </Box>
-    </div>
-
-    <div class="demo-section">
-        <h2>Nested Boxes</h2>
-        <Box P="4" style="background: var(--gray-a3); border-radius: var(--radius-3);">
-            <Box P="3" Mb="3" style="background: var(--blue-a3); border-radius: var(--radius-2);">
-                <Box P="2" style="background: var(--blue-a4); border-radius: var(--radius-1);">
-                    Deeply nested Box components
-                </Box>
+            <!-- Practical Examples -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Practical Examples</Heading>
+                <Grid Columns="2" Gap="4">
+                    <!-- Card Layout -->
+                    <Card>
+                        <Heading Size="HeadingSize.Size4" Mb="3">Card Layout</Heading>
+                        <Box>
+                            <Box Height="150px" Style="background: var(--gray-3); border-radius: var(--radius-2) var(--radius-2) 0 0;"></Box>
+                            <Box P="3">
+                                <Heading Size="HeadingSize.Size3">Product Title</Heading>
+                                <Text Size="2" Color="gray" Mt="1">Product description goes here</Text>
+                                <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center" Mt="3">
+                                    <Text Size="4" Weight="TextWeight.Bold">$99.99</Text>
+                                    <Button Size="ButtonSize.Small">Add to Cart</Button>
+                                </Flex>
+                            </Box>
+                        </Box>
+                    </Card>
+                    
+                    <!-- Sidebar Layout -->
+                    <Card>
+                        <Heading Size="HeadingSize.Size4" Mb="3">Sidebar Layout</Heading>
+                        <Box Display="flex" Height="200px">
+                            <Box Width="60px" P="2" Style="background: var(--gray-12); border-radius: var(--radius-2) 0 0 var(--radius-2);">
+                                <Flex Direction="FlexDirection.Column" Gap="2">
+                                    @for (int i = 0; i < 4; i++)
+                                    {
+                                        <Box Height="40px" Style="background: var(--gray-10); border-radius: var(--radius-1);"></Box>
+                                    }
+                                </Flex>
+                            </Box>
+                            <Box FlexGrow="1" P="3" Style="background: var(--gray-2);">
+                                <Text Size="3" Weight="TextWeight.Medium">Main Content</Text>
+                                <Text Size="2" Color="gray" Mt="2">
+                                    Content area with flexible width
+                                </Text>
+                            </Box>
+                        </Box>
+                    </Card>
+                    
+                    <!-- Centered Content -->
+                    <Card>
+                        <Heading Size="HeadingSize.Size4" Mb="3">Centered Content</Heading>
+                        <Box Height="200px" Display="flex" Style="align-items: center; justify-content: center; background: var(--gray-a2); border-radius: var(--radius-2);">
+                            <Box P="4" Style="background: white; border-radius: var(--radius-3); box-shadow: var(--shadow-3);">
+                                <Text Size="3" Align="TextAlign.Center">Perfectly Centered</Text>
+                            </Box>
+                        </Box>
+                    </Card>
+                    
+                    <!-- Sticky Header -->
+                    <Card>
+                        <Heading Size="HeadingSize.Size4" Mb="3">Sticky Header</Heading>
+                        <Box Height="200px" Overflow="auto" Style="border: 1px solid var(--gray-6); border-radius: var(--radius-2);">
+                            <Box Position="sticky" Top="0" P="2" Style="background: var(--gray-12); color: white; z-index: 1;">
+                                <Text Size="2" Weight="TextWeight.Medium">Sticky Header</Text>
+                            </Box>
+                            @for (int i = 1; i <= 10; i++)
+                            {
+                                <Box P="2" Style="border-bottom: 1px solid var(--gray-4);">
+                                    <Text Size="2">Item @i</Text>
+                                </Box>
+                            }
+                        </Box>
+                    </Card>
+                </Grid>
             </Box>
-            <Box P="3" style="background: var(--green-a3); border-radius: var(--radius-2);">
-                Another nested Box
-            </Box>
-        </Box>
-    </div>
+        </Flex>
+    </Section>
+</Container>
 
-    <div class="demo-section">
-        <h2>Responsive Design (Simulated)</h2>
-        <Box 
-            P="2" 
-            Width="100%" 
-            style="background: var(--purple-a3); border-radius: var(--radius-2);">
-            This Box could have responsive props in a full implementation
-        </Box>
-    </div>
-</div>
-
-<style>
-    .demo-container {
-        padding: var(--space-4);
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .demo-section {
-        margin-bottom: var(--space-6);
-    }
-
-    .demo-section h2 {
-        margin-bottom: var(--space-3);
-        font-size: var(--font-size-4);
-        font-weight: var(--font-weight-bold);
-        color: var(--gray-12);
-    }
-</style>
+@code {
+    private string _selectedPadding = "3";
+    private string _selectedMargin = "2";
+    private string _selectedDisplay = "block";
+}
