@@ -632,12 +632,12 @@ module.exports = {
 - [x] Create demo page
 
 #### 31. Tabs
-- [ ] Create Tabs.razor and Tabs.razor.cs
-- [ ] Create TabsList, TabsTrigger, TabsContent
-- [ ] Implement size variants
-- [ ] Add orientation support
-- [ ] Support keyboard navigation
-- [ ] Create demo page
+- [x] Create TabsRoot.razor and TabsRoot.razor.cs
+- [x] Create TabsList, TabsTrigger, TabsContent
+- [x] Implement variant support (Classic/Surface/Ghost)
+- [x] Add orientation support (Horizontal/Vertical)
+- [x] Support controlled/uncontrolled with DefaultValue
+- [x] Create demo page
 
 #### 32. ScrollArea
 - [ ] Create ScrollArea.razor and ScrollArea.razor.cs

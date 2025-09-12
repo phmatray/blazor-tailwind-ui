@@ -1,0 +1,25 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ComponentBase
+@typeparam TValue
+@implements IDisposable
+
+@if (IsActive)
+{
+    <div class="@ContentCssClass"
+         role="tabpanel"
+         data-state="@(IsActive ? "active" : "inactive")"
+         tabindex="0">
+        @ChildContent
+    </div>
+}
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public bool ForceMount { get; set; }
+    
+    private string ContentCssClass => new CssBuilder("rt-TabsContent")
+        .AddClass("rt-r-p-4")
+        .Build();
+    
+    private bool IsActive => TabsRoot?.IsTabActive(Value) ?? false;
+}

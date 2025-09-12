@@ -1,0 +1,26 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ComponentBase
+@typeparam TValue
+@implements IDisposable
+
+<button class="@TriggerCssClass"
+        role="tab"
+        type="button"
+        aria-selected="@IsActive"
+        data-state="@(IsActive ? "active" : "inactive")"
+        disabled="@Disabled"
+        @onclick="HandleClick">
+    @ChildContent
+</button>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    
+    private string TriggerCssClass => new CssBuilder("rt-TabsTrigger")
+        .AddClass("rt-r-size-2")
+        .AddClass("rt-active", IsActive)
+        .AddClass("rt-disabled", Disabled)
+        .Build();
+    
+    private bool IsActive => TabsRoot?.IsTabActive(Value) ?? false;
+}
