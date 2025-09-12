@@ -607,13 +607,13 @@ module.exports = {
 - [x] Support icons and shortcuts
 - [x] Create demo page
 
-#### 28. ContextMenu
-- [ ] Create ContextMenu.razor and ContextMenu.razor.cs
-- [ ] Create ContextMenuTrigger, ContextMenuContent, ContextMenuItem
-- [ ] Implement right-click handling
-- [ ] Add keyboard navigation
-- [ ] Support sub-menus
-- [ ] Create demo page
+#### 28. ContextMenu ✅
+- [x] Create ContextMenu.razor and ContextMenu.razor.cs
+- [x] Create ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuLabel
+- [x] Implement right-click handling with position tracking
+- [x] Add keyboard navigation (Escape to close)
+- [x] Support modal/non-modal behavior
+- [x] Create demo page
 
 #### 29. Tooltip
 - [ ] Create Tooltip.razor and Tooltip.razor.cs

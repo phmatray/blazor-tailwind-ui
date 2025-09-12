@@ -1,0 +1,6 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ComponentBase
+
+<div @oncontextmenu="HandleContextMenu" @oncontextmenu:preventDefault="true" style="display: contents;">
+    @ChildContent
+</div>

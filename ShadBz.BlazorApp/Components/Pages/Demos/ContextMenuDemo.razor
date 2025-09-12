@@ -1,0 +1,380 @@
+@page "/demos/context-menu"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>ContextMenu Component - Radix UI Blazor</PageTitle>
+
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="HeadingSize.Size8" Mb="2">ContextMenu</Heading>
+                <Text Size="4" Color="gray">
+                    Displays a menu located at the pointer, triggered by a right-click or a long-press.
+                </Text>
+            </Box>
+
+            <!-- Basic ContextMenu -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Basic ContextMenu</Heading>
+                <Card>
+                    <ContextMenuRoot>
+                        <ContextMenuTrigger>
+                            <Box P="6" Style="background: var(--gray-a2); border: 2px dashed var(--gray-a6); border-radius: var(--radius-3); text-align: center; cursor: context-menu;">
+                                <Text Size="3">Right-click here to open context menu</Text>
+                            </Box>
+                        </ContextMenuTrigger>
+                        <ContextMenuContent>
+                            <ContextMenuItem OnSelect="@(() => _lastAction = "Back")">Back</ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _lastAction = "Forward")" Disabled="true">Forward</ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _lastAction = "Reload")">Reload</ContextMenuItem>
+                            <ContextMenuSeparator />
+                            <ContextMenuItem OnSelect="@(() => _lastAction = "Save As")">Save As...</ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _lastAction = "Print")">Print...</ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _lastAction = "Cast")">Cast...</ContextMenuItem>
+                            <ContextMenuSeparator />
+                            <ContextMenuItem OnSelect="@(() => _lastAction = "View Page Source")">View Page Source</ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _lastAction = "Inspect")">Inspect</ContextMenuItem>
+                        </ContextMenuContent>
+                    </ContextMenuRoot>
+                    
+                    @if (!string.IsNullOrEmpty(_lastAction))
+                    {
+                        <Box Mt="3">
+                            <Text Size="2">Last action: @_lastAction</Text>
+                        </Box>
+                    }
+                </Card>
+            </Box>
+
+            <!-- ContextMenu with Shortcuts -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">With Shortcuts</Heading>
+                <Card>
+                    <ContextMenuRoot>
+                        <ContextMenuTrigger>
+                            <Box P="6" Style="background: var(--blue-a2); border: 2px dashed var(--blue-a6); border-radius: var(--radius-3); text-align: center; cursor: context-menu;">
+                                <Text Size="3" Color="blue">Right-click for edit menu</Text>
+                            </Box>
+                        </ContextMenuTrigger>
+                        <ContextMenuContent>
+                            <ContextMenuItem Shortcut="⌘Z" OnSelect="@(() => _editAction = "Undo")">
+                                Undo
+                            </ContextMenuItem>
+                            <ContextMenuItem Shortcut="⇧⌘Z" OnSelect="@(() => _editAction = "Redo")">
+                                Redo
+                            </ContextMenuItem>
+                            <ContextMenuSeparator />
+                            <ContextMenuItem Shortcut="⌘X" OnSelect="@(() => _editAction = "Cut")">
+                                Cut
+                            </ContextMenuItem>
+                            <ContextMenuItem Shortcut="⌘C" OnSelect="@(() => _editAction = "Copy")">
+                                Copy
+                            </ContextMenuItem>
+                            <ContextMenuItem Shortcut="⌘V" OnSelect="@(() => _editAction = "Paste")">
+                                Paste
+                            </ContextMenuItem>
+                            <ContextMenuSeparator />
+                            <ContextMenuItem Shortcut="⌘A" OnSelect="@(() => _editAction = "Select All")">
+                                Select All
+                            </ContextMenuItem>
+                        </ContextMenuContent>
+                    </ContextMenuRoot>
+                    
+                    @if (!string.IsNullOrEmpty(_editAction))
+                    {
+                        <Box Mt="3">
+                            <Text Size="2">Edit action: @_editAction</Text>
+                        </Box>
+                    }
+                </Card>
+            </Box>
+
+            <!-- ContextMenu with Labels -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">With Labels and Groups</Heading>
+                <Card>
+                    <ContextMenuRoot>
+                        <ContextMenuTrigger>
+                            <Box P="6" Style="background: var(--green-a2); border: 2px dashed var(--green-a6); border-radius: var(--radius-3); text-align: center; cursor: context-menu;">
+                                <Text Size="3" Color="green">Right-click for grouped menu</Text>
+                            </Box>
+                        </ContextMenuTrigger>
+                        <ContextMenuContent>
+                            <ContextMenuLabel>Development</ContextMenuLabel>
+                            <ContextMenuItem OnSelect="@(() => _devAction = "Console")">Console</ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _devAction = "Network")">Network</ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _devAction = "Sources")">Sources</ContextMenuItem>
+                            <ContextMenuSeparator />
+                            <ContextMenuLabel>Navigation</ContextMenuLabel>
+                            <ContextMenuItem OnSelect="@(() => _devAction = "Back")">Back</ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _devAction = "Forward")">Forward</ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _devAction = "Reload")">Reload</ContextMenuItem>
+                            <ContextMenuSeparator />
+                            <ContextMenuItem Color="red" OnSelect="@(() => _devAction = "Clear Data")">
+                                Clear Data
+                            </ContextMenuItem>
+                        </ContextMenuContent>
+                    </ContextMenuRoot>
+                    
+                    @if (!string.IsNullOrEmpty(_devAction))
+                    {
+                        <Box Mt="3">
+                            <Text Size="2">Developer action: @_devAction</Text>
+                        </Box>
+                    }
+                </Card>
+            </Box>
+
+            <!-- Controlled ContextMenu -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Controlled ContextMenu</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Switch @bind-Checked="_isContextMenuOpen" />
+                            <Text Size="2">ContextMenu is @(_isContextMenuOpen ? "open" : "closed")</Text>
+                        </Flex>
+                        
+                        <ContextMenuRoot @bind-Open="_isContextMenuOpen">
+                            <ContextMenuTrigger>
+                                <Box P="6" Style="background: var(--gray-a2); border: 2px dashed var(--gray-a6); border-radius: var(--radius-3); text-align: center; cursor: context-menu;">
+                                    <Text Size="3">Right-click here (controlled)</Text>
+                                </Box>
+                            </ContextMenuTrigger>
+                            <ContextMenuContent>
+                                <ContextMenuItem>Option 1</ContextMenuItem>
+                                <ContextMenuItem>Option 2</ContextMenuItem>
+                                <ContextMenuItem>Option 3</ContextMenuItem>
+                            </ContextMenuContent>
+                        </ContextMenuRoot>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <!-- Multiple ContextMenus -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Multiple Context Areas</Heading>
+                <Card>
+                    <Grid Columns="3" Gap="3">
+                        <ContextMenuRoot>
+                            <ContextMenuTrigger>
+                                <Box P="4" Style="background: var(--red-a2); border: 1px solid var(--red-a6); border-radius: var(--radius-2); text-align: center; cursor: context-menu;">
+                                    <Text Size="2" Color="red">File Menu</Text>
+                                </Box>
+                            </ContextMenuTrigger>
+                            <ContextMenuContent>
+                                <ContextMenuItem>New</ContextMenuItem>
+                                <ContextMenuItem>Open</ContextMenuItem>
+                                <ContextMenuItem>Save</ContextMenuItem>
+                                <ContextMenuSeparator />
+                                <ContextMenuItem>Exit</ContextMenuItem>
+                            </ContextMenuContent>
+                        </ContextMenuRoot>
+                        
+                        <ContextMenuRoot>
+                            <ContextMenuTrigger>
+                                <Box P="4" Style="background: var(--green-a2); border: 1px solid var(--green-a6); border-radius: var(--radius-2); text-align: center; cursor: context-menu;">
+                                    <Text Size="2" Color="green">Edit Menu</Text>
+                                </Box>
+                            </ContextMenuTrigger>
+                            <ContextMenuContent>
+                                <ContextMenuItem>Cut</ContextMenuItem>
+                                <ContextMenuItem>Copy</ContextMenuItem>
+                                <ContextMenuItem>Paste</ContextMenuItem>
+                            </ContextMenuContent>
+                        </ContextMenuRoot>
+                        
+                        <ContextMenuRoot>
+                            <ContextMenuTrigger>
+                                <Box P="4" Style="background: var(--blue-a2); border: 1px solid var(--blue-a6); border-radius: var(--radius-2); text-align: center; cursor: context-menu;">
+                                    <Text Size="2" Color="blue">View Menu</Text>
+                                </Box>
+                            </ContextMenuTrigger>
+                            <ContextMenuContent>
+                                <ContextMenuItem>Zoom In</ContextMenuItem>
+                                <ContextMenuItem>Zoom Out</ContextMenuItem>
+                                <ContextMenuItem>Full Screen</ContextMenuItem>
+                            </ContextMenuContent>
+                        </ContextMenuRoot>
+                    </Grid>
+                </Card>
+            </Box>
+
+            <!-- Image Context Menu -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Image Context Menu</Heading>
+                <Card>
+                    <ContextMenuRoot>
+                        <ContextMenuTrigger>
+                            <Box P="6" Style="background: linear-gradient(135deg, var(--purple-9), var(--pink-9)); border-radius: var(--radius-3); text-align: center; cursor: context-menu; color: white;">
+                                <Text Size="4" Weight="TextWeight.Bold">🖼️ Right-click this image area</Text>
+                            </Box>
+                        </ContextMenuTrigger>
+                        <ContextMenuContent>
+                            <ContextMenuItem OnSelect="@(() => _imageAction = "Open Image in New Tab")">
+                                Open Image in New Tab
+                            </ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _imageAction = "Save Image As")">
+                                Save Image As...
+                            </ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _imageAction = "Copy Image")">
+                                Copy Image
+                            </ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _imageAction = "Copy Image Address")">
+                                Copy Image Address
+                            </ContextMenuItem>
+                            <ContextMenuSeparator />
+                            <ContextMenuItem OnSelect="@(() => _imageAction = "Search Image with Google")">
+                                Search Image with Google
+                            </ContextMenuItem>
+                            <ContextMenuItem OnSelect="@(() => _imageAction = "Inspect")">
+                                Inspect
+                            </ContextMenuItem>
+                        </ContextMenuContent>
+                    </ContextMenuRoot>
+                    
+                    @if (!string.IsNullOrEmpty(_imageAction))
+                    {
+                        <Box Mt="3">
+                            <Text Size="2">Image action: @_imageAction</Text>
+                        </Box>
+                    }
+                </Card>
+            </Box>
+
+            <!-- Table Row Context Menu -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Table Row Context Menu</Heading>
+                <Card>
+                    <Box Style="overflow: auto;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="border-bottom: 1px solid var(--gray-a6);">
+                                    <th style="padding: 8px; text-align: left;">Name</th>
+                                    <th style="padding: 8px; text-align: left;">Status</th>
+                                    <th style="padding: 8px; text-align: left;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 1; i <= 3; i++)
+                                {
+                                    var index = i;
+                                    <ContextMenuRoot>
+                                        <ContextMenuTrigger>
+                                            <tr style="border-bottom: 1px solid var(--gray-a3); cursor: context-menu;" 
+                                                onmouseover="this.style.backgroundColor='var(--gray-a2)'" 
+                                                onmouseout="this.style.backgroundColor='transparent'">
+                                                <td style="padding: 8px;">Item @index</td>
+                                                <td style="padding: 8px;">
+                                                    <Badge Color="@(index == 1 ? "green" : index == 2 ? "yellow" : "red")">
+                                                        @(index == 1 ? "Active" : index == 2 ? "Pending" : "Inactive")
+                                                    </Badge>
+                                                </td>
+                                                <td style="padding: 8px;">Right-click for options</td>
+                                            </tr>
+                                        </ContextMenuTrigger>
+                                        <ContextMenuContent>
+                                            <ContextMenuItem OnSelect="@(() => _tableAction = $"Edit Item {index}")">
+                                                Edit
+                                            </ContextMenuItem>
+                                            <ContextMenuItem OnSelect="@(() => _tableAction = $"Duplicate Item {index}")">
+                                                Duplicate
+                                            </ContextMenuItem>
+                                            <ContextMenuSeparator />
+                                            <ContextMenuItem OnSelect="@(() => _tableAction = $"Archive Item {index}")">
+                                                Archive
+                                            </ContextMenuItem>
+                                            <ContextMenuItem Color="red" OnSelect="@(() => _tableAction = $"Delete Item {index}")">
+                                                Delete
+                                            </ContextMenuItem>
+                                        </ContextMenuContent>
+                                    </ContextMenuRoot>
+                                }
+                            </tbody>
+                        </table>
+                    </Box>
+                    
+                    @if (!string.IsNullOrEmpty(_tableAction))
+                    {
+                        <Box Mt="3">
+                            <Text Size="2">Table action: @_tableAction</Text>
+                        </Box>
+                    }
+                </Card>
+            </Box>
+
+            <!-- Interactive Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Interactive Example</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Grid Columns="2" Gap="3">
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Size</Text>
+                                <SelectRoot @bind-Value="_selectedSize">
+                                    <SelectTrigger TValue="string" Placeholder="Select size" />
+                                    <SelectContent TValue="string">
+                                        @foreach (var size in Enum.GetValues<ContextMenuSize>())
+                                        {
+                                            <SelectItem TValue="string" Value="@size.ToString()">@size</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Modal</Text>
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Switch @bind-Checked="_isModal" />
+                                    <Text Size="2">@(_isModal ? "Modal" : "Non-modal")</Text>
+                                </Flex>
+                            </Box>
+                        </Grid>
+                        
+                        <Separator />
+                        
+                        <ContextMenuRoot Modal="@_isModal">
+                            <ContextMenuTrigger>
+                                <Box P="6" Style="background: var(--accent-a2); border: 2px dashed var(--accent-a6); border-radius: var(--radius-3); text-align: center; cursor: context-menu;">
+                                    <Text Size="3" Color="accent">Custom Context Menu (Right-click)</Text>
+                                </Box>
+                            </ContextMenuTrigger>
+                            <ContextMenuContent Size="@GetContextMenuSize()">
+                                <ContextMenuLabel>Custom Menu</ContextMenuLabel>
+                                <ContextMenuItem OnSelect="@(() => _customAction = "Action 1")">Action 1</ContextMenuItem>
+                                <ContextMenuItem OnSelect="@(() => _customAction = "Action 2")">Action 2</ContextMenuItem>
+                                <ContextMenuItem OnSelect="@(() => _customAction = "Action 3")">Action 3</ContextMenuItem>
+                                <ContextMenuSeparator />
+                                <ContextMenuItem Disabled="true">Disabled Action</ContextMenuItem>
+                                <ContextMenuItem Color="red" OnSelect="@(() => _customAction = "Danger Action")">
+                                    Danger Action
+                                </ContextMenuItem>
+                            </ContextMenuContent>
+                        </ContextMenuRoot>
+                        
+                        @if (!string.IsNullOrEmpty(_customAction))
+                        {
+                            <Box P="3" Style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                                <Text Size="2">Selected: @_customAction</Text>
+                            </Box>
+                        }
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Section>
+</Container>
+
+@code {
+    private string? _lastAction;
+    private string? _editAction;
+    private string? _devAction;
+    private string? _imageAction;
+    private string? _tableAction;
+    private string? _customAction;
+    private bool _isContextMenuOpen = false;
+    private string _selectedSize = "Size2";
+    private bool _isModal = true;
+    
+    private ContextMenuSize GetContextMenuSize() => Enum.Parse<ContextMenuSize>(_selectedSize);
+}
