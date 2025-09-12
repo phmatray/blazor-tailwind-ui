@@ -1,0 +1,317 @@
+@page "/demos/alert-dialog"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>AlertDialog Component - Radix UI Blazor</PageTitle>
+
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="HeadingSize.Size8" Mb="2">AlertDialog</Heading>
+                <Text Size="4" Color="gray">
+                    A modal dialog that interrupts the user with important content and expects a response.
+                </Text>
+            </Box>
+
+            <!-- Basic AlertDialog -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Basic AlertDialog</Heading>
+                <Card>
+                    <AlertDialogRoot>
+                        <AlertDialogTrigger>
+                            <Button Variant="ButtonVariant.Outline">Show Alert</Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                This action cannot be undone. This will permanently delete your
+                                account and remove your data from our servers.
+                            </AlertDialogDescription>
+                            <Flex Gap="3" Mt="5" Justify="FlexJustify.End">
+                                <AlertDialogCancel AsChild="true">
+                                    <Button Variant="ButtonVariant.Soft">Cancel</Button>
+                                </AlertDialogCancel>
+                                <AlertDialogAction AsChild="true">
+                                    <Button Color="red">Continue</Button>
+                                </AlertDialogAction>
+                            </Flex>
+                        </AlertDialogContent>
+                    </AlertDialogRoot>
+                </Card>
+            </Box>
+
+            <!-- AlertDialog Sizes -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">AlertDialog Sizes</Heading>
+                <Card>
+                    <Flex Gap="3" Wrap="FlexWrap.Wrap">
+                        @foreach (var size in Enum.GetValues<AlertDialogSize>())
+                        {
+                            <AlertDialogRoot>
+                                <AlertDialogTrigger>
+                                    <Button Variant="ButtonVariant.Outline">@size</Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent Size="@size">
+                                    <AlertDialogTitle>@size AlertDialog</AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        This is a @size sized alert dialog. Notice how the width changes based on the size.
+                                    </AlertDialogDescription>
+                                    <Flex Gap="3" Mt="5" Justify="FlexJustify.End">
+                                        <AlertDialogCancel AsChild="true">
+                                            <Button Variant="ButtonVariant.Ghost">Cancel</Button>
+                                        </AlertDialogCancel>
+                                        <AlertDialogAction AsChild="true">
+                                            <Button>Continue</Button>
+                                        </AlertDialogAction>
+                                    </Flex>
+                                </AlertDialogContent>
+                            </AlertDialogRoot>
+                        }
+                    </Flex>
+                </Card>
+            </Box>
+
+            <!-- Controlled AlertDialog -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Controlled AlertDialog</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Switch @bind-Checked="_isAlertOpen" />
+                            <Text Size="2">AlertDialog is @(_isAlertOpen ? "open" : "closed")</Text>
+                        </Flex>
+                        
+                        <AlertDialogRoot @bind-Open="_isAlertOpen">
+                            <AlertDialogTrigger>
+                                <Button>Open Controlled AlertDialog</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogTitle>Controlled AlertDialog</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                    This alert dialog's open state is controlled by the parent component.
+                                </AlertDialogDescription>
+                                <Text Size="2" Mt="4">
+                                    You can toggle the alert dialog using the switch above or close it normally.
+                                </Text>
+                                <Flex Gap="3" Mt="5" Justify="FlexJustify.End">
+                                    <AlertDialogCancel AsChild="true">
+                                        <Button Variant="ButtonVariant.Ghost">Cancel</Button>
+                                    </AlertDialogCancel>
+                                    <AlertDialogAction AsChild="true">
+                                        <Button>OK</Button>
+                                    </AlertDialogAction>
+                                </Flex>
+                            </AlertDialogContent>
+                        </AlertDialogRoot>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <!-- Delete Account Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Delete Account Example</Heading>
+                <Card>
+                    <AlertDialogRoot>
+                        <AlertDialogTrigger>
+                            <Button Color="red" Variant="ButtonVariant.Soft">Delete Account</Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent Size="AlertDialogSize.Size3">
+                            <AlertDialogTitle>Delete Account</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                Are you sure you want to delete your account? This action is permanent and cannot be undone.
+                            </AlertDialogDescription>
+                            
+                            <Box Mt="4" P="3" Style="background: var(--red-a3); border: 1px solid var(--red-a6); border-radius: var(--radius-2);">
+                                <Text Size="2" Color="red">
+                                    <strong>Warning:</strong> All your data will be permanently removed. This includes:
+                                </Text>
+                                <ul style="margin: 8px 0 0 20px; padding: 0;">
+                                    <li><Text Size="2" Color="red">All your projects and files</Text></li>
+                                    <li><Text Size="2" Color="red">Your account settings and preferences</Text></li>
+                                    <li><Text Size="2" Color="red">Your subscription and billing history</Text></li>
+                                </ul>
+                            </Box>
+                            
+                            <Flex Gap="3" Mt="5" Justify="FlexJustify.End">
+                                <AlertDialogCancel AsChild="true">
+                                    <Button Variant="ButtonVariant.Ghost">Cancel</Button>
+                                </AlertDialogCancel>
+                                <AlertDialogAction AsChild="true" OnClick="@(() => _deleteMessage = "Account deleted (simulated)")">
+                                    <Button Color="red">Yes, delete my account</Button>
+                                </AlertDialogAction>
+                            </Flex>
+                        </AlertDialogContent>
+                    </AlertDialogRoot>
+                    
+                    @if (!string.IsNullOrEmpty(_deleteMessage))
+                    {
+                        <Box Mt="3">
+                            <Text Size="2" Color="red">@_deleteMessage</Text>
+                        </Box>
+                    }
+                </Card>
+            </Box>
+
+            <!-- Unsaved Changes Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Unsaved Changes Example</Heading>
+                <Card>
+                    <AlertDialogRoot>
+                        <AlertDialogTrigger>
+                            <Button Variant="ButtonVariant.Outline">Leave Page</Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                            <AlertDialogTitle>Unsaved Changes</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                You have unsaved changes. Are you sure you want to leave? Your changes will be lost.
+                            </AlertDialogDescription>
+                            <Flex Gap="3" Mt="5" Justify="FlexJustify.End">
+                                <AlertDialogCancel AsChild="true">
+                                    <Button Variant="ButtonVariant.Ghost">Stay on page</Button>
+                                </AlertDialogCancel>
+                                <AlertDialogAction AsChild="true">
+                                    <Button Variant="ButtonVariant.Soft">Leave without saving</Button>
+                                </AlertDialogAction>
+                            </Flex>
+                        </AlertDialogContent>
+                    </AlertDialogRoot>
+                </Card>
+            </Box>
+
+            <!-- Logout Confirmation -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Logout Confirmation</Heading>
+                <Card>
+                    <AlertDialogRoot>
+                        <AlertDialogTrigger>
+                            <Button Variant="ButtonVariant.Ghost">
+                                Sign Out
+                            </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent Size="AlertDialogSize.Size2">
+                            <AlertDialogTitle>Sign Out</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                Are you sure you want to sign out of your account?
+                            </AlertDialogDescription>
+                            <Flex Gap="3" Mt="5" Justify="FlexJustify.End">
+                                <AlertDialogCancel AsChild="true">
+                                    <Button Variant="ButtonVariant.Ghost">Cancel</Button>
+                                </AlertDialogCancel>
+                                <AlertDialogAction AsChild="true">
+                                    <Button>Sign Out</Button>
+                                </AlertDialogAction>
+                            </Flex>
+                        </AlertDialogContent>
+                    </AlertDialogRoot>
+                </Card>
+            </Box>
+
+            <!-- Custom Action Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Custom Action Example</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <AlertDialogRoot>
+                            <AlertDialogTrigger>
+                                <Button>Process Data</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogTitle>Process Data</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                    This will start processing your data. The operation may take several minutes.
+                                </AlertDialogDescription>
+                                <Flex Gap="3" Mt="5" Justify="FlexJustify.End">
+                                    <AlertDialogCancel AsChild="true">
+                                        <Button Variant="ButtonVariant.Ghost">Cancel</Button>
+                                    </AlertDialogCancel>
+                                    <AlertDialogAction OnClick="@ProcessData" AsChild="true">
+                                        <Button>Start Processing</Button>
+                                    </AlertDialogAction>
+                                </Flex>
+                            </AlertDialogContent>
+                        </AlertDialogRoot>
+                        
+                        @if (!string.IsNullOrEmpty(_processMessage))
+                        {
+                            <Box P="3" Style="background: var(--green-a3); border: 1px solid var(--green-a6); border-radius: var(--radius-2);">
+                                <Text Size="2" Color="green">@_processMessage</Text>
+                            </Box>
+                        }
+                    </Flex>
+                </Card>
+            </Box>
+
+            <!-- Interactive Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Interactive Example</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Grid Columns="2" Gap="3">
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Size</Text>
+                                <SelectRoot @bind-Value="_selectedSize">
+                                    <SelectTrigger TValue="string" Placeholder="Select size" />
+                                    <SelectContent TValue="string">
+                                        @foreach (var size in Enum.GetValues<AlertDialogSize>())
+                                        {
+                                            <SelectItem TValue="string" Value="@size.ToString()">@size</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Title</Text>
+                                <TextFieldRoot Size="TextFieldSize.Size2" @bind-Value="_customTitle" Placeholder="Enter title" />
+                            </Box>
+                        </Grid>
+                        
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="2">Description</Text>
+                            <TextAreaField Size="TextAreaSize.Size2" @bind-Value="_customDescription" Placeholder="Enter description" />
+                        </Box>
+                        
+                        <Separator />
+                        
+                        <AlertDialogRoot>
+                            <AlertDialogTrigger>
+                                <Button>Open Custom AlertDialog</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent Size="@GetAlertDialogSize()">
+                                <AlertDialogTitle>@(_customTitle ?? "Custom AlertDialog")</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                    @(_customDescription ?? "This is a customizable alert dialog.")
+                                </AlertDialogDescription>
+                                <Flex Gap="3" Mt="5" Justify="FlexJustify.End">
+                                    <AlertDialogCancel AsChild="true">
+                                        <Button Variant="ButtonVariant.Ghost">Cancel</Button>
+                                    </AlertDialogCancel>
+                                    <AlertDialogAction AsChild="true">
+                                        <Button>Continue</Button>
+                                    </AlertDialogAction>
+                                </Flex>
+                            </AlertDialogContent>
+                        </AlertDialogRoot>
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Section>
+</Container>
+
+@code {
+    private bool _isAlertOpen = false;
+    private string _selectedSize = "Size2";
+    private string? _customTitle = "Important Notice";
+    private string? _customDescription = "This is an important message that requires your attention.";
+    private string? _deleteMessage;
+    private string? _processMessage;
+    
+    private AlertDialogSize GetAlertDialogSize() => Enum.Parse<AlertDialogSize>(_selectedSize);
+    
+    private void ProcessData(MouseEventArgs e)
+    {
+        _processMessage = "Data processing started successfully!";
+        StateHasChanged();
+    }
+}

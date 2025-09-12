@@ -1,0 +1,13 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@inherits ComponentBase
+
+@if (AsChild)
+{
+    @ChildContent
+}
+else
+{
+    <button @onclick="HandleClick" class="rt-AlertDialogAction">
+        @ChildContent
+    </button>
+}

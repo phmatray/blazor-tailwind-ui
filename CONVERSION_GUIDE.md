@@ -584,12 +584,12 @@ module.exports = {
 - [x] Add overlay with click-to-close functionality
 - [x] Create comprehensive demo page with multiple examples
 
-#### 25. AlertDialog
-- [ ] Create AlertDialog.razor and AlertDialog.razor.cs
-- [ ] Create AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel
-- [ ] Implement proper focus management
-- [ ] Add size variants
-- [ ] Create demo page
+#### 25. AlertDialog ✅
+- [x] Create AlertDialog.razor and AlertDialog.razor.cs
+- [x] Create AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel
+- [x] Implement proper focus management
+- [x] Add size variants
+- [x] Create demo page
 
 #### 26. Popover
 - [ ] Create Popover.razor and Popover.razor.cs
