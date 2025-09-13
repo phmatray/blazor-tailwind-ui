@@ -1,0 +1,12 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@using ShadBz.BlazorApp.Components.UI.Base
+@inherits SpacingComponentBase
+
+@if (AsChild)
+{
+    @ChildContent
+}
+else
+{
+    <em class="@EmCssClass" @attributes="AdditionalAttributes">@ChildContent</em>
+}

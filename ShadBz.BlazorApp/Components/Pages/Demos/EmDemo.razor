@@ -1,0 +1,219 @@
+@page "/demos/em"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Em Component Demo</PageTitle>
+
+<Container Size="ContainerSize.Size2">
+    <Flex Direction="FlexDirection.Column" Gap="8">
+        <Heading Size="HeadingSize.Size8">Em Component Demo</Heading>
+        
+        @* Basic Example *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Basic Usage</Heading>
+            <Text>
+                We <Em>had</Em> to do something about it.
+            </Text>
+        </Flex>
+        
+        @* Multiple Emphasized Words *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Multiple Emphasized Words</Heading>
+            <Text>
+                I <Em>really</Em> think you should <Em>reconsider</Em> this decision.
+            </Text>
+            <Text>
+                The results were <Em>surprisingly</Em> positive, <Em>much</Em> better than expected.
+            </Text>
+        </Flex>
+        
+        @* Truncate Example *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Truncated Emphasis</Heading>
+            <Flex MaxWidth="300px">
+                <Text>
+                    <Em Truncate="true">
+                        This is a very long emphasized text that will be truncated with an ellipsis 
+                        when it exceeds the width of its container
+                    </Em>
+                </Text>
+            </Flex>
+        </Flex>
+        
+        @* Wrap Options *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Wrap Options</Heading>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Wrap (default)</Text>
+                <Box MaxWidth="250px" P="3" Style="border: 1px solid var(--gray-6);">
+                    <Text>
+                        <Em Wrap="EmWrap.Wrap">
+                            This emphasized text demonstrates how text wrapping works with different wrap options
+                        </Em>
+                    </Text>
+                </Box>
+            </Box>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Nowrap</Text>
+                <Box MaxWidth="250px" P="3" Style="border: 1px solid var(--gray-6); overflow: auto;">
+                    <Text>
+                        <Em Wrap="EmWrap.Nowrap">
+                            This emphasized text demonstrates how text wrapping works with different wrap options
+                        </Em>
+                    </Text>
+                </Box>
+            </Box>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Pretty</Text>
+                <Box MaxWidth="250px" P="3" Style="border: 1px solid var(--gray-6);">
+                    <Text>
+                        <Em Wrap="EmWrap.Pretty">
+                            This emphasized text demonstrates how text wrapping works with different wrap options
+                        </Em>
+                    </Text>
+                </Box>
+            </Box>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Balance</Text>
+                <Box MaxWidth="250px" P="3" Style="border: 1px solid var(--gray-6);">
+                    <Text>
+                        <Em Wrap="EmWrap.Balance">
+                            This emphasized text demonstrates how text wrapping works with different wrap options
+                        </Em>
+                    </Text>
+                </Box>
+            </Box>
+        </Flex>
+        
+        @* In Different Contexts *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">In Different Contexts</Heading>
+            
+            <Card Size="CardSize.Size2">
+                <Text>
+                    Please note that <Em>all</Em> fields are required. 
+                    You <Em>must</Em> complete the form before submitting.
+                </Text>
+            </Card>
+            
+            <Callout Size="CalloutSize.Size2">
+                <Text>
+                    Remember: <Em>Never</Em> share your password with anyone, 
+                    <Em>even</Em> if they claim to be from support.
+                </Text>
+            </Callout>
+        </Flex>
+        
+        @* Combined with Other Formatting *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Combined with Other Formatting</Heading>
+            <Text>
+                The <Strong><Em>most important</Em></Strong> thing to remember is to <Em>always</Em> use <Code>const</Code> 
+                instead of <Code>let</Code> when the value won't change.
+            </Text>
+            <Text>
+                As Einstein said: <Quote><Em>Imagination</Em> is more important than knowledge</Quote>.
+            </Text>
+        </Flex>
+        
+        @* Nested Emphasis *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Nested Emphasis</Heading>
+            <Text>
+                <Em>
+                    This entire sentence is emphasized, but <Em style="font-style: normal; text-decoration: underline;">
+                    this part has different styling</Em> while still being semantic emphasis.
+                </Em>
+            </Text>
+        </Flex>
+        
+        @* With Different Text Sizes *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Different Text Sizes</Heading>
+            
+            <Text Size="TextSize.Size1">
+                Small text with <Em>emphasized words</Em>.
+            </Text>
+            
+            <Text Size="TextSize.Size3">
+                Regular text with <Em>emphasized words</Em>.
+            </Text>
+            
+            <Text Size="TextSize.Size5">
+                Large text with <Em>emphasized words</Em>.
+            </Text>
+            
+            <Text Size="TextSize.Size7">
+                Extra large text with <Em>emphasized words</Em>.
+            </Text>
+        </Flex>
+        
+        @* Real-World Examples *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Real-World Examples</Heading>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size3" Mb="2">Instructions</Heading>
+                <Text>
+                    Click the button <Em>once</Em> to submit. Do <Em>not</Em> click multiple times 
+                    as this may result in duplicate submissions.
+                </Text>
+            </Box>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size3" Mb="2">Book Quote</Heading>
+                <Text>
+                    The narrator explains: <Quote>I had <Em>never</Em> seen anything quite like it. 
+                    The colors were <Em>extraordinary</Em>, beyond anything I could have imagined.</Quote>
+                </Text>
+            </Box>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size3" Mb="2">Technical Documentation</Heading>
+                <Text>
+                    The <Code>useState</Code> hook should <Em>only</Em> be called at the top level 
+                    of your component. <Em>Never</Em> call it inside loops, conditions, or nested functions.
+                </Text>
+            </Box>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size3" Mb="2">Marketing Copy</Heading>
+                <Text Size="TextSize.Size4">
+                    Don't miss this <Em>limited time</Em> offer! 
+                    Get <Em>50% off</Em> all items today <Em>only</Em>!
+                </Text>
+            </Box>
+        </Flex>
+        
+        @* Emphasis vs Strong *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Emphasis vs Strong</Heading>
+            <Text>
+                Use <Em>em</Em> for stress emphasis (typically displayed as italic): 
+                <Em>I love pizza</Em> (as opposed to hating it).
+            </Text>
+            <Text>
+                Use <Strong>strong</Strong> for importance (typically displayed as bold): 
+                <Strong>Warning: Do not touch</Strong>.
+            </Text>
+            <Text>
+                You can combine them: <Strong>This is <Em>very</Em> important</Strong>.
+            </Text>
+        </Flex>
+        
+        @* Accessibility Note *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Accessibility Note</Heading>
+            <Callout Size="CalloutSize.Size2">
+                <Text>
+                    The <Em>em</Em> element represents stress emphasis of its contents. 
+                    Screen readers may announce emphasized text with verbal stress, 
+                    helping convey the intended meaning to users who rely on assistive technology.
+                </Text>
+            </Callout>
+        </Flex>
+    </Flex>
+</Container>

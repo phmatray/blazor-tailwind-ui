@@ -672,9 +672,9 @@ module.exports = {
 - [x] Create demo page
 
 #### 36. Em
-- [ ] Create Em.razor and Em.razor.cs
-- [ ] Support all text props
-- [ ] Create demo page
+- [x] Create Em.razor and Em.razor.cs
+- [x] Support all text props
+- [x] Create demo page
 
 #### 37. Kbd
 - [x] Create Kbd.razor and Kbd.razor.cs
