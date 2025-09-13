@@ -86,7 +86,7 @@ public class CalloutTests : TestContext
         var component = RenderComponent<Callout>(parameters => parameters
             .AddChildContent("Content"));
         
-        component.Find(".rt-CalloutRoot").Should().NotBeNull();
+        component.Find(".rt-Callout").Should().NotBeNull();
     }
     
     [Fact]

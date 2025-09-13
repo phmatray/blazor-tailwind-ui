@@ -8,5 +8,5 @@
 }
 else
 {
-    <blockquote class="@BlockquoteCssClass" @attributes="AdditionalAttributes">@ChildContent</blockquote>
+    <blockquote class="@BlockquoteCssClass" data-accent-color="@(Color?.ToLower())" @attributes="AdditionalAttributes">@ChildContent</blockquote>
 }

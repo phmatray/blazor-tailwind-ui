@@ -14,7 +14,6 @@ public enum StrongWrap
 
 public partial class Strong : SpacingComponentBase
 {
-    [Parameter] public new RenderFragment? ChildContent { get; set; }
     [Parameter] public bool AsChild { get; set; }
     [Parameter] public bool Truncate { get; set; }
     [Parameter] public StrongWrap? Wrap { get; set; }

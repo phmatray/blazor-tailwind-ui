@@ -112,7 +112,7 @@ public class HeadingTests : TestContext
             .Add(p => p.Trim, true)
             .AddChildContent("Heading"));
         
-        var classes = component.Find("h2").GetClasses();
+        var classes = component.Find("h1").GetClasses();
         classes.Should().Contain("rt-leading-trim-start");
         classes.Should().Contain("rt-leading-trim-end");
     }
@@ -150,7 +150,7 @@ public class HeadingTests : TestContext
             .Add(p => p.Mb, "4")
             .AddChildContent("Heading"));
         
-        var classes = component.Find("h2").GetClasses();
+        var classes = component.Find("h1").GetClasses();
         classes.Should().Contain("rt-r-m-3");
         classes.Should().Contain("rt-r-mt-4");
         classes.Should().Contain("rt-r-mb-4");

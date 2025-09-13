@@ -35,9 +35,8 @@ public enum BlockquoteWrap
 
 public partial class Blockquote : SpacingComponentBase
 {
-    [Parameter] public new RenderFragment? ChildContent { get; set; }
     [Parameter] public bool AsChild { get; set; }
-    [Parameter] public BlockquoteSize? Size { get; set; }
+    [Parameter] public BlockquoteSize? Size { get; set; } = BlockquoteSize.Size2;
     [Parameter] public BlockquoteWeight? Weight { get; set; }
     [Parameter] public string? Color { get; set; }
     [Parameter] public bool HighContrast { get; set; }
@@ -51,7 +50,6 @@ public partial class Blockquote : SpacingComponentBase
             var builder = new CssBuilder("rt-Blockquote")
                 .AddClass(GetSizeClass())
                 .AddClass(GetWeightClass())
-                .AddClass(GetColorClass())
                 .AddClass("rt-high-contrast", HighContrast)
                 .AddClass("rt-truncate", Truncate)
                 .AddClass(GetWrapClass())
@@ -84,14 +82,6 @@ public partial class Blockquote : SpacingComponentBase
         BlockquoteWeight.Bold => "rt-r-weight-bold",
         _ => ""
     };
-    
-    private string GetColorClass()
-    {
-        if (string.IsNullOrEmpty(Color))
-            return "";
-        
-        return $"var-color-{Color}";
-    }
     
     private string GetWrapClass() => Wrap switch
     {

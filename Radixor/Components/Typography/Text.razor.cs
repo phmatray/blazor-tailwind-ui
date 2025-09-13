@@ -11,7 +11,7 @@ public partial class Text : ComponentBase
     // Core Text properties
     [Parameter] public string As { get; set; } = "span"; // "span", "div", "label", "p"
     [Parameter] public bool AsChild { get; set; }
-    [Parameter] public string? Size { get; set; } // "1" through "9"
+    [Parameter] public string? Size { get; set; } = "2"; // "1" through "9"
     [Parameter] public TextWeight? Weight { get; set; }
     [Parameter] public TextAlign? Align { get; set; }
     [Parameter] public bool Trim { get; set; } // Leading trim for better alignment

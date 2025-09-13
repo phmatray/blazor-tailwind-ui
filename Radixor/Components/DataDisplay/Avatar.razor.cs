@@ -30,8 +30,7 @@ public partial class Avatar : SpacingComponentBase, IAsChildSupport
     {
         get
         {
-            var builder = new CssBuilder("rt-reset")
-                .AddClass("rt-AvatarRoot")
+            var builder = new CssBuilder("rt-Avatar")
                 .AddClass(GetSizeClass())
                 .AddClass(GetVariantClass())
                 .AddClass("rt-high-contrast", HighContrast)

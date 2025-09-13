@@ -9,7 +9,6 @@ public partial class Spinner : SpacingComponentBase
 {
     [Parameter] public SpinnerSize? Size { get; set; } = SpinnerSize.Size2;
     [Parameter] public bool Loading { get; set; } = true;
-    [Parameter] public new RenderFragment? ChildContent { get; set; }
     
     private string SpinnerCssClass
     {
@@ -39,6 +38,7 @@ public partial class Spinner : SpacingComponentBase
     {
         var attributes = GetAllAttributes();
         attributes["class"] = SpinnerCssClass;
+        attributes["aria-label"] = "Loading";
         
         var inlineStyles = BuildInlineStyles();
         if (!string.IsNullOrEmpty(inlineStyles))

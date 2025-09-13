@@ -14,7 +14,6 @@ public enum EmWrap
 
 public partial class Em : SpacingComponentBase
 {
-    [Parameter] public new RenderFragment? ChildContent { get; set; }
     [Parameter] public bool AsChild { get; set; }
     [Parameter] public bool Truncate { get; set; }
     [Parameter] public EmWrap? Wrap { get; set; }

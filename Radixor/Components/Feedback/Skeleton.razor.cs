@@ -17,40 +17,6 @@ public class SkeletonBase : SpacingComponentBase, IAsChildSupport
     /// </summary>
     [Parameter] public bool AsChild { get; set; }
     
-    /// <summary>
-    /// Content to show when not loading, or to wrap with skeleton when loading
-    /// </summary>
-    [Parameter] public new RenderFragment? ChildContent { get; set; }
-    
-    /// <summary>
-    /// Explicit width for the skeleton (e.g., "100px", "50%", "10rem")
-    /// </summary>
-    [Parameter] public new string? Width { get; set; }
-    
-    /// <summary>
-    /// Explicit height for the skeleton (e.g., "20px", "2rem", "1.5em")
-    /// </summary>
-    [Parameter] public new string? Height { get; set; }
-    
-    /// <summary>
-    /// Minimum width for the skeleton
-    /// </summary>
-    [Parameter] public new string? MinWidth { get; set; }
-    
-    /// <summary>
-    /// Maximum width for the skeleton
-    /// </summary>
-    [Parameter] public new string? MaxWidth { get; set; }
-    
-    /// <summary>
-    /// Minimum height for the skeleton
-    /// </summary>
-    [Parameter] public new string? MinHeight { get; set; }
-    
-    /// <summary>
-    /// Maximum height for the skeleton
-    /// </summary>
-    [Parameter] public new string? MaxHeight { get; set; }
     
     protected Dictionary<string, object> GetSkeletonAttributes()
     {
