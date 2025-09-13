@@ -1,0 +1,12 @@
+@namespace ShadBz.BlazorApp.Components.UI
+@using ShadBz.BlazorApp.Components.UI.Base
+@inherits SpacingComponentBase
+
+@if (AsChild)
+{
+    @ChildContent
+}
+else
+{
+    <blockquote class="@BlockquoteCssClass" @attributes="AdditionalAttributes">@ChildContent</blockquote>
+}

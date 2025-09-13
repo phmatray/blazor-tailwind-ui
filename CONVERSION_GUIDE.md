@@ -693,11 +693,11 @@ module.exports = {
 - [x] Create demo page
 
 #### 40. Blockquote
-- [ ] Create Blockquote.razor and Blockquote.razor.cs
-- [ ] Implement size prop
-- [ ] Add weight prop
-- [ ] Support color prop
-- [ ] Create demo page
+- [x] Create Blockquote.razor and Blockquote.razor.cs
+- [x] Implement size prop
+- [x] Add weight prop
+- [x] Support color prop
+- [x] Create demo page
 
 ---
 

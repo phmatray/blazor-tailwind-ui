@@ -1,0 +1,272 @@
+@page "/demos/blockquote"
+@using ShadBz.BlazorApp.Components.UI
+
+<PageTitle>Blockquote Component Demo</PageTitle>
+
+<Container Size="ContainerSize.Size2">
+    <Flex Direction="FlexDirection.Column" Gap="8">
+        <Heading Size="HeadingSize.Size8">Blockquote Component Demo</Heading>
+        
+        @* Basic Example *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Basic Usage</Heading>
+            <Blockquote>
+                Perfect typography is certainly the most elusive of all arts. Sculpture in stone alone comes near it in obstinacy.
+            </Blockquote>
+        </Flex>
+        
+        @* Sizes *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Sizes</Heading>
+            
+            <Blockquote Size="BlockquoteSize.Size1">
+                Size 1: The details are not the details. They make the design.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size2">
+                Size 2: The details are not the details. They make the design.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size3">
+                Size 3: The details are not the details. They make the design.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size4">
+                Size 4: The details are not the details. They make the design.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size5">
+                Size 5: The details are not the details. They make the design.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size6">
+                Size 6: The details are not the details. They make the design.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size7">
+                Size 7: The details are not the details. They make the design.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size8">
+                Size 8: The details are not the details. They make the design.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size9">
+                Size 9: The details are not the details. They make the design.
+            </Blockquote>
+        </Flex>
+        
+        @* Weights *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Weights</Heading>
+            
+            <Blockquote Size="BlockquoteSize.Size4" Weight="BlockquoteWeight.Light">
+                Light: Good design is a language, not a style.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size4" Weight="BlockquoteWeight.Regular">
+                Regular: Good design is a language, not a style.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size4" Weight="BlockquoteWeight.Medium">
+                Medium: Good design is a language, not a style.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size4" Weight="BlockquoteWeight.Bold">
+                Bold: Good design is a language, not a style.
+            </Blockquote>
+        </Flex>
+        
+        @* Colors *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Colors</Heading>
+            
+            <Blockquote Size="BlockquoteSize.Size4" Color="gray">
+                Gray: Design is not just what it looks like and feels like. Design is how it works.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size4" Color="blue">
+                Blue: Design is not just what it looks like and feels like. Design is how it works.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size4" Color="green">
+                Green: Design is not just what it looks like and feels like. Design is how it works.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size4" Color="red">
+                Red: Design is not just what it looks like and feels like. Design is how it works.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size4" Color="purple">
+                Purple: Design is not just what it looks like and feels like. Design is how it works.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size4" Color="orange">
+                Orange: Design is not just what it looks like and feels like. Design is how it works.
+            </Blockquote>
+        </Flex>
+        
+        @* High Contrast *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">High Contrast</Heading>
+            
+            <Blockquote Size="BlockquoteSize.Size4" Color="indigo">
+                Normal contrast: Simplicity is the ultimate sophistication.
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size4" Color="indigo" HighContrast="true">
+                High contrast: Simplicity is the ultimate sophistication.
+            </Blockquote>
+        </Flex>
+        
+        @* Truncate *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Truncate</Heading>
+            
+            <Box MaxWidth="400px">
+                <Blockquote Truncate="true">
+                    This is a very long quote that will be truncated with an ellipsis when it exceeds the width of its container. 
+                    Typography is the craft of endowing human language with a durable visual form, and thus with an independent existence.
+                </Blockquote>
+            </Box>
+        </Flex>
+        
+        @* Wrap Options *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Wrap Options</Heading>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Wrap (default)</Text>
+                <Box MaxWidth="300px" P="3" Style="border: 1px solid var(--gray-6);">
+                    <Blockquote Size="BlockquoteSize.Size3" Wrap="BlockquoteWrap.Wrap">
+                        This blockquote demonstrates how text wrapping works with different wrap options. 
+                        The text will wrap normally.
+                    </Blockquote>
+                </Box>
+            </Box>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Nowrap</Text>
+                <Box MaxWidth="300px" P="3" Style="border: 1px solid var(--gray-6); overflow: auto;">
+                    <Blockquote Size="BlockquoteSize.Size3" Wrap="BlockquoteWrap.Nowrap">
+                        This blockquote demonstrates how text wrapping works with different wrap options. The text will not wrap.
+                    </Blockquote>
+                </Box>
+            </Box>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Pretty</Text>
+                <Box MaxWidth="300px" P="3" Style="border: 1px solid var(--gray-6);">
+                    <Blockquote Size="BlockquoteSize.Size3" Wrap="BlockquoteWrap.Pretty">
+                        This blockquote demonstrates how text wrapping works with different wrap options. 
+                        The text will wrap with pretty formatting.
+                    </Blockquote>
+                </Box>
+            </Box>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Balance</Text>
+                <Box MaxWidth="300px" P="3" Style="border: 1px solid var(--gray-6);">
+                    <Blockquote Size="BlockquoteSize.Size3" Wrap="BlockquoteWrap.Balance">
+                        This blockquote demonstrates how text wrapping works with different wrap options. 
+                        The text will wrap with balanced line lengths.
+                    </Blockquote>
+                </Box>
+            </Box>
+        </Flex>
+        
+        @* With Attribution *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">With Attribution</Heading>
+            
+            <Blockquote Size="BlockquoteSize.Size4">
+                The best way to predict the future is to invent it.
+                <br />
+                <Text Size="TextSize.Size2" Color="gray">— Alan Kay</Text>
+            </Blockquote>
+            
+            <Blockquote Size="BlockquoteSize.Size5" Weight="BlockquoteWeight.Medium" Color="blue">
+                Innovation distinguishes between a leader and a follower.
+                <br />
+                <br />
+                <Text Size="TextSize.Size3" Weight="TextWeight.Regular" Color="gray">
+                    — Steve Jobs, Apple Inc.
+                </Text>
+            </Blockquote>
+        </Flex>
+        
+        @* In Different Contexts *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">In Different Contexts</Heading>
+            
+            <Card Size="CardSize.Size2">
+                <Blockquote Size="BlockquoteSize.Size3" Mb="3">
+                    Design is thinking made visual.
+                </Blockquote>
+                <Text Size="TextSize.Size2">
+                    This quote by Saul Bass perfectly captures the essence of design thinking.
+                </Text>
+            </Card>
+            
+            <Callout Size="CalloutSize.Size2">
+                <Blockquote Size="BlockquoteSize.Size2">
+                    Code is poetry.
+                </Blockquote>
+                <Text Size="TextSize.Size2" Mt="2">
+                    This philosophy drives clean, elegant programming.
+                </Text>
+            </Callout>
+        </Flex>
+        
+        @* Complex Example *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Complex Example</Heading>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size5" Mb="3">On Typography</Heading>
+                
+                <Blockquote Size="BlockquoteSize.Size4" Weight="BlockquoteWeight.Medium" Color="indigo" Mb="3">
+                    Typography has one plain duty before it and that is to convey information in writing. 
+                    No argument or consideration can absolve typography from this duty. 
+                    A printed work which cannot be read becomes a product without purpose.
+                </Blockquote>
+                
+                <Text Size="TextSize.Size2" Color="gray" Mb="2">
+                    — Emil Ruder, Swiss typographer and graphic designer
+                </Text>
+                
+                <Text>
+                    This principle remains fundamental to modern web design, where readability and 
+                    accessibility are paramount considerations.
+                </Text>
+            </Box>
+        </Flex>
+        
+        @* Multiple Blockquotes *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Multiple Blockquotes</Heading>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size3" Mb="3">Design Principles</Heading>
+                
+                <Blockquote Size="BlockquoteSize.Size3" Mb="3">
+                    Less is more.
+                    <br />
+                    <Text Size="TextSize.Size2" Color="gray">— Ludwig Mies van der Rohe</Text>
+                </Blockquote>
+                
+                <Blockquote Size="BlockquoteSize.Size3" Mb="3">
+                    Form follows function.
+                    <br />
+                    <Text Size="TextSize.Size2" Color="gray">— Louis Sullivan</Text>
+                </Blockquote>
+                
+                <Blockquote Size="BlockquoteSize.Size3">
+                    Good design is good business.
+                    <br />
+                    <Text Size="TextSize.Size2" Color="gray">— Thomas Watson Jr.</Text>
+                </Blockquote>
+            </Box>
+        </Flex>
+    </Flex>
+</Container>
