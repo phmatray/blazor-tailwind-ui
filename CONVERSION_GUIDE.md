@@ -664,12 +664,12 @@ module.exports = {
 - [x] Create demo page
 
 #### 35. Code
-- [ ] Create Code.razor and Code.razor.cs
-- [ ] Implement variant prop (solid, soft, outline, ghost)
-- [ ] Add size prop
-- [ ] Support color prop
-- [ ] Add weight prop
-- [ ] Create demo page
+- [x] Create Code.razor and Code.razor.cs
+- [x] Implement variant prop (solid, soft, outline, ghost)
+- [x] Add size prop (Size1-Size9)
+- [x] Support color prop
+- [x] Add weight prop (Light, Regular, Medium, Bold)
+- [x] Create demo page
 
 #### 36. Em
 - [ ] Create Em.razor and Em.razor.cs
@@ -677,10 +677,10 @@ module.exports = {
 - [ ] Create demo page
 
 #### 37. Kbd
-- [ ] Create Kbd.razor and Kbd.razor.cs
-- [ ] Implement size prop
-- [ ] Support key combinations
-- [ ] Create demo page
+- [x] Create Kbd.razor and Kbd.razor.cs
+- [x] Implement size prop
+- [x] Support key combinations
+- [x] Create demo page
 
 #### 38. Quote
 - [ ] Create Quote.razor and Quote.razor.cs
