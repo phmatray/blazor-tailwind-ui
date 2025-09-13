@@ -1,0 +1,32 @@
+@namespace Radixor.Components.Typography
+@inherits Radixor.Components.Base.SpacingComponentBase
+
+@* Link inherits from Text in Radix UI, so we wrap content in Text component *@
+<Text AsChild="true" 
+      Size="@Size" 
+      Weight="@Weight" 
+      Trim="@Trim" 
+      Truncate="@Truncate" 
+      Wrap="@Wrap" 
+      Color="@Color" 
+      HighContrast="@HighContrast"
+      M="@M" Mx="@Mx" My="@My" Mt="@Mt" Mr="@Mr" Mb="@Mb" Ml="@Ml">
+    @if (AsChild)
+    {
+        <CascadingValue Value="@GetLinkAttributes()" Name="LinkAttributes">
+            @ChildContent
+        </CascadingValue>
+    }
+    else if (ShouldRenderAsButton())
+    {
+        <button @attributes="GetLinkAttributes()">
+            @ChildContent
+        </button>
+    }
+    else
+    {
+        <a @attributes="GetLinkAttributes()">
+            @ChildContent
+        </a>
+    }
+</Text>

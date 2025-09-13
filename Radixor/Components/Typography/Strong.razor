@@ -1,0 +1,12 @@
+@namespace Radixor.Components.Typography
+@using Radixor.Components.Base
+@inherits SpacingComponentBase
+
+@if (AsChild)
+{
+    @ChildContent
+}
+else
+{
+    <strong class="@StrongCssClass" @attributes="AdditionalAttributes">@ChildContent</strong>
+}

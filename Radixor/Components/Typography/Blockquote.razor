@@ -1,0 +1,12 @@
+@namespace Radixor.Components.Typography
+@using Radixor.Components.Base
+@inherits SpacingComponentBase
+
+@if (AsChild)
+{
+    @ChildContent
+}
+else
+{
+    <blockquote class="@BlockquoteCssClass" @attributes="AdditionalAttributes">@ChildContent</blockquote>
+}

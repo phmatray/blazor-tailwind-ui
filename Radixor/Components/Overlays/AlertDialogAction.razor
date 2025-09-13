@@ -1,0 +1,13 @@
+@namespace Radixor.Components.Overlays
+@inherits ComponentBase
+
+@if (AsChild)
+{
+    @ChildContent
+}
+else
+{
+    <button @onclick="HandleClick" class="rt-AlertDialogAction">
+        @ChildContent
+    </button>
+}

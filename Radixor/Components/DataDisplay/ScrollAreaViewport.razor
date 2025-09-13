@@ -1,0 +1,15 @@
+@namespace Radixor.Components.DataDisplay
+@inherits ComponentBase
+@implements IDisposable
+
+<div class="@ViewportCssClass" style="@GetStyle()" @attributes="AdditionalAttributes">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    
+    private string ViewportCssClass => new CssBuilder("rt-ScrollAreaViewport")
+        .Build();
+}

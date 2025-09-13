@@ -1,0 +1,17 @@
+@namespace Radixor.Components.DataDisplay
+@inherits ComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <div class="@RootCssClass" style="@GetStyle()" @attributes="AdditionalAttributes">
+        @ChildContent
+    </div>
+</CascadingValue>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    
+    private string RootCssClass => new CssBuilder("rt-ScrollAreaRoot")
+        .AddClass($"rt-r-size-{((int)Size) + 1}")
+        .Build();
+}

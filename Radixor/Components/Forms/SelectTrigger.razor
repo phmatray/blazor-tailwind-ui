@@ -1,0 +1,19 @@
+@namespace Radixor.Components.Forms
+@inherits Radixor.Components.Base.SpacingComponentBase
+@typeparam TValue
+
+<button @attributes="GetTriggerAttributes()" @onclick="HandleClick">
+    <span class="rt-SelectTriggerInner">
+        @if (string.IsNullOrEmpty(DisplayText))
+        {
+            <span class="rt-SelectPlaceholder">@Placeholder</span>
+        }
+        else
+        {
+            <span>@DisplayText</span>
+        }
+    </span>
+    <svg width="9" height="9" viewBox="0 0 9 9" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="rt-SelectIcon">
+        <path d="M0.135254 2.11536C0.221309 2.02955 0.340411 1.98853 0.46054 1.99977L0.470122 2.00026L8.52988 2.00026C8.65772 2.00026 8.78028 2.05066 8.8704 2.14077C8.9605 2.23089 9.0109 2.35345 9.0109 2.48129C9.0109 2.60913 8.9605 2.73169 8.8704 2.82181L4.84051 6.85169C4.75039 6.9418 4.62783 6.9922 4.49999 6.9922C4.37215 6.9922 4.2496 6.9418 4.15948 6.85169L0.129595 2.82181C0.0436394 2.73575 -0.00275864 2.61664 -0.000130862 2.49365C0.00249692 2.37066 0.0537021 2.25372 0.143819 2.17183L0.135254 2.11536Z"></path>
+    </svg>
+</button>

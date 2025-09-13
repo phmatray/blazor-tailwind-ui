@@ -1,0 +1,15 @@
+@namespace Radixor.Components.DataDisplay
+@inherits Radixor.Components.Base.SpacingComponentBase
+
+@if (AsChild)
+{
+    <CascadingValue Value="@GetBadgeAttributes()" Name="BadgeAttributes">
+        @ChildContent
+    </CascadingValue>
+}
+else
+{
+    <span @attributes="GetBadgeAttributes()">
+        @ChildContent
+    </span>
+}

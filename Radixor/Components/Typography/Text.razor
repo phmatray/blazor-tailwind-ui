@@ -1,0 +1,33 @@
+@namespace Radixor.Components.Typography
+
+@if (AsChild)
+{
+    @* When AsChild is true, render only the child content with appropriate attributes *@
+    <CascadingValue Value="@GetTextAttributes()" Name="TextAttributes">
+        @ChildContent
+    </CascadingValue>
+}
+else if (As == "div")
+{
+    <div @attributes="GetAllAttributes()" class="@CssClass" data-accent-color="@Color">
+        @ChildContent
+    </div>
+}
+else if (As == "label")
+{
+    <label @attributes="GetAllAttributes()" class="@CssClass" data-accent-color="@Color">
+        @ChildContent
+    </label>
+}
+else if (As == "p")
+{
+    <p @attributes="GetAllAttributes()" class="@CssClass" data-accent-color="@Color">
+        @ChildContent
+    </p>
+}
+else
+{
+    <span @attributes="GetAllAttributes()" class="@CssClass" data-accent-color="@Color">
+        @ChildContent
+    </span>
+}

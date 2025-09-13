@@ -1,0 +1,21 @@
+@namespace Radixor.Components.Layout
+@inherits Radixor.Components.Base.GapComponentBase
+
+@if (AsChild)
+{
+    <CascadingValue Value="@GetGridAttributes()" Name="GridAttributes">
+        @ChildContent
+    </CascadingValue>
+}
+else if (As == "span")
+{
+    <span @attributes="GetAllAttributes()" class="@CssClass" style="@GetInlineStyles()">
+        @ChildContent
+    </span>
+}
+else
+{
+    <div @attributes="GetAllAttributes()" class="@CssClass" style="@GetInlineStyles()">
+        @ChildContent
+    </div>
+}

@@ -1,0 +1,6 @@
+@namespace Radixor.Components.Overlays
+@inherits ComponentBase
+
+<div @oncontextmenu="HandleContextMenu" @oncontextmenu:preventDefault="true" style="display: contents;">
+    @ChildContent
+</div>

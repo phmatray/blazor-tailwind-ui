@@ -1,0 +1,11 @@
+@namespace Radixor.Components.Forms
+@inherits Radixor.Components.Base.SpacingComponentBase
+
+<button type="button" 
+        role="switch" 
+        @attributes="GetSwitchAttributes()"
+        @onclick="HandleClick"
+        disabled="@Disabled"
+        aria-checked="@IsChecked.ToString().ToLower()">
+    <span class="rt-SwitchThumb"></span>
+</button>

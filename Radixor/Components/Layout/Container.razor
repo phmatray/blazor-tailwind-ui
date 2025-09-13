@@ -1,0 +1,19 @@
+@namespace Radixor.Components.Layout
+@inherits Radixor.Components.Base.SpacingComponentBase
+
+@if (AsChild)
+{
+    <CascadingValue Value="@GetContainerAttributes()" Name="ContainerAttributes">
+        <div class="@InnerCssClass" style="@GetInlineStyles()">
+            @ChildContent
+        </div>
+    </CascadingValue>
+}
+else
+{
+    <div @attributes="GetAllAttributes()" class="@CssClass" style="@GetInlineStyles()">
+        <div class="@InnerCssClass" style="@GetInlineStyles()">
+            @ChildContent
+        </div>
+    </div>
+}

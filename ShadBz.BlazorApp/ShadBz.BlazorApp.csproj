@@ -20,4 +20,8 @@
     <None Include="Styles\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Radixor\Radixor.csproj" />
+  </ItemGroup>
+
 </Project>
