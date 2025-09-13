@@ -1,0 +1,218 @@
+@page "/skeleton-demo"
+@using Radixor.Components.Feedback
+@using Radixor.Components.Layout
+@using Radixor.Components.Typography
+@using Radixor.Components.DataDisplay
+
+<PageTitle>Skeleton Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="8" Weight="TextWeight.Bold" Align="TextAlign.Center" Mb="2">
+                    Skeleton Component
+                </Heading>
+                <Text Size="5" Align="TextAlign.Center" Color="gray">
+                    Show loading placeholders for content
+                </Text>
+            </Box>
+
+            <!-- Basic Skeleton -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Basic Skeleton
+                </Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Skeleton Width="250px" Height="20px" />
+                    <Skeleton Width="200px" Height="20px" />
+                    <Skeleton Width="300px" Height="20px" />
+                </Flex>
+            </Box>
+
+            <!-- Text Skeleton -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Text Loading
+                </Heading>
+                <Flex Direction="FlexDirection.Column" Gap="2">
+                    <Text Size="3">
+                        <Skeleton Loading="@loading1">Lorem ipsum dolor sit amet</Skeleton>
+                    </Text>
+                    <Text Size="3">
+                        <Skeleton Loading="@loading1">Consectetur adipiscing elit</Skeleton>
+                    </Text>
+                    <Text Size="3">
+                        <Skeleton Loading="@loading1">Sed do eiusmod tempor incididunt</Skeleton>
+                    </Text>
+                </Flex>
+                <Box Mt="3">
+                    <Button Size="ButtonSize.Small" OnClick="@(() => loading1 = !loading1)">
+                        Toggle Loading
+                    </Button>
+                </Box>
+            </Box>
+
+            <!-- Avatar Skeleton -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Avatar with Skeleton
+                </Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <Skeleton Loading="@loading2">
+                        <Avatar Size="AvatarSize.Size4">
+                            <Fallback>JD</Fallback>
+                        </Avatar>
+                    </Skeleton>
+                    <Flex Direction="FlexDirection.Column" Gap="2">
+                        <Skeleton Loading="@loading2" Width="150px" Height="16px" />
+                        <Skeleton Loading="@loading2" Width="100px" Height="14px" />
+                    </Flex>
+                </Flex>
+                <Box Mt="3">
+                    <Button Size="ButtonSize.Small" OnClick="@(() => loading2 = !loading2)">
+                        Toggle Loading
+                    </Button>
+                </Box>
+            </Box>
+
+            <!-- Card Skeleton -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Card Skeleton
+                </Heading>
+                <Grid Columns="3" Gap="4">
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        <Card Size="CardSize.Size2">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Skeleton Height="120px" Width="100%" Loading="@loading3" />
+                                <Skeleton Height="20px" Width="80%" Loading="@loading3" />
+                                <Skeleton Height="16px" Width="100%" Loading="@loading3" />
+                                <Skeleton Height="16px" Width="90%" Loading="@loading3" />
+                            </Flex>
+                        </Card>
+                    }
+                </Grid>
+                <Box Mt="3">
+                    <Button Size="ButtonSize.Small" OnClick="@(() => loading3 = !loading3)">
+                        Toggle Loading
+                    </Button>
+                </Box>
+            </Box>
+
+            <!-- Table Skeleton -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Table Skeleton
+                </Heading>
+                <TableRoot Size="TableSize.Size2">
+                    <TableHeader>
+                        <TableRow>
+                            <TableColumnHeaderCell>Name</TableColumnHeaderCell>
+                            <TableColumnHeaderCell>Email</TableColumnHeaderCell>
+                            <TableColumnHeaderCell>Status</TableColumnHeaderCell>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        @for (int i = 0; i < 3; i++)
+                        {
+                            <TableRow>
+                                <TableCell>
+                                    <Skeleton Loading="@loading4" Width="120px" Height="16px" />
+                                </TableCell>
+                                <TableCell>
+                                    <Skeleton Loading="@loading4" Width="180px" Height="16px" />
+                                </TableCell>
+                                <TableCell>
+                                    <Skeleton Loading="@loading4" Width="80px" Height="16px" />
+                                </TableCell>
+                            </TableRow>
+                        }
+                    </TableBody>
+                </TableRoot>
+                <Box Mt="3">
+                    <Button Size="ButtonSize.Small" OnClick="@(() => loading4 = !loading4)">
+                        Toggle Loading
+                    </Button>
+                </Box>
+            </Box>
+
+            <!-- Custom Sizes -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Custom Sizes
+                </Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Skeleton Width="100%" Height="10px" />
+                    <Skeleton Width="75%" Height="20px" />
+                    <Skeleton Width="50%" Height="30px" />
+                    <Skeleton Width="25%" Height="40px" />
+                </Flex>
+            </Box>
+
+            <!-- Interactive Example -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Interactive Example
+                </Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Heading Size="4">
+                            <Skeleton Loading="@mainLoading">Article Title</Skeleton>
+                        </Heading>
+                        <Text Size="2" Color="gray">
+                            <Skeleton Loading="@mainLoading">By John Doe • 5 min read</Skeleton>
+                        </Text>
+                        <Skeleton Loading="@mainLoading" Height="200px" Width="100%" />
+                        <Text Size="3">
+                            <Skeleton Loading="@mainLoading">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod 
+                                tempor incididunt ut labore et dolore magna aliqua.
+                            </Skeleton>
+                        </Text>
+                        <Text Size="3">
+                            <Skeleton Loading="@mainLoading">
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+                                ut aliquip ex ea commodo consequat.
+                            </Skeleton>
+                        </Text>
+                    </Flex>
+                </Card>
+                <Box Mt="3">
+                    <Button OnClick="@SimulateLoading">
+                        Simulate Loading (3s)
+                    </Button>
+                </Box>
+            </Box>
+
+            <!-- Code Example -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Code Example
+                </Heading>
+                <Card Size="CardSize.Size2">
+                    <pre><Code Size="CodeSize.Size2">@("<!-- Basic skeleton -->\n<Skeleton Width=\"200px\" Height=\"20px\" />\n\n<!-- Wrapping content -->\n<Text>\n    <Skeleton Loading=\"@isLoading\">\n        Actual content here\n    </Skeleton>\n</Text>")</Code></pre>
+                </Card>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
+
+@code {
+    private bool loading1 = true;
+    private bool loading2 = true;
+    private bool loading3 = true;
+    private bool loading4 = true;
+    private bool mainLoading = false;
+
+    private async Task SimulateLoading()
+    {
+        mainLoading = true;
+        StateHasChanged();
+        await Task.Delay(3000);
+        mainLoading = false;
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,8 @@
+@namespace Radixor.Components.Layout
+@inherits AspectRatioBase
+
+<div @attributes="GetAspectRatioAttributes()">
+    <div class="rt-AspectRatioContent" style="@ContentStyle">
+        @ChildContent
+    </div>
+</div>

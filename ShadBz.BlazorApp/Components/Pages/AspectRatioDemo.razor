@@ -1,0 +1,170 @@
+@page "/aspect-ratio-demo"
+@using Radixor.Components.Layout
+
+<PageTitle>AspectRatio Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="8" Weight="TextWeight.Bold" Align="TextAlign.Center" Mb="2">
+                    AspectRatio Component
+                </Heading>
+                <Text Size="5" Align="TextAlign.Center" Color="gray">
+                    Displays content within a desired ratio
+                </Text>
+            </Box>
+
+            <!-- Square (1:1) -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Square (1:1)
+                </Heading>
+                <Box Style="max-width: 300px;">
+                    <AspectRatio Ratio="1">
+                        <Box Style="background: var(--gray-3); border-radius: var(--radius-3); display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                            <Text Size="4" Weight="TextWeight.Medium">1:1</Text>
+                        </Box>
+                    </AspectRatio>
+                </Box>
+            </Box>
+
+            <!-- Widescreen (16:9) -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Widescreen (16:9)
+                </Heading>
+                <Box Style="max-width: 600px;">
+                    <AspectRatio Ratio="@(16.0/9.0)">
+                        <Box Style="background: var(--blue-3); border-radius: var(--radius-3); display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                            <Text Size="4" Weight="TextWeight.Medium">16:9</Text>
+                        </Box>
+                    </AspectRatio>
+                </Box>
+            </Box>
+
+            <!-- Standard (4:3) -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Standard (4:3)
+                </Heading>
+                <Box Style="max-width: 400px;">
+                    <AspectRatio Ratio="@(4.0/3.0)">
+                        <Box Style="background: var(--green-3); border-radius: var(--radius-3); display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                            <Text Size="4" Weight="TextWeight.Medium">4:3</Text>
+                        </Box>
+                    </AspectRatio>
+                </Box>
+            </Box>
+
+            <!-- Portrait (9:16) -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Portrait (9:16)
+                </Heading>
+                <Box Style="max-width: 200px;">
+                    <AspectRatio Ratio="@(9.0/16.0)">
+                        <Box Style="background: var(--purple-3); border-radius: var(--radius-3); display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                            <Text Size="4" Weight="TextWeight.Medium">9:16</Text>
+                        </Box>
+                    </AspectRatio>
+                </Box>
+            </Box>
+
+            <!-- Ultra-wide (21:9) -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Ultra-wide (21:9)
+                </Heading>
+                <Box Style="max-width: 700px;">
+                    <AspectRatio Ratio="@(21.0/9.0)">
+                        <Box Style="background: var(--orange-3); border-radius: var(--radius-3); display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                            <Text Size="4" Weight="TextWeight.Medium">21:9</Text>
+                        </Box>
+                    </AspectRatio>
+                </Box>
+            </Box>
+
+            <!-- With Image Content -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    With Image Content
+                </Heading>
+                <Grid Columns="3" Gap="4">
+                    <Box>
+                        <AspectRatio Ratio="1">
+                            <Box Style="background: linear-gradient(135deg, var(--violet-9), var(--pink-9)); border-radius: var(--radius-3); width: 100%; height: 100%;">
+                            </Box>
+                        </AspectRatio>
+                    </Box>
+                    <Box>
+                        <AspectRatio Ratio="@(16.0/9.0)">
+                            <Box Style="background: linear-gradient(135deg, var(--blue-9), var(--cyan-9)); border-radius: var(--radius-3); width: 100%; height: 100%;">
+                            </Box>
+                        </AspectRatio>
+                    </Box>
+                    <Box>
+                        <AspectRatio Ratio="@(4.0/3.0)">
+                            <Box Style="background: linear-gradient(135deg, var(--green-9), var(--lime-9)); border-radius: var(--radius-3); width: 100%; height: 100%;">
+                            </Box>
+                        </AspectRatio>
+                    </Box>
+                </Grid>
+            </Box>
+
+            <!-- Interactive Example -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Interactive Example
+                </Heading>
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Flex Gap="2" Align="FlexAlign.Center">
+                        <Text Size="3">Ratio:</Text>
+                        <Button Size="ButtonSize.Small" 
+                                Variant="@(currentRatio == 1 ? ButtonVariant.Solid : ButtonVariant.Soft)"
+                                OnClick="@(() => currentRatio = 1)">
+                            1:1
+                        </Button>
+                        <Button Size="ButtonSize.Small" 
+                                Variant="@(Math.Abs(currentRatio - 4.0/3.0) < 0.01 ? ButtonVariant.Solid : ButtonVariant.Soft)"
+                                OnClick="@(() => currentRatio = 4.0/3.0)">
+                            4:3
+                        </Button>
+                        <Button Size="ButtonSize.Small" 
+                                Variant="@(Math.Abs(currentRatio - 16.0/9.0) < 0.01 ? ButtonVariant.Solid : ButtonVariant.Soft)"
+                                OnClick="@(() => currentRatio = 16.0/9.0)">
+                            16:9
+                        </Button>
+                        <Button Size="ButtonSize.Small" 
+                                Variant="@(Math.Abs(currentRatio - 21.0/9.0) < 0.01 ? ButtonVariant.Solid : ButtonVariant.Soft)"
+                                OnClick="@(() => currentRatio = 21.0/9.0)">
+                            21:9
+                        </Button>
+                    </Flex>
+                    <Box Style="max-width: 600px;">
+                        <AspectRatio Ratio="@currentRatio">
+                            <Box Style="background: var(--accent-3); border: 2px solid var(--accent-6); border-radius: var(--radius-3); display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                                <Text Size="5" Weight="TextWeight.Bold">@($"{currentRatio:F2}")</Text>
+                            </Box>
+                        </AspectRatio>
+                    </Box>
+                </Flex>
+            </Box>
+
+            <!-- Code Example -->
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Code Example
+                </Heading>
+                <Card Size="CardSize.Size2">
+                    <pre><Code Size="CodeSize.Size2">@("<AspectRatio Ratio=\"@(16.0/9.0)\">\n    <img src=\"video-thumbnail.jpg\" \n         alt=\"Video thumbnail\" \n         style=\"width: 100%; height: 100%; object-fit: cover;\" />\n</AspectRatio>")</Code></pre>
+                </Card>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
+
+@code {
+    private double currentRatio = 16.0/9.0;
+}
