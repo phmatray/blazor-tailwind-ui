@@ -688,9 +688,9 @@ module.exports = {
 - [x] Create demo page
 
 #### 39. Strong
-- [ ] Create Strong.razor and Strong.razor.cs
-- [ ] Support all text props
-- [ ] Create demo page
+- [x] Create Strong.razor and Strong.razor.cs
+- [x] Support all text props
+- [x] Create demo page
 
 #### 40. Blockquote
 - [ ] Create Blockquote.razor and Blockquote.razor.cs
