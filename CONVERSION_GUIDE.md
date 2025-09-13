@@ -656,12 +656,12 @@ module.exports = {
 - [x] Create demo page
 
 #### 34. Callout
-- [ ] Create Callout.razor and Callout.razor.cs
-- [ ] Implement variant prop
-- [ ] Add size prop
-- [ ] Support color prop
-- [ ] Add icon support
-- [ ] Create demo page
+- [x] Create Callout.razor and Callout.razor.cs
+- [x] Implement variant prop (Soft, Surface, Outline)
+- [x] Add size prop (Size1, Size2, Size3)
+- [x] Support color prop
+- [x] Add icon support with RenderFragment
+- [x] Create demo page
 
 #### 35. Code
 - [ ] Create Code.razor and Code.razor.cs

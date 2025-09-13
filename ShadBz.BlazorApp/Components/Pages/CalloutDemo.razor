@@ -1,0 +1,281 @@
+@page "/callout"
+@using ShadBz.BlazorApp.Components.UI
+
+<div class="demo-container">
+    <h1>Callout Component</h1>
+    <p>A short message to attract user's attention.</p>
+    
+    <div class="demo-section">
+        <h2>Basic Callout</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Callout>
+                    <Text Size="TextSize.Size2">
+                        You will need admin privileges to install and access this application.
+                    </Text>
+                </Callout>
+                
+                <Callout Color="blue">
+                    <Text Size="TextSize.Size2">
+                        Please upgrade to the latest version for the best experience.
+                    </Text>
+                </Callout>
+                
+                <Callout Color="green">
+                    <Text Size="TextSize.Size2">
+                        Your changes have been successfully saved.
+                    </Text>
+                </Callout>
+                
+                <Callout Color="yellow">
+                    <Text Size="TextSize.Size2">
+                        This feature is currently in beta and may contain bugs.
+                    </Text>
+                </Callout>
+                
+                <Callout Color="red">
+                    <Text Size="TextSize.Size2">
+                        Failed to connect to the server. Please check your internet connection.
+                    </Text>
+                </Callout>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>With Icons</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Callout Color="blue">
+                    <Icon>
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.49991 0.876892C3.84222 0.876892 0.877075 3.84204 0.877075 7.49972C0.877075 11.1574 3.84222 14.1226 7.49991 14.1226C11.1576 14.1226 14.1227 11.1574 14.1227 7.49972C14.1227 3.84204 11.1576 0.876892 7.49991 0.876892ZM1.82707 7.49972C1.82707 4.36671 4.36689 1.82689 7.49991 1.82689C10.6329 1.82689 13.1727 4.36671 13.1727 7.49972C13.1727 10.6327 10.6329 13.1726 7.49991 13.1726C4.36689 13.1726 1.82707 10.6327 1.82707 7.49972ZM8.24992 4.49999C8.24992 4.9142 7.91413 5.24999 7.49992 5.24999C7.08571 5.24999 6.74992 4.9142 6.74992 4.49999C6.74992 4.08577 7.08571 3.74999 7.49992 3.74999C7.91413 3.74999 8.24992 4.08577 8.24992 4.49999ZM6.00003 5.99999H6.50003H7.50003C7.77618 5.99999 8.00003 6.22384 8.00003 6.49999V9.99999H8.50003H9.00003V11H8.50003H7.50003H6.50003H6.00003V9.99999H6.50003H7.00003V6.99999H6.50003H6.00003V5.99999Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </Icon>
+                    <ChildContent>
+                        <Text Size="TextSize.Size2">
+                            A new software update is available. See what's new in version 2.0.
+                        </Text>
+                    </ChildContent>
+                </Callout>
+                
+                <Callout Color="green">
+                    <Icon>
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.4669 3.72684C11.7558 3.91574 11.8369 4.30308 11.648 4.59198L7.39799 11.092C7.29783 11.2452 7.13556 11.3467 6.95402 11.3699C6.77247 11.3931 6.58989 11.3355 6.45446 11.2124L3.70446 8.71241C3.44905 8.48022 3.43023 8.08494 3.66242 7.82953C3.89461 7.57412 4.28989 7.55529 4.5453 7.78749L6.75292 9.79441L10.6018 3.90792C10.7907 3.61902 11.178 3.53795 11.4669 3.72684Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </Icon>
+                    <ChildContent>
+                        <Text Size="TextSize.Size2">
+                            Your payment has been processed successfully.
+                        </Text>
+                    </ChildContent>
+                </Callout>
+                
+                <Callout Color="yellow">
+                    <Icon>
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.4449 0.608765C8.0183 -0.107015 6.9817 -0.107015 6.55509 0.608765L0.161178 11.3368C-0.275824 12.07 0.252503 13 1.10608 13H13.8939C14.7475 13 15.2758 12.07 14.8388 11.3368L8.4449 0.608765ZM7.4449 1.12073C7.46203 1.09222 7.53797 1.09222 7.55509 1.12073L13.949 11.8488C13.9664 11.8778 13.9229 11.9 13.8939 11.9H1.10608C1.07708 11.9 1.03355 11.8778 1.05098 11.8488L7.4449 1.12073ZM6.8 4.5C6.8 4.22386 7.02386 4 7.3 4H7.7C7.97614 4 8.2 4.22386 8.2 4.5V7.5C8.2 7.77614 7.97614 8 7.7 8H7.3C7.02386 8 6.8 7.77614 6.8 7.5V4.5ZM7.5 9C7.08579 9 6.75 9.33579 6.75 9.75C6.75 10.1642 7.08579 10.5 7.5 10.5C7.91421 10.5 8.25 10.1642 8.25 9.75C8.25 9.33579 7.91421 9 7.5 9Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </Icon>
+                    <ChildContent>
+                        <Text Size="TextSize.Size2">
+                            Your session will expire in 5 minutes. Please save your work.
+                        </Text>
+                    </ChildContent>
+                </Callout>
+                
+                <Callout Color="red">
+                    <Icon>
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </Icon>
+                    <ChildContent>
+                        <Text Size="TextSize.Size2">
+                            Access denied. You don't have permission to view this resource.
+                        </Text>
+                    </ChildContent>
+                </Callout>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Different Sizes</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Callout Size="CalloutSize.Size1" Color="blue">
+                    <Text Size="TextSize.Size1">
+                        Size 1: Small callout for brief messages.
+                    </Text>
+                </Callout>
+                
+                <Callout Size="CalloutSize.Size2" Color="blue">
+                    <Text Size="TextSize.Size2">
+                        Size 2: Default callout size for standard messages.
+                    </Text>
+                </Callout>
+                
+                <Callout Size="CalloutSize.Size3" Color="blue">
+                    <Text Size="TextSize.Size3">
+                        Size 3: Large callout for important announcements.
+                    </Text>
+                </Callout>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Different Variants</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Callout Variant="CalloutVariant.Soft" Color="blue">
+                    <Text Size="TextSize.Size2">
+                        Soft variant: Subtle background with colored text.
+                    </Text>
+                </Callout>
+                
+                <Callout Variant="CalloutVariant.Surface" Color="blue">
+                    <Text Size="TextSize.Size2">
+                        Surface variant: Stronger background presence.
+                    </Text>
+                </Callout>
+                
+                <Callout Variant="CalloutVariant.Outline" Color="blue">
+                    <Text Size="TextSize.Size2">
+                        Outline variant: Border with transparent background.
+                    </Text>
+                </Callout>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>High Contrast</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Callout Color="blue" HighContrast="false">
+                    <Text Size="TextSize.Size2">
+                        Regular contrast for standard readability.
+                    </Text>
+                </Callout>
+                
+                <Callout Color="blue" HighContrast="true">
+                    <Text Size="TextSize.Size2">
+                        High contrast for improved readability and emphasis.
+                    </Text>
+                </Callout>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Complex Content</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Callout Color="blue">
+                    <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap2">
+                        <Heading Size="HeadingSize.Size3">Pro tip</Heading>
+                        <Text Size="TextSize.Size2">
+                            You can use keyboard shortcuts to navigate faster. Press 
+                            <Badge>Cmd+K</Badge> to open the command palette.
+                        </Text>
+                    </Flex>
+                </Callout>
+                
+                <Callout Color="green">
+                    <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap2">
+                        <Heading Size="HeadingSize.Size3">Success!</Heading>
+                        <Text Size="TextSize.Size2">
+                            Your form has been submitted successfully. We'll get back to you within 24 hours.
+                        </Text>
+                        <Flex Gap="FlexGap.Gap2" Mt="2">
+                            <Button Size="ButtonSize.Small" Variant="ButtonVariant.Solid">View Details</Button>
+                            <Button Size="ButtonSize.Small" Variant="ButtonVariant.Soft">Dismiss</Button>
+                        </Flex>
+                    </Flex>
+                </Callout>
+                
+                <Callout Color="purple" Variant="CalloutVariant.Surface">
+                    <Flex Gap="FlexGap.Gap3" Align="FlexAlign.Start">
+                        <Avatar Size="AvatarSize.Size3">
+                            <Fallback>AI</Fallback>
+                        </Avatar>
+                        <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap1" Style="flex: 1;">
+                            <Text Size="TextSize.Size2" Weight="TextWeight.Bold">AI Assistant</Text>
+                            <Text Size="TextSize.Size2">
+                                I've analyzed your code and found 3 potential improvements. 
+                                Would you like me to apply them automatically?
+                            </Text>
+                            <Flex Gap="FlexGap.Gap2" Mt="2">
+                                <Link Size="LinkSize.Size2">View suggestions</Link>
+                                <Text Size="TextSize.Size2" Color="TextColor.Gray">•</Text>
+                                <Link Size="LinkSize.Size2">Apply all</Link>
+                            </Flex>
+                        </Flex>
+                    </Flex>
+                </Callout>
+            </Flex>
+        </div>
+    </div>
+</div>
+
+<style>
+    .demo-container {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .demo-section {
+        margin-bottom: 3rem;
+    }
+    
+    .demo-section h2 {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    
+    .demo-example {
+        padding: 2rem;
+        background: var(--gray-2);
+        border-radius: var(--radius-3);
+    }
+    
+    /* Callout styles */
+    .rt-Callout {
+        display: flex;
+        gap: var(--space-3);
+        padding: var(--space-3);
+        border-radius: var(--radius-3);
+    }
+    
+    .rt-Callout.rt-variant-soft {
+        background: var(--color-a3);
+        color: var(--color-a11);
+    }
+    
+    .rt-Callout.rt-variant-surface {
+        background: var(--color-surface);
+        border: 1px solid var(--gray-6);
+    }
+    
+    .rt-Callout.rt-variant-outline {
+        border: 1px solid var(--color-a6);
+        background: transparent;
+    }
+    
+    .rt-CalloutIcon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 2px;
+    }
+    
+    .rt-CalloutContent {
+        flex: 1;
+        min-width: 0;
+    }
+</style>
