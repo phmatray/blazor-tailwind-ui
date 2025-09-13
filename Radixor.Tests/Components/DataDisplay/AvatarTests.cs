@@ -1,5 +1,6 @@
 using Bunit;
 using FluentAssertions;
+using Microsoft.AspNetCore.Components;
 using Radixor.Components.DataDisplay;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -66,7 +67,7 @@ public class AvatarTests : TestContext
     public void Avatar_ShouldRenderFallback()
     {
         var component = RenderComponent<Avatar>(parameters => parameters
-            .Add(p => p.Fallback, "JD"));
+            .Add(p => p.Fallback, (RenderFragment)(b => b.AddContent(0, "JD"))));
         
         var fallback = component.Find("span.rt-AvatarFallback");
         fallback.Should().NotBeNull();

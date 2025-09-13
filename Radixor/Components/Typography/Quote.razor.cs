@@ -14,7 +14,6 @@ public enum QuoteWrap
 
 public partial class Quote : SpacingComponentBase
 {
-    [Parameter] public new RenderFragment? ChildContent { get; set; }
     [Parameter] public bool AsChild { get; set; }
     [Parameter] public bool Truncate { get; set; }
     [Parameter] public QuoteWrap? Wrap { get; set; }

@@ -6,7 +6,6 @@ namespace Radixor.Components.Typography;
 
 public partial class Kbd : SpacingComponentBase
 {
-    [Parameter] public new RenderFragment? ChildContent { get; set; }
     [Parameter] public bool AsChild { get; set; }
     [Parameter] public KbdSize? Size { get; set; }
     
