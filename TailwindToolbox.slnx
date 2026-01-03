@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="TailwindToolbox.Tests/TailwindToolbox.Tests.csproj" />
   <Project Path="TailwindToolbox/TailwindToolbox.csproj" />
 </Solution>
