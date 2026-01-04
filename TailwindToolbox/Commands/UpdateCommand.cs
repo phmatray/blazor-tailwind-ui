@@ -3,24 +3,17 @@ using Spectre.Console;
 using Spectre.Console.Cli;
 using TailwindToolbox.Models;
 using TailwindToolbox.Services;
-using TailwindToolbox.Utilities;
 
 namespace TailwindToolbox.Commands;
 
 /// <summary>
 /// Command to update Tailwind CSS and related packages with breaking change detection.
 /// </summary>
-public sealed class UpdateCommand : AsyncCommand<UpdateCommand.Settings>
+public sealed class UpdateCommand(
+    IProjectDetector projectDetector,
+    INpmService npmService)
+    : AsyncCommand<UpdateCommand.Settings>
 {
-    private readonly IProjectDetector _projectDetector;
-    private readonly INpmService _npmService;
-
-    public UpdateCommand(IProjectDetector projectDetector, INpmService npmService)
-    {
-        _projectDetector = projectDetector;
-        _npmService = npmService;
-    }
-
     public sealed class Settings : BaseCommandSettings
     {
         [Description("Path to the Blazor project directory")]
@@ -48,7 +41,7 @@ public sealed class UpdateCommand : AsyncCommand<UpdateCommand.Settings>
     {
         // Detect Blazor project
         var projectPath = Path.GetFullPath(settings.ProjectDirectory);
-        var project = await _projectDetector.DetectProjectAsync(projectPath);
+        var project = await projectDetector.DetectProjectAsync(projectPath);
 
         if (project == null)
         {
@@ -64,7 +57,7 @@ public sealed class UpdateCommand : AsyncCommand<UpdateCommand.Settings>
 
         try
         {
-            availableUpdates = await _npmService.CheckForUpdatesAsync(project.ProjectDirectory);
+            availableUpdates = await npmService.CheckForUpdatesAsync(project.ProjectDirectory);
         }
         catch (Exception ex)
         {
@@ -92,11 +85,11 @@ public sealed class UpdateCommand : AsyncCommand<UpdateCommand.Settings>
         // Detect breaking changes
         var breakingChanges = availableUpdates
             .Where(u => u.InstalledVersion != null && u.LatestVersion != null &&
-                       _npmService.DetectBreakingChanges(u.InstalledVersion, u.LatestVersion))
+                       npmService.DetectBreakingChanges(u.InstalledVersion, u.LatestVersion))
             .ToList();
 
         // Skip breaking changes if requested
-        if (settings.SkipBreaking && breakingChanges.Any())
+        if (settings.SkipBreaking && breakingChanges.Count != 0)
         {
             AnsiConsole.MarkupLine("[yellow]Skipping major version updates (--skip-breaking flag set):[/]");
             foreach (var update in breakingChanges)
@@ -167,7 +160,7 @@ public sealed class UpdateCommand : AsyncCommand<UpdateCommand.Settings>
 
                     try
                     {
-                        var result = await _npmService.UpdatePackageAsync(
+                        var result = await npmService.UpdatePackageAsync(
                             update.PackageName,
                             update.LatestVersion,
                             project.ProjectDirectory);

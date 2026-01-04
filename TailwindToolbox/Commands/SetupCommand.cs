@@ -10,25 +10,13 @@ namespace TailwindToolbox.Commands;
 /// <summary>
 /// Command to initialize Tailwind CSS configuration in a Blazor project.
 /// </summary>
-public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
+public sealed class SetupCommand(
+    IProjectDetector projectDetector,
+    IFileGenerator fileGenerator,
+    INpmService npmService,
+    ITargetFileGenerator targetFileGenerator)
+    : AsyncCommand<SetupCommand.Settings>
 {
-    private readonly IProjectDetector _projectDetector;
-    private readonly IFileGenerator _fileGenerator;
-    private readonly INpmService _npmService;
-    private readonly ITargetFileGenerator _targetFileGenerator;
-
-    public SetupCommand(
-        IProjectDetector projectDetector,
-        IFileGenerator fileGenerator,
-        INpmService npmService,
-        ITargetFileGenerator targetFileGenerator)
-    {
-        _projectDetector = projectDetector;
-        _fileGenerator = fileGenerator;
-        _npmService = npmService;
-        _targetFileGenerator = targetFileGenerator;
-    }
-
     public sealed class Settings : BaseCommandSettings
     {
         [Description("Path to Blazor project directory")]
@@ -74,7 +62,7 @@ public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
             logger.Verbose($"Resolved project directory: {projectDir}");
 
             // Detect Blazor project
-            var project = await _projectDetector.DetectProjectAsync(projectDir);
+            var project = await projectDetector.DetectProjectAsync(projectDir);
             if (project == null)
             {
                 AnsiConsole.MarkupLine("[red]Error:[/] No Blazor project found in directory");
@@ -91,7 +79,7 @@ public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
             AnsiConsole.MarkupLine($"[green]✓[/] Blazor project detected: [bold]{project.ProjectName}[/] ([dim]{project.ProjectType}, {project.DotNetVersion}[/])");
 
             // Check Node.js and npm
-            var nodeCheck = await _npmService.CheckNodeInstalledAsync();
+            var nodeCheck = await npmService.CheckNodeInstalledAsync();
             if (!nodeCheck.IsInstalled)
             {
                 AnsiConsole.MarkupLine("[red]Error: Node.js not found[/]");
@@ -107,7 +95,7 @@ public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
 
             AnsiConsole.MarkupLine($"[green]✓[/] Node.js {nodeCheck.Version} detected");
 
-            var npmCheck = await _npmService.CheckNpmInstalledAsync();
+            var npmCheck = await npmService.CheckNpmInstalledAsync();
             if (!npmCheck.IsInstalled)
             {
                 AnsiConsole.MarkupLine("[red]Error:[/] npm not found");
@@ -163,7 +151,7 @@ public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
             if (!settings.SkipNpmInstall)
             {
                 await AnsiConsole.Status()
-                    .StartAsync("Installing Tailwind CSS packages...", async ctx =>
+                    .StartAsync("Installing Tailwind CSS packages...", async _ =>
                     {
                         var packages = new Dictionary<string, string>
                         {
@@ -172,7 +160,7 @@ public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
                             { "autoprefixer", "^10.4.16" }
                         };
 
-                        await _npmService.InstallPackagesAsync(packages, projectDir);
+                        await npmService.InstallPackagesAsync(packages, projectDir);
                     });
 
                 AnsiConsole.MarkupLine("[green]✓[/] tailwindcss installed");
@@ -185,16 +173,16 @@ public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
             AnsiConsole.MarkupLine("[bold]Creating configuration files...[/]");
 
             var tailwindConfigPath = Path.Combine(projectDir, "tailwind.config.js");
-            await _fileGenerator.GenerateTailwindConfigAsync(tailwindConfigPath);
+            await fileGenerator.GenerateTailwindConfigAsync(tailwindConfigPath);
             AnsiConsole.MarkupLine("[green]✓[/] tailwind.config.js created");
 
             var packageJsonPath = Path.Combine(projectDir, "package.json");
-            await _fileGenerator.GeneratePackageJsonAsync(packageJsonPath, project.ProjectName);
+            await fileGenerator.GeneratePackageJsonAsync(packageJsonPath, project.ProjectName);
             AnsiConsole.MarkupLine("[green]✓[/] package.json created");
 
             var stylesDir = Path.Combine(projectDir, "Styles");
             var appCssPath = Path.Combine(stylesDir, "app.css");
-            await _fileGenerator.GenerateAppCssAsync(appCssPath);
+            await fileGenerator.GenerateAppCssAsync(appCssPath);
             AnsiConsole.MarkupLine("[green]✓[/] Styles/app.css created");
 
             // Update .gitignore
@@ -209,14 +197,14 @@ public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
 
             var targetsPath = Path.Combine(projectDir, "TailwindBuild.targets");
             var outputCss = settings.CssOutputPath ?? "wwwroot/css/app.css";
-            await _targetFileGenerator.GenerateTargetFileAsync(
+            await targetFileGenerator.GenerateTargetFileAsync(
                 targetsPath,
                 "BuildTailwindCSS",
                 "Styles/app.css",
                 outputCss);
             AnsiConsole.MarkupLine("[green]✓[/] TailwindBuild.targets created");
 
-            await _targetFileGenerator.UpdateCsprojWithImportAsync(
+            await targetFileGenerator.UpdateCsprojWithImportAsync(
                 project.ProjectFilePath,
                 "TailwindBuild.targets");
             AnsiConsole.MarkupLine($"[green]✓[/] {project.ProjectName}.csproj updated");
@@ -243,7 +231,7 @@ public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
             lines.AddRange(await File.ReadAllLinesAsync(gitignorePath));
         }
 
-        if (!lines.Any(line => line.Trim() == "node_modules/"))
+        if (lines.All(line => line.Trim() != "node_modules/"))
         {
             if (lines.Count > 0 && !string.IsNullOrWhiteSpace(lines[^1]))
             {

@@ -1,0 +1,19 @@
+{
+  "name": "blazor-tailwind",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Blazor Web App with Tailwind CSS",
+  "scripts": {
+    "build:css": "@tailwindcss/cli -i ./Styles/app.css -o ./wwwroot/css/app.css --minify",
+    "watch:css": "@tailwindcss/cli -i ./Styles/app.css -o ./wwwroot/css/app.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/cli": "^4.0.0",
+    "autoprefixer": "^10.4.16"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

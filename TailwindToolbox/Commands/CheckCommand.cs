@@ -4,7 +4,6 @@ using Spectre.Console;
 using Spectre.Console.Cli;
 using TailwindToolbox.Models;
 using TailwindToolbox.Services;
-using TailwindToolbox.Utilities;
 using ValidationResult = TailwindToolbox.Models.ValidationResult;
 
 namespace TailwindToolbox.Commands;
@@ -12,19 +11,11 @@ namespace TailwindToolbox.Commands;
 /// <summary>
 /// Command to validate Tailwind CSS configuration in a Blazor project.
 /// </summary>
-public sealed class CheckCommand : AsyncCommand<CheckCommand.Settings>
+public sealed class CheckCommand(
+    IProjectDetector projectDetector,
+    IValidationService validationService)
+    : AsyncCommand<CheckCommand.Settings>
 {
-    private readonly IProjectDetector _projectDetector;
-    private readonly IValidationService _validationService;
-
-    public CheckCommand(
-        IProjectDetector projectDetector,
-        IValidationService validationService)
-    {
-        _projectDetector = projectDetector;
-        _validationService = validationService;
-    }
-
     public sealed class Settings : BaseCommandSettings
     {
         [Description("Path to Blazor project directory")]
@@ -52,7 +43,7 @@ public sealed class CheckCommand : AsyncCommand<CheckCommand.Settings>
             var projectDir = Path.GetFullPath(settings.ProjectDirectory);
 
             // Detect Blazor project
-            var project = await _projectDetector.DetectProjectAsync(projectDir);
+            var project = await projectDetector.DetectProjectAsync(projectDir);
             if (project == null)
             {
                 if (settings.Format == "json")
@@ -80,16 +71,16 @@ public sealed class CheckCommand : AsyncCommand<CheckCommand.Settings>
             }
 
             // Create validation rules
-            var allRules = _validationService.CreateValidationRules();
+            var allRules = validationService.CreateValidationRules();
 
             // Filter by category if specified
             var rules = FilterRulesByCategory(allRules, settings.Category);
 
             // Execute validation rules
-            var results = await _validationService.ExecuteValidationRulesAsync(rules, project);
+            var results = await validationService.ExecuteValidationRulesAsync(rules, project);
 
             // Categorize results
-            var categorized = _validationService.CategorizeResults(results, rules);
+            var categorized = validationService.CategorizeResults(results, rules);
 
             // Display results based on format
             switch (settings.Format.ToLowerInvariant())
@@ -100,7 +91,6 @@ public sealed class CheckCommand : AsyncCommand<CheckCommand.Settings>
                 case "text":
                     DisplayTextOutput(results, rules);
                     break;
-                case "table":
                 default:
                     DisplayTableOutput(categorized, rules);
                     break;

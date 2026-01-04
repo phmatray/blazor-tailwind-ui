@@ -2,24 +2,17 @@ using System.ComponentModel;
 using Spectre.Console;
 using Spectre.Console.Cli;
 using TailwindToolbox.Services;
-using TailwindToolbox.Utilities;
 
 namespace TailwindToolbox.Commands;
 
 /// <summary>
 /// Command to create or update MSBuild .targets files for Tailwind CSS compilation.
 /// </summary>
-public sealed class CreateTargetCommand : AsyncCommand<CreateTargetCommand.Settings>
+public sealed class CreateTargetCommand(
+    IProjectDetector projectDetector,
+    ITargetFileGenerator targetFileGenerator)
+    : AsyncCommand<CreateTargetCommand.Settings>
 {
-    private readonly IProjectDetector _projectDetector;
-    private readonly ITargetFileGenerator _targetFileGenerator;
-
-    public CreateTargetCommand(IProjectDetector projectDetector, ITargetFileGenerator targetFileGenerator)
-    {
-        _projectDetector = projectDetector;
-        _targetFileGenerator = targetFileGenerator;
-    }
-
     public sealed class Settings : BaseCommandSettings
     {
         [Description("Path to the Blazor project directory")]
@@ -55,7 +48,7 @@ public sealed class CreateTargetCommand : AsyncCommand<CreateTargetCommand.Setti
     {
         // Detect Blazor project
         var projectPath = Path.GetFullPath(settings.ProjectDirectory);
-        var project = await _projectDetector.DetectProjectAsync(projectPath);
+        var project = await projectDetector.DetectProjectAsync(projectPath);
 
         if (project == null)
         {
@@ -91,7 +84,7 @@ public sealed class CreateTargetCommand : AsyncCommand<CreateTargetCommand.Setti
             var tempPath = Path.Combine(Path.GetTempPath(), $"temp_{Guid.NewGuid()}.targets");
             try
             {
-                await _targetFileGenerator.GenerateTargetFileAsync(
+                await targetFileGenerator.GenerateTargetFileAsync(
                     tempPath,
                     settings.TargetName,
                     settings.InputCss,
@@ -121,7 +114,7 @@ public sealed class CreateTargetCommand : AsyncCommand<CreateTargetCommand.Setti
         try
         {
             // Generate .targets file
-            await _targetFileGenerator.GenerateTargetFileAsync(
+            await targetFileGenerator.GenerateTargetFileAsync(
                 targetsPath,
                 settings.TargetName,
                 settings.InputCss,
@@ -131,11 +124,11 @@ public sealed class CreateTargetCommand : AsyncCommand<CreateTargetCommand.Setti
 
             // Validate generated XML
             var generatedContent = await File.ReadAllTextAsync(targetsPath);
-            _targetFileGenerator.ValidateTargetsXml(generatedContent);
+            targetFileGenerator.ValidateTargetsXml(generatedContent);
             AnsiConsole.MarkupLine($"[green]✓[/] Validated .targets XML structure");
 
             // Update .csproj with Import
-            await _targetFileGenerator.UpdateCsprojWithImportAsync(project.ProjectFilePath, targetsFileName);
+            await targetFileGenerator.UpdateCsprojWithImportAsync(project.ProjectFilePath, targetsFileName);
             AnsiConsole.MarkupLine($"[green]✓[/] Updated {Path.GetFileName(project.ProjectFilePath)} with Import reference");
 
             // Display success summary
