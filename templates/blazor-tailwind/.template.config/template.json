@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "TailwindToolbox",
+  "classifications": [
+    "Web",
+    "Blazor",
+    "Tailwind"
+  ],
+  "identity": "TailwindToolbox.Blazor.Template",
+  "name": "Blazor Web App with Tailwind CSS",
+  "shortName": "blazor-tailwind",
+  "sourceName": "BlazorTailwind",
+  "preferNameDirectory": true,
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net10.0",
+          "description": "Target .NET 10.0"
+        }
+      ],
+      "defaultValue": "net10.0",
+      "replaces": "net10.0"
+    },
+    "skipRestore": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "If specified, skips the automatic restore of the project on create.",
+      "defaultValue": "false"
+    },
+    "ProjectNameLowerCase": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "lower",
+      "replaces": "blazor-tailwind"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/bin/**",
+            "**/obj/**",
+            "**/node_modules/**",
+            "**/.vs/**",
+            "**/.vscode/**",
+            "**/.git/**",
+            "**/.gitignore",
+            "**/.gitattributes",
+            "**/wwwroot/css/app.css"
+          ]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "description": "Restore NuGet packages",
+      "manualInstructions": [
+        {
+          "text": "Run 'dotnet restore'"
+        }
+      ],
+      "continueOnError": true,
+      "condition": "(!skipRestore)"
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "description": "Install npm packages (Windows)",
+      "condition": "(OS == \"Windows\")",
+      "args": {
+        "executable": "npm.cmd",
+        "args": "install"
+      },
+      "redirectStandardOutput": false,
+      "continueOnError": true,
+      "manualInstructions": [
+        {
+          "text": "Run 'npm install' to install Tailwind CSS packages"
+        }
+      ]
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "description": "Install npm packages (Unix)",
+      "condition": "(OS != \"Windows\")",
+      "args": {
+        "executable": "npm",
+        "args": "install"
+      },
+      "redirectStandardOutput": false,
+      "continueOnError": true,
+      "manualInstructions": [
+        {
+          "text": "Run 'npm install' to install Tailwind CSS packages"
+        }
+      ]
+    }
+  ]
+}

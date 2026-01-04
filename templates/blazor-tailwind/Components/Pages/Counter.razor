@@ -1,0 +1,34 @@
+@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">Counter</h1>
+
+    <div class="bg-white rounded-lg shadow-md p-8">
+        <div class="text-center mb-8">
+            <p class="text-gray-600 mb-2">Current count</p>
+            <p role="status" class="text-5xl font-bold text-blue-600">@currentCount</p>
+        </div>
+
+        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg" @onclick="IncrementCount">
+            Click me
+        </button>
+
+        <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <p class="text-sm text-blue-900">
+                <strong>Note:</strong> This component uses <code class="bg-white px-2 py-1 rounded">@("@")rendermode InteractiveServer</code> to enable interactivity via SignalR.
+            </p>
+        </div>
+    </div>
+</div>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
