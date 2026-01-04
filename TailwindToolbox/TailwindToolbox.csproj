@@ -8,6 +8,16 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AssemblyName>tailwind-blazor</AssemblyName>
     <RootNamespace>TailwindToolbox</RootNamespace>
+
+    <!-- Version Information -->
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0</InformationalVersion>
+    <Product>Tailwind Blazor CLI</Product>
+    <Description>CLI tool for automating Tailwind CSS setup in Blazor projects</Description>
+    <Authors>TailwindToolbox Contributors</Authors>
+    <Copyright>Copyright © 2026</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

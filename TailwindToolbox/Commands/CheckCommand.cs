@@ -4,6 +4,7 @@ using Spectre.Console;
 using Spectre.Console.Cli;
 using TailwindToolbox.Models;
 using TailwindToolbox.Services;
+using TailwindToolbox.Utilities;
 using ValidationResult = TailwindToolbox.Models.ValidationResult;
 
 namespace TailwindToolbox.Commands;
@@ -24,7 +25,7 @@ public sealed class CheckCommand : AsyncCommand<CheckCommand.Settings>
         _validationService = validationService;
     }
 
-    public sealed class Settings : CommandSettings
+    public sealed class Settings : BaseCommandSettings
     {
         [Description("Path to Blazor project directory")]
         [CommandOption("-p|--project-dir")]

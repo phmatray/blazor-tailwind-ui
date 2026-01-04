@@ -2,6 +2,7 @@ using System.ComponentModel;
 using Spectre.Console;
 using Spectre.Console.Cli;
 using TailwindToolbox.Services;
+using TailwindToolbox.Utilities;
 
 namespace TailwindToolbox.Commands;
 
@@ -19,7 +20,7 @@ public sealed class CreateTargetCommand : AsyncCommand<CreateTargetCommand.Setti
         _targetFileGenerator = targetFileGenerator;
     }
 
-    public sealed class Settings : CommandSettings
+    public sealed class Settings : BaseCommandSettings
     {
         [Description("Path to the Blazor project directory")]
         [CommandOption("-p|--project-dir")]

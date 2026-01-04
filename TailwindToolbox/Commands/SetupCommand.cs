@@ -3,6 +3,7 @@ using Spectre.Console.Cli;
 using System.ComponentModel;
 using TailwindToolbox.Models;
 using TailwindToolbox.Services;
+using TailwindToolbox.Utilities;
 
 namespace TailwindToolbox.Commands;
 
@@ -28,7 +29,7 @@ public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
         _targetFileGenerator = targetFileGenerator;
     }
 
-    public sealed class Settings : CommandSettings
+    public sealed class Settings : BaseCommandSettings
     {
         [Description("Path to Blazor project directory")]
         [CommandOption("-p|--project-dir")]
@@ -57,14 +58,20 @@ public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
 
     public override async Task<int> ExecuteAsync(CommandContext context, Settings settings, CancellationToken cancellationToken = default)
     {
+        var logger = new ConsoleLogger(settings.Verbose, settings.NoColor);
+
         try
         {
+            logger.Verbose("Verbose logging enabled");
+            logger.Verbose($"Command settings: ProjectDirectory={settings.ProjectDirectory}, Force={settings.Force}, DryRun={settings.DryRun}");
+
             // Display header
             AnsiConsole.Write(new Rule("[bold]Tailwind Blazor Setup[/]").RuleStyle("blue"));
             AnsiConsole.WriteLine();
 
             // Resolve project directory to absolute path
             var projectDir = Path.GetFullPath(settings.ProjectDirectory);
+            logger.Verbose($"Resolved project directory: {projectDir}");
 
             // Detect Blazor project
             var project = await _projectDetector.DetectProjectAsync(projectDir);

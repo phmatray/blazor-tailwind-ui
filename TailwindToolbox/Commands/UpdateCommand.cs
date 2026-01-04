@@ -3,6 +3,7 @@ using Spectre.Console;
 using Spectre.Console.Cli;
 using TailwindToolbox.Models;
 using TailwindToolbox.Services;
+using TailwindToolbox.Utilities;
 
 namespace TailwindToolbox.Commands;
 
@@ -20,7 +21,7 @@ public sealed class UpdateCommand : AsyncCommand<UpdateCommand.Settings>
         _npmService = npmService;
     }
 
-    public sealed class Settings : CommandSettings
+    public sealed class Settings : BaseCommandSettings
     {
         [Description("Path to the Blazor project directory")]
         [CommandOption("-p|--project-dir")]

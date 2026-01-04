@@ -6,9 +6,9 @@
     "build:css": "tailwindcss -i ./Styles/app.css -o ./wwwroot/css/app.css --minify"
   },
   "dependencies": {
-    "tailwindcss": "^4.0.0"
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.16"
+    "autoprefixer": "^10.4.23"
   }
 }

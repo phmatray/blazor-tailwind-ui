@@ -17,19 +17,38 @@ var app = new CommandApp(registrar);
 app.Configure(config =>
 {
     config.SetApplicationName("tailwind-blazor");
+    config.SetApplicationVersion("1.0.0");
 
-    // Register commands
+    // Customize validation error messages
+    config.ValidateExamples();
+
+    // Register commands with detailed descriptions and examples
     config.AddCommand<SetupCommand>("setup")
-        .WithDescription("Initialize Tailwind CSS configuration in a Blazor project");
+        .WithDescription("Initialize Tailwind CSS configuration in a Blazor project")
+        .WithExample("setup")
+        .WithExample("setup", "--project-dir", "./MyBlazorApp")
+        .WithExample("setup", "--force")
+        .WithExample("setup", "--dry-run");
 
     config.AddCommand<CheckCommand>("check")
-        .WithDescription("Validate Tailwind CSS configuration and dependencies");
+        .WithDescription("Validate Tailwind CSS configuration and dependencies")
+        .WithExample("check")
+        .WithExample("check", "--format", "json")
+        .WithExample("check", "--category", "dependencies")
+        .WithExample("check", "--fail-on-warning");
 
     config.AddCommand<UpdateCommand>("update")
-        .WithDescription("Update Tailwind CSS and related packages with breaking change detection");
+        .WithDescription("Update Tailwind CSS and related packages with breaking change detection")
+        .WithExample("update")
+        .WithExample("update", "--dry-run")
+        .WithExample("update", "--skip-breaking")
+        .WithExample("update", "--package", "tailwindcss", "--target-version", "4.0.5");
 
     config.AddCommand<CreateTargetCommand>("create-target")
-        .WithDescription("Create or update MSBuild .targets file for Tailwind CSS compilation");
+        .WithDescription("Create or update MSBuild .targets file for Tailwind CSS compilation")
+        .WithExample("create-target")
+        .WithExample("create-target", "--force")
+        .WithExample("create-target", "--input-css", "Styles/main.css", "--output-css", "wwwroot/css/main.css");
 });
 
 return app.Run(args);
