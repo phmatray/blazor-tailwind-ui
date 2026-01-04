@@ -168,6 +168,7 @@ public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
                         var packages = new Dictionary<string, string>
                         {
                             { "tailwindcss", settings.TailwindVersion ?? "^4.0.0" },
+                            { "@tailwindcss/cli", settings.TailwindVersion ?? "^4.0.0" },
                             { "autoprefixer", "^10.4.16" }
                         };
 
@@ -175,6 +176,7 @@ public sealed class SetupCommand : AsyncCommand<SetupCommand.Settings>
                     });
 
                 AnsiConsole.MarkupLine("[green]✓[/] tailwindcss installed");
+                AnsiConsole.MarkupLine("[green]✓[/] @tailwindcss/cli installed");
                 AnsiConsole.MarkupLine("[green]✓[/] autoprefixer installed");
                 AnsiConsole.WriteLine();
             }

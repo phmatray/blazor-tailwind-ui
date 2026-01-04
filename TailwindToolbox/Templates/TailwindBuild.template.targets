@@ -1,11 +1,11 @@
 <Project>
   <Target Name="{{TARGET_NAME}}" BeforeTargets="BeforeBuild">
     <Exec
-      Command="npx tailwindcss -i {{INPUT_CSS}} -o {{OUTPUT_CSS}} --minify"
+      Command="npx @tailwindcss/cli -i {{INPUT_CSS}} -o {{OUTPUT_CSS}} --minify"
       Condition="'$(Configuration)' == 'Release'"
       WorkingDirectory="$(ProjectDir)" />
     <Exec
-      Command="npx tailwindcss -i {{INPUT_CSS}} -o {{OUTPUT_CSS}}"
+      Command="npx @tailwindcss/cli -i {{INPUT_CSS}} -o {{OUTPUT_CSS}}"
       Condition="'$(Configuration)' == 'Debug'"
       WorkingDirectory="$(ProjectDir)" />
   </Target>

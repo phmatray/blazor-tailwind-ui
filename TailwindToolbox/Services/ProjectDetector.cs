@@ -87,6 +87,10 @@ public sealed class ProjectDetector : IProjectDetector
             .Select(pr => pr.Attribute("Include")?.Value ?? "")
             .ToList();
 
+        // Check for Blazor-specific properties (for .NET 10+ implicit references)
+        var hasBlazorProperty = doc.Descendants("BlazorDisableThrowNavigationException").Any() ||
+                                doc.Descendants("BlazorWebAssemblyLoadAllGlobalizationData").Any();
+
         // Blazor WebAssembly
         if (sdk.Contains("BlazorWebAssembly") ||
             packageRefs.Any(p => p.Contains("Components.WebAssembly")))
@@ -100,9 +104,9 @@ public sealed class ProjectDetector : IProjectDetector
             return BlazorProjectType.Hybrid;
         }
 
-        // Blazor Server
+        // Blazor Server (including .NET 10+ with implicit references)
         if ((sdk.Contains("Microsoft.NET.Sdk.Web") || sdk.Contains("Microsoft.NET.Sdk.Razor")) &&
-            packageRefs.Any(p => p.Contains("AspNetCore.Components")))
+            (packageRefs.Any(p => p.Contains("AspNetCore.Components")) || hasBlazorProperty))
         {
             return BlazorProjectType.Server;
         }

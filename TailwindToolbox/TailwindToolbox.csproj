@@ -18,6 +18,18 @@
     <Description>CLI tool for automating Tailwind CSS setup in Blazor projects</Description>
     <Authors>TailwindToolbox Contributors</Authors>
     <Copyright>Copyright © 2026</Copyright>
+
+    <!-- .NET Tool Configuration -->
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>tailwind-blazor</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+
+    <!-- NuGet Package Metadata -->
+    <PackageId>TailwindToolbox</PackageId>
+    <PackageTags>tailwind;blazor;cli;css;dotnet-tool</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/phmatray/TailwindToolbox</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

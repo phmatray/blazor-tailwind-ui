@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build:css": "tailwindcss -i ./Styles/app.css -o ./wwwroot/css/app.css --minify"
+    "build:css": "@tailwindcss/cli -i ./Styles/app.css -o ./wwwroot/css/app.css --minify"
   },
   "dependencies": {
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "@tailwindcss/cli": "^4.1.18"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.23"
