@@ -1,5 +1,4 @@
 using Spectre.Console.Cli;
-using System.Linq;
 
 namespace TailwindToolbox.Tests.Helpers;
 

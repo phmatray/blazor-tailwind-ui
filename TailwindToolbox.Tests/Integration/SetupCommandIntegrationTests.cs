@@ -1,9 +1,7 @@
 using TailwindToolbox.Commands;
-using TailwindToolbox.Models;
 using TailwindToolbox.Services;
 using TailwindToolbox.Tests.Helpers;
 using Spectre.Console.Cli;
-using Xunit;
 
 namespace TailwindToolbox.Tests.Integration;
 

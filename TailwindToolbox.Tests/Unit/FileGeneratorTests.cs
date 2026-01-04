@@ -1,5 +1,4 @@
 using TailwindToolbox.Services;
-using Xunit;
 
 namespace TailwindToolbox.Tests.Unit;
 

@@ -1,5 +1,4 @@
 using TailwindToolbox.Services;
-using Xunit;
 
 namespace TailwindToolbox.Tests.Unit;
 
@@ -191,6 +190,98 @@ public class NpmServiceTests
 
         // Assert
         Assert.Null(version);
+
+        // Cleanup
+        Directory.Delete(workingDirectory, true);
+    }
+
+    [Fact(Skip = "Contract test - requires npm and network access")]
+    public async Task CheckForUpdates_WithOutdatedPackages_ReturnsUpdates()
+    {
+        // Arrange
+        var service = CreateNpmService();
+        var workingDirectory = CreateTempDirectory();
+
+        // Install an older version
+        await service.InstallPackageAsync("tailwindcss", "3.0.0", workingDirectory);
+
+        // Act
+        var updates = await service.CheckForUpdatesAsync(workingDirectory);
+
+        // Assert
+        Assert.NotNull(updates);
+        var tailwindUpdate = updates.FirstOrDefault(u => u.PackageName == "tailwindcss");
+        Assert.NotNull(tailwindUpdate);
+        Assert.Equal("3.0.0", tailwindUpdate.InstalledVersion);
+        Assert.NotNull(tailwindUpdate.LatestVersion);
+        Assert.True(tailwindUpdate.HasUpdate);
+
+        // Cleanup
+        Directory.Delete(workingDirectory, true);
+    }
+
+    [Fact]
+    public void DetectBreakingChanges_WithMajorVersionChange_ReturnsTrue()
+    {
+        // Arrange
+        var service = CreateNpmService();
+        var currentVersion = "3.4.1";
+        var latestVersion = "4.0.0";
+
+        // Act
+        var hasBreakingChanges = service.DetectBreakingChanges(currentVersion, latestVersion);
+
+        // Assert
+        Assert.True(hasBreakingChanges);
+    }
+
+    [Fact]
+    public void DetectBreakingChanges_WithMinorVersionChange_ReturnsFalse()
+    {
+        // Arrange
+        var service = CreateNpmService();
+        var currentVersion = "4.0.0";
+        var latestVersion = "4.1.0";
+
+        // Act
+        var hasBreakingChanges = service.DetectBreakingChanges(currentVersion, latestVersion);
+
+        // Assert
+        Assert.False(hasBreakingChanges);
+    }
+
+    [Fact]
+    public void DetectBreakingChanges_WithPatchVersionChange_ReturnsFalse()
+    {
+        // Arrange
+        var service = CreateNpmService();
+        var currentVersion = "4.0.0";
+        var latestVersion = "4.0.5";
+
+        // Act
+        var hasBreakingChanges = service.DetectBreakingChanges(currentVersion, latestVersion);
+
+        // Assert
+        Assert.False(hasBreakingChanges);
+    }
+
+    [Fact(Skip = "Contract test - requires npm and network access")]
+    public async Task UpdatePackageAsync_UpdatesToSpecificVersion()
+    {
+        // Arrange
+        var service = CreateNpmService();
+        var workingDirectory = CreateTempDirectory();
+
+        // Install an older version
+        await service.InstallPackageAsync("tailwindcss", "3.0.0", workingDirectory);
+
+        // Act
+        var result = await service.UpdatePackageAsync("tailwindcss", "4.0.0", workingDirectory);
+
+        // Assert
+        Assert.True(result.Success);
+        var installedVersion = await service.GetInstalledVersionAsync("tailwindcss", workingDirectory);
+        Assert.StartsWith("4.0", installedVersion);
 
         // Cleanup
         Directory.Delete(workingDirectory, true);
