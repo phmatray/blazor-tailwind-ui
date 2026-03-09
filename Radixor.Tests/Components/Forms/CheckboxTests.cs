@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Microsoft.AspNetCore.Components;
 using Radixor.Components.Forms;
 using Radixor.Tests.TestHelpers;
@@ -15,11 +15,11 @@ public class CheckboxTests : TestContext
         var component = RenderComponent<Checkbox>();
         
         var button = component.Find("button");
-        button.Should().NotBeNull();
-        button.GetAttribute("type").Should().Be("button");
-        button.GetAttribute("role").Should().Be("checkbox");
-        button.GetAttribute("aria-checked").Should().Be("false");
-        button.GetClasses().Should().Contain("rt-CheckboxRoot");
+        button.ShouldNotBeNull();
+        button.GetAttribute("type").ShouldBe("button");
+        button.GetAttribute("role").ShouldBe("checkbox");
+        button.GetAttribute("aria-checked").ShouldBe("false");
+        button.GetClasses().ShouldContain("rt-CheckboxRoot");
     }
     
     [Fact]
@@ -29,8 +29,8 @@ public class CheckboxTests : TestContext
             .Add(p => p.Checked, true));
         
         var button = component.Find("button");
-        button.GetAttribute("aria-checked").Should().Be("true");
-        button.GetAttribute("data-state").Should().Be("checked");
+        button.GetAttribute("aria-checked").ShouldBe("true");
+        button.GetAttribute("data-state").ShouldBe("checked");
     }
     
     [Fact]
@@ -40,8 +40,8 @@ public class CheckboxTests : TestContext
             .Add(p => p.Checked, false));
         
         var button = component.Find("button");
-        button.GetAttribute("aria-checked").Should().Be("false");
-        button.GetAttribute("data-state").Should().Be("unchecked");
+        button.GetAttribute("aria-checked").ShouldBe("false");
+        button.GetAttribute("data-state").ShouldBe("unchecked");
     }
     
     [Fact]
@@ -55,9 +55,9 @@ public class CheckboxTests : TestContext
         var button = component.Find("button");
         button.Click();
         
-        value.Should().BeTrue();
+        value.ShouldBeTrue();
         component.SetParametersAndRender(parameters => parameters.Add(p => p.Checked, value));
-        button.GetAttribute("aria-checked").Should().Be("true");
+        button.GetAttribute("aria-checked").ShouldBe("true");
     }
     
     [Fact]
@@ -67,8 +67,8 @@ public class CheckboxTests : TestContext
             .Add(p => p.Disabled, true));
         
         var button = component.Find("button");
-        button.HasAttribute("disabled").Should().BeTrue();
-        button.HasAttribute("data-disabled").Should().BeTrue();
+        button.HasAttribute("disabled").ShouldBeTrue();
+        button.HasAttribute("data-disabled").ShouldBeTrue();
     }
     
     [Fact]
@@ -83,7 +83,7 @@ public class CheckboxTests : TestContext
         var button = component.Find("button");
         button.Click();
         
-        value.Should().BeFalse();
+        value.ShouldBeFalse();
     }
     
     [Theory]
@@ -95,7 +95,7 @@ public class CheckboxTests : TestContext
         var component = RenderComponent<Checkbox>(parameters => parameters
             .Add(p => p.Size, size));
         
-        component.Find("button").GetClasses().Should().Contain(expectedClass);
+        component.Find("button").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -104,7 +104,7 @@ public class CheckboxTests : TestContext
         var component = RenderComponent<Checkbox>(parameters => parameters
             .Add(p => p.Color, "blue"));
         
-        component.Find("button").GetAttribute("data-accent-color").Should().Be("blue");
+        component.Find("button").GetAttribute("data-accent-color").ShouldBe("blue");
     }
     
     [Fact]
@@ -113,7 +113,7 @@ public class CheckboxTests : TestContext
         var component = RenderComponent<Checkbox>(parameters => parameters
             .Add(p => p.HighContrast, true));
         
-        component.Find("button").GetClasses().Should().Contain("rt-high-contrast");
+        component.Find("button").GetClasses().ShouldContain("rt-high-contrast");
     }
     
     [Fact]
@@ -122,7 +122,7 @@ public class CheckboxTests : TestContext
         var component = RenderComponent<Checkbox>(parameters => parameters
             .Add(p => p.Variant, CheckboxVariant.Soft));
         
-        component.Find("button").GetClasses().Should().Contain("rt-variant-soft");
+        component.Find("button").GetClasses().ShouldContain("rt-variant-soft");
     }
     
     [Fact]
@@ -131,9 +131,9 @@ public class CheckboxTests : TestContext
         var component = RenderComponent<Checkbox>(parameters => parameters
             .Add(p => p.Checked, true));
         
-        component.Find(".rt-CheckboxIndicator").Should().NotBeNull();
+        component.Find(".rt-CheckboxIndicator").ShouldNotBeNull();
         // The checkbox indicator exists but may use CSS to show the check rather than SVG
-        component.Find("button").GetAttribute("data-state").Should().Be("checked");
+        component.Find("button").GetAttribute("data-state").ShouldBe("checked");
     }
     
     [Fact]
@@ -142,7 +142,7 @@ public class CheckboxTests : TestContext
         var component = RenderComponent<Checkbox>(parameters => parameters
             .Add(p => p.Checked, false));
         
-        component.FindAll(".rt-CheckboxIndicator svg").Should().BeEmpty();
+        component.FindAll(".rt-CheckboxIndicator svg").ShouldBeEmpty();
     }
     
     [Fact]
@@ -153,8 +153,8 @@ public class CheckboxTests : TestContext
             .Add(p => p.Mr, "3"));
         
         var classes = component.Find("button").GetClasses();
-        classes.Should().Contain("rt-r-m-2");
-        classes.Should().Contain("rt-r-mr-3");
+        classes.ShouldContain("rt-r-m-2");
+        classes.ShouldContain("rt-r-mr-3");
     }
     
     [Fact]
@@ -163,7 +163,7 @@ public class CheckboxTests : TestContext
         var component = RenderComponent<Checkbox>(parameters => parameters
             .Add(p => p.Class, "custom-checkbox"));
         
-        component.Find("button").GetClasses().Should().Contain("custom-checkbox");
+        component.Find("button").GetClasses().ShouldContain("custom-checkbox");
     }
     
     [Fact]
@@ -174,7 +174,7 @@ public class CheckboxTests : TestContext
             .AddUnmatched("name", "terms"));
         
         var button = component.Find("button");
-        button.GetAttribute("data-testid").Should().Be("terms-checkbox");
-        button.GetAttribute("name").Should().Be("terms");
+        button.GetAttribute("data-testid").ShouldBe("terms-checkbox");
+        button.GetAttribute("name").ShouldBe("terms");
     }
 }

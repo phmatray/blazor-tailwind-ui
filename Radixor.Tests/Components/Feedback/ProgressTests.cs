@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Feedback;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -14,13 +14,13 @@ public class ProgressTests : TestContext
         var component = RenderComponent<Progress>();
         
         var progress = component.Find("div.rt-ProgressRoot");
-        progress.Should().NotBeNull();
-        progress.GetClasses().Should().Contain("rt-ProgressRoot");
-        progress.GetClasses().Should().Contain("rt-r-size-2");
-        progress.GetClasses().Should().Contain("rt-variant-surface");
-        progress.GetAttribute("role").Should().Be("progressbar");
+        progress.ShouldNotBeNull();
+        progress.GetClasses().ShouldContain("rt-ProgressRoot");
+        progress.GetClasses().ShouldContain("rt-r-size-2");
+        progress.GetClasses().ShouldContain("rt-variant-surface");
+        progress.GetAttribute("role").ShouldBe("progressbar");
         // aria-valuemin and aria-valuemax are only set when Value is provided
-        progress.GetAttribute("data-state").Should().Be("indeterminate");
+        progress.GetAttribute("data-state").ShouldBe("indeterminate");
     }
     
     [Fact]
@@ -30,8 +30,8 @@ public class ProgressTests : TestContext
             .Add(p => p.Value, 50));
         
         var indicator = component.Find("div.rt-ProgressIndicator");
-        indicator.Should().NotBeNull();
-        indicator.GetAttribute("style").Should().Contain("transform: translateX(-50%)");
+        indicator.ShouldNotBeNull();
+        indicator.GetAttribute("style").ShouldContain("transform: translateX(-50%)");
     }
     
     [Theory]
@@ -45,7 +45,7 @@ public class ProgressTests : TestContext
         var component = RenderComponent<Progress>(parameters => parameters
             .Add(p => p.Value, value));
         
-        component.Find("div.rt-ProgressRoot").GetAttribute("aria-valuenow").Should().Be(expected);
+        component.Find("div.rt-ProgressRoot").GetAttribute("aria-valuenow").ShouldBe(expected);
     }
     
     [Theory]
@@ -60,7 +60,7 @@ public class ProgressTests : TestContext
             .Add(p => p.Value, value));
         
         var indicator = component.Find("div.rt-ProgressIndicator");
-        indicator.GetAttribute("style").Should().Contain(expectedStyle);
+        indicator.GetAttribute("style").ShouldContain(expectedStyle);
     }
     
     [Theory]
@@ -72,7 +72,7 @@ public class ProgressTests : TestContext
         var component = RenderComponent<Progress>(parameters => parameters
             .Add(p => p.Size, size));
         
-        component.Find("div.rt-ProgressRoot").GetClasses().Should().Contain(expectedClass);
+        component.Find("div.rt-ProgressRoot").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -84,7 +84,7 @@ public class ProgressTests : TestContext
         var component = RenderComponent<Progress>(parameters => parameters
             .Add(p => p.Variant, variant));
         
-        component.Find("div.rt-ProgressRoot").GetClasses().Should().Contain(expectedClass);
+        component.Find("div.rt-ProgressRoot").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -93,7 +93,7 @@ public class ProgressTests : TestContext
         var component = RenderComponent<Progress>(parameters => parameters
             .Add(p => p.Color, "blue"));
         
-        component.Find("div.rt-ProgressRoot").GetAttribute("data-accent-color").Should().Be("blue");
+        component.Find("div.rt-ProgressRoot").GetAttribute("data-accent-color").ShouldBe("blue");
     }
     
     [Fact]
@@ -102,7 +102,7 @@ public class ProgressTests : TestContext
         var component = RenderComponent<Progress>(parameters => parameters
             .Add(p => p.HighContrast, true));
         
-        component.Find("div.rt-ProgressRoot").GetClasses().Should().Contain("rt-high-contrast");
+        component.Find("div.rt-ProgressRoot").GetClasses().ShouldContain("rt-high-contrast");
     }
     
     [Fact]
@@ -111,7 +111,7 @@ public class ProgressTests : TestContext
         var component = RenderComponent<Progress>(parameters => parameters
             .Add(p => p.Radius, "full"));
         
-        component.Find("div.rt-ProgressRoot").GetAttribute("data-radius").Should().Be("full");
+        component.Find("div.rt-ProgressRoot").GetAttribute("data-radius").ShouldBe("full");
     }
     
     [Fact]
@@ -122,7 +122,7 @@ public class ProgressTests : TestContext
             .Add(p => p.Max, 100));
         
         var indicator = component.Find("div.rt-ProgressIndicator");
-        indicator.GetAttribute("style").Should().Contain("transform: translateX(-0%)");
+        indicator.GetAttribute("style").ShouldContain("transform: translateX(-0%)");
     }
     
     [Fact]
@@ -133,10 +133,10 @@ public class ProgressTests : TestContext
             .Add(p => p.Max, 200));
         
         var progress = component.Find("div.rt-ProgressRoot");
-        progress.GetAttribute("aria-valuemax").Should().Be("200");
+        progress.GetAttribute("aria-valuemax").ShouldBe("200");
         
         var indicator = component.Find("div.rt-ProgressIndicator");
-        indicator.GetAttribute("style").Should().Contain("transform: translateX(-75%)"); // 50/200 = 25%, so 100-25 = 75%
+        indicator.GetAttribute("style").ShouldContain("transform: translateX(-75%)"); // 50/200 = 25%, so 100-25 = 75%
     }
     
     // Note: Duration style is applied to CSS variables, not directly to the indicator style
@@ -150,8 +150,8 @@ public class ProgressTests : TestContext
             .Add(p => p.My, "2"));
         
         var classes = component.Find("div.rt-ProgressRoot").GetClasses();
-        classes.Should().Contain("rt-r-m-3");
-        classes.Should().Contain("rt-r-my-2");
+        classes.ShouldContain("rt-r-m-3");
+        classes.ShouldContain("rt-r-my-2");
     }
     
     [Fact]
@@ -160,6 +160,6 @@ public class ProgressTests : TestContext
         var component = RenderComponent<Progress>(parameters => parameters
             .Add(p => p.Class, "custom-progress"));
         
-        component.Find("div.rt-ProgressRoot").GetClasses().Should().Contain("custom-progress");
+        component.Find("div.rt-ProgressRoot").GetClasses().ShouldContain("custom-progress");
     }
 }

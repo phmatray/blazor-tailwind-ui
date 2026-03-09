@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Feedback;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -14,9 +14,9 @@ public class SpinnerTests : TestContext
         var component = RenderComponent<Spinner>();
         
         var spinner = component.Find("span.rt-Spinner");
-        spinner.Should().NotBeNull();
-        spinner.GetClasses().Should().Contain("rt-Spinner");
-        spinner.GetClasses().Should().Contain("rt-r-size-2");
+        spinner.ShouldNotBeNull();
+        spinner.GetClasses().ShouldContain("rt-Spinner");
+        spinner.GetClasses().ShouldContain("rt-r-size-2");
     }
     
     [Theory]
@@ -28,7 +28,7 @@ public class SpinnerTests : TestContext
         var component = RenderComponent<Spinner>(parameters => parameters
             .Add(p => p.Size, size));
         
-        component.Find("span.rt-Spinner").GetClasses().Should().Contain(expectedClass);
+        component.Find("span.rt-Spinner").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -38,7 +38,7 @@ public class SpinnerTests : TestContext
         
         // Should have spinner leaves for animation
         var spinnerLeaves = component.FindAll("span.rt-SpinnerLeaf");
-        spinnerLeaves.Should().HaveCount(8);
+        spinnerLeaves.Count().ShouldBe(8);
     }
     
     [Fact]
@@ -47,7 +47,7 @@ public class SpinnerTests : TestContext
         var component = RenderComponent<Spinner>();
         
         var spinner = component.Find("span.rt-Spinner");
-        spinner.GetAttribute("aria-label").Should().Be("Loading");
+        spinner.GetAttribute("aria-label").ShouldBe("Loading");
     }
     
     [Fact]
@@ -56,7 +56,7 @@ public class SpinnerTests : TestContext
         var component = RenderComponent<Spinner>(parameters => parameters
             .Add(p => p.Class, "custom-spinner"));
         
-        component.Find("span.rt-Spinner").GetClasses().Should().Contain("custom-spinner");
+        component.Find("span.rt-Spinner").GetClasses().ShouldContain("custom-spinner");
     }
     
     [Fact]
@@ -67,8 +67,8 @@ public class SpinnerTests : TestContext
             .AddUnmatched("role", "status"));
         
         var spinner = component.Find("span.rt-Spinner");
-        spinner.GetAttribute("data-testid").Should().Be("loading-spinner");
-        spinner.GetAttribute("role").Should().Be("status");
+        spinner.GetAttribute("data-testid").ShouldBe("loading-spinner");
+        spinner.GetAttribute("role").ShouldBe("status");
     }
     
     [Fact]
@@ -77,7 +77,7 @@ public class SpinnerTests : TestContext
         var component = RenderComponent<Spinner>(parameters => parameters
             .Add(p => p.Loading, true));
         
-        component.Find("span.rt-Spinner").Should().NotBeNull();
+        component.Find("span.rt-Spinner").ShouldNotBeNull();
     }
     
     [Fact]
@@ -86,6 +86,6 @@ public class SpinnerTests : TestContext
         var component = RenderComponent<Spinner>(parameters => parameters
             .Add(p => p.Loading, false));
         
-        component.FindAll("span.rt-Spinner").Should().BeEmpty();
+        component.FindAll("span.rt-Spinner").ShouldBeEmpty();
     }
 }

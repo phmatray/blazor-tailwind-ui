@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Microsoft.AspNetCore.Components;
 using Radixor.Components.DataDisplay;
 using Radixor.Tests.TestHelpers;
@@ -16,13 +16,13 @@ public class TableTests : TestContext
             .AddChildContent("<tr><td>Test</td></tr>"));
         
         var wrapper = component.Find("div.rt-TableRootWrapper");
-        wrapper.Should().NotBeNull();
+        wrapper.ShouldNotBeNull();
         
         var table = component.Find("table.rt-TableRoot");
-        table.Should().NotBeNull();
-        table.GetClasses().Should().Contain("rt-TableRoot");
-        table.GetClasses().Should().Contain("rt-r-size-2");
-        table.GetClasses().Should().Contain("rt-variant-surface");
+        table.ShouldNotBeNull();
+        table.GetClasses().ShouldContain("rt-TableRoot");
+        table.GetClasses().ShouldContain("rt-r-size-2");
+        table.GetClasses().ShouldContain("rt-variant-surface");
     }
     
     [Theory]
@@ -35,7 +35,7 @@ public class TableTests : TestContext
             .Add(p => p.Size, size)
             .AddChildContent("<tr><td>Test</td></tr>"));
         
-        component.Find("table.rt-TableRoot").GetClasses().Should().Contain(expectedClass);
+        component.Find("table.rt-TableRoot").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -47,7 +47,7 @@ public class TableTests : TestContext
             .Add(p => p.Variant, variant)
             .AddChildContent("<tr><td>Test</td></tr>"));
         
-        component.Find("table.rt-TableRoot").GetClasses().Should().Contain(expectedClass);
+        component.Find("table.rt-TableRoot").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -58,7 +58,7 @@ public class TableTests : TestContext
         
         // The TableRoot should provide itself as a cascading value
         var tableRoot = component.Instance;
-        tableRoot.Should().NotBeNull();
+        tableRoot.ShouldNotBeNull();
     }
     
     [Fact]
@@ -68,8 +68,8 @@ public class TableTests : TestContext
             .AddChildContent("<tr><th>Header</th></tr>"));
         
         var thead = component.Find("thead.rt-TableHeader");
-        thead.Should().NotBeNull();
-        thead.InnerHtml.Should().Contain("Header");
+        thead.ShouldNotBeNull();
+        thead.InnerHtml.ShouldContain("Header");
     }
     
     [Fact]
@@ -79,8 +79,8 @@ public class TableTests : TestContext
             .AddChildContent("<tr><td>Body</td></tr>"));
         
         var tbody = component.Find("tbody.rt-TableBody");
-        tbody.Should().NotBeNull();
-        tbody.InnerHtml.Should().Contain("Body");
+        tbody.ShouldNotBeNull();
+        tbody.InnerHtml.ShouldContain("Body");
     }
     
     [Fact]
@@ -90,8 +90,8 @@ public class TableTests : TestContext
             .AddChildContent("<td>Row</td>"));
         
         var tr = component.Find("tr.rt-TableRow");
-        tr.Should().NotBeNull();
-        tr.InnerHtml.Should().Contain("Row");
+        tr.ShouldNotBeNull();
+        tr.InnerHtml.ShouldContain("Row");
     }
     
     [Fact]
@@ -101,7 +101,7 @@ public class TableTests : TestContext
             .Add(p => p.Align, TableRowAlign.Center)
             .AddChildContent("<td>Row</td>"));
         
-        component.Find("tr.rt-TableRow").GetClasses().Should().Contain("rt-align-center");
+        component.Find("tr.rt-TableRow").GetClasses().ShouldContain("rt-align-center");
     }
     
     [Fact]
@@ -111,8 +111,8 @@ public class TableTests : TestContext
             .AddChildContent("Cell Content"));
         
         var td = component.Find("td.rt-TableCell");
-        td.Should().NotBeNull();
-        td.TextContent.Should().Be("Cell Content");
+        td.ShouldNotBeNull();
+        td.TextContent.ShouldBe("Cell Content");
     }
     
     [Fact]
@@ -123,8 +123,8 @@ public class TableTests : TestContext
             .AddChildContent("Header Cell"));
         
         var th = component.Find("th.rt-TableHeaderCell");
-        th.Should().NotBeNull();
-        th.TextContent.Should().Be("Header Cell");
+        th.ShouldNotBeNull();
+        th.TextContent.ShouldBe("Header Cell");
     }
     
     [Theory]
@@ -137,7 +137,7 @@ public class TableTests : TestContext
             .Add(p => p.Align, align)
             .AddChildContent("Cell"));
         
-        component.Find("td.rt-TableCell").GetClasses().Should().Contain(expectedClass);
+        component.Find("td.rt-TableCell").GetClasses().ShouldContain(expectedClass);
     }
     
     // Note: TableCellJustify is not implemented in the current component
@@ -151,7 +151,7 @@ public class TableTests : TestContext
             .AddChildContent("Cell"));
         
         var td = component.Find("td.rt-TableCell");
-        td.GetAttribute("style").Should().Contain("width: 200px");
+        td.GetAttribute("style").ShouldContain("width: 200px");
     }
     
     [Fact]
@@ -200,11 +200,11 @@ public class TableTests : TestContext
             }));
         
         // Verify structure
-        component.Find("table.rt-TableRoot").Should().NotBeNull();
-        component.Find("thead.rt-TableHeader").Should().NotBeNull();
-        component.Find("tbody.rt-TableBody").Should().NotBeNull();
-        component.FindAll("tr.rt-TableRow").Should().HaveCount(2);
-        component.FindAll("th.rt-TableHeaderCell").Should().HaveCount(2);
-        component.FindAll("td.rt-TableCell").Should().HaveCount(2);
+        component.Find("table.rt-TableRoot").ShouldNotBeNull();
+        component.Find("thead.rt-TableHeader").ShouldNotBeNull();
+        component.Find("tbody.rt-TableBody").ShouldNotBeNull();
+        component.FindAll("tr.rt-TableRow").Count().ShouldBe(2);
+        component.FindAll("th.rt-TableHeaderCell").Count().ShouldBe(2);
+        component.FindAll("td.rt-TableCell").Count().ShouldBe(2);
     }
 }

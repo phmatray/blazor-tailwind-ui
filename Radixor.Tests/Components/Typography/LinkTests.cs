@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Typography;
 using Radixor.Components.Common;
 using Radixor.Tests.TestHelpers;
@@ -17,11 +17,11 @@ public class LinkTests : TestContext
             .AddChildContent("Click here"));
         
         var link = component.Find("a.rt-Link");
-        link.Should().NotBeNull();
-        link.TextContent.Should().Be("Click here");
-        link.GetAttribute("href").Should().Be("https://example.com");
-        link.GetClasses().Should().Contain("rt-Link");
-        link.GetClasses().Should().Contain("rt-underline-auto");
+        link.ShouldNotBeNull();
+        link.TextContent.ShouldBe("Click here");
+        link.GetAttribute("href").ShouldBe("https://example.com");
+        link.GetClasses().ShouldContain("rt-Link");
+        link.GetClasses().ShouldContain("rt-underline-auto");
     }
     
     [Theory]
@@ -41,7 +41,7 @@ public class LinkTests : TestContext
             .Add(p => p.Href, "#")
             .AddChildContent("Link"));
         
-        component.Find("a.rt-Link").GetClasses().Should().Contain(expectedClass);
+        component.Find("a.rt-Link").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -56,7 +56,7 @@ public class LinkTests : TestContext
             .Add(p => p.Href, "#")
             .AddChildContent("Link"));
         
-        component.Find("a.rt-Link").GetClasses().Should().Contain(expectedClass);
+        component.Find("a.rt-Link").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -71,7 +71,7 @@ public class LinkTests : TestContext
             .Add(p => p.Href, "#")
             .AddChildContent("Link"));
         
-        component.Find("a.rt-Link").GetClasses().Should().Contain(expectedClass);
+        component.Find("a.rt-Link").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -82,7 +82,7 @@ public class LinkTests : TestContext
             .Add(p => p.Href, "#")
             .AddChildContent("Link"));
         
-        component.Find("a.rt-Link").GetAttribute("data-accent-color").Should().Be("blue");
+        component.Find("a.rt-Link").GetAttribute("data-accent-color").ShouldBe("blue");
     }
     
     [Fact]
@@ -93,7 +93,7 @@ public class LinkTests : TestContext
             .Add(p => p.Href, "#")
             .AddChildContent("Link"));
         
-        component.Find("a.rt-Link").GetClasses().Should().Contain("rt-high-contrast");
+        component.Find("a.rt-Link").GetClasses().ShouldContain("rt-high-contrast");
     }
     
     [Fact]
@@ -104,7 +104,7 @@ public class LinkTests : TestContext
             .Add(p => p.Href, "https://example.com")
             .AddChildContent("External Link"));
         
-        component.Find("a.rt-Link").GetAttribute("target").Should().Be("_blank");
+        component.Find("a.rt-Link").GetAttribute("target").ShouldBe("_blank");
     }
     
     [Fact]
@@ -116,7 +116,7 @@ public class LinkTests : TestContext
             .Add(p => p.Target, "_blank")
             .AddChildContent("Safe External Link"));
         
-        component.Find("a.rt-Link").GetAttribute("rel").Should().Be("noopener noreferrer");
+        component.Find("a.rt-Link").GetAttribute("rel").ShouldBe("noopener noreferrer");
     }
     
     [Fact]
@@ -127,7 +127,7 @@ public class LinkTests : TestContext
             .Add(p => p.Href, "#")
             .AddChildContent("Very long link text that should be truncated"));
         
-        component.Find("a.rt-Link").GetClasses().Should().Contain("rt-truncate");
+        component.Find("a.rt-Link").GetClasses().ShouldContain("rt-truncate");
     }
     
     [Fact]
@@ -140,8 +140,8 @@ public class LinkTests : TestContext
             .AddChildContent("Link"));
         
         var classes = component.Find("a.rt-Link").GetClasses();
-        classes.Should().Contain("rt-r-m-2");
-        classes.Should().Contain("rt-r-mx-3");
+        classes.ShouldContain("rt-r-m-2");
+        classes.ShouldContain("rt-r-mx-3");
     }
     
     [Fact]
@@ -152,6 +152,6 @@ public class LinkTests : TestContext
             .Add(p => p.Href, "#")
             .AddChildContent("Link"));
         
-        component.Find("a.rt-Link").GetClasses().Should().Contain("custom-link");
+        component.Find("a.rt-Link").GetClasses().ShouldContain("custom-link");
     }
 }

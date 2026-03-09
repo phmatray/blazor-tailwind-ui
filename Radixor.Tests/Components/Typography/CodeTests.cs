@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Typography;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -15,11 +15,11 @@ public class CodeTests : TestContext
             .AddChildContent("const x = 42;"));
         
         var code = component.Find("code");
-        code.Should().NotBeNull();
-        code.TextContent.Should().Be("const x = 42;");
-        code.GetClasses().Should().Contain("rt-Code");
-        code.GetClasses().Should().Contain("rt-r-size-2");
-        code.GetClasses().Should().Contain("rt-variant-soft");
+        code.ShouldNotBeNull();
+        code.TextContent.ShouldBe("const x = 42;");
+        code.GetClasses().ShouldContain("rt-Code");
+        code.GetClasses().ShouldContain("rt-r-size-2");
+        code.GetClasses().ShouldContain("rt-variant-soft");
     }
     
     [Theory]
@@ -38,7 +38,7 @@ public class CodeTests : TestContext
             .Add(p => p.Size, size)
             .AddChildContent("code"));
         
-        component.Find("code").GetClasses().Should().Contain(expectedClass);
+        component.Find("code").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -52,7 +52,7 @@ public class CodeTests : TestContext
             .Add(p => p.Variant, variant)
             .AddChildContent("code"));
         
-        component.Find("code").GetClasses().Should().Contain(expectedClass);
+        component.Find("code").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -66,7 +66,7 @@ public class CodeTests : TestContext
             .Add(p => p.Weight, weight)
             .AddChildContent("code"));
         
-        component.Find("code").GetClasses().Should().Contain(expectedClass);
+        component.Find("code").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -76,7 +76,7 @@ public class CodeTests : TestContext
             .Add(p => p.Color, "cyan")
             .AddChildContent("code"));
         
-        component.Find("code").GetAttribute("data-accent-color").Should().Be("cyan");
+        component.Find("code").GetAttribute("data-accent-color").ShouldBe("cyan");
     }
     
     [Fact]
@@ -86,7 +86,7 @@ public class CodeTests : TestContext
             .Add(p => p.HighContrast, true)
             .AddChildContent("code"));
         
-        component.Find("code").GetClasses().Should().Contain("rt-high-contrast");
+        component.Find("code").GetClasses().ShouldContain("rt-high-contrast");
     }
     
     [Fact]
@@ -96,7 +96,7 @@ public class CodeTests : TestContext
             .Add(p => p.Truncate, true)
             .AddChildContent("very long code snippet that should be truncated"));
         
-        component.Find("code").GetClasses().Should().Contain("rt-truncate");
+        component.Find("code").GetClasses().ShouldContain("rt-truncate");
     }
     
     [Fact]
@@ -106,7 +106,7 @@ public class CodeTests : TestContext
             .Add(p => p.Class, "custom-code")
             .AddChildContent("code"));
         
-        component.Find("code").GetClasses().Should().Contain("custom-code");
+        component.Find("code").GetClasses().ShouldContain("custom-code");
     }
     
     [Fact]
@@ -118,7 +118,7 @@ public class CodeTests : TestContext
             .AddChildContent("const x = 42;"));
         
         var code = component.Find("code");
-        code.GetAttribute("data-language").Should().Be("javascript");
-        code.GetAttribute("title").Should().Be("JavaScript code");
+        code.GetAttribute("data-language").ShouldBe("javascript");
+        code.GetAttribute("title").ShouldBe("JavaScript code");
     }
 }

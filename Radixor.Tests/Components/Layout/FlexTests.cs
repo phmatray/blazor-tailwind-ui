@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Layout;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -15,9 +15,9 @@ public class FlexTests : TestContext
             .AddChildContent("Test Content"));
         
         var element = component.Find("div");
-        element.Should().NotBeNull();
-        element.GetClasses().Should().Contain("rt-Flex");
-        element.TextContent.Should().Be("Test Content");
+        element.ShouldNotBeNull();
+        element.GetClasses().ShouldContain("rt-Flex");
+        element.TextContent.ShouldBe("Test Content");
     }
     
     [Fact]
@@ -27,7 +27,7 @@ public class FlexTests : TestContext
             .Add(p => p.Direction, FlexDirection.Column)
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-fd-column");
+        component.Find("div").GetClasses().ShouldContain("rt-r-fd-column");
     }
     
     [Fact]
@@ -37,7 +37,7 @@ public class FlexTests : TestContext
             .Add(p => p.Align, FlexAlign.Center)
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-ai-center");
+        component.Find("div").GetClasses().ShouldContain("rt-r-ai-center");
     }
     
     [Fact]
@@ -47,7 +47,7 @@ public class FlexTests : TestContext
             .Add(p => p.Justify, FlexJustify.Between)
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-jc-space-between");
+        component.Find("div").GetClasses().ShouldContain("rt-r-jc-space-between");
     }
     
     [Fact]
@@ -57,7 +57,7 @@ public class FlexTests : TestContext
             .Add(p => p.Wrap, FlexWrap.Wrap)
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-fw-wrap");
+        component.Find("div").GetClasses().ShouldContain("rt-r-fw-wrap");
     }
     
     [Fact]
@@ -67,7 +67,7 @@ public class FlexTests : TestContext
             .Add(p => p.Gap, "3")
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-gap-3");
+        component.Find("div").GetClasses().ShouldContain("rt-r-gap-3");
     }
     
     [Fact]
@@ -79,8 +79,8 @@ public class FlexTests : TestContext
             .AddChildContent("Test Content"));
         
         var classes = component.Find("div").GetClasses();
-        classes.Should().Contain("rt-r-cg-2");
-        classes.Should().Contain("rt-r-rg-4");
+        classes.ShouldContain("rt-r-cg-2");
+        classes.ShouldContain("rt-r-rg-4");
     }
     
     [Fact]
@@ -90,8 +90,8 @@ public class FlexTests : TestContext
             .Add(p => p.As, "span")
             .AddChildContent("Test Content"));
         
-        component.Find("span").Should().NotBeNull();
-        component.Find("span").GetClasses().Should().Contain("rt-Flex");
+        component.Find("span").ShouldNotBeNull();
+        component.Find("span").GetClasses().ShouldContain("rt-Flex");
     }
     
     [Fact]
@@ -101,7 +101,7 @@ public class FlexTests : TestContext
             .Add(p => p.Display, FlexDisplay.InlineFlex)
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-display-inline-flex");
+        component.Find("div").GetClasses().ShouldContain("rt-r-display-inline-flex");
     }
     
     [Fact]
@@ -113,8 +113,8 @@ public class FlexTests : TestContext
             .AddChildContent("Test Content"));
         
         var classes = component.Find("div").GetClasses();
-        classes.Should().Contain("rt-r-m-3");
-        classes.Should().Contain("rt-r-mx-auto");
+        classes.ShouldContain("rt-r-m-3");
+        classes.ShouldContain("rt-r-mx-auto");
     }
     
     [Fact]
@@ -126,8 +126,8 @@ public class FlexTests : TestContext
             .AddChildContent("Test Content"));
         
         var classes = component.Find("div").GetClasses();
-        classes.Should().Contain("rt-r-p-4");
-        classes.Should().Contain("rt-r-py-2");
+        classes.ShouldContain("rt-r-p-4");
+        classes.ShouldContain("rt-r-py-2");
     }
     
     [Fact]
@@ -137,6 +137,6 @@ public class FlexTests : TestContext
             .Add(p => p.Class, "custom-flex")
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("custom-flex");
+        component.Find("div").GetClasses().ShouldContain("custom-flex");
     }
 }

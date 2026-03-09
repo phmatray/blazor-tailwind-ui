@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Typography;
 using Radixor.Components.Common;
 using Radixor.Tests.TestHelpers;
@@ -16,9 +16,9 @@ public class HeadingTests : TestContext
             .AddChildContent("Test Heading"));
         
         var h1 = component.Find("h1");
-        h1.Should().NotBeNull();
-        h1.TextContent.Should().Be("Test Heading");
-        h1.GetClasses().Should().Contain("rt-Heading");
+        h1.ShouldNotBeNull();
+        h1.TextContent.ShouldBe("Test Heading");
+        h1.GetClasses().ShouldContain("rt-Heading");
     }
     
     [Theory]
@@ -35,8 +35,8 @@ public class HeadingTests : TestContext
             .AddChildContent("Test Heading"));
         
         var element = component.Find(asElement);
-        element.Should().NotBeNull();
-        element.GetClasses().Should().Contain("rt-Heading");
+        element.ShouldNotBeNull();
+        element.GetClasses().ShouldContain("rt-Heading");
     }
     
     [Theory]
@@ -55,7 +55,7 @@ public class HeadingTests : TestContext
             .Add(p => p.Size, size)
             .AddChildContent("Heading"));
         
-        component.Find("h1").GetClasses().Should().Contain(expectedClass);
+        component.Find("h1").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -69,7 +69,7 @@ public class HeadingTests : TestContext
             .Add(p => p.Weight, weight)
             .AddChildContent("Heading"));
         
-        component.Find("h1").GetClasses().Should().Contain(expectedClass);
+        component.Find("h1").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -82,7 +82,7 @@ public class HeadingTests : TestContext
             .Add(p => p.Align, align)
             .AddChildContent("Heading"));
         
-        component.Find("h1").GetClasses().Should().Contain(expectedClass);
+        component.Find("h1").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -92,7 +92,7 @@ public class HeadingTests : TestContext
             .Add(p => p.Color, "red")
             .AddChildContent("Heading"));
         
-        component.Find("h1").GetAttribute("data-accent-color").Should().Be("red");
+        component.Find("h1").GetAttribute("data-accent-color").ShouldBe("red");
     }
     
     [Fact]
@@ -102,7 +102,7 @@ public class HeadingTests : TestContext
             .Add(p => p.HighContrast, true)
             .AddChildContent("Heading"));
         
-        component.Find("h1").GetClasses().Should().Contain("rt-high-contrast");
+        component.Find("h1").GetClasses().ShouldContain("rt-high-contrast");
     }
     
     [Fact]
@@ -113,8 +113,8 @@ public class HeadingTests : TestContext
             .AddChildContent("Heading"));
         
         var classes = component.Find("h1").GetClasses();
-        classes.Should().Contain("rt-leading-trim-start");
-        classes.Should().Contain("rt-leading-trim-end");
+        classes.ShouldContain("rt-leading-trim-start");
+        classes.ShouldContain("rt-leading-trim-end");
     }
     
     [Fact]
@@ -124,7 +124,7 @@ public class HeadingTests : TestContext
             .Add(p => p.Truncate, true)
             .AddChildContent("Very long heading that needs truncation"));
         
-        component.Find("h1").GetClasses().Should().Contain("rt-truncate");
+        component.Find("h1").GetClasses().ShouldContain("rt-truncate");
     }
     
     [Theory]
@@ -138,7 +138,7 @@ public class HeadingTests : TestContext
             .Add(p => p.Wrap, wrap)
             .AddChildContent("Heading"));
         
-        component.Find("h1").GetClasses().Should().Contain(expectedClass);
+        component.Find("h1").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -151,9 +151,9 @@ public class HeadingTests : TestContext
             .AddChildContent("Heading"));
         
         var classes = component.Find("h1").GetClasses();
-        classes.Should().Contain("rt-r-m-3");
-        classes.Should().Contain("rt-r-mt-4");
-        classes.Should().Contain("rt-r-mb-4");
+        classes.ShouldContain("rt-r-m-3");
+        classes.ShouldContain("rt-r-mt-4");
+        classes.ShouldContain("rt-r-mb-4");
     }
     
     [Fact]
@@ -163,6 +163,6 @@ public class HeadingTests : TestContext
             .Add(p => p.Class, "custom-heading")
             .AddChildContent("Heading"));
         
-        component.Find("h1").GetClasses().Should().Contain("custom-heading");
+        component.Find("h1").GetClasses().ShouldContain("custom-heading");
     }
 }

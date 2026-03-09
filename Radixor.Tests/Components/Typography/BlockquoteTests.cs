@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Typography;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -15,10 +15,10 @@ public class BlockquoteTests : TestContext
             .AddChildContent("This is a quote"));
         
         var blockquote = component.Find("blockquote");
-        blockquote.Should().NotBeNull();
-        blockquote.TextContent.Should().Be("This is a quote");
-        blockquote.GetClasses().Should().Contain("rt-Blockquote");
-        blockquote.GetClasses().Should().Contain("rt-r-size-2");
+        blockquote.ShouldNotBeNull();
+        blockquote.TextContent.ShouldBe("This is a quote");
+        blockquote.GetClasses().ShouldContain("rt-Blockquote");
+        blockquote.GetClasses().ShouldContain("rt-r-size-2");
     }
     
     [Theory]
@@ -37,7 +37,7 @@ public class BlockquoteTests : TestContext
             .Add(p => p.Size, size)
             .AddChildContent("Quote"));
         
-        component.Find("blockquote").GetClasses().Should().Contain(expectedClass);
+        component.Find("blockquote").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -51,7 +51,7 @@ public class BlockquoteTests : TestContext
             .Add(p => p.Weight, weight)
             .AddChildContent("Quote"));
         
-        component.Find("blockquote").GetClasses().Should().Contain(expectedClass);
+        component.Find("blockquote").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -61,7 +61,7 @@ public class BlockquoteTests : TestContext
             .Add(p => p.Color, "purple")
             .AddChildContent("Quote"));
         
-        component.Find("blockquote").GetAttribute("data-accent-color").Should().Be("purple");
+        component.Find("blockquote").GetAttribute("data-accent-color").ShouldBe("purple");
     }
     
     [Fact]
@@ -71,7 +71,7 @@ public class BlockquoteTests : TestContext
             .Add(p => p.HighContrast, true)
             .AddChildContent("Quote"));
         
-        component.Find("blockquote").GetClasses().Should().Contain("rt-high-contrast");
+        component.Find("blockquote").GetClasses().ShouldContain("rt-high-contrast");
     }
     
     [Fact]
@@ -81,7 +81,7 @@ public class BlockquoteTests : TestContext
             .Add(p => p.Truncate, true)
             .AddChildContent("Very long quote that should be truncated"));
         
-        component.Find("blockquote").GetClasses().Should().Contain("rt-truncate");
+        component.Find("blockquote").GetClasses().ShouldContain("rt-truncate");
     }
     
     [Theory]
@@ -95,7 +95,7 @@ public class BlockquoteTests : TestContext
             .Add(p => p.Wrap, wrap)
             .AddChildContent("Quote"));
         
-        component.Find("blockquote").GetClasses().Should().Contain(expectedClass);
+        component.Find("blockquote").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -107,8 +107,8 @@ public class BlockquoteTests : TestContext
             .AddChildContent("Quote"));
         
         var classes = component.Find("blockquote").GetClasses();
-        classes.Should().Contain("rt-r-m-3");
-        classes.Should().Contain("rt-r-my-4");
+        classes.ShouldContain("rt-r-m-3");
+        classes.ShouldContain("rt-r-my-4");
     }
     
     [Fact]
@@ -118,6 +118,6 @@ public class BlockquoteTests : TestContext
             .Add(p => p.Class, "custom-blockquote")
             .AddChildContent("Quote"));
         
-        component.Find("blockquote").GetClasses().Should().Contain("custom-blockquote");
+        component.Find("blockquote").GetClasses().ShouldContain("custom-blockquote");
     }
 }

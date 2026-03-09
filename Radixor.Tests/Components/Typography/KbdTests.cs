@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Typography;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -15,9 +15,9 @@ public class KbdTests : TestContext
             .AddChildContent("Ctrl"));
         
         var kbd = component.Find("kbd.rt-Kbd");
-        kbd.Should().NotBeNull();
-        kbd.TextContent.Should().Be("Ctrl");
-        kbd.GetClasses().Should().Contain("rt-Kbd");
+        kbd.ShouldNotBeNull();
+        kbd.TextContent.ShouldBe("Ctrl");
+        kbd.GetClasses().ShouldContain("rt-Kbd");
         // Default size is not set in the component, so no size class is applied by default
     }
     
@@ -37,7 +37,7 @@ public class KbdTests : TestContext
             .Add(p => p.Size, size)
             .AddChildContent("Key"));
         
-        component.Find("kbd.rt-Kbd").GetClasses().Should().Contain(expectedClass);
+        component.Find("kbd.rt-Kbd").GetClasses().ShouldContain(expectedClass);
     }
     
     // Note: KbdVariant is not implemented in the current component
@@ -53,7 +53,7 @@ public class KbdTests : TestContext
             .AddChildContent("⌘+S"));
         
         var kbd = component.Find("kbd.rt-Kbd");
-        kbd.TextContent.Should().Be("⌘+S");
+        kbd.TextContent.ShouldBe("⌘+S");
     }
     
     [Fact]
@@ -63,7 +63,7 @@ public class KbdTests : TestContext
             .Add(p => p.Class, "custom-kbd")
             .AddChildContent("Key"));
         
-        component.Find("kbd.rt-Kbd").GetClasses().Should().Contain("custom-kbd");
+        component.Find("kbd.rt-Kbd").GetClasses().ShouldContain("custom-kbd");
     }
     
     [Fact]
@@ -75,7 +75,7 @@ public class KbdTests : TestContext
             .AddChildContent("Enter"));
         
         var kbd = component.Find("kbd.rt-Kbd");
-        kbd.GetAttribute("data-testid").Should().Be("kbd-element");
-        kbd.GetAttribute("title").Should().Be("Keyboard shortcut");
+        kbd.GetAttribute("data-testid").ShouldBe("kbd-element");
+        kbd.GetAttribute("title").ShouldBe("Keyboard shortcut");
     }
 }

@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Typography;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -15,9 +15,9 @@ public class QuoteTests : TestContext
             .AddChildContent("This is a quote"));
         
         var quote = component.Find("q.rt-Quote");
-        quote.Should().NotBeNull();
-        quote.TextContent.Should().Be("This is a quote");
-        quote.GetClasses().Should().Contain("rt-Quote");
+        quote.ShouldNotBeNull();
+        quote.TextContent.ShouldBe("This is a quote");
+        quote.GetClasses().ShouldContain("rt-Quote");
     }
     
     // Note: Color and HighContrast properties are not implemented in the current Quote component
@@ -30,7 +30,7 @@ public class QuoteTests : TestContext
             .Add(p => p.Truncate, true)
             .AddChildContent("Very long quote that should be truncated"));
         
-        component.Find("q.rt-Quote").GetClasses().Should().Contain("rt-truncate");
+        component.Find("q.rt-Quote").GetClasses().ShouldContain("rt-truncate");
     }
     
     [Theory]
@@ -44,7 +44,7 @@ public class QuoteTests : TestContext
             .Add(p => p.Wrap, wrap)
             .AddChildContent("Quote text"));
         
-        component.Find("q.rt-Quote").GetClasses().Should().Contain(expectedClass);
+        component.Find("q.rt-Quote").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -54,7 +54,7 @@ public class QuoteTests : TestContext
             .Add(p => p.Class, "custom-quote")
             .AddChildContent("Quote text"));
         
-        component.Find("q.rt-Quote").GetClasses().Should().Contain("custom-quote");
+        component.Find("q.rt-Quote").GetClasses().ShouldContain("custom-quote");
     }
     
     [Fact]
@@ -66,7 +66,7 @@ public class QuoteTests : TestContext
             .AddChildContent("Quote text"));
         
         var quote = component.Find("q.rt-Quote");
-        quote.GetAttribute("data-testid").Should().Be("quote-element");
-        quote.GetAttribute("cite").Should().Be("https://source.com");
+        quote.GetAttribute("data-testid").ShouldBe("quote-element");
+        quote.GetAttribute("cite").ShouldBe("https://source.com");
     }
 }
