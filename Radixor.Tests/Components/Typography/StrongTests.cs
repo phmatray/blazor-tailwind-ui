@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Typography;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -15,9 +15,9 @@ public class StrongTests : TestContext
             .AddChildContent("Bold text"));
         
         var strong = component.Find("strong");
-        strong.Should().NotBeNull();
-        strong.TextContent.Should().Be("Bold text");
-        strong.GetClasses().Should().Contain("rt-Strong");
+        strong.ShouldNotBeNull();
+        strong.TextContent.ShouldBe("Bold text");
+        strong.GetClasses().ShouldContain("rt-Strong");
     }
     
     
@@ -29,7 +29,7 @@ public class StrongTests : TestContext
             .Add(p => p.Truncate, true)
             .AddChildContent("Very long strong text that should be truncated"));
         
-        component.Find("strong").GetClasses().Should().Contain("rt-truncate");
+        component.Find("strong").GetClasses().ShouldContain("rt-truncate");
     }
     
     [Theory]
@@ -43,7 +43,7 @@ public class StrongTests : TestContext
             .Add(p => p.Wrap, wrap)
             .AddChildContent("Strong text"));
         
-        component.Find("strong").GetClasses().Should().Contain(expectedClass);
+        component.Find("strong").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -53,7 +53,7 @@ public class StrongTests : TestContext
             .Add(p => p.Class, "custom-strong")
             .AddChildContent("Strong text"));
         
-        component.Find("strong").GetClasses().Should().Contain("custom-strong");
+        component.Find("strong").GetClasses().ShouldContain("custom-strong");
     }
     
     [Fact]
@@ -65,7 +65,7 @@ public class StrongTests : TestContext
             .AddChildContent("Strong text"));
         
         var strong = component.Find("strong");
-        strong.GetAttribute("data-testid").Should().Be("strong-element");
-        strong.GetAttribute("title").Should().Be("Important text");
+        strong.GetAttribute("data-testid").ShouldBe("strong-element");
+        strong.GetAttribute("title").ShouldBe("Important text");
     }
 }

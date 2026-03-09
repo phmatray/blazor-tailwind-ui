@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Microsoft.AspNetCore.Components;
 using Radixor.Components.Layout;
 using Radixor.Tests.TestHelpers;
@@ -15,8 +15,8 @@ public class BoxTests : TestContext
         var component = RenderComponent<Box>(parameters => parameters
             .AddChildContent("Test Content"));
         
-        component.Find("div").Should().NotBeNull();
-        component.Find("div").TextContent.Should().Be("Test Content");
+        component.Find("div").ShouldNotBeNull();
+        component.Find("div").TextContent.ShouldBe("Test Content");
     }
     
     [Fact]
@@ -26,8 +26,8 @@ public class BoxTests : TestContext
             .Add(p => p.As, "span")
             .AddChildContent("Test Content"));
         
-        component.Find("span").Should().NotBeNull();
-        component.Find("span").TextContent.Should().Be("Test Content");
+        component.Find("span").ShouldNotBeNull();
+        component.Find("span").TextContent.ShouldBe("Test Content");
     }
     
     [Fact]
@@ -37,7 +37,7 @@ public class BoxTests : TestContext
             .Add(p => p.Display, "flex")
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-display-flex");
+        component.Find("div").GetClasses().ShouldContain("rt-r-display-flex");
     }
     
     [Fact]
@@ -50,9 +50,9 @@ public class BoxTests : TestContext
             .AddChildContent("Test Content"));
         
         var classes = component.Find("div").GetClasses();
-        classes.Should().Contain("rt-r-m-3");
-        classes.Should().Contain("rt-r-mx-2");
-        classes.Should().Contain("rt-r-my-4");
+        classes.ShouldContain("rt-r-m-3");
+        classes.ShouldContain("rt-r-mx-2");
+        classes.ShouldContain("rt-r-my-4");
     }
     
     [Fact]
@@ -65,9 +65,9 @@ public class BoxTests : TestContext
             .AddChildContent("Test Content"));
         
         var classes = component.Find("div").GetClasses();
-        classes.Should().Contain("rt-r-p-3");
-        classes.Should().Contain("rt-r-px-2");
-        classes.Should().Contain("rt-r-py-4");
+        classes.ShouldContain("rt-r-p-3");
+        classes.ShouldContain("rt-r-px-2");
+        classes.ShouldContain("rt-r-py-4");
     }
     
     [Fact]
@@ -77,7 +77,7 @@ public class BoxTests : TestContext
             .Add(p => p.Class, "custom-class")
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("custom-class");
+        component.Find("div").GetClasses().ShouldContain("custom-class");
     }
     
     [Fact]
@@ -86,7 +86,7 @@ public class BoxTests : TestContext
         var component = RenderComponent<Box>(parameters => parameters
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-Box");
+        component.Find("div").GetClasses().ShouldContain("rt-Box");
     }
     
     [Fact]
@@ -96,8 +96,8 @@ public class BoxTests : TestContext
             .Add(p => p.AsChild, true)
             .AddChildContent("<button>Click me</button>"));
         
-        component.FindAll("div").Should().BeEmpty();
-        component.FindAll("span").Should().BeEmpty();
+        component.FindAll("div").ShouldBeEmpty();
+        component.FindAll("span").ShouldBeEmpty();
     }
     
     [Fact]
@@ -109,7 +109,7 @@ public class BoxTests : TestContext
             .AddChildContent("Test Content"));
         
         var element = component.Find("div");
-        element.GetAttribute("data-testid").Should().Be("test-box");
-        element.GetAttribute("aria-label").Should().Be("Test Box");
+        element.GetAttribute("data-testid").ShouldBe("test-box");
+        element.GetAttribute("aria-label").ShouldBe("Test Box");
     }
 }

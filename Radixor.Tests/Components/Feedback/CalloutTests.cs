@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Feedback;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -15,11 +15,11 @@ public class CalloutTests : TestContext
             .AddChildContent("Important information"));
         
         var callout = component.Find("div.rt-Callout");
-        callout.Should().NotBeNull();
-        callout.TextContent.Should().Contain("Important information");
-        callout.GetClasses().Should().Contain("rt-Callout");
-        callout.GetClasses().Should().Contain("rt-r-size-2");
-        callout.GetClasses().Should().Contain("rt-variant-soft");
+        callout.ShouldNotBeNull();
+        callout.TextContent.ShouldContain("Important information");
+        callout.GetClasses().ShouldContain("rt-Callout");
+        callout.GetClasses().ShouldContain("rt-r-size-2");
+        callout.GetClasses().ShouldContain("rt-variant-soft");
     }
     
     [Theory]
@@ -32,7 +32,7 @@ public class CalloutTests : TestContext
             .Add(p => p.Size, size)
             .AddChildContent("Callout"));
         
-        component.Find("div.rt-Callout").GetClasses().Should().Contain(expectedClass);
+        component.Find("div.rt-Callout").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -45,7 +45,7 @@ public class CalloutTests : TestContext
             .Add(p => p.Variant, variant)
             .AddChildContent("Callout"));
         
-        component.Find("div.rt-Callout").GetClasses().Should().Contain(expectedClass);
+        component.Find("div.rt-Callout").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -55,7 +55,7 @@ public class CalloutTests : TestContext
             .Add(p => p.Color, "amber")
             .AddChildContent("Callout"));
         
-        component.Find("div.rt-Callout").GetAttribute("data-accent-color").Should().Be("amber");
+        component.Find("div.rt-Callout").GetAttribute("data-accent-color").ShouldBe("amber");
     }
     
     [Fact]
@@ -65,7 +65,7 @@ public class CalloutTests : TestContext
             .Add(p => p.HighContrast, true)
             .AddChildContent("Callout"));
         
-        component.Find("div.rt-Callout").GetClasses().Should().Contain("rt-high-contrast");
+        component.Find("div.rt-Callout").GetClasses().ShouldContain("rt-high-contrast");
     }
     
     [Fact]
@@ -76,8 +76,8 @@ public class CalloutTests : TestContext
             .AddChildContent("Information"));
         
         var icon = component.Find(".rt-CalloutIcon");
-        icon.Should().NotBeNull();
-        icon.TextContent.Should().Contain("ℹ️");
+        icon.ShouldNotBeNull();
+        icon.TextContent.ShouldContain("ℹ️");
     }
     
     [Fact]
@@ -86,7 +86,7 @@ public class CalloutTests : TestContext
         var component = RenderComponent<Callout>(parameters => parameters
             .AddChildContent("Content"));
         
-        component.Find(".rt-Callout").Should().NotBeNull();
+        component.Find(".rt-Callout").ShouldNotBeNull();
     }
     
     [Fact]
@@ -98,8 +98,8 @@ public class CalloutTests : TestContext
             .AddChildContent("Callout"));
         
         var classes = component.Find("div.rt-Callout").GetClasses();
-        classes.Should().Contain("rt-r-m-3");
-        classes.Should().Contain("rt-r-my-4");
+        classes.ShouldContain("rt-r-m-3");
+        classes.ShouldContain("rt-r-my-4");
     }
     
     [Fact]
@@ -109,7 +109,7 @@ public class CalloutTests : TestContext
             .Add(p => p.Class, "custom-callout")
             .AddChildContent("Callout"));
         
-        component.Find("div.rt-Callout").GetClasses().Should().Contain("custom-callout");
+        component.Find("div.rt-Callout").GetClasses().ShouldContain("custom-callout");
     }
     
     [Fact]
@@ -121,7 +121,7 @@ public class CalloutTests : TestContext
             .AddChildContent("Alert message"));
         
         var callout = component.Find("div.rt-Callout");
-        callout.GetAttribute("data-testid").Should().Be("info-callout");
-        callout.GetAttribute("role").Should().Be("alert");
+        callout.GetAttribute("data-testid").ShouldBe("info-callout");
+        callout.GetAttribute("role").ShouldBe("alert");
     }
 }

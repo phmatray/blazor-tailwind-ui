@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Typography;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -15,9 +15,9 @@ public class EmTests : TestContext
             .AddChildContent("Emphasized text"));
         
         var em = component.Find("em");
-        em.Should().NotBeNull();
-        em.TextContent.Should().Be("Emphasized text");
-        em.GetClasses().Should().Contain("rt-Em");
+        em.ShouldNotBeNull();
+        em.TextContent.ShouldBe("Emphasized text");
+        em.GetClasses().ShouldContain("rt-Em");
     }
     
     
@@ -29,7 +29,7 @@ public class EmTests : TestContext
             .Add(p => p.Truncate, true)
             .AddChildContent("Very long emphasized text that should be truncated"));
         
-        component.Find("em").GetClasses().Should().Contain("rt-truncate");
+        component.Find("em").GetClasses().ShouldContain("rt-truncate");
     }
     
     [Theory]
@@ -43,7 +43,7 @@ public class EmTests : TestContext
             .Add(p => p.Wrap, wrap)
             .AddChildContent("Emphasized text"));
         
-        component.Find("em").GetClasses().Should().Contain(expectedClass);
+        component.Find("em").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -53,7 +53,7 @@ public class EmTests : TestContext
             .Add(p => p.Class, "custom-em")
             .AddChildContent("Emphasized text"));
         
-        component.Find("em").GetClasses().Should().Contain("custom-em");
+        component.Find("em").GetClasses().ShouldContain("custom-em");
     }
     
     [Fact]
@@ -65,7 +65,7 @@ public class EmTests : TestContext
             .AddChildContent("Emphasized text"));
         
         var em = component.Find("em");
-        em.GetAttribute("data-testid").Should().Be("em-element");
-        em.GetAttribute("title").Should().Be("Emphasis");
+        em.GetAttribute("data-testid").ShouldBe("em-element");
+        em.GetAttribute("title").ShouldBe("Emphasis");
     }
 }

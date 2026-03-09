@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Layout;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -15,9 +15,9 @@ public class GridTests : TestContext
             .AddChildContent("Test Content"));
         
         var element = component.Find("div");
-        element.Should().NotBeNull();
-        element.GetClasses().Should().Contain("rt-Grid");
-        element.TextContent.Should().Be("Test Content");
+        element.ShouldNotBeNull();
+        element.GetClasses().ShouldContain("rt-Grid");
+        element.TextContent.ShouldBe("Test Content");
     }
     
     [Fact]
@@ -27,7 +27,7 @@ public class GridTests : TestContext
             .Add(p => p.Columns, "3")
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-gtc-3");
+        component.Find("div").GetClasses().ShouldContain("rt-r-gtc-3");
     }
     
     [Fact]
@@ -37,7 +37,7 @@ public class GridTests : TestContext
             .Add(p => p.Rows, "2")
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-gtr-2");
+        component.Find("div").GetClasses().ShouldContain("rt-r-gtr-2");
     }
     
     [Fact]
@@ -47,7 +47,7 @@ public class GridTests : TestContext
             .Add(p => p.Flow, GridFlow.Column)
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-gaf-column");
+        component.Find("div").GetClasses().ShouldContain("rt-r-gaf-column");
     }
     
     [Fact]
@@ -57,7 +57,7 @@ public class GridTests : TestContext
             .Add(p => p.Align, GridAlign.Center)
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-ai-center");
+        component.Find("div").GetClasses().ShouldContain("rt-r-ai-center");
     }
     
     [Fact]
@@ -67,7 +67,7 @@ public class GridTests : TestContext
             .Add(p => p.Justify, GridJustify.Center)
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-jc-center");
+        component.Find("div").GetClasses().ShouldContain("rt-r-jc-center");
     }
     
     [Fact]
@@ -77,7 +77,7 @@ public class GridTests : TestContext
             .Add(p => p.Gap, "4")
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-gap-4");
+        component.Find("div").GetClasses().ShouldContain("rt-r-gap-4");
     }
     
     [Fact]
@@ -89,8 +89,8 @@ public class GridTests : TestContext
             .AddChildContent("Test Content"));
         
         var classes = component.Find("div").GetClasses();
-        classes.Should().Contain("rt-r-cg-3");
-        classes.Should().Contain("rt-r-rg-5");
+        classes.ShouldContain("rt-r-cg-3");
+        classes.ShouldContain("rt-r-rg-5");
     }
     
     [Fact]
@@ -100,7 +100,7 @@ public class GridTests : TestContext
             .Add(p => p.Display, GridDisplay.InlineGrid)
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-display-inline-grid");
+        component.Find("div").GetClasses().ShouldContain("rt-r-display-inline-grid");
     }
     
     [Fact]
@@ -113,9 +113,9 @@ public class GridTests : TestContext
             .AddChildContent("Test Content"));
         
         var classes = component.Find("div").GetClasses();
-        classes.Should().Contain("rt-r-m-2");
-        classes.Should().Contain("rt-r-mt-4");
-        classes.Should().Contain("rt-r-mb-4");
+        classes.ShouldContain("rt-r-m-2");
+        classes.ShouldContain("rt-r-mt-4");
+        classes.ShouldContain("rt-r-mb-4");
     }
     
     [Fact]
@@ -127,8 +127,8 @@ public class GridTests : TestContext
             .AddChildContent("Test Content"));
         
         var classes = component.Find("div").GetClasses();
-        classes.Should().Contain("rt-r-p-3");
-        classes.Should().Contain("rt-r-px-5");
+        classes.ShouldContain("rt-r-p-3");
+        classes.ShouldContain("rt-r-px-5");
     }
     
     [Fact]
@@ -138,7 +138,7 @@ public class GridTests : TestContext
             .Add(p => p.Class, "custom-grid")
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("custom-grid");
+        component.Find("div").GetClasses().ShouldContain("custom-grid");
     }
     
     [Fact]
@@ -150,7 +150,7 @@ public class GridTests : TestContext
             .AddChildContent("Test Content"));
         
         var element = component.Find("div");
-        element.GetAttribute("data-testid").Should().Be("grid-container");
-        element.GetAttribute("aria-label").Should().Be("Grid Layout");
+        element.GetAttribute("data-testid").ShouldBe("grid-container");
+        element.GetAttribute("aria-label").ShouldBe("Grid Layout");
     }
 }

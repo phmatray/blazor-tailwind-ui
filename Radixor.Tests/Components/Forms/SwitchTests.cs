@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Microsoft.AspNetCore.Components;
 using Radixor.Components.Forms;
 using Radixor.Tests.TestHelpers;
@@ -15,11 +15,11 @@ public class SwitchTests : TestContext
         var component = RenderComponent<Switch>();
         
         var button = component.Find("button");
-        button.Should().NotBeNull();
-        button.GetAttribute("type").Should().Be("button");
-        button.GetAttribute("role").Should().Be("switch");
-        button.GetAttribute("aria-checked").Should().Be("false");
-        button.GetClasses().Should().Contain("rt-SwitchRoot");
+        button.ShouldNotBeNull();
+        button.GetAttribute("type").ShouldBe("button");
+        button.GetAttribute("role").ShouldBe("switch");
+        button.GetAttribute("aria-checked").ShouldBe("false");
+        button.GetClasses().ShouldContain("rt-SwitchRoot");
     }
     
     [Fact]
@@ -29,8 +29,8 @@ public class SwitchTests : TestContext
             .Add(p => p.Checked, true));
         
         var button = component.Find("button");
-        button.GetAttribute("aria-checked").Should().Be("true");
-        button.GetAttribute("data-state").Should().Be("checked");
+        button.GetAttribute("aria-checked").ShouldBe("true");
+        button.GetAttribute("data-state").ShouldBe("checked");
     }
     
     [Fact]
@@ -40,8 +40,8 @@ public class SwitchTests : TestContext
             .Add(p => p.Checked, false));
         
         var button = component.Find("button");
-        button.GetAttribute("aria-checked").Should().Be("false");
-        button.GetAttribute("data-state").Should().Be("unchecked");
+        button.GetAttribute("aria-checked").ShouldBe("false");
+        button.GetAttribute("data-state").ShouldBe("unchecked");
     }
     
     [Fact]
@@ -55,9 +55,9 @@ public class SwitchTests : TestContext
         var button = component.Find("button");
         button.Click();
         
-        value.Should().BeTrue();
+        value.ShouldBeTrue();
         component.SetParametersAndRender(parameters => parameters.Add(p => p.Checked, value));
-        button.GetAttribute("aria-checked").Should().Be("true");
+        button.GetAttribute("aria-checked").ShouldBe("true");
     }
     
     [Fact]
@@ -67,8 +67,8 @@ public class SwitchTests : TestContext
             .Add(p => p.Disabled, true));
         
         var button = component.Find("button");
-        button.HasAttribute("disabled").Should().BeTrue();
-        button.HasAttribute("data-disabled").Should().BeTrue();
+        button.HasAttribute("disabled").ShouldBeTrue();
+        button.HasAttribute("data-disabled").ShouldBeTrue();
     }
     
     [Fact]
@@ -83,7 +83,7 @@ public class SwitchTests : TestContext
         var button = component.Find("button");
         button.Click();
         
-        value.Should().BeFalse();
+        value.ShouldBeFalse();
     }
     
     [Theory]
@@ -95,7 +95,7 @@ public class SwitchTests : TestContext
         var component = RenderComponent<Switch>(parameters => parameters
             .Add(p => p.Size, size));
         
-        component.Find("button").GetClasses().Should().Contain(expectedClass);
+        component.Find("button").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -104,7 +104,7 @@ public class SwitchTests : TestContext
         var component = RenderComponent<Switch>(parameters => parameters
             .Add(p => p.Color, "green"));
         
-        component.Find("button").GetAttribute("data-accent-color").Should().Be("green");
+        component.Find("button").GetAttribute("data-accent-color").ShouldBe("green");
     }
     
     [Fact]
@@ -113,7 +113,7 @@ public class SwitchTests : TestContext
         var component = RenderComponent<Switch>(parameters => parameters
             .Add(p => p.HighContrast, true));
         
-        component.Find("button").GetClasses().Should().Contain("rt-high-contrast");
+        component.Find("button").GetClasses().ShouldContain("rt-high-contrast");
     }
     
     [Fact]
@@ -122,7 +122,7 @@ public class SwitchTests : TestContext
         var component = RenderComponent<Switch>(parameters => parameters
             .Add(p => p.Variant, SwitchVariant.Soft));
         
-        component.Find("button").GetClasses().Should().Contain("rt-variant-soft");
+        component.Find("button").GetClasses().ShouldContain("rt-variant-soft");
     }
     
     [Fact]
@@ -131,7 +131,7 @@ public class SwitchTests : TestContext
         var component = RenderComponent<Switch>(parameters => parameters
             .Add(p => p.Radius, "full"));
         
-        component.Find("button").GetAttribute("data-radius").Should().Be("full");
+        component.Find("button").GetAttribute("data-radius").ShouldBe("full");
     }
     
     [Fact]
@@ -139,7 +139,7 @@ public class SwitchTests : TestContext
     {
         var component = RenderComponent<Switch>();
         
-        component.Find(".rt-SwitchThumb").Should().NotBeNull();
+        component.Find(".rt-SwitchThumb").ShouldNotBeNull();
     }
     
     [Fact]
@@ -150,8 +150,8 @@ public class SwitchTests : TestContext
             .Add(p => p.Ml, "2"));
         
         var classes = component.Find("button").GetClasses();
-        classes.Should().Contain("rt-r-m-3");
-        classes.Should().Contain("rt-r-ml-2");
+        classes.ShouldContain("rt-r-m-3");
+        classes.ShouldContain("rt-r-ml-2");
     }
     
     [Fact]
@@ -160,7 +160,7 @@ public class SwitchTests : TestContext
         var component = RenderComponent<Switch>(parameters => parameters
             .Add(p => p.Class, "custom-switch"));
         
-        component.Find("button").GetClasses().Should().Contain("custom-switch");
+        component.Find("button").GetClasses().ShouldContain("custom-switch");
     }
     
     [Fact]
@@ -171,7 +171,7 @@ public class SwitchTests : TestContext
             .AddUnmatched("name", "darkMode"));
         
         var button = component.Find("button");
-        button.GetAttribute("data-testid").Should().Be("dark-mode-switch");
-        button.GetAttribute("name").Should().Be("darkMode");
+        button.GetAttribute("data-testid").ShouldBe("dark-mode-switch");
+        button.GetAttribute("name").ShouldBe("darkMode");
     }
 }

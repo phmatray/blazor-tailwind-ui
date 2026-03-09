@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radixor.Components.Forms;
@@ -17,11 +17,11 @@ public class ButtonTests : TestContext
             .AddChildContent("Click Me"));
         
         var button = component.Find("button");
-        button.Should().NotBeNull();
-        button.TextContent.Should().Be("Click Me");
-        button.GetClasses().Should().Contain("rt-Button");
-        button.GetClasses().Should().Contain("rt-variant-solid");
-        button.GetClasses().Should().Contain("rt-r-size-2");
+        button.ShouldNotBeNull();
+        button.TextContent.ShouldBe("Click Me");
+        button.GetClasses().ShouldContain("rt-Button");
+        button.GetClasses().ShouldContain("rt-variant-solid");
+        button.GetClasses().ShouldContain("rt-r-size-2");
     }
     
     [Theory]
@@ -35,7 +35,7 @@ public class ButtonTests : TestContext
             .Add(p => p.Size, size)
             .AddChildContent("Button"));
         
-        component.Find("button").GetClasses().Should().Contain(expectedClass);
+        component.Find("button").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -51,7 +51,7 @@ public class ButtonTests : TestContext
             .Add(p => p.Variant, variant)
             .AddChildContent("Button"));
         
-        component.Find("button").GetClasses().Should().Contain(expectedClass);
+        component.Find("button").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -62,8 +62,8 @@ public class ButtonTests : TestContext
             .AddChildContent("Button"));
         
         var button = component.Find("button");
-        button.HasAttribute("disabled").Should().BeTrue();
-        button.HasAttribute("data-disabled").Should().BeTrue();
+        button.HasAttribute("disabled").ShouldBeTrue();
+        button.HasAttribute("data-disabled").ShouldBeTrue();
     }
     
     [Fact]
@@ -74,9 +74,9 @@ public class ButtonTests : TestContext
             .AddChildContent("Button"));
         
         var button = component.Find("button");
-        button.HasAttribute("disabled").Should().BeTrue();
-        button.HasAttribute("data-disabled").Should().BeTrue();
-        button.GetClasses().Should().Contain("rt-loading");
+        button.HasAttribute("disabled").ShouldBeTrue();
+        button.HasAttribute("data-disabled").ShouldBeTrue();
+        button.GetClasses().ShouldContain("rt-loading");
     }
     
     [Fact]
@@ -86,8 +86,8 @@ public class ButtonTests : TestContext
             .Add(p => p.Loading, true)
             .AddChildContent("Loading"));
         
-        component.Find(".rt-Spinner").Should().NotBeNull();
-        component.Find(".visually-hidden").TextContent.Should().Be("Loading");
+        component.Find(".rt-Spinner").ShouldNotBeNull();
+        component.Find(".visually-hidden").TextContent.ShouldBe("Loading");
     }
     
     [Fact]
@@ -97,7 +97,7 @@ public class ButtonTests : TestContext
             .Add(p => p.HighContrast, true)
             .AddChildContent("Button"));
         
-        component.Find("button").GetClasses().Should().Contain("rt-high-contrast");
+        component.Find("button").GetClasses().ShouldContain("rt-high-contrast");
     }
     
     [Fact]
@@ -107,7 +107,7 @@ public class ButtonTests : TestContext
             .Add(p => p.Color, "blue")
             .AddChildContent("Button"));
         
-        component.Find("button").GetAttribute("data-accent-color").Should().Be("blue");
+        component.Find("button").GetAttribute("data-accent-color").ShouldBe("blue");
     }
     
     [Fact]
@@ -117,7 +117,7 @@ public class ButtonTests : TestContext
             .Add(p => p.Radius, "full")
             .AddChildContent("Button"));
         
-        component.Find("button").GetAttribute("data-radius").Should().Be("full");
+        component.Find("button").GetAttribute("data-radius").ShouldBe("full");
     }
     
     [Fact]
@@ -130,7 +130,7 @@ public class ButtonTests : TestContext
         
         component.Find("button").Click();
         
-        clicked.Should().BeTrue();
+        clicked.ShouldBeTrue();
     }
     
     // Note: bUnit doesn't prevent clicks on disabled buttons, so this test is commented out
@@ -146,7 +146,7 @@ public class ButtonTests : TestContext
     //    
     //    component.Find("button").Click();
     //    
-    //    clicked.Should().BeFalse();
+    //    clicked.ShouldBeFalse();
     //}
     
     [Fact]
@@ -159,9 +159,9 @@ public class ButtonTests : TestContext
             .AddChildContent("Button"));
         
         var classes = component.Find("button").GetClasses();
-        classes.Should().Contain("rt-r-m-2");
-        classes.Should().Contain("rt-r-mx-auto");
-        classes.Should().Contain("rt-r-mt-3");
+        classes.ShouldContain("rt-r-m-2");
+        classes.ShouldContain("rt-r-mx-auto");
+        classes.ShouldContain("rt-r-mt-3");
     }
     
     [Fact]
@@ -171,7 +171,7 @@ public class ButtonTests : TestContext
             .Add(p => p.Class, "custom-button")
             .AddChildContent("Button"));
         
-        component.Find("button").GetClasses().Should().Contain("custom-button");
+        component.Find("button").GetClasses().ShouldContain("custom-button");
     }
     
     [Fact]
@@ -183,7 +183,7 @@ public class ButtonTests : TestContext
             .AddChildContent("Submit"));
         
         var button = component.Find("button");
-        button.GetAttribute("data-testid").Should().Be("submit-button");
-        button.GetAttribute("aria-label").Should().Be("Submit Form");
+        button.GetAttribute("data-testid").ShouldBe("submit-button");
+        button.GetAttribute("aria-label").ShouldBe("Submit Form");
     }
 }

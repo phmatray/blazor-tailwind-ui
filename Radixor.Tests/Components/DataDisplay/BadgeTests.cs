@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.DataDisplay;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -15,11 +15,11 @@ public class BadgeTests : TestContext
             .AddChildContent("New"));
         
         var badge = component.Find("span.rt-Badge");
-        badge.Should().NotBeNull();
-        badge.TextContent.Should().Be("New");
-        badge.GetClasses().Should().Contain("rt-Badge");
-        badge.GetClasses().Should().Contain("rt-r-size-1");
-        badge.GetClasses().Should().Contain("rt-variant-soft");
+        badge.ShouldNotBeNull();
+        badge.TextContent.ShouldBe("New");
+        badge.GetClasses().ShouldContain("rt-Badge");
+        badge.GetClasses().ShouldContain("rt-r-size-1");
+        badge.GetClasses().ShouldContain("rt-variant-soft");
     }
     
     [Theory]
@@ -32,7 +32,7 @@ public class BadgeTests : TestContext
             .Add(p => p.Size, size)
             .AddChildContent("Badge"));
         
-        component.Find("span.rt-Badge").GetClasses().Should().Contain(expectedClass);
+        component.Find("span.rt-Badge").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -46,7 +46,7 @@ public class BadgeTests : TestContext
             .Add(p => p.Variant, variant)
             .AddChildContent("Badge"));
         
-        component.Find("span.rt-Badge").GetClasses().Should().Contain(expectedClass);
+        component.Find("span.rt-Badge").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -56,7 +56,7 @@ public class BadgeTests : TestContext
             .Add(p => p.Color, "red")
             .AddChildContent("Alert"));
         
-        component.Find("span.rt-Badge").GetAttribute("data-accent-color").Should().Be("red");
+        component.Find("span.rt-Badge").GetAttribute("data-accent-color").ShouldBe("red");
     }
     
     [Fact]
@@ -66,7 +66,7 @@ public class BadgeTests : TestContext
             .Add(p => p.HighContrast, true)
             .AddChildContent("Badge"));
         
-        component.Find("span.rt-Badge").GetClasses().Should().Contain("rt-high-contrast");
+        component.Find("span.rt-Badge").GetClasses().ShouldContain("rt-high-contrast");
     }
     
     [Fact]
@@ -76,7 +76,7 @@ public class BadgeTests : TestContext
             .Add(p => p.Radius, "full")
             .AddChildContent("Badge"));
         
-        component.Find("span.rt-Badge").GetAttribute("data-radius").Should().Be("full");
+        component.Find("span.rt-Badge").GetAttribute("data-radius").ShouldBe("full");
     }
     
     [Fact]
@@ -88,8 +88,8 @@ public class BadgeTests : TestContext
             .AddChildContent("Badge"));
         
         var classes = component.Find("span.rt-Badge").GetClasses();
-        classes.Should().Contain("rt-r-m-1");
-        classes.Should().Contain("rt-r-ml-2");
+        classes.ShouldContain("rt-r-m-1");
+        classes.ShouldContain("rt-r-ml-2");
     }
     
     [Fact]
@@ -99,7 +99,7 @@ public class BadgeTests : TestContext
             .Add(p => p.Class, "custom-badge")
             .AddChildContent("Badge"));
         
-        component.Find("span.rt-Badge").GetClasses().Should().Contain("custom-badge");
+        component.Find("span.rt-Badge").GetClasses().ShouldContain("custom-badge");
     }
     
     [Fact]
@@ -111,7 +111,7 @@ public class BadgeTests : TestContext
             .AddChildContent("Active"));
         
         var badge = component.Find("span.rt-Badge");
-        badge.GetAttribute("data-testid").Should().Be("status-badge");
-        badge.GetAttribute("title").Should().Be("Status indicator");
+        badge.GetAttribute("data-testid").ShouldBe("status-badge");
+        badge.GetAttribute("title").ShouldBe("Status indicator");
     }
 }

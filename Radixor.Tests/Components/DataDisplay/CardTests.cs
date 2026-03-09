@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.DataDisplay;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -15,11 +15,11 @@ public class CardTests : TestContext
             .AddChildContent("Card content"));
         
         var card = component.Find("div.rt-Card");
-        card.Should().NotBeNull();
-        card.TextContent.Should().Be("Card content");
-        card.GetClasses().Should().Contain("rt-Card");
-        card.GetClasses().Should().Contain("rt-r-size-1");
-        card.GetClasses().Should().Contain("rt-variant-surface");
+        card.ShouldNotBeNull();
+        card.TextContent.ShouldBe("Card content");
+        card.GetClasses().ShouldContain("rt-Card");
+        card.GetClasses().ShouldContain("rt-r-size-1");
+        card.GetClasses().ShouldContain("rt-variant-surface");
     }
     
     [Theory]
@@ -34,7 +34,7 @@ public class CardTests : TestContext
             .Add(p => p.Size, size)
             .AddChildContent("Card"));
         
-        component.Find("div.rt-Card").GetClasses().Should().Contain(expectedClass);
+        component.Find("div.rt-Card").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -47,7 +47,7 @@ public class CardTests : TestContext
             .Add(p => p.Variant, variant)
             .AddChildContent("Card"));
         
-        component.Find("div.rt-Card").GetClasses().Should().Contain(expectedClass);
+        component.Find("div.rt-Card").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -58,7 +58,7 @@ public class CardTests : TestContext
             .AddChildContent("<button>Click me</button>"));
         
         // When AsChild is true, it should not render the Card wrapper
-        component.FindAll("div.rt-Card").Should().BeEmpty();
+        component.FindAll("div.rt-Card").ShouldBeEmpty();
     }
     
     [Fact]
@@ -71,9 +71,9 @@ public class CardTests : TestContext
             .AddChildContent("Card"));
         
         var classes = component.Find("div.rt-Card").GetClasses();
-        classes.Should().Contain("rt-r-p-3");
-        classes.Should().Contain("rt-r-px-4");
-        classes.Should().Contain("rt-r-py-2");
+        classes.ShouldContain("rt-r-p-3");
+        classes.ShouldContain("rt-r-px-4");
+        classes.ShouldContain("rt-r-py-2");
     }
     
     [Fact]
@@ -85,8 +85,8 @@ public class CardTests : TestContext
             .AddChildContent("Card"));
         
         var classes = component.Find("div.rt-Card").GetClasses();
-        classes.Should().Contain("rt-r-m-2");
-        classes.Should().Contain("rt-r-my-3");
+        classes.ShouldContain("rt-r-m-2");
+        classes.ShouldContain("rt-r-my-3");
     }
     
     [Fact]
@@ -98,8 +98,8 @@ public class CardTests : TestContext
             .AddChildContent("Card"));
         
         var style = component.Find("div.rt-Card").GetAttribute("style");
-        style.Should().Contain("width: 300px");
-        style.Should().Contain("height: 200px");
+        style.ShouldContain("width: 300px");
+        style.ShouldContain("height: 200px");
     }
     
     [Fact]
@@ -109,7 +109,7 @@ public class CardTests : TestContext
             .Add(p => p.Class, "custom-card")
             .AddChildContent("Card"));
         
-        component.Find("div.rt-Card").GetClasses().Should().Contain("custom-card");
+        component.Find("div.rt-Card").GetClasses().ShouldContain("custom-card");
     }
     
     [Fact]
@@ -121,7 +121,7 @@ public class CardTests : TestContext
             .AddChildContent("Product"));
         
         var card = component.Find("div.rt-Card");
-        card.GetAttribute("data-testid").Should().Be("product-card");
-        card.GetAttribute("role").Should().Be("article");
+        card.GetAttribute("data-testid").ShouldBe("product-card");
+        card.GetAttribute("role").ShouldBe("article");
     }
 }

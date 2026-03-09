@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Microsoft.AspNetCore.Components;
 using Radixor.Components.DataDisplay;
 using Radixor.Components.Feedback;
@@ -45,11 +45,11 @@ public class ComponentIntegrationTests : TestContext
             }));
         
         // Verify structure
-        component.Find("div.rt-Card").Should().NotBeNull();
-        component.Find("div.rt-Flex").Should().NotBeNull();
-        component.Find("h1.rt-Heading").TextContent.Should().Be("Card Title");
-        component.Find("span.rt-Text").TextContent.Should().Be("Card description text");
-        component.Find("button.rt-Button").TextContent.Should().Be("Click Me");
+        component.Find("div.rt-Card").ShouldNotBeNull();
+        component.Find("div.rt-Flex").ShouldNotBeNull();
+        component.Find("h1.rt-Heading").TextContent.ShouldBe("Card Title");
+        component.Find("span.rt-Text").TextContent.ShouldBe("Card description text");
+        component.Find("button.rt-Button").TextContent.ShouldBe("Click Me");
     }
     
     [Fact]
@@ -84,19 +84,19 @@ public class ComponentIntegrationTests : TestContext
             }));
         
         // Verify all components render
-        component.Find("button.rt-CheckboxRoot").Should().NotBeNull();
-        component.Find("button.rt-SwitchRoot").Should().NotBeNull();
-        component.Find("button.rt-Button").Should().NotBeNull();
+        component.Find("button.rt-CheckboxRoot").ShouldNotBeNull();
+        component.Find("button.rt-SwitchRoot").ShouldNotBeNull();
+        component.Find("button.rt-Button").ShouldNotBeNull();
         
         // Test interactions
         component.Find("button.rt-CheckboxRoot").Click();
-        checkboxValue.Should().BeTrue();
+        checkboxValue.ShouldBeTrue();
         
         component.Find("button.rt-SwitchRoot").Click();
-        switchValue.Should().BeTrue();
+        switchValue.ShouldBeTrue();
         
         component.Find("button.rt-Button").Click();
-        buttonClicked.Should().BeTrue();
+        buttonClicked.ShouldBeTrue();
     }
     
     [Fact]
@@ -122,18 +122,18 @@ public class ComponentIntegrationTests : TestContext
             }));
         
         // Verify grid structure
-        component.Find("div.rt-Grid").Should().NotBeNull();
-        component.Find("div.rt-Grid").GetClasses().Should().Contain("rt-r-gtc-3");
-        component.Find("div.rt-Grid").GetClasses().Should().Contain("rt-r-gap-4");
+        component.Find("div.rt-Grid").ShouldNotBeNull();
+        component.Find("div.rt-Grid").GetClasses().ShouldContain("rt-r-gtc-3");
+        component.Find("div.rt-Grid").GetClasses().ShouldContain("rt-r-gap-4");
         
         // Verify all cards rendered
         var cards = component.FindAll("div.rt-Card");
-        cards.Should().HaveCount(6);
+        cards.Count().ShouldBe(6);
         
         // Verify card content
         for (int i = 1; i <= 6; i++)
         {
-            cards[i - 1].TextContent.Should().Be($"Card {i}");
+            cards[i - 1].TextContent.ShouldBe($"Card {i}");
         }
     }
     
@@ -160,9 +160,9 @@ public class ComponentIntegrationTests : TestContext
             }));
         
         // Verify both components render
-        component.Find("span.rt-Avatar").Should().NotBeNull();
-        component.Find("span.rt-Badge").Should().NotBeNull();
-        component.Find("span.rt-Badge").TextContent.Should().Be("Online");
+        component.Find("span.rt-Avatar").ShouldNotBeNull();
+        component.Find("span.rt-Badge").ShouldNotBeNull();
+        component.Find("span.rt-Badge").TextContent.ShouldBe("Online");
     }
     
     [Fact]
@@ -187,17 +187,17 @@ public class ComponentIntegrationTests : TestContext
             }));
         
         // When loading, should show skeleton
-        component.Find("span.rt-Skeleton").Should().NotBeNull();
-        component.FindAll("div.rt-Card").Should().BeEmpty();
+        component.Find("span.rt-Skeleton").ShouldNotBeNull();
+        component.FindAll("div.rt-Card").ShouldBeEmpty();
         
         // Update loading state
         component.SetParametersAndRender(parameters => parameters
             .Add(p => p.Loading, false));
         
         // When not loading, should show content
-        component.FindAll("span.rt-Skeleton").Should().BeEmpty();
-        component.Find("div.rt-Card").Should().NotBeNull();
-        component.Find("span.rt-Text").TextContent.Should().Be("Loaded Content");
+        component.FindAll("span.rt-Skeleton").ShouldBeEmpty();
+        component.Find("div.rt-Card").ShouldNotBeNull();
+        component.Find("span.rt-Text").TextContent.ShouldBe("Loaded Content");
     }
     
     [Fact]
@@ -233,13 +233,13 @@ public class ComponentIntegrationTests : TestContext
             }));
         
         // Verify all typography elements render
-        component.Find("blockquote.rt-Blockquote").Should().NotBeNull();
-        component.Find("span.rt-Text").Should().NotBeNull();
-        component.Find("strong.rt-Strong").TextContent.Should().Be("strong");
-        component.Find("em.rt-Em").TextContent.Should().Be("emphasis");
-        component.Find("code.rt-Code").TextContent.Should().Be("code");
+        component.Find("blockquote.rt-Blockquote").ShouldNotBeNull();
+        component.Find("span.rt-Text").ShouldNotBeNull();
+        component.Find("strong.rt-Strong").TextContent.ShouldBe("strong");
+        component.Find("em.rt-Em").TextContent.ShouldBe("emphasis");
+        component.Find("code.rt-Code").TextContent.ShouldBe("code");
         
         // Verify complete text
-        component.Find("blockquote").TextContent.Should().Be("This is a strong statement with emphasis and some code.");
+        component.Find("blockquote").TextContent.ShouldBe("This is a strong statement with emphasis and some code.");
     }
 }

@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Feedback;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -14,10 +14,10 @@ public class SeparatorTests : TestContext
         var component = RenderComponent<Separator>();
         
         var separator = component.Find("span.rt-Separator");
-        separator.Should().NotBeNull();
-        separator.GetClasses().Should().Contain("rt-Separator");
-        separator.GetClasses().Should().Contain("rt-r-size-1");
-        separator.GetClasses().Should().Contain("rt-r-orientation-horizontal");
+        separator.ShouldNotBeNull();
+        separator.GetClasses().ShouldContain("rt-Separator");
+        separator.GetClasses().ShouldContain("rt-r-size-1");
+        separator.GetClasses().ShouldContain("rt-r-orientation-horizontal");
         // Note: data-orientation attribute is not set by default in the current implementation
     }
     
@@ -31,7 +31,7 @@ public class SeparatorTests : TestContext
         var component = RenderComponent<Separator>(parameters => parameters
             .Add(p => p.Size, size));
         
-        component.Find("span.rt-Separator").GetClasses().Should().Contain(expectedClass);
+        component.Find("span.rt-Separator").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -43,7 +43,7 @@ public class SeparatorTests : TestContext
             .Add(p => p.Orientation, orientation));
         
         var separator = component.Find("span.rt-Separator");
-        separator.GetClasses().Should().Contain(expectedClass);
+        separator.GetClasses().ShouldContain(expectedClass);
         // Note: data-orientation attribute implementation varies based on decorative property
     }
     
@@ -53,7 +53,7 @@ public class SeparatorTests : TestContext
         var component = RenderComponent<Separator>(parameters => parameters
             .Add(p => p.Color, "gray"));
         
-        component.Find("span.rt-Separator").GetAttribute("data-accent-color").Should().Be("gray");
+        component.Find("span.rt-Separator").GetAttribute("data-accent-color").ShouldBe("gray");
     }
     
     [Fact]
@@ -63,7 +63,7 @@ public class SeparatorTests : TestContext
             .Add(p => p.Decorative, true));
         
         var separator = component.Find("span.rt-Separator");
-        separator.Should().NotBeNull();
+        separator.ShouldNotBeNull();
         // The Decorative property affects accessibility attributes
         // but the specific implementation may vary
     }
@@ -76,8 +76,8 @@ public class SeparatorTests : TestContext
             .Add(p => p.My, "4"));
         
         var classes = component.Find("span.rt-Separator").GetClasses();
-        classes.Should().Contain("rt-r-m-3");
-        classes.Should().Contain("rt-r-my-4");
+        classes.ShouldContain("rt-r-m-3");
+        classes.ShouldContain("rt-r-my-4");
     }
     
     [Fact]
@@ -86,7 +86,7 @@ public class SeparatorTests : TestContext
         var component = RenderComponent<Separator>(parameters => parameters
             .Add(p => p.Class, "custom-separator"));
         
-        component.Find("span.rt-Separator").GetClasses().Should().Contain("custom-separator");
+        component.Find("span.rt-Separator").GetClasses().ShouldContain("custom-separator");
     }
     
     [Fact]
@@ -97,7 +97,7 @@ public class SeparatorTests : TestContext
             .AddUnmatched("aria-label", "Section separator"));
         
         var separator = component.Find("span.rt-Separator");
-        separator.GetAttribute("data-testid").Should().Be("divider");
-        separator.GetAttribute("aria-label").Should().Be("Section separator");
+        separator.GetAttribute("data-testid").ShouldBe("divider");
+        separator.GetAttribute("aria-label").ShouldBe("Section separator");
     }
 }

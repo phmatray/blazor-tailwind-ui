@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Feedback;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -14,8 +14,8 @@ public class SkeletonTests : TestContext
         var component = RenderComponent<Skeleton>();
         
         var skeleton = component.Find("span.rt-Skeleton");
-        skeleton.Should().NotBeNull();
-        skeleton.GetClasses().Should().Contain("rt-Skeleton");
+        skeleton.ShouldNotBeNull();
+        skeleton.GetClasses().ShouldContain("rt-Skeleton");
     }
     
     [Fact]
@@ -25,7 +25,7 @@ public class SkeletonTests : TestContext
             .Add(p => p.Width, "200px"));
         
         var skeleton = component.Find("span.rt-Skeleton");
-        skeleton.GetAttribute("style").Should().Contain("width: 200px");
+        skeleton.GetAttribute("style").ShouldContain("width: 200px");
     }
     
     [Fact]
@@ -35,7 +35,7 @@ public class SkeletonTests : TestContext
             .Add(p => p.Height, "50px"));
         
         var skeleton = component.Find("span.rt-Skeleton");
-        skeleton.GetAttribute("style").Should().Contain("height: 50px");
+        skeleton.GetAttribute("style").ShouldContain("height: 50px");
     }
     
     [Fact]
@@ -45,7 +45,7 @@ public class SkeletonTests : TestContext
             .Add(p => p.MinWidth, "100px"));
         
         var skeleton = component.Find("span.rt-Skeleton");
-        skeleton.GetAttribute("style").Should().Contain("min-width: 100px");
+        skeleton.GetAttribute("style").ShouldContain("min-width: 100px");
     }
     
     [Fact]
@@ -55,7 +55,7 @@ public class SkeletonTests : TestContext
             .Add(p => p.MaxWidth, "300px"));
         
         var skeleton = component.Find("span.rt-Skeleton");
-        skeleton.GetAttribute("style").Should().Contain("max-width: 300px");
+        skeleton.GetAttribute("style").ShouldContain("max-width: 300px");
     }
     
     [Fact]
@@ -65,7 +65,7 @@ public class SkeletonTests : TestContext
             .Add(p => p.MinHeight, "20px"));
         
         var skeleton = component.Find("span.rt-Skeleton");
-        skeleton.GetAttribute("style").Should().Contain("min-height: 20px");
+        skeleton.GetAttribute("style").ShouldContain("min-height: 20px");
     }
     
     [Fact]
@@ -75,7 +75,7 @@ public class SkeletonTests : TestContext
             .Add(p => p.MaxHeight, "100px"));
         
         var skeleton = component.Find("span.rt-Skeleton");
-        skeleton.GetAttribute("style").Should().Contain("max-height: 100px");
+        skeleton.GetAttribute("style").ShouldContain("max-height: 100px");
     }
     
     [Fact]
@@ -87,8 +87,8 @@ public class SkeletonTests : TestContext
         
         var skeleton = component.Find("span.rt-Skeleton");
         var style = skeleton.GetAttribute("style");
-        style.Should().Contain("width: 200px");
-        style.Should().Contain("height: 50px");
+        style.ShouldContain("width: 200px");
+        style.ShouldContain("height: 50px");
     }
     
     [Fact]
@@ -97,7 +97,7 @@ public class SkeletonTests : TestContext
         var component = RenderComponent<Skeleton>(parameters => parameters
             .Add(p => p.Loading, true));
         
-        component.Find("span.rt-Skeleton").Should().NotBeNull();
+        component.Find("span.rt-Skeleton").ShouldNotBeNull();
     }
     
     [Fact]
@@ -107,8 +107,8 @@ public class SkeletonTests : TestContext
             .Add(p => p.Loading, false)
             .AddChildContent("Content loaded"));
         
-        component.FindAll("span.rt-Skeleton").Should().BeEmpty();
-        component.Markup.Should().Contain("Content loaded");
+        component.FindAll("span.rt-Skeleton").ShouldBeEmpty();
+        component.Markup.ShouldContain("Content loaded");
     }
     
     [Fact]
@@ -118,8 +118,8 @@ public class SkeletonTests : TestContext
             .Add(p => p.Loading, true)
             .AddChildContent("Content"));
         
-        component.Find("span.rt-Skeleton").Should().NotBeNull();
-        component.Markup.Should().NotContain("Content");
+        component.Find("span.rt-Skeleton").ShouldNotBeNull();
+        component.Markup.ShouldNotContain("Content");
     }
     
     [Fact]
@@ -128,7 +128,7 @@ public class SkeletonTests : TestContext
         var component = RenderComponent<Skeleton>(parameters => parameters
             .Add(p => p.Class, "custom-skeleton"));
         
-        component.Find("span.rt-Skeleton").GetClasses().Should().Contain("custom-skeleton");
+        component.Find("span.rt-Skeleton").GetClasses().ShouldContain("custom-skeleton");
     }
     
     [Fact]
@@ -139,7 +139,7 @@ public class SkeletonTests : TestContext
             .AddUnmatched("aria-busy", "true"));
         
         var skeleton = component.Find("span.rt-Skeleton");
-        skeleton.GetAttribute("data-testid").Should().Be("skeleton-loader");
-        skeleton.GetAttribute("aria-busy").Should().Be("true");
+        skeleton.GetAttribute("data-testid").ShouldBe("skeleton-loader");
+        skeleton.GetAttribute("aria-busy").ShouldBe("true");
     }
 }

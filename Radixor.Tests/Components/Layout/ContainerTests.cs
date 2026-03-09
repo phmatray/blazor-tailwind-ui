@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Layout;
 using Radixor.Tests.TestHelpers;
 using Xunit;
@@ -15,9 +15,9 @@ public class ContainerTests : TestContext
             .AddChildContent("Test Content"));
         
         var element = component.Find("div");
-        element.Should().NotBeNull();
-        element.GetClasses().Should().Contain("rt-Container");
-        element.TextContent.Should().Be("Test Content");
+        element.ShouldNotBeNull();
+        element.GetClasses().ShouldContain("rt-Container");
+        element.TextContent.ShouldBe("Test Content");
     }
     
     [Fact]
@@ -27,7 +27,7 @@ public class ContainerTests : TestContext
             .Add(p => p.Size, ContainerSize.Size2)
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-size-2");
+        component.Find("div").GetClasses().ShouldContain("rt-r-size-2");
     }
     
     [Fact]
@@ -37,7 +37,7 @@ public class ContainerTests : TestContext
             .Add(p => p.Display, ContainerDisplay.Block)
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("rt-r-display-block");
+        component.Find("div").GetClasses().ShouldContain("rt-r-display-block");
     }
     
     [Fact]
@@ -49,8 +49,8 @@ public class ContainerTests : TestContext
             .AddChildContent("Test Content"));
         
         var classes = component.Find("div").GetClasses();
-        classes.Should().Contain("rt-r-m-auto");
-        classes.Should().Contain("rt-r-mx-4");
+        classes.ShouldContain("rt-r-m-auto");
+        classes.ShouldContain("rt-r-mx-4");
     }
     
     [Fact]
@@ -62,8 +62,8 @@ public class ContainerTests : TestContext
             .AddChildContent("Test Content"));
         
         var classes = component.Find("div").GetClasses();
-        classes.Should().Contain("rt-r-p-5");
-        classes.Should().Contain("rt-r-px-3");
+        classes.ShouldContain("rt-r-p-5");
+        classes.ShouldContain("rt-r-px-3");
     }
     
     [Fact]
@@ -73,7 +73,7 @@ public class ContainerTests : TestContext
             .Add(p => p.Class, "custom-container")
             .AddChildContent("Test Content"));
         
-        component.Find("div").GetClasses().Should().Contain("custom-container");
+        component.Find("div").GetClasses().ShouldContain("custom-container");
     }
     
     [Fact]
@@ -85,7 +85,7 @@ public class ContainerTests : TestContext
             .AddChildContent("Test Content"));
         
         var element = component.Find("div");
-        element.GetAttribute("data-testid").Should().Be("main-container");
-        element.GetAttribute("role").Should().Be("main");
+        element.GetAttribute("data-testid").ShouldBe("main-container");
+        element.GetAttribute("role").ShouldBe("main");
     }
 }

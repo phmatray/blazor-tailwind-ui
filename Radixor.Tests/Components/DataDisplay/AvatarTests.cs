@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Microsoft.AspNetCore.Components;
 using Radixor.Components.DataDisplay;
 using Radixor.Tests.TestHelpers;
@@ -15,10 +15,10 @@ public class AvatarTests : TestContext
         var component = RenderComponent<Avatar>();
         
         var avatar = component.Find("span.rt-Avatar");
-        avatar.Should().NotBeNull();
-        avatar.GetClasses().Should().Contain("rt-Avatar");
-        avatar.GetClasses().Should().Contain("rt-r-size-3");
-        avatar.GetClasses().Should().Contain("rt-variant-soft");
+        avatar.ShouldNotBeNull();
+        avatar.GetClasses().ShouldContain("rt-Avatar");
+        avatar.GetClasses().ShouldContain("rt-r-size-3");
+        avatar.GetClasses().ShouldContain("rt-variant-soft");
     }
     
     [Theory]
@@ -36,7 +36,7 @@ public class AvatarTests : TestContext
         var component = RenderComponent<Avatar>(parameters => parameters
             .Add(p => p.Size, size));
         
-        component.Find("span.rt-Avatar").GetClasses().Should().Contain(expectedClass);
+        component.Find("span.rt-Avatar").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -47,7 +47,7 @@ public class AvatarTests : TestContext
         var component = RenderComponent<Avatar>(parameters => parameters
             .Add(p => p.Variant, variant));
         
-        component.Find("span.rt-Avatar").GetClasses().Should().Contain(expectedClass);
+        component.Find("span.rt-Avatar").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -58,9 +58,9 @@ public class AvatarTests : TestContext
             .Add(p => p.Alt, "User Avatar"));
         
         var img = component.Find("img.rt-AvatarImage");
-        img.Should().NotBeNull();
-        img.GetAttribute("src").Should().Be("avatar.jpg");
-        img.GetAttribute("alt").Should().Be("User Avatar");
+        img.ShouldNotBeNull();
+        img.GetAttribute("src").ShouldBe("avatar.jpg");
+        img.GetAttribute("alt").ShouldBe("User Avatar");
     }
     
     [Fact]
@@ -70,8 +70,8 @@ public class AvatarTests : TestContext
             .Add(p => p.Fallback, (RenderFragment)(b => b.AddContent(0, "JD"))));
         
         var fallback = component.Find("span.rt-AvatarFallback");
-        fallback.Should().NotBeNull();
-        fallback.TextContent.Should().Be("JD");
+        fallback.ShouldNotBeNull();
+        fallback.TextContent.ShouldBe("JD");
     }
     
     [Fact]
@@ -80,7 +80,7 @@ public class AvatarTests : TestContext
         var component = RenderComponent<Avatar>(parameters => parameters
             .Add(p => p.Color, "indigo"));
         
-        component.Find("span.rt-Avatar").GetAttribute("data-accent-color").Should().Be("indigo");
+        component.Find("span.rt-Avatar").GetAttribute("data-accent-color").ShouldBe("indigo");
     }
     
     [Fact]
@@ -89,7 +89,7 @@ public class AvatarTests : TestContext
         var component = RenderComponent<Avatar>(parameters => parameters
             .Add(p => p.HighContrast, true));
         
-        component.Find("span.rt-Avatar").GetClasses().Should().Contain("rt-high-contrast");
+        component.Find("span.rt-Avatar").GetClasses().ShouldContain("rt-high-contrast");
     }
     
     [Fact]
@@ -98,7 +98,7 @@ public class AvatarTests : TestContext
         var component = RenderComponent<Avatar>(parameters => parameters
             .Add(p => p.Radius, "full"));
         
-        component.Find("span.rt-Avatar").GetAttribute("data-radius").Should().Be("full");
+        component.Find("span.rt-Avatar").GetAttribute("data-radius").ShouldBe("full");
     }
     
     [Fact]
@@ -109,8 +109,8 @@ public class AvatarTests : TestContext
             .Add(p => p.Mx, "3"));
         
         var classes = component.Find("span.rt-Avatar").GetClasses();
-        classes.Should().Contain("rt-r-m-2");
-        classes.Should().Contain("rt-r-mx-3");
+        classes.ShouldContain("rt-r-m-2");
+        classes.ShouldContain("rt-r-mx-3");
     }
     
     [Fact]
@@ -119,6 +119,6 @@ public class AvatarTests : TestContext
         var component = RenderComponent<Avatar>(parameters => parameters
             .Add(p => p.Class, "custom-avatar"));
         
-        component.Find("span.rt-Avatar").GetClasses().Should().Contain("custom-avatar");
+        component.Find("span.rt-Avatar").GetClasses().ShouldContain("custom-avatar");
     }
 }

@@ -1,5 +1,5 @@
 using Bunit;
-using FluentAssertions;
+using Shouldly;
 using Radixor.Components.Typography;
 using Radixor.Components.Common;
 using Radixor.Tests.TestHelpers;
@@ -16,10 +16,10 @@ public class TextTests : TestContext
             .AddChildContent("Sample text"));
         
         var span = component.Find("span");
-        span.Should().NotBeNull();
-        span.TextContent.Should().Be("Sample text");
-        span.GetClasses().Should().Contain("rt-Text");
-        span.GetClasses().Should().Contain("rt-r-size-2");
+        span.ShouldNotBeNull();
+        span.TextContent.ShouldBe("Sample text");
+        span.GetClasses().ShouldContain("rt-Text");
+        span.GetClasses().ShouldContain("rt-r-size-2");
     }
     
     [Theory]
@@ -38,7 +38,7 @@ public class TextTests : TestContext
             .Add(p => p.Size, size)
             .AddChildContent("Text"));
         
-        component.Find("span").GetClasses().Should().Contain(expectedClass);
+        component.Find("span").GetClasses().ShouldContain(expectedClass);
     }
     
     [Theory]
@@ -52,7 +52,7 @@ public class TextTests : TestContext
             .Add(p => p.Weight, weight)
             .AddChildContent("Text"));
         
-        component.Find("span").GetClasses().Should().Contain(expectedClass);
+        component.Find("span").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -62,7 +62,7 @@ public class TextTests : TestContext
             .Add(p => p.Color, "blue")
             .AddChildContent("Text"));
         
-        component.Find("span").GetAttribute("data-accent-color").Should().Be("blue");
+        component.Find("span").GetAttribute("data-accent-color").ShouldBe("blue");
     }
     
     [Fact]
@@ -72,7 +72,7 @@ public class TextTests : TestContext
             .Add(p => p.HighContrast, true)
             .AddChildContent("Text"));
         
-        component.Find("span").GetClasses().Should().Contain("rt-high-contrast");
+        component.Find("span").GetClasses().ShouldContain("rt-high-contrast");
     }
     
     [Theory]
@@ -85,7 +85,7 @@ public class TextTests : TestContext
             .Add(p => p.Align, align)
             .AddChildContent("Text"));
         
-        component.Find("span").GetClasses().Should().Contain(expectedClass);
+        component.Find("span").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -96,8 +96,8 @@ public class TextTests : TestContext
             .AddChildContent("Text"));
         
         var classes = component.Find("span").GetClasses();
-        classes.Should().Contain("rt-leading-trim-start");
-        classes.Should().Contain("rt-leading-trim-end");
+        classes.ShouldContain("rt-leading-trim-start");
+        classes.ShouldContain("rt-leading-trim-end");
     }
     
     [Fact]
@@ -107,8 +107,8 @@ public class TextTests : TestContext
             .Add(p => p.As, "div")
             .AddChildContent("Text"));
         
-        component.Find("div").Should().NotBeNull();
-        component.Find("div").GetClasses().Should().Contain("rt-Text");
+        component.Find("div").ShouldNotBeNull();
+        component.Find("div").GetClasses().ShouldContain("rt-Text");
     }
     
     [Fact]
@@ -118,8 +118,8 @@ public class TextTests : TestContext
             .Add(p => p.As, "p")
             .AddChildContent("Text"));
         
-        component.Find("p").Should().NotBeNull();
-        component.Find("p").GetClasses().Should().Contain("rt-Text");
+        component.Find("p").ShouldNotBeNull();
+        component.Find("p").GetClasses().ShouldContain("rt-Text");
     }
     
     [Fact]
@@ -129,7 +129,7 @@ public class TextTests : TestContext
             .Add(p => p.Truncate, true)
             .AddChildContent("Very long text that should be truncated"));
         
-        component.Find("span").GetClasses().Should().Contain("rt-truncate");
+        component.Find("span").GetClasses().ShouldContain("rt-truncate");
     }
     
     [Theory]
@@ -143,7 +143,7 @@ public class TextTests : TestContext
             .Add(p => p.Wrap, wrap)
             .AddChildContent("Text"));
         
-        component.Find("span").GetClasses().Should().Contain(expectedClass);
+        component.Find("span").GetClasses().ShouldContain(expectedClass);
     }
     
     [Fact]
@@ -156,9 +156,9 @@ public class TextTests : TestContext
             .AddChildContent("Text"));
         
         var classes = component.Find("span").GetClasses();
-        classes.Should().Contain("rt-r-m-2");
-        classes.Should().Contain("rt-r-mt-3");
-        classes.Should().Contain("rt-r-mb-3");
+        classes.ShouldContain("rt-r-m-2");
+        classes.ShouldContain("rt-r-mt-3");
+        classes.ShouldContain("rt-r-mb-3");
     }
     
     [Fact]
@@ -168,6 +168,6 @@ public class TextTests : TestContext
             .Add(p => p.Class, "custom-text")
             .AddChildContent("Text"));
         
-        component.Find("span").GetClasses().Should().Contain("custom-text");
+        component.Find("span").GetClasses().ShouldContain("custom-text");
     }
 }
