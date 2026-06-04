@@ -46,6 +46,10 @@ export default defineConfig({
           label: 'Migrating',
           items: [{ label: 'From MudBlazor', slug: 'migration' }],
         },
+        {
+          label: 'API reference',
+          autogenerate: { directory: 'api' },
+        },
       ],
     }),
   ],

@@ -28,12 +28,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
           cache-dependency-path: website/package-lock.json
+
+      - name: Build Components (XML docs)
+        run: dotnet build src/DaisyBlazor.Components/DaisyBlazor.Components.csproj -c Release
+
+      - name: Build Charts (XML docs)
+        run: dotnet build src/DaisyBlazor.Charts/DaisyBlazor.Charts.csproj -c Release
+
+      - name: Generate API reference
+        run: node website/scripts/gen-api.mjs
 
       - name: Install dependencies
         working-directory: website

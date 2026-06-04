@@ -51,6 +51,25 @@ Set these under **Settings → Secrets and variables → Actions**:
 | `NUGET_API_KEY` | `dotnet nuget push` | nuget.org API key with **Push → "Push new packages and package versions"** and glob pattern `*` (or `DaisyBlazor.*`). |
 | `NPM_TOKEN` | `npm publish` | npm **automation** access token with publish rights to the `@daisyblazor` scope. Optional — the npm step is skipped when it isn't set. |
 
+## API reference (generated)
+
+The docs site's **API reference** pages (`website/src/content/docs/api/**`) are
+generated from the .NET XML documentation comments, not hand-written. To regenerate
+them locally:
+
+```bash
+dotnet build src/DaisyBlazor.Components/DaisyBlazor.Components.csproj -c Release
+dotnet build src/DaisyBlazor.Charts/DaisyBlazor.Charts.csproj -c Release
+node website/scripts/gen-api.mjs
+```
+
+`gen-api.mjs` requires a prior `dotnet build -c Release` (it reads the emitted
+`*.xml` doc files under each project's `bin/Release/net10.0/`). It wipes and
+recreates the `api/` directory on every run, so don't hand-edit those pages —
+edit the C# XML doc comments instead. The [`docs`](.github/workflows/docs.yml)
+workflow runs these same steps before building the site, so the published API
+reference is always regenerated from source on deploy.
+
 ## Local checks before pushing
 
 ```bash
