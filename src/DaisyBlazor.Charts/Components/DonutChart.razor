@@ -19,9 +19,9 @@
 
                 @if (_total <= 0)
                 {
-                    <circle cx="@_cx.ToString(_ci)" cy="@_cy.ToString(_ci)" r="@((_radius + _innerRadius) / 2).ToString(_ci)"
+                    <circle cx="@_cx.ToString(_ci)" cy="@_cy.ToString(_ci)" r="@(((_radius + _innerRadius) / 2).ToString(_ci))"
                             fill="none" stroke="var(--color-base-content)" stroke-opacity="0.15"
-                            stroke-width="@((_radius - _innerRadius)).ToString(_ci)" />
+                            stroke-width="@((_radius - _innerRadius).ToString(_ci))" />
                 }
                 else
                 {

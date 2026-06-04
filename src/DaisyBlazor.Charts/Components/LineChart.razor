@@ -24,7 +24,7 @@
             @foreach ((double y, string label) in _yGrid)
             {
                 <line x1="@_padLeft.ToString(_ci)" y1="@y.ToString(_ci)"
-                      x2="@(( _w - _padRight)).ToString(_ci)" y2="@y.ToString(_ci)"
+                      x2="@((_w - _padRight).ToString(_ci))" y2="@y.ToString(_ci)"
                       stroke="var(--color-base-content)" stroke-opacity="0.12" stroke-width="1" />
                 <SvgText X="@(_padLeft - 4)" Y="@(y + 4)" Anchor="end" FillOpacity="0.6" Text="@label" />
             }

@@ -172,4 +172,32 @@ public class ChartRenderTests : BunitContext
         cut.Find("svg").ShouldNotBeNull();
         cut.Markup.ShouldContain("<path");
     }
+
+    // Guards against ".ToString(...)" leaking as literal SVG attribute text when the call is
+    // placed outside the Razor @(...) expression (e.g. @((a - b)).ToString(_ci) instead of
+    // @((a - b).ToString(_ci))), which produces invalid attributes like x2="588.ToString(...)".
+    [Theory]
+    [InlineData("LineChart")]
+    [InlineData("DonutChart")]
+    [InlineData("BarChart")]
+    [InlineData("PieChart")]
+    [InlineData("AreaChart")]
+    public void Charts_do_not_leak_ToString_into_markup(string chart)
+    {
+        string markup = chart switch
+        {
+            "LineChart" => Render<LineChart>(ps => ps
+                .Add(p => p.Series, new List<ChartSeries> { new("S", new double[] { 1, 5, 3, 8 }) })).Markup,
+            "AreaChart" => Render<AreaChart>(ps => ps
+                .Add(p => p.Series, new List<ChartSeries> { new("S", new double[] { 1, 5, 3, 8 }) })).Markup,
+            "BarChart" => Render<BarChart>(ps => ps
+                .Add(p => p.Data, new List<ChartDataPoint> { new("A", 3), new("B", 7) })).Markup,
+            "PieChart" => Render<PieChart>(ps => ps
+                .Add(p => p.Data, new List<ChartDataPoint> { new("A", 3), new("B", 7) })).Markup,
+            _ => Render<DonutChart>(ps => ps
+                .Add(p => p.Data, new List<ChartDataPoint> { new("A", 3), new("B", 7) })).Markup,
+        };
+
+        markup.ShouldNotContain("ToString");
+    }
 }
