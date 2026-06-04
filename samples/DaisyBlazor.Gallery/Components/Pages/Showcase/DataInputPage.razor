@@ -1,0 +1,308 @@
+@page "/data-input"
+@rendermode InteractiveServer
+
+<PageTitle>Data input · DaisyBlazor</PageTitle>
+<h1 class="text-3xl font-bold font-heading mb-1">Data input</h1>
+<p class="opacity-70 mb-6">Two-way bound form controls — text fields, selects, toggles, sliders, and more.</p>
+
+@* ── TextField ─────────────────────────────────────────────────────────────── *@
+<Showcase Title="TextField" Tag="<TextField>" Description="Single-line and multi-line text input with label, helper text, and error state." BodyClass="block space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <TextField Label="Username"
+                       Placeholder="e.g. jdoe"
+                       @bind-Value="_textValue"
+                       HelperText="@("Current value: " + (_textValue ?? "(empty)"))" />
+        </div>
+        <div>
+            <TextField Label="Error example"
+                       Value="bad input"
+                       Error="true"
+                       ErrorText="This field is required."
+                       HelperText="Shows error styling." />
+        </div>
+        <div class="md:col-span-2">
+            <TextField Label="Notes (multi-line)"
+                       Placeholder="Type something…"
+                       Lines="3"
+                       @bind-Value="_textareaValue"
+                       HelperText="@("Current value: " + (_textareaValue ?? "(empty)"))" />
+        </div>
+    </div>
+</Showcase>
+
+@* ── NumericField ───────────────────────────────────────────────────────────── *@
+<Showcase Title="NumericField" Tag="<NumericField<T>>" Description="Numeric input with min / max / step constraints." BodyClass="block space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <NumericField T="int"
+                          Label="Quantity"
+                          @bind-Value="_intValue"
+                          Min="0"
+                          Max="999"
+                          Step="1"
+                          HelperText="@("Current value: " + _intValue)" />
+        </div>
+        <div>
+            <NumericField T="double"
+                          Label="Price (€)"
+                          @bind-Value="_doubleValue"
+                          Min="0.0"
+                          Max="9999.99"
+                          Step="0.01"
+                          Format="F2"
+                          Adornment="Adornment.Start"
+                          AdornmentText="€"
+                          HelperText="@("Current value: " + _doubleValue.ToString("F2"))" />
+        </div>
+    </div>
+</Showcase>
+
+@* ── Select + SelectItem ────────────────────────────────────────────────────── *@
+<Showcase Title="Select + SelectItem" Tag="<Select<T>> / <SelectItem<T>>" Description="Native select backed by typed SelectItem children." BodyClass="block space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <Select T="string"
+                    Label="Favourite fruit"
+                    @bind-Value="_selectedFruit"
+                    Clearable="true"
+                    HelperText="@("Selected: " + (_selectedFruit ?? "none"))">
+                <SelectItem Value="@("apple")">Apple</SelectItem>
+                <SelectItem Value="@("banana")">Banana</SelectItem>
+                <SelectItem Value="@("cherry")">Cherry</SelectItem>
+                <SelectItem Value="@("durian")" Disabled="true">Durian (unavailable)</SelectItem>
+            </Select>
+        </div>
+        <div>
+            <Select T="int"
+                    Label="Priority"
+                    @bind-Value="_selectedPriority"
+                    HelperText="@("Selected: " + _selectedPriority)">
+                <SelectItem Value="1">Low</SelectItem>
+                <SelectItem Value="2">Medium</SelectItem>
+                <SelectItem Value="3">High</SelectItem>
+                <SelectItem Value="4">Critical</SelectItem>
+            </Select>
+        </div>
+    </div>
+</Showcase>
+
+@* ── Checkbox ───────────────────────────────────────────────────────────────── *@
+<Showcase Title="Checkbox" Tag="<Checkbox<T>>" Description="Boolean checkbox with colour and size variants.">
+    <div class="flex flex-col gap-2">
+        <Checkbox T="bool" Label="Default" @bind-Value="_checkA" />
+        <Checkbox T="bool" Label="Primary" Color="Color.Primary" @bind-Value="_checkB" />
+        <Checkbox T="bool" Label="Success" Color="Color.Success" @bind-Value="_checkC" />
+        <Checkbox T="bool" Label="Large warning" Color="Color.Warning" Size="Size.Large" @bind-Value="_checkD" />
+        <Checkbox T="bool" Label="Disabled (checked)" Color="Color.Secondary" Disabled="true" Value="true" />
+        <p class="text-sm opacity-60 mt-1">
+            a=@_checkA  b=@_checkB  c=@_checkC  d=@_checkD
+        </p>
+    </div>
+</Showcase>
+
+@* ── Switch ─────────────────────────────────────────────────────────────────── *@
+<Showcase Title="Switch" Tag="<Switch<T>>" Description="Toggle switch — same API as Checkbox but uses the .toggle daisyUI class.">
+    <div class="flex flex-col gap-2">
+        <Switch T="bool" Label="Enable notifications" @bind-Value="_switchA" />
+        <Switch T="bool" Label="Dark mode" Color="Color.Primary" @bind-Value="_switchB" />
+        <Switch T="bool" Label="Auto-save" Color="Color.Success" Size="Size.Large" @bind-Value="_switchC" />
+        <Switch T="bool" Label="Disabled" Disabled="true" Value="false" />
+        <p class="text-sm opacity-60 mt-1">
+            notifications=@_switchA  darkMode=@_switchB  autoSave=@_switchC
+        </p>
+    </div>
+</Showcase>
+
+@* ── Radio + RadioGroup ─────────────────────────────────────────────────────── *@
+<Showcase Title="Radio + RadioGroup" Tag="<RadioGroup<T>> / <Radio<T>>" Description="Single-selection radio group; Radio children bind through a CascadingValue.">
+    <div class="flex flex-col gap-2">
+        <p class="text-sm font-medium">Preferred contact method</p>
+        <RadioGroup T="string" @bind-Value="_radioValue">
+            <Radio T="string" Value="@("email")"   Label="Email"   Color="Color.Primary" />
+            <Radio T="string" Value="@("phone")"   Label="Phone"   Color="Color.Primary" />
+            <Radio T="string" Value="@("sms")"     Label="SMS"     Color="Color.Primary" />
+            <Radio T="string" Value="@("none")"    Label="None"    Disabled="true" />
+        </RadioGroup>
+        <p class="text-sm opacity-60 mt-1">Selected: @(_radioValue ?? "none")</p>
+    </div>
+</Showcase>
+
+@* ── Range ──────────────────────────────────────────────────────────────────── *@
+<Showcase Title="Range" Tag="<Range>" Description="Slider with colour and size variants, two-way bound to a double." BodyClass="block space-y-6">
+    <div class="space-y-2">
+        <label class="text-sm font-medium">Volume — <span class="font-mono">@_rangeA</span></label>
+        <Range @bind-Value="_rangeA" Min="0" Max="100" Step="1" Color="Color.Primary" />
+    </div>
+    <div class="space-y-2">
+        <label class="text-sm font-medium">Brightness — <span class="font-mono">@_rangeB.ToString("F0")</span></label>
+        <Range @bind-Value="_rangeB" Min="0" Max="100" Step="5" Color="Color.Warning" Size="Size.Large" />
+    </div>
+</Showcase>
+
+@* ── Rating ─────────────────────────────────────────────────────────────────── *@
+<Showcase Title="Rating" Tag="<Rating>" Description="Star (or custom mask) rating widget, 1–Max, with colour options.">
+    <div class="flex flex-col gap-4">
+        <div>
+            <p class="text-sm font-medium mb-1">Your rating: <span class="font-mono">@_ratingValue / 5</span></p>
+            <Rating @bind-Value="_ratingValue" Max="5" Color="Color.Warning" />
+        </div>
+        <div>
+            <p class="text-sm font-medium mb-1">Difficulty: <span class="font-mono">@_ratingDiff / 10</span></p>
+            <Rating @bind-Value="_ratingDiff" Max="10" Color="Color.Error" Size="Size.Small" />
+        </div>
+        <div>
+            <p class="text-sm font-medium mb-1">Hearts (read-only, 3/5)</p>
+            <Rating Value="3" Max="5" Mask="mask-heart" Color="Color.Error" ReadOnly="true" />
+        </div>
+    </div>
+</Showcase>
+
+@* ── FileInput ──────────────────────────────────────────────────────────────── *@
+<Showcase Title="FileInput" Tag="<FileInput>" Description="Wraps Blazor InputFile with daisyUI styling; raises OnChange when files are selected." BodyClass="block space-y-4">
+    <div class="space-y-2">
+        <label class="text-sm font-medium">Upload a file</label>
+        <FileInput OnChange="OnFileChanged" />
+        @if (!string.IsNullOrEmpty(_fileName))
+        {
+            <p class="text-sm opacity-60">Selected: @_fileName (@_fileSize bytes)</p>
+        }
+    </div>
+    <div class="space-y-2">
+        <label class="text-sm font-medium">Images only (accepts image/*)</label>
+        <FileInput Color="Color.Primary" Accept="image/*" OnChange="OnImageChanged" />
+        @if (!string.IsNullOrEmpty(_imageName))
+        {
+            <p class="text-sm opacity-60">Image: @_imageName</p>
+        }
+    </div>
+    <div class="space-y-2">
+        <label class="text-sm font-medium">Multiple files (ghost style)</label>
+        <FileInput Multiple="true" Ghost="true" OnChange="OnMultiChanged" />
+        @if (_multiCount > 0)
+        {
+            <p class="text-sm opacity-60">@_multiCount file(s) selected</p>
+        }
+    </div>
+</Showcase>
+
+@* ── DatePicker ─────────────────────────────────────────────────────────────── *@
+<Showcase Title="DatePicker" Tag="<DatePicker>" Description="Native date input bound to a DateTime?; supports min/max date constraints." BodyClass="block space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <DatePicker Label="Start date"
+                        @bind-Date="_dateA"
+                        HelperText="@("Selected: " + (_dateA?.ToString("yyyy-MM-dd") ?? "none"))" />
+        </div>
+        <div>
+            <DatePicker Label="End date (future only)"
+                        @bind-Date="_dateB"
+                        MinDate="DateTime.Today"
+                        HelperText="@("Selected: " + (_dateB?.ToString("yyyy-MM-dd") ?? "none"))" />
+        </div>
+    </div>
+</Showcase>
+
+@* ── Validator ───────────────────────────────────────────────────────────────── *@
+<Showcase Title="Validator" Tag="<Validator>" Description="CSS-only validation wrapper — activates daisyUI .validator styles and renders a hint message below the input." BodyClass="block space-y-4">
+    <Validator Hint="Must be at least 8 characters long.">
+        <input class="input input-bordered w-full"
+               type="password"
+               placeholder="Enter password…"
+               minlength="8"
+               @bind="_validatorPassword"
+               @bind:event="oninput" />
+    </Validator>
+    <p class="text-sm opacity-60">Value length: @(_validatorPassword?.Length ?? 0)</p>
+</Showcase>
+
+@* ── FloatingLabel ──────────────────────────────────────────────────────────── *@
+<Showcase Title="FloatingLabel" Tag="<FloatingLabel>" Description="Animated floating label that rises above the input on focus or when filled." BodyClass="block space-y-6">
+    <FloatingLabel Label="Email address">
+        <input class="input input-bordered w-full"
+               type="email"
+               placeholder=" "
+               @bind="_floatingEmail"
+               @bind:event="oninput" />
+    </FloatingLabel>
+    <p class="text-sm opacity-60">Value: @(_floatingEmail ?? "(empty)")</p>
+
+    <FloatingLabel Label="Full name">
+        <input class="input input-bordered w-full"
+               type="text"
+               placeholder=" "
+               @bind="_floatingName"
+               @bind:event="oninput" />
+    </FloatingLabel>
+    <p class="text-sm opacity-60">Value: @(_floatingName ?? "(empty)")</p>
+</Showcase>
+
+@code
+{
+    // TextField
+    private string? _textValue;
+    private string? _textareaValue;
+
+    // NumericField
+    private int _intValue = 1;
+    private double _doubleValue = 9.99;
+
+    // Select
+    private string? _selectedFruit = "banana";
+    private int _selectedPriority = 2;
+
+    // Checkbox
+    private bool _checkA = true;
+    private bool _checkB;
+    private bool _checkC = true;
+    private bool _checkD;
+
+    // Switch
+    private bool _switchA = true;
+    private bool _switchB;
+    private bool _switchC = true;
+
+    // RadioGroup
+    private string? _radioValue = "email";
+
+    // Range
+    private double _rangeA = 40;
+    private double _rangeB = 60;
+
+    // Rating
+    private int _ratingValue = 3;
+    private int _ratingDiff = 5;
+
+    // FileInput
+    private string? _fileName;
+    private long _fileSize;
+    private string? _imageName;
+    private int _multiCount;
+
+    private void OnFileChanged(InputFileChangeEventArgs args)
+    {
+        _fileName = args.File.Name;
+        _fileSize = args.File.Size;
+    }
+
+    private void OnImageChanged(InputFileChangeEventArgs args)
+    {
+        _imageName = args.File.Name;
+    }
+
+    private void OnMultiChanged(InputFileChangeEventArgs args)
+    {
+        _multiCount = args.FileCount;
+    }
+
+    // DatePicker
+    private DateTime? _dateA = DateTime.Today;
+    private DateTime? _dateB;
+
+    // Validator
+    private string? _validatorPassword;
+
+    // FloatingLabel
+    private string? _floatingEmail;
+    private string? _floatingName;
+}
