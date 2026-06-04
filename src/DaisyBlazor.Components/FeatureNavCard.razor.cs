@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace DaisyBlazor;
 
@@ -66,12 +67,44 @@ public partial class FeatureNavCard(NavigationManager navigation)
         $"background:linear-gradient(135deg,{GradientStart} 0%,{GradientEnd} 100%);"
         + $"--nav-card-glow:color-mix(in srgb,{GradientEnd} 55%,transparent);";
 
+    /// <summary>Gradient strip and hover tint shared by the accent bar and the card itself.</summary>
+    private string AccentStyle =>
+        $"--nav-card-from:{GradientStart};--nav-card-to:{GradientEnd};"
+        + $"--nav-card-glow:color-mix(in srgb,{GradientEnd} 45%,transparent);";
+
     private string CardClass =>
-        "p-4 grow nav-card" + (IsClickable ? " cursor-pointer hover-card" : string.Empty);
+        "grow nav-card" + (IsClickable ? " cursor-pointer hover-card" : string.Empty);
 
     private void OnCardClick()
     {
         if (Href is not null)
+        {
+            navigation.NavigateTo(Href);
+        }
+    }
+
+    /// <summary>
+    /// Accessibility attributes splatted onto the card so a clickable card behaves like a
+    /// button for keyboard and screen-reader users (role, tab stop, label, key handler).
+    /// </summary>
+    private IReadOnlyDictionary<string, object>? CardAttributes => IsClickable
+        ? new Dictionary<string, object>
+        {
+            ["role"] = "button",
+            ["tabindex"] = "0",
+            ["aria-label"] = ActionLabel is not null ? $"{Title} – {ActionLabel}" : Title,
+            ["onkeydown"] = EventCallback.Factory.Create<KeyboardEventArgs>(this, HandleKeyDown),
+        }
+        : null;
+
+    private void HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (Href is null)
+        {
+            return;
+        }
+
+        if (e.Key is "Enter" or " " or "Spacebar")
         {
             navigation.NavigateTo(Href);
         }
