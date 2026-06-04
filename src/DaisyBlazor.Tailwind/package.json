@@ -1,0 +1,33 @@
+{
+  "name": "@daisyblazor/tailwind",
+  "version": "0.1.0",
+  "description": "Tailwind CSS v4 + daisyUI v5 preset used by the DaisyBlazor component library. Import preset.css to enable daisyUI, the neutral DaisyBlazor themes, and the dynamic-class safelist.",
+  "type": "module",
+  "exports": {
+    "./preset.css": "./preset.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "preset.css",
+    "README.md"
+  ],
+  "keywords": [
+    "tailwindcss",
+    "daisyui",
+    "blazor",
+    "daisyblazor",
+    "preset",
+    "css"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phmatray/daisyblazor"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.1.0"
+  },
+  "dependencies": {
+    "daisyui": "5.5.20"
+  }
+}
