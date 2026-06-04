@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+/* The shippable DaisyBlazor preset: daisyUI plugin + neutral daisyblazor / daisyblazor-dark
+   themes (plus all built-in daisyUI themes) + the C#-class safelist. Resolved through the
+   "@daisyblazor/tailwind" npm package listed in package.json. */
+@import "@daisyblazor/tailwind/preset.css";
+
+/* Scan THIS app's own markup so Tailwind emits every utility class you use. One line per
+   extension — Tailwind v4 source globs do not support brace groups like *.{razor,cs}. */
+@source "./Components/**/*.razor";
+@source "./Components/**/*.cs";
+
+/* ---------------------------------------------------------------------------
+   About classes used INSIDE the packaged DaisyBlazor components
+   ---------------------------------------------------------------------------
+   You normally do NOT need a source glob pointing at the DaisyBlazor.Components
+   package: the preset above already force-generates everything those components
+   build dynamically in C# (its inline safelist), and daisyUI emits all of its
+   own component classes (btn, card, table, ...) regardless of your markup. So
+   the two app globs above are enough for the vast majority of apps.
+
+   If you ever use a packaged component that relies on a plain Tailwind utility
+   that nothing in your own app references, add one more source glob pointing at
+   the restored NuGet package in your local package cache. The cache path is not
+   portable between machines, so it is intentionally left out here. To add it,
+   copy the line below (remove the leading text so it becomes a real at-rule) and
+   point it at your cache, one line per file extension:
+
+     source "<HOME>/.nuget/packages/daisyblazor.components/0.1.0/**/*.razor";
+     source "<HOME>/.nuget/packages/daisyblazor.components/0.1.0/**/*.cs";
+--------------------------------------------------------------------------- */
+
+/* App-level brand layer (kept in the app, not the package). */
+@layer base {
+    :root {
+        --font-heading: "Plus Jakarta Sans", "Helvetica Neue", sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6, .font-heading {
+        font-family: var(--font-heading);
+    }
+}

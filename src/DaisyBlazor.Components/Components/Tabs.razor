@@ -5,6 +5,9 @@
    Cascades itself so each <Tab> can register and query the active index. *@
 
 <CascadingValue Value="this" IsFixed="false">
+    @* Render the Tab children so they register with this container (each Tab renders no markup itself). *@
+    @ChildContent
+
     <div class="@_cls" style="@Style" @attributes="UserAttributes">
         @* Tab button row *@
         <div role="tablist" class="tabs @_variantClass @_sizeClass">
@@ -33,6 +36,9 @@
 @code {
     private readonly List<Tab> _tabs = new();
     private Tab? _activeTab;
+
+    /// <summary>The tab definitions (one or more <see cref="Tab"/> components).</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
     /// <summary>Zero-based index of the currently active tab.</summary>
     [Parameter] public int ActiveIndex { get; set; }
@@ -80,15 +86,10 @@
             _tabs.Add(tab);
         }
 
-        // Activate the tab matching the current ActiveIndex, or default to the first.
-        if (_activeTab is null && _tabs.Count - 1 == ActiveIndex)
-        {
-            _activeTab = tab;
-        }
-        else if (_activeTab is null && _tabs.Count == 1)
-        {
-            _activeTab = tab;
-        }
+        // Keep the active tab in sync with ActiveIndex (clamped), defaulting to the first tab.
+        _activeTab = ActiveIndex >= 0 && ActiveIndex < _tabs.Count
+            ? _tabs[ActiveIndex]
+            : _tabs.Count > 0 ? _tabs[0] : null;
 
         StateHasChanged();
     }

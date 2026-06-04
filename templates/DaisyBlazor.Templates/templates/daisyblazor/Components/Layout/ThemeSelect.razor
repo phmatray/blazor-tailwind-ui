@@ -1,0 +1,26 @@
+@* A minimal theme picker bound to the cascaded ThemeProvider. Swap this for the richer
+   ThemePicker component, or a ThemeController swap toggle, whenever you like. *@
+
+@if (Theme is not null)
+{
+    <select class="select select-sm w-40"
+            @onchange="OnChanged">
+        <option value="system" selected="@(Theme.Preference == "system")">System</option>
+        @foreach (string t in Theme.Themes)
+        {
+            <option value="@t" selected="@(t == Theme.Preference)">@t</option>
+        }
+    </select>
+}
+
+@code {
+    [CascadingParameter] private ThemeProvider? Theme { get; set; }
+
+    private async Task OnChanged(ChangeEventArgs e)
+    {
+        if (Theme is not null && e.Value is string value)
+        {
+            await Theme.SetThemeAsync(value);
+        }
+    }
+}

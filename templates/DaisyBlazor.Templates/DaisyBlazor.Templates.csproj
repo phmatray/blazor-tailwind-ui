@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- This is a `dotnet new` template PACK: a content-only NuGet package, not a compiled assembly.
+       It ships the files under templates/** as the template payload. -->
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <PackageId>DaisyBlazor.Templates</PackageId>
+    <Title>DaisyBlazor templates</Title>
+    <Description>`dotnet new` templates for DaisyBlazor (Tailwind CSS v4 + daisyUI v5 component kit for Blazor). Includes the `daisyblazor` Blazor Web App template.</Description>
+    <PackageTags>dotnet-new;templates;blazor;daisyui;tailwind</PackageTags>
+
+    <!-- A template package contains no compiled output and no dependencies. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+
+    <!-- This is not a library: no docs, no symbols, no implicit usings/nullable churn. -->
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- The template payload. Never pack the build artifacts of the sample app inside it. -->
+    <Content Include="templates/**/*" Exclude="templates/**/bin/**;templates/**/obj/**;templates/**/node_modules/**" />
+    <!-- Package README (referenced by PackageReadmeFile); NOT part of the template payload. -->
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>
