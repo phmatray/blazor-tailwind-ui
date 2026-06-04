@@ -1,0 +1,11 @@
+@namespace DaisyBlazor
+@implements IDisposable
+@inject IBreadcrumbService BreadcrumbService
+@inject NavigationManager NavigationManager
+
+@* Reads the current route and renders a daisyUI breadcrumbs trail via IBreadcrumbService. *@
+
+@if (_breadcrumbs.Count > 0)
+{
+    <Breadcrumbs Items="_breadcrumbs" Class="@Class" />
+}

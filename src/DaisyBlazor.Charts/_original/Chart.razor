@@ -1,0 +1,30 @@
+@namespace Bsca.Blazor.Components
+@typeparam T
+@using ApexCharts
+
+@* MudChart replacement backed by Blazor-ApexCharts. Supports Pie, Donut, Line, Bar, StackedBar, HeatMap. *@
+
+<div class="@CssClassValue" style="@Style" @attributes="UserAttributes">
+    @if (!HasData)
+    {
+        <div class="flex items-center justify-center h-full text-sm opacity-60" style="@($"min-height:{Height}")"></div>
+    }
+    else
+    {
+        <ApexChart TItem="ChartPoint"
+                   Title=""
+                   Width="@Width"
+                   Height="@Height"
+                   Options="ResolvedOptions">
+            @foreach (RenderSeries series in BuildSeries())
+            {
+                <ApexPointSeries TItem="ChartPoint"
+                                 Items="series.Points"
+                                 Name="@series.Name"
+                                 SeriesType="ResolvedSeriesType"
+                                 XValue="@(p => p.Label)"
+                                 YValue="@(p => (decimal)p.Value)" />
+            }
+        </ApexChart>
+    }
+</div>

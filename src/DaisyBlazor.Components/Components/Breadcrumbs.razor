@@ -1,0 +1,56 @@
+@namespace DaisyBlazor
+
+@* MudBreadcrumbs replacement. daisyUI .breadcrumbs with a horizontally scrollable <ul>.
+   Each item renders a link (when it has an Href and is not disabled) or plain text,
+   with an optional leading icon. The Separator parameter is accepted for source
+   compatibility but ignored (daisyUI draws its own separators via CSS). *@
+
+<nav class="@_cls" style="@Style" @attributes="UserAttributes">
+    <ul>
+        @if (Items is not null)
+        {
+            @foreach (BreadcrumbItem item in Items)
+            {
+                <li>
+                    @if (!string.IsNullOrEmpty(item.Href) && !item.Disabled)
+                    {
+                        <a href="@item.Href" class="flex items-center gap-1">
+                            @if (!string.IsNullOrEmpty(item.Icon))
+                            {
+                                <Icon Name="@item.Icon" Size="Size.Small" />
+                            }
+                            @item.Text
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="@_spanCls(item)">
+                            @if (!string.IsNullOrEmpty(item.Icon))
+                            {
+                                <Icon Name="@item.Icon" Size="Size.Small" />
+                            }
+                            @item.Text
+                        </span>
+                    }
+                </li>
+            }
+        }
+    </ul>
+</nav>
+
+@code {
+    [Parameter] public List<BreadcrumbItem>? Items { get; set; }
+
+    /// <summary>Accepted for MudBlazor source compatibility; ignored.</summary>
+    [Parameter] public string? Separator { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge("breadcrumbs text-sm", Class);
+
+    private string _spanCls(BreadcrumbItem item) => CssClass.Merge(
+        "flex items-center gap-1",
+        item.Disabled ? "opacity-50" : null);
+}

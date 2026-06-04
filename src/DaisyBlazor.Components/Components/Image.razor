@@ -1,0 +1,56 @@
+@namespace DaisyBlazor
+
+@* MudImage replacement. A plain <img> with optional object-fit, sizing and fluid width. *@
+
+<img src="@Src" alt="@Alt" class="@_cls" style="@_style" @attributes="UserAttributes" />
+
+@code {
+    [Parameter] public string? Src { get; set; }
+    [Parameter] public string? Alt { get; set; }
+    [Parameter] public int? Width { get; set; }
+    [Parameter] public int? Height { get; set; }
+
+    /// <summary>CSS object-fit value (e.g. "contain", "cover", "fill").</summary>
+    [Parameter] public string? ObjectFit { get; set; }
+
+    /// <summary>When true, the image scales to the width of its container.</summary>
+    [Parameter] public bool Fluid { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string? _objectFitClass => ObjectFit switch
+    {
+        "contain" => "object-contain",
+        "cover" => "object-cover",
+        "fill" => "object-fill",
+        "none" => "object-none",
+        "scale-down" => "object-scale-down",
+        _ => null
+    };
+
+    private string _cls => CssClass.Merge(
+        Fluid ? "max-w-full h-auto" : null,
+        _objectFitClass,
+        Class);
+
+    private string _style
+    {
+        get
+        {
+            string dims = string.Empty;
+            if (Width is int w)
+            {
+                dims += $"width:{w}px;";
+            }
+
+            if (Height is int h)
+            {
+                dims += $"height:{h}px;";
+            }
+
+            return $"{dims}{Style}";
+        }
+    }
+}

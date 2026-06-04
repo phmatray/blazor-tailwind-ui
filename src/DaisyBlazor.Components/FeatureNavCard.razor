@@ -1,0 +1,46 @@
+@namespace DaisyBlazor
+
+@* MudFeatureNavCard replacement. Feature-navigation card with avatar, title, subtitle,
+   description and an optional "go to" action button. *@
+
+<Card Elevation="3"
+      Class="@CardClass"
+      OnClick="@(_ => OnCardClick())">
+    <CardContent>
+        <div class="flex items-center mb-3">
+            @if (HasGradient)
+            {
+                <div class="nav-card__avatar mr-3" style="@AvatarStyle">
+                    <Icon Name="@Icon" />
+                </div>
+            }
+            else
+            {
+                <Avatar Color="AvatarColor" Size="Size.Large" Class="mr-3">
+                    <Icon Name="@Icon" />
+                </Avatar>
+            }
+            <div>
+                <Typography Typo="Typo.h6">@Title</Typography>
+                <Typography Typo="Typo.body2" Color="Color.Secondary">@Subtitle</Typography>
+            </div>
+        </div>
+        <Typography Typo="Typo.body2">
+            @Description
+        </Typography>
+        @if (ChildContent is not null)
+        {
+            @ChildContent
+        }
+    </CardContent>
+    @if (IsClickable && ActionLabel is not null)
+    {
+        <CardActions>
+            <Button Variant="Variant.Text" Color="ResolvedActionColor"
+                    EndIcon="@Icons.Material.Filled.ArrowForward"
+                    Class="nav-card__action">
+                @ActionLabel
+            </Button>
+        </CardActions>
+    }
+</Card>

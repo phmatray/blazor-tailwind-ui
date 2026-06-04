@@ -1,0 +1,32 @@
+@namespace DaisyBlazor
+
+@* MudCard replacement. daisyUI .card surface; bordered when Outlined, shadow from Elevation. *@
+
+<div class="@_cls" style="@Style" @onclick="OnClick" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public bool Outlined { get; set; }
+    [Parameter] public int Elevation { get; set; } = 1;
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _shadow => Elevation switch
+    {
+        <= 0 => "",
+        1 => "shadow-sm",
+        <= 3 => "shadow",
+        <= 6 => "shadow-md",
+        <= 12 => "shadow-lg",
+        _ => "shadow-xl"
+    };
+
+    private string _cls => CssClass.Merge(
+        "card bg-base-100 text-base-content rounded-box",
+        Outlined ? "card-border border border-base-300" : _shadow,
+        Class);
+}

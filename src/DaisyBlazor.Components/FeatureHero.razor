@@ -1,0 +1,42 @@
+@namespace DaisyBlazor
+
+@* MudFeatureHero replacement. Gradient identity banner for a feature home page. *@
+
+<section class="@CssClass" style="@HeroStyle">
+    <span class="feature-hero__glow" aria-hidden="true"></span>
+    <span class="feature-hero__grid" aria-hidden="true"></span>
+    <Icon Name="@Icon" Class="feature-hero__watermark" aria-hidden="true" />
+
+    <div class="feature-hero__row">
+        <div class="feature-hero__lead">
+            <div class="feature-hero__badge">
+                <Icon Name="@Icon" Size="Size.Large" />
+            </div>
+            <div class="feature-hero__copy">
+                @if (Eyebrow is not null)
+                {
+                    <span class="feature-hero__eyebrow">@Eyebrow</span>
+                }
+                <h1 class="feature-hero__title">@Title</h1>
+                @if (Subtitle is not null)
+                {
+                    <p class="feature-hero__subtitle">@Subtitle</p>
+                }
+            </div>
+        </div>
+
+        @if (Actions is not null)
+        {
+            <div class="feature-hero__actions">
+                @Actions
+            </div>
+        }
+    </div>
+
+    @if (Stats is not null)
+    {
+        <div class="feature-hero__stats">
+            @Stats
+        </div>
+    }
+</section>

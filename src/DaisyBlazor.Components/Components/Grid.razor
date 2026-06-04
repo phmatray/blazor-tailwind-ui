@@ -1,0 +1,24 @@
+@namespace DaisyBlazor
+
+@* MudGrid replacement. A 12-column CSS grid with configurable gap, justify and alignment. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public int Spacing { get; set; } = 6;
+    [Parameter] public Justify? Justify { get; set; }
+    [Parameter] public AlignItems? AlignItems { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "grid grid-cols-12",
+        $"gap-{Spacing}",
+        Justify is { } j ? CssClass.JustifyContent(j) : null,
+        AlignItems is { } a ? CssClass.AlignItemsClass(a) : null,
+        Class);
+}

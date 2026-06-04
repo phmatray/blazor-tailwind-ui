@@ -1,0 +1,66 @@
+@namespace DaisyBlazor
+
+@* MudTablePager replacement. Page-size select + prev/next + range text, driven by the
+   cascaded Table host. *@
+
+@if (Host is not null)
+{
+    <div class="@_cls" style="@Style" @attributes="UserAttributes">
+        <span class="text-sm opacity-70">@_rangeText</span>
+
+        <select class="select select-bordered select-sm w-auto" value="@Host.PageSize"
+                @onchange="OnPageSizeChanged">
+            @foreach (int option in PageSizeOptions)
+            {
+                <option value="@option">@option</option>
+            }
+        </select>
+
+        <div class="join">
+            <button type="button" class="btn btn-sm join-item"
+                    disabled="@(Host.CurrentPage <= 0)"
+                    @onclick="@(() => Host.SetPage(Host.CurrentPage - 1))">
+                <Icon Name="@Icons.Material.Filled.ChevronLeft" Size="Size.Small" />
+            </button>
+            <button type="button" class="btn btn-sm join-item"
+                    disabled="@(Host.CurrentPage >= Host.PageCount - 1)"
+                    @onclick="@(() => Host.SetPage(Host.CurrentPage + 1))">
+                <Icon Name="@Icons.Material.Filled.ChevronRight" Size="Size.Small" />
+            </button>
+        </div>
+    </div>
+}
+
+@code {
+    [CascadingParameter] public ITablePagerHost? Host { get; set; }
+
+    [Parameter] public int[] PageSizeOptions { get; set; } = new[] { 10, 25, 50, 100 };
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge("flex items-center gap-3 justify-end", Class);
+
+    private string _rangeText
+    {
+        get
+        {
+            if (Host is null || Host.TotalItems == 0)
+            {
+                return "0";
+            }
+
+            int from = (Host.CurrentPage * Host.PageSize) + 1;
+            int to = Math.Min(from + Host.PageSize - 1, Host.TotalItems);
+            return $"{from}-{to} / {Host.TotalItems}";
+        }
+    }
+
+    private void OnPageSizeChanged(ChangeEventArgs args)
+    {
+        if (Host is not null && int.TryParse(args.Value?.ToString(), out int size))
+        {
+            Host.SetPageSize(size);
+        }
+    }
+}

@@ -1,0 +1,52 @@
+@namespace DaisyBlazor.Data
+@typeparam T
+
+@* MudBlazor DataTable wrapper replacement. Wraps DataGrid<T> with server-paging, sort state,
+   skeleton loading, an optional actions column and an empty-state slot. *@
+
+<DataGrid T="T" @ref="_grid"
+          ServerData="@ServerData"
+          Items="@Items"
+          Dense="@Dense"
+          Hover="true"
+          Striped="true"
+          Loading="@Loading"
+          Elevation="@Elevation"
+          SkeletonRows="@SkeletonRows"
+          PageSizeOptions="@PageSizeOptions"
+          Class="@Class"
+          Style="@Style"
+          @attributes="UserAttributes">
+    <Columns>
+        @Columns
+        @if (Actions is not null)
+        {
+            <TemplateColumn T="T" Sortable="false" CellClass="text-right">
+                <CellTemplate Context="cell">
+                    <Stack Row="true" Spacing="0" Justify="Justify.FlexEnd">
+                        @Actions(cell.Item)
+                    </Stack>
+                </CellTemplate>
+            </TemplateColumn>
+        }
+    </Columns>
+    <NoRecordsContent>
+        <Stack AlignItems="AlignItems.Center" Spacing="2" Class="p-8">
+            <Icon Name="@(EmptyIcon ?? Icons.Material.Filled.SearchOff)" Size="Size.Large" Color="Color.Secondary" />
+            <Typography Typo="Typo.body1" Color="Color.Secondary">@(EmptyMessage ?? "No records found")</Typography>
+        </Stack>
+    </NoRecordsContent>
+    <LoadingContent>
+        @for (int i = 0; i < SkeletonRows; i++)
+        {
+            <tr>
+                <td colspan="100">
+                    <div class="skeleton h-10 w-full"></div>
+                </td>
+            </tr>
+        }
+    </LoadingContent>
+    <PagerContent>
+        <DataGridPager T="T" PageSizeOptions="@PageSizeOptions" />
+    </PagerContent>
+</DataGrid>

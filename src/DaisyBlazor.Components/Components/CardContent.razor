@@ -1,0 +1,14 @@
+@namespace DaisyBlazor
+
+@* MudCardContent replacement. daisyUI .card-body content region. *@
+
+<div class="@CssClass.Merge("card-body", Class)" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+}

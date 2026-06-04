@@ -1,0 +1,25 @@
+@namespace DaisyBlazor
+
+@* MudExpansionPanels replacement. A container for ExpansionPanel children. When
+   MultiExpansion is false the panels form a single-open accordion via a shared name. *@
+
+<CascadingValue Value="this" IsFixed="true">
+    <div class="@_cls" style="@Style" @attributes="UserAttributes">
+        @ChildContent
+    </div>
+</CascadingValue>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public bool MultiExpansion { get; set; }
+    [Parameter] public bool Dense { get; set; }
+    [Parameter] public int Elevation { get; set; } = 1;
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    /// <summary>Shared accordion name used by child panels when single-open.</summary>
+    public string GroupName { get; } = $"xp-{Guid.NewGuid():N}";
+
+    private string _cls => CssClass.Merge("flex flex-col gap-2", Class);
+}

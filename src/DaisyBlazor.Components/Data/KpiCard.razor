@@ -1,0 +1,16 @@
+@namespace DaisyBlazor.Data
+
+@* MudBlazor KpiCard replacement. A surface tile with a colored left border and value text. *@
+
+<Paper Class="@_paperClass" Style="@($"border-left: 4px solid {Color}; height: 100%;{Style}")" Elevation="2" @attributes="UserAttributes">
+    <Typography Typo="Typo.caption" Style="opacity: 0.7;">@Label</Typography>
+    <Typography Typo="Typo.h4" Class="mt-1" Style="@($"color: {Color};")">@Value</Typography>
+    @if (!string.IsNullOrEmpty(Subtitle))
+    {
+        <Typography Typo="Typo.caption" Style="opacity: 0.5;" Class="mt-1">@Subtitle</Typography>
+    }
+</Paper>
+
+@code {
+    private string _paperClass => CssClass.Merge("p-4", Class);
+}

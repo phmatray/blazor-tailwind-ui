@@ -1,0 +1,34 @@
+@namespace DaisyBlazor
+
+@* Built-in confirm dialog used by IDialogService.ShowMessageBoxAsync. Yes => Ok(true),
+   No => Ok(false), Cancel => Cancel(). *@
+
+<Dialog>
+    <DialogContent>
+        <p class="whitespace-pre-line">@Message</p>
+    </DialogContent>
+    <DialogActions>
+        @if (!string.IsNullOrEmpty(CancelText))
+        {
+            <Button Variant="Variant.Text" OnClick="OnCancel">@CancelText</Button>
+        }
+        @if (!string.IsNullOrEmpty(NoText))
+        {
+            <Button Variant="Variant.Outlined" OnClick="OnNo">@NoText</Button>
+        }
+        <Button Color="Color.Primary" Variant="Variant.Filled" OnClick="OnYes">@YesText</Button>
+    </DialogActions>
+</Dialog>
+
+@code {
+    [CascadingParameter] private IMudDialogInstance? DialogInstance { get; set; }
+
+    [Parameter] public string? Message { get; set; }
+    [Parameter] public string YesText { get; set; } = "OK";
+    [Parameter] public string? NoText { get; set; }
+    [Parameter] public string? CancelText { get; set; }
+
+    private void OnYes() => DialogInstance?.Close(DialogResult.Ok(true));
+    private void OnNo() => DialogInstance?.Close(DialogResult.Ok(false));
+    private void OnCancel() => DialogInstance?.Cancel();
+}

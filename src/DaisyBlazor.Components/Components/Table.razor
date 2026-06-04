@@ -1,0 +1,132 @@
+@namespace DaisyBlazor
+@typeparam T
+@implements ITablePagerHost
+
+@* MudTable<T> lightweight replacement. Renders a daisyUI .table with HeaderContent +
+   RowTemplate over Items, client-side paging driven by a cascaded TablePager. *@
+
+<CascadingValue Value="(ITablePagerHost)this" IsFixed="false">
+    <div class="overflow-x-auto" style="@Style" @attributes="UserAttributes">
+        <table class="@_cls">
+            @if (HeaderContent is not null)
+            {
+                <thead>
+                    <tr>
+                        @HeaderContent
+                    </tr>
+                </thead>
+            }
+            <tbody>
+                @if (Loading)
+                {
+                    <tr>
+                        <td colspan="999">
+                            @if (LoadingContent is not null)
+                            {
+                                @LoadingContent
+                            }
+                            else
+                            {
+                                <span class="loading loading-spinner loading-md"></span>
+                            }
+                        </td>
+                    </tr>
+                }
+                else if (_pageItems.Count == 0)
+                {
+                    @if (NoRecordsContent is not null)
+                    {
+                        <tr>
+                            <td colspan="999">@NoRecordsContent</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    @foreach ((T item, int capturedIndex) in _pageItems.Select((x, i) => (x, i)))
+                    {
+                        <tr class="@(OnRowClick.HasDelegate ? "cursor-pointer hover:bg-base-200" : null)"
+                            @onclick="@(() => RaiseRowClick(item, capturedIndex))">
+                            @RowTemplate?.Invoke(item)
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    @if (PagerContent is not null)
+    {
+        <div class="flex justify-end mt-2">
+            @PagerContent
+        </div>
+    }
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter] public IEnumerable<T>? Items { get; set; }
+    [Parameter] public bool Dense { get; set; }
+    [Parameter] public bool Hover { get; set; }
+    [Parameter] public bool Striped { get; set; }
+    [Parameter] public bool Loading { get; set; }
+    [Parameter] public int RowsPerPage { get; set; } = 10;
+    [Parameter] public RenderFragment? HeaderContent { get; set; }
+    [Parameter] public RenderFragment<T>? RowTemplate { get; set; }
+    [Parameter] public RenderFragment? NoRecordsContent { get; set; }
+    [Parameter] public RenderFragment? LoadingContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? PagerContent { get; set; }
+    [Parameter] public EventCallback<TableRowClickEventArgs<T>> OnRowClick { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private int _currentPage;
+
+    private string _cls => CssClass.Merge(
+        "table",
+        Dense ? "table-sm" : null,
+        Hover ? "[&_tbody_tr:hover]:bg-base-200" : null,
+        Striped ? "table-zebra" : null,
+        Class);
+
+    private IReadOnlyList<T> _allItems => Items?.ToList() ?? new List<T>();
+
+    private List<T> _pageItems => _allItems
+        .Skip(_currentPage * RowsPerPage)
+        .Take(RowsPerPage)
+        .ToList();
+
+    /// <summary>Total number of rows across all pages.</summary>
+    public int TotalItems => _allItems.Count;
+
+    /// <summary>Zero-based current page index.</summary>
+    public int CurrentPage => _currentPage;
+
+    /// <summary>Total page count.</summary>
+    public int PageCount => RowsPerPage <= 0 ? 1 : Math.Max(1, (int)Math.Ceiling(TotalItems / (double)RowsPerPage));
+
+    /// <summary>Rows shown per page (driven by the pager's page-size select).</summary>
+    public int PageSize => RowsPerPage;
+
+    public void SetPage(int page)
+    {
+        _currentPage = Math.Clamp(page, 0, PageCount - 1);
+        StateHasChanged();
+    }
+
+    public void SetPageSize(int size)
+    {
+        RowsPerPage = size <= 0 ? 1 : size;
+        _currentPage = Math.Clamp(_currentPage, 0, PageCount - 1);
+        StateHasChanged();
+    }
+
+    private async Task RaiseRowClick(T item, int index)
+    {
+        if (OnRowClick.HasDelegate)
+        {
+            await OnRowClick.InvokeAsync(new TableRowClickEventArgs<T> { Item = item, RowIndex = index });
+        }
+    }
+}

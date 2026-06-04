@@ -1,0 +1,156 @@
+@namespace DaisyBlazor
+
+@* MudPagination replacement. A daisyUI .join of buttons. Selected is 1-based. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @if (ShowFirstButton)
+    {
+        <button type="button" class="join-item btn btn-sm"
+                disabled="@(Disabled || Selected <= 1)"
+                @onclick="@(() => SelectPage(1))">
+            <Icon Name="@Icons.Material.Filled.ChevronLeft" Size="Size.Small" />
+            <Icon Name="@Icons.Material.Filled.ChevronLeft" Size="Size.Small" />
+        </button>
+    }
+
+    <button type="button" class="join-item btn btn-sm"
+            disabled="@(Disabled || Selected <= 1)"
+            @onclick="@(() => SelectPage(Selected - 1))">
+        <Icon Name="@Icons.Material.Filled.ChevronLeft" Size="Size.Small" />
+    </button>
+
+    @foreach (int page in _pages)
+    {
+        if (page < 0)
+        {
+            <button type="button" class="join-item btn btn-sm btn-disabled" disabled>…</button>
+        }
+        else
+        {
+            int captured = page;
+            <button type="button" class="@_pageCls(captured)" disabled="@Disabled"
+                    @onclick="@(() => SelectPage(captured))">
+                @captured
+            </button>
+        }
+    }
+
+    <button type="button" class="join-item btn btn-sm"
+            disabled="@(Disabled || Selected >= Count)"
+            @onclick="@(() => SelectPage(Selected + 1))">
+        <Icon Name="@Icons.Material.Filled.ChevronRight" Size="Size.Small" />
+    </button>
+
+    @if (ShowLastButton)
+    {
+        <button type="button" class="join-item btn btn-sm"
+                disabled="@(Disabled || Selected >= Count)"
+                @onclick="@(() => SelectPage(Count))">
+            <Icon Name="@Icons.Material.Filled.ChevronRight" Size="Size.Small" />
+            <Icon Name="@Icons.Material.Filled.ChevronRight" Size="Size.Small" />
+        </button>
+    }
+</div>
+
+@code {
+    [Parameter] public int Count { get; set; }
+    [Parameter] public int Selected { get; set; } = 1;
+    [Parameter] public EventCallback<int> SelectedChanged { get; set; }
+    [Parameter] public bool ShowFirstButton { get; set; }
+    [Parameter] public bool ShowLastButton { get; set; }
+    [Parameter] public int BoundaryCount { get; set; } = 1;
+    [Parameter] public int MiddleCount { get; set; } = 3;
+    [Parameter] public Color Color { get; set; } = Color.Default;
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge("join", Class);
+
+    private string _activeColor => Color switch
+    {
+        Color.Primary => "btn-primary",
+        Color.Secondary => "btn-secondary",
+        Color.Tertiary => "btn-accent",
+        Color.Info => "btn-info",
+        Color.Success => "btn-success",
+        Color.Warning => "btn-warning",
+        Color.Error => "btn-error",
+        _ => "btn-active"
+    };
+
+    private string _pageCls(int page) => CssClass.Merge(
+        "join-item btn btn-sm",
+        page == Selected ? _activeColor : null);
+
+    // Negative entries mark an ellipsis gap.
+    private IReadOnlyList<int> _pages
+    {
+        get
+        {
+            List<int> result = new();
+            if (Count <= 0)
+            {
+                return result;
+            }
+
+            HashSet<int> show = new();
+
+            for (int i = 1; i <= Math.Min(BoundaryCount, Count); i++)
+            {
+                show.Add(i);
+            }
+
+            for (int i = Math.Max(1, Count - BoundaryCount + 1); i <= Count; i++)
+            {
+                show.Add(i);
+            }
+
+            int half = MiddleCount / 2;
+            int start = Math.Max(1, Selected - half);
+            int end = Math.Min(Count, start + MiddleCount - 1);
+            start = Math.Max(1, end - MiddleCount + 1);
+            for (int i = start; i <= end; i++)
+            {
+                show.Add(i);
+            }
+
+            List<int> ordered = show.Where(p => p >= 1 && p <= Count).OrderBy(p => p).ToList();
+
+            int previous = 0;
+            foreach (int page in ordered)
+            {
+                if (previous != 0 && page - previous > 1)
+                {
+                    result.Add(-1);
+                }
+
+                result.Add(page);
+                previous = page;
+            }
+
+            return result;
+        }
+    }
+
+    private async Task SelectPage(int page)
+    {
+        if (Disabled)
+        {
+            return;
+        }
+
+        int clamped = Math.Clamp(page, 1, Math.Max(1, Count));
+        if (clamped == Selected)
+        {
+            return;
+        }
+
+        Selected = clamped;
+        if (SelectedChanged.HasDelegate)
+        {
+            await SelectedChanged.InvokeAsync(clamped);
+        }
+    }
+}

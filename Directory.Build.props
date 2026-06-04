@@ -1,0 +1,50 @@
+<Project>
+
+  <!-- Common properties for all DaisyBlazor projects -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <!-- Package metadata (brand-neutral; reusable in any Blazor app) -->
+  <PropertyGroup>
+    <Authors>DaisyBlazor contributors</Authors>
+    <Company>DaisyBlazor</Company>
+    <Product>DaisyBlazor</Product>
+    <Copyright>Copyright © DaisyBlazor contributors $([System.DateTime]::Now.Year)</Copyright>
+    <PackageProjectUrl>https://github.com/phmatray/daisyblazor</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/phmatray/daisyblazor</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>blazor;tailwind;daisyui;ui;components;razor</PackageTags>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <!-- Debug symbols / source link friendliness -->
+  <PropertyGroup>
+    <DebugType>embedded</DebugType>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+
+  <!-- Library docs: produce XML, but don't fail the build on missing comments while iterating. -->
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <!-- Test projects don't pack and don't need docs. -->
+  <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('Tests'))">
+    <IsPackable>false</IsPackable>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+</Project>

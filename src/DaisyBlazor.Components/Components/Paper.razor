@@ -1,0 +1,37 @@
+@namespace DaisyBlazor
+
+@* MudPaper replacement. A surface panel (daisyUI base-100 + rounded-box + optional border/shadow). *@
+
+<div class="@_cls" style="@Style" @onclick="OnClick" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public int Elevation { get; set; } = 1;
+    [Parameter] public bool Outlined { get; set; }
+    [Parameter] public bool Square { get; set; }
+    [Parameter] public string? Width { get; set; }
+    [Parameter] public string? Height { get; set; }
+    [Parameter] public string? MaxWidth { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _shadow => Elevation switch
+    {
+        <= 0 => "",
+        1 => "shadow-sm",
+        <= 3 => "shadow",
+        <= 6 => "shadow-md",
+        <= 12 => "shadow-lg",
+        _ => "shadow-xl"
+    };
+
+    private string _cls => CssClass.Merge(
+        "bg-base-100 text-base-content",
+        Square ? "rounded-none" : "rounded-box",
+        Outlined ? "border border-base-300" : _shadow,
+        Class);
+}

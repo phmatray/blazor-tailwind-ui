@@ -1,0 +1,221 @@
+@namespace DaisyBlazor
+@typeparam T
+@implements IDisposable
+
+@* MudAutocomplete<T> replacement. A text input with a debounced async search dropdown. *@
+
+<div class="form-control w-full @Class" style="@Style">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label class="label"><span class="label-text">@Label</span></label>
+    }
+    <div class="dropdown w-full @(_open && (_results.Count > 0 || _searched) ? "dropdown-open" : null)">
+        <label class="input input-bordered flex items-center gap-2 w-full @(Dense ? "input-sm" : null) @(Disabled ? "input-disabled" : null)">
+            @if (Adornment == Adornment.Start && !string.IsNullOrEmpty(AdornmentIcon))
+            {
+                <Icon Name="@AdornmentIcon" Size="Size.Small" Class="opacity-60" />
+            }
+            <input type="text" class="grow bg-transparent outline-none"
+                   placeholder="@Placeholder"
+                   value="@_text"
+                   disabled="@Disabled"
+                   @oninput="OnInput"
+                   @onfocus="@(() => _open = true)"
+                   @attributes="UserAttributes" />
+            @if (Clearable && (!string.IsNullOrEmpty(_text) || Value is not null))
+            {
+                <button type="button" class="btn btn-ghost btn-xs btn-circle" @onclick="ClearAsync" tabindex="-1" aria-label="clear">
+                    <Icon Name="@Icons.Material.Filled.Clear" Size="Size.Small" />
+                </button>
+            }
+            @if (Adornment == Adornment.End && !string.IsNullOrEmpty(AdornmentIcon))
+            {
+                <Icon Name="@AdornmentIcon" Size="Size.Small" Class="opacity-60" />
+            }
+        </label>
+
+        @if (_open)
+        {
+            <ul class="dropdown-content menu bg-base-100 rounded-box shadow-lg z-50 w-full mt-1 max-h-72 flex-nowrap overflow-y-auto">
+                @if (_loading)
+                {
+                    <li class="disabled"><span class="loading loading-spinner loading-sm"></span></li>
+                }
+                else if (_results.Count == 0 && _searched)
+                {
+                    <li class="disabled">
+                        @if (NoItemsTemplate is not null)
+                        {
+                            @NoItemsTemplate
+                        }
+                        else
+                        {
+                            <span class="p-2 text-sm opacity-70">@NoItemsText</span>
+                        }
+                    </li>
+                }
+                else
+                {
+                    @foreach (T item in _results)
+                    {
+                        T captured = item;
+                        <li>
+                            <button type="button" @onclick="@(() => SelectAsync(captured))">
+                                @if (ItemTemplate is not null)
+                                {
+                                    @ItemTemplate(captured)
+                                }
+                                else
+                                {
+                                    @FormatItem(captured)
+                                }
+                            </button>
+                        </li>
+                    }
+                }
+            </ul>
+        }
+    </div>
+    @if (Required && _touched && Value is null)
+    {
+        <label class="label"><span class="label-text-alt text-error">@RequiredError</span></label>
+    }
+</div>
+
+@code {
+    [Parameter] public T? Value { get; set; }
+    [Parameter] public EventCallback<T?> ValueChanged { get; set; }
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public string? Placeholder { get; set; }
+    [Parameter] public Func<string, CancellationToken, Task<IEnumerable<T>>>? SearchFunc { get; set; }
+    [Parameter] public Func<T, string>? ToStringFunc { get; set; }
+    [Parameter] public Variant Variant { get; set; } = Variant.Outlined;
+    [Parameter] public Margin Margin { get; set; } = Margin.None;
+    [Parameter] public bool Clearable { get; set; }
+    [Parameter] public int DebounceInterval { get; set; } = 300;
+    [Parameter] public int MinCharacters { get; set; } = 2;
+    [Parameter] public int MaxItems { get; set; } = 20;
+    [Parameter] public bool Dense { get; set; }
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public bool Required { get; set; }
+    [Parameter] public string? RequiredError { get; set; }
+    [Parameter] public string? AdornmentIcon { get; set; }
+    [Parameter] public Adornment Adornment { get; set; } = Adornment.None;
+    [Parameter] public bool ResetValueOnEmptyText { get; set; }
+    [Parameter] public bool CoerceText { get; set; }
+    [Parameter] public bool CoerceValue { get; set; }
+    [Parameter] public string NoItemsText { get; set; } = "No items found";
+    [Parameter] public RenderFragment<T>? ItemTemplate { get; set; }
+    [Parameter] public RenderFragment? NoItemsTemplate { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _text = string.Empty;
+    private readonly List<T> _results = [];
+    private bool _open;
+    private bool _loading;
+    private bool _searched;
+    private bool _touched;
+    private CancellationTokenSource? _debounceCts;
+
+    protected override void OnParametersSet()
+    {
+        if (Value is not null && string.IsNullOrEmpty(_text))
+        {
+            _text = FormatItem(Value);
+        }
+    }
+
+    private string FormatItem(T item) => ToStringFunc?.Invoke(item) ?? item?.ToString() ?? string.Empty;
+
+    private async Task OnInput(ChangeEventArgs args)
+    {
+        _text = args.Value?.ToString() ?? string.Empty;
+        _touched = true;
+        _open = true;
+
+        if (ResetValueOnEmptyText && string.IsNullOrEmpty(_text) && Value is not null)
+        {
+            await SetValueAsync(default);
+        }
+
+        _debounceCts?.Cancel();
+        _debounceCts = new CancellationTokenSource();
+        CancellationToken token = _debounceCts.Token;
+
+        try
+        {
+            await Task.Delay(DebounceInterval, token);
+        }
+        catch (TaskCanceledException)
+        {
+            return;
+        }
+
+        await RunSearchAsync(token);
+    }
+
+    private async Task RunSearchAsync(CancellationToken token)
+    {
+        if (SearchFunc is null || _text.Length < MinCharacters)
+        {
+            _results.Clear();
+            _searched = false;
+            StateHasChanged();
+            return;
+        }
+
+        _loading = true;
+        StateHasChanged();
+
+        try
+        {
+            IEnumerable<T> found = await SearchFunc(_text, token);
+            if (token.IsCancellationRequested)
+            {
+                return;
+            }
+
+            _results.Clear();
+            _results.AddRange(found.Take(MaxItems));
+            _searched = true;
+        }
+        catch (OperationCanceledException)
+        {
+            return;
+        }
+        finally
+        {
+            _loading = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task SelectAsync(T item)
+    {
+        _text = FormatItem(item);
+        _open = false;
+        _results.Clear();
+        await SetValueAsync(item);
+    }
+
+    private async Task ClearAsync()
+    {
+        _text = string.Empty;
+        _results.Clear();
+        _searched = false;
+        await SetValueAsync(default);
+    }
+
+    private async Task SetValueAsync(T? value)
+    {
+        Value = value;
+        if (ValueChanged.HasDelegate)
+        {
+            await ValueChanged.InvokeAsync(value);
+        }
+    }
+
+    public void Dispose() => _debounceCts?.Cancel();
+}

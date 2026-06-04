@@ -1,0 +1,47 @@
+@namespace DaisyBlazor.Layout
+
+@* DetailLayout: back link, title, optional status slot, main content,
+   optional sidebar, optional related-content area. *@
+
+<Stack Spacing="4" Class="@Class" Style="@Style" @attributes="UserAttributes">
+    <Button Variant="Variant.Text" Color="Color.Primary" OnClick="GoBack"
+            StartIcon="@Icons.Material.Filled.ArrowBack" Class="self-start">
+        @(BackLabel ?? "Back")
+    </Button>
+
+    <Stack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+        <Stack Spacing="0">
+            <Typography Typo="Typo.h4">@Title</Typography>
+            @if (Subtitle is not null)
+            {
+                <Typography Typo="Typo.body2" Color="Color.Secondary">@Subtitle</Typography>
+            }
+        </Stack>
+        @if (StatusSlot is not null)
+        {
+            @StatusSlot
+        }
+    </Stack>
+
+    <Grid>
+        <Item xs="12" md="@(Sidebar is not null ? 8 : 12)">
+            <Paper Elevation="0" Outlined="true" Class="p-4 rounded-lg">
+                @MainContent
+            </Paper>
+        </Item>
+        @if (Sidebar is not null)
+        {
+            <Item xs="12" md="4">
+                <Paper Elevation="0" Outlined="true" Class="p-4 rounded-lg">
+                    @Sidebar
+                </Paper>
+            </Item>
+        }
+        @if (RelatedContent is not null)
+        {
+            <Item xs="12">
+                @RelatedContent
+            </Item>
+        }
+    </Grid>
+</Stack>

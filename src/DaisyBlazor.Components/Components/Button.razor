@@ -1,0 +1,83 @@
+@namespace DaisyBlazor
+
+@* MudButton replacement. daisyUI .btn with color/variant/size, optional start/end icon,
+   href (renders <a>) and a loading spinner. *@
+
+@if (!string.IsNullOrEmpty(Href))
+{
+    <a href="@Href" target="@Target" class="@_cls" style="@Style" @attributes="UserAttributes">
+        @ButtonInner
+    </a>
+}
+else
+{
+    <button type="@_type" class="@_cls" style="@Style" disabled="@(Disabled || Loading)"
+            @onclick="OnClickHandler" @onclick:stopPropagation="StopPropagation" @attributes="UserAttributes">
+        @ButtonInner
+    </button>
+}
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public Color Color { get; set; } = Color.Default;
+    [Parameter] public Variant Variant { get; set; } = Variant.Text;
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+    [Parameter] public string? StartIcon { get; set; }
+    [Parameter] public string? EndIcon { get; set; }
+    [Parameter] public string? Href { get; set; }
+    [Parameter] public string? Target { get; set; }
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public bool Loading { get; set; }
+    [Parameter] public bool FullWidth { get; set; }
+    [Parameter] public bool StopPropagation { get; set; }
+    [Parameter] public ButtonType ButtonType { get; set; } = ButtonType.Button;
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _type => ButtonType switch
+    {
+        ButtonType.Submit => "submit",
+        ButtonType.Reset => "reset",
+        _ => "button"
+    };
+
+    private string _cls => CssClass.Merge(
+        "btn",
+        CssClass.ButtonColor(Color),
+        CssClass.ButtonVariant(Variant),
+        CssClass.ButtonSize(Size),
+        FullWidth ? "btn-block" : null,
+        "gap-2 normal-case",
+        Class);
+
+    private RenderFragment ButtonInner => @<text>
+        @if (Loading)
+        {
+            <span class="loading loading-spinner loading-sm"></span>
+        }
+        else if (!string.IsNullOrEmpty(StartIcon))
+        {
+            <Icon Name="@StartIcon" Size="Size.Small" />
+        }
+        @ChildContent
+        @if (!Loading && !string.IsNullOrEmpty(EndIcon))
+        {
+            <Icon Name="@EndIcon" Size="Size.Small" />
+        }
+    </text>;
+
+    private async Task OnClickHandler(MouseEventArgs args)
+    {
+        if (Disabled || Loading)
+        {
+            return;
+        }
+
+        if (OnClick.HasDelegate)
+        {
+            await OnClick.InvokeAsync(args);
+        }
+    }
+}

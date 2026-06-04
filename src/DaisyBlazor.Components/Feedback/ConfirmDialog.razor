@@ -1,0 +1,14 @@
+@namespace DaisyBlazor.Feedback
+
+@* MudBlazor ConfirmDialog replacement. Renders inside the DialogProvider's modal-box via the
+   new Dialog primitive. Submit => Close(Ok(true)), Cancel => Cancel(). *@
+
+<Dialog>
+    <DialogContent>
+        <Typography>@ContentText</Typography>
+    </DialogContent>
+    <DialogActions>
+        <Button OnClick="Cancel">@(CancelText ?? "Cancel")</Button>
+        <Button Color="@Color" Variant="Variant.Filled" OnClick="Submit">@ButtonText</Button>
+    </DialogActions>
+</Dialog>

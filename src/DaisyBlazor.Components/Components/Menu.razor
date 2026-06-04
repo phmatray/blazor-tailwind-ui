@@ -1,0 +1,107 @@
+@namespace DaisyBlazor
+
+@* MudMenu replacement. daisyUI dropdown: an activator (IconButton, Label button or
+   ActivatorContent) toggles a .dropdown-content .menu list of <MenuItem> children.
+   Open state is controlled in C# (no JS) so ActivatorContent's menu.ToggleAsync works
+   for server rendering. A transparent backdrop closes the menu on outside click. *@
+
+<div class="@_rootCls" style="@Style" @attributes="UserAttributes">
+    @if (ActivatorContent is not null)
+    {
+        @ActivatorContent(_activator)
+    }
+    else if (!string.IsNullOrEmpty(Icon))
+    {
+        <IconButton Icon="@Icon" Size="Size" @onclick="ToggleAsync" />
+    }
+    else
+    {
+        <button type="button" class="btn btn-ghost gap-1" @onclick="ToggleAsync">
+            @Label
+            <Icon Name="@Icons.Material.Filled.ArrowDropDown" Size="Size.Small" />
+        </button>
+    }
+
+    @if (_open)
+    {
+        @* Backdrop captures outside clicks to dismiss the menu. *@
+        <div class="fixed inset-0 z-[1]" @onclick="CloseAsync"></div>
+        <ul tabindex="0" class="@_listCls">
+            <CascadingValue Value="this" IsFixed="true">
+                @ChildContent
+            </CascadingValue>
+        </ul>
+    }
+</div>
+
+@code {
+    /// <summary>Material Symbols ligature for the default icon activator.</summary>
+    [Parameter] public string? Icon { get; set; }
+
+    /// <summary>Text label for the default button activator.</summary>
+    [Parameter] public string? Label { get; set; }
+
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+    [Parameter] public bool Dense { get; set; }
+    [Parameter] public string? ListClass { get; set; }
+    [Parameter] public Origin AnchorOrigin { get; set; } = Origin.BottomLeft;
+    [Parameter] public Origin TransformOrigin { get; set; } = Origin.TopLeft;
+
+    /// <summary>Custom activator markup; receives a context with <c>ToggleAsync</c>.</summary>
+    [Parameter] public RenderFragment<MenuActivator>? ActivatorContent { get; set; }
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private bool _open;
+    private MenuActivator _activator = default!;
+
+    protected override void OnInitialized()
+    {
+        _activator = new MenuActivator(ToggleAsync);
+    }
+
+    public Task ToggleAsync()
+    {
+        _open = !_open;
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    public Task CloseAsync()
+    {
+        _open = false;
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    /// <summary>Called by child MenuItems after activation to dismiss the menu.</summary>
+    internal Task NotifyItemClickedAsync() => CloseAsync();
+
+    // Anchor on the trigger's bottom-right edge => align the dropdown to the right (dropdown-end).
+    private string _alignClass => AnchorOrigin switch
+    {
+        Origin.BottomRight or Origin.TopRight or Origin.CenterRight => "dropdown-end",
+        _ => string.Empty
+    };
+
+    private string _openOnTopClass => AnchorOrigin switch
+    {
+        Origin.TopLeft or Origin.TopCenter or Origin.TopRight => "dropdown-top",
+        _ => string.Empty
+    };
+
+    private string _rootCls => CssClass.Merge(
+        "dropdown",
+        _alignClass,
+        _openOnTopClass,
+        _open ? "dropdown-open" : null,
+        Class);
+
+    private string _listCls => CssClass.Merge(
+        "dropdown-content menu bg-base-100 rounded-box z-[2] w-56 p-2 shadow-lg",
+        Dense ? "menu-sm" : null,
+        ListClass);
+}

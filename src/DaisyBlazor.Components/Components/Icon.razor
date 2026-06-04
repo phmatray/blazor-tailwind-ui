@@ -1,0 +1,39 @@
+@namespace DaisyBlazor
+
+@* MudIcon replacement. Renders a Material Symbols glyph from an Icons.* ligature.
+   Use Name (or the alias Icon via the IconName helper) e.g. <Icon Name="@Icons.Material.Filled.Menu" />. *@
+
+<span class="@CssClass.Merge(_baseClass, _sizeClass, _colorClass, Class)"
+      style="@($"{_style}{Style}")"
+      aria-hidden="true"
+      @attributes="UserAttributes">@Name</span>
+
+@code {
+    /// <summary>Material Symbols ligature (from the <c>Icons</c> class).</summary>
+    [Parameter] public string? Name { get; set; }
+
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+    [Parameter] public Color Color { get; set; } = Color.Inherit;
+
+    /// <summary>Render the outlined (unfilled) variant.</summary>
+    [Parameter] public bool Outlined { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private const string _baseClass = "material-symbols-outlined select-none align-middle leading-none";
+
+    private string _sizeClass => Size switch
+    {
+        Size.Small => "text-[1.125rem]",
+        Size.Large => "text-[2.25rem]",
+        _ => "text-[1.5rem]"
+    };
+
+    private string? _colorClass => CssClass.TextColor(Color);
+
+    private string _style => Outlined
+        ? "font-variation-settings:'FILL' 0,'wght' 400;"
+        : "font-variation-settings:'FILL' 1,'wght' 400;";
+}

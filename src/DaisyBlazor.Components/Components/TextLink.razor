@@ -1,0 +1,57 @@
+@namespace DaisyBlazor
+
+@* MudLink replacement (named TextLink to avoid the HTML void <link> element and the Anchor enum). daisyUI .link with optional hover-only underline, color and
+   typography. Renders an <a>; OnClick is wired when present. *@
+
+<a href="@(Href ?? "#")" target="@Target" class="@_cls" style="@Style"
+   @onclick="OnClickHandler" @attributes="UserAttributes">
+    @ChildContent
+</a>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Href { get; set; }
+    [Parameter] public string? Target { get; set; }
+    [Parameter] public Color Color { get; set; } = Color.Primary;
+    [Parameter] public Underline Underline { get; set; } = Underline.Hover;
+    [Parameter] public Typo Typo { get; set; } = Typo.body1;
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _underlineClass => Underline switch
+    {
+        Underline.None => "no-underline",
+        Underline.Always => "underline",
+        _ => "link-hover"
+    };
+
+    private string? _colorClass => Color switch
+    {
+        Color.Primary => "link-primary",
+        Color.Secondary => "link-secondary",
+        Color.Tertiary => "link-accent",
+        Color.Info => "link-info",
+        Color.Success => "link-success",
+        Color.Warning => "link-warning",
+        Color.Error => "link-error",
+        Color.Inherit => null,
+        _ => null
+    };
+
+    private string _cls => CssClass.Merge(
+        "link",
+        _underlineClass,
+        _colorClass,
+        CssClass.Typography(Typo),
+        Class);
+
+    private async Task OnClickHandler(MouseEventArgs args)
+    {
+        if (OnClick.HasDelegate)
+        {
+            await OnClick.InvokeAsync(args);
+        }
+    }
+}

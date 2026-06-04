@@ -1,0 +1,56 @@
+@namespace DaisyBlazor
+
+@* MudProgressLinear replacement. daisyUI .progress with color.
+   Indeterminate => a valueless <progress> (daisyUI animates it). *@
+
+@if (Indeterminate)
+{
+    <progress class="@_cls" style="@Style" @attributes="UserAttributes"></progress>
+}
+else
+{
+    <progress class="@_cls" value="@Value" max="@Max" style="@Style" @attributes="UserAttributes"></progress>
+}
+
+@code {
+    [Parameter] public double Value { get; set; }
+    [Parameter] public double Min { get; set; }
+    [Parameter] public double Max { get; set; } = 100;
+    [Parameter] public bool Indeterminate { get; set; }
+    [Parameter] public Color Color { get; set; } = Color.Default;
+
+    /// <summary>Accepted for MudBlazor compatibility; daisyUI progress has no striped style.</summary>
+    [Parameter] public bool Striped { get; set; }
+    [Parameter] public bool Rounded { get; set; }
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _colorClass => Color switch
+    {
+        Color.Primary => "progress-primary",
+        Color.Secondary => "progress-secondary",
+        Color.Tertiary => "progress-accent",
+        Color.Info => "progress-info",
+        Color.Success => "progress-success",
+        Color.Warning => "progress-warning",
+        Color.Error => "progress-error",
+        _ => string.Empty
+    };
+
+    private string _sizeClass => Size switch
+    {
+        Size.Small => "h-1.5",
+        Size.Large => "h-4",
+        _ => string.Empty
+    };
+
+    private string _cls => CssClass.Merge(
+        "progress",
+        _colorClass,
+        _sizeClass,
+        Rounded ? "rounded-full" : null,
+        Class);
+}

@@ -1,0 +1,34 @@
+@namespace DaisyBlazor
+
+@* MudSimpleTable replacement. Wraps raw <thead>/<tbody> (or Tr/Th/Td) in a daisyUI .table. *@
+
+<div class="@_wrapCls" style="@Style" @attributes="UserAttributes">
+    <table class="@_cls">
+        @ChildContent
+    </table>
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public bool Dense { get; set; }
+    [Parameter] public bool Hover { get; set; }
+    [Parameter] public bool Striped { get; set; }
+    [Parameter] public bool Bordered { get; set; }
+    [Parameter] public bool FixedHeader { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _wrapCls => CssClass.Merge(
+        "overflow-x-auto",
+        FixedHeader ? "max-h-96 overflow-y-auto" : null);
+
+    @* daisyUI row-hover is applied at table scope so every <tr> in <tbody> highlights. *@
+    private string _cls => CssClass.Merge(
+        "table",
+        Dense ? "table-sm" : null,
+        Hover ? "[&_tbody_tr:hover]:bg-base-200" : null,
+        Striped ? "table-zebra" : null,
+        Bordered ? "border border-base-300" : null,
+        Class);
+}

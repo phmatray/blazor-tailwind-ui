@@ -1,0 +1,22 @@
+## .NET
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+artifacts/
+.vs/
+
+## Node / Tailwind
+node_modules/
+npm-debug.log*
+
+## Generated CSS output (built from styles/*.css)
+**/wwwroot/css/app.css
+**/wwwroot/css/app.css.map
+
+## OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/

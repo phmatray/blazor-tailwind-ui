@@ -1,0 +1,56 @@
+@namespace DaisyBlazor.Data
+
+@* MudBlazor FilterPanel replacement. Title row, child filter inputs, active-filter chips, and apply/clear buttons. *@
+
+<Paper Class="@_paperClass" Style="@Style" Elevation="1" @attributes="UserAttributes">
+    <Stack Spacing="3">
+        <Stack Row="true" Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
+            <Typography Typo="Typo.h6" Class="flex items-center">
+                <Icon Name="@Icons.Material.Filled.FilterList" Class="mr-2" />
+                @(Title ?? "Filters")
+            </Typography>
+            @if (HasActiveFilters)
+            {
+                <Button Variant="Variant.Text" Color="Color.Secondary" OnClick="OnClear"
+                        StartIcon="@Icons.Material.Filled.Clear">
+                    @ResetLabel
+                </Button>
+            }
+        </Stack>
+
+        <Grid>
+            @ChildContent
+        </Grid>
+
+        @if (HasActiveFilters)
+        {
+            <Stack Row="true" Wrap="true" Spacing="1" AlignItems="AlignItems.Center">
+                <Typography Typo="Typo.body2" Class="mr-2 self-center">@ActiveFiltersLabel</Typography>
+                @foreach (ActiveFilter filter in ActiveFilters!)
+                {
+                    ActiveFilter captured = filter;
+                    <Chip T="string" Color="Color.Info" Size="Size.Small"
+                          OnClose="@(_ => OnRemoveFilter.InvokeAsync(captured))">
+                        @filter.Label
+                    </Chip>
+                }
+            </Stack>
+        }
+
+        <Stack Row="true" Justify="Justify.FlexEnd" Spacing="2">
+            <Button Variant="Variant.Outlined" OnClick="OnClear"
+                    Disabled="@(!HasActiveFilters)"
+                    StartIcon="@Icons.Material.Filled.FilterAltOff">
+                @ClearLabel
+            </Button>
+            <Button Variant="Variant.Filled" Color="Color.Primary" OnClick="OnApply"
+                    StartIcon="@Icons.Material.Filled.Search">
+                @ApplyLabel
+            </Button>
+        </Stack>
+    </Stack>
+</Paper>
+
+@code {
+    private string _paperClass => CssClass.Merge("p-4 mb-4", Class);
+}

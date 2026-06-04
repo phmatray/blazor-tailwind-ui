@@ -1,0 +1,19 @@
+@namespace DaisyBlazor.Layout
+
+@* DetailCard: Paper-wrapped card with an icon+title header and a dense, hoverable
+   daisyUI table body. Pair with DetailRow. *@
+
+<Paper Class="@CssClass.Merge("p-4", Class)" Style="@Style" Elevation="@Elevation" @attributes="UserAttributes">
+    <Typography Typo="Typo.h6" Class="mb-3 flex items-center gap-2">
+        @if (Icon is not null)
+        {
+            <Icon Name="@Icon" />
+        }
+        @Title
+    </Typography>
+    <SimpleTable Dense="@Dense" Hover="true">
+        <tbody>
+            @ChildContent
+        </tbody>
+    </SimpleTable>
+</Paper>

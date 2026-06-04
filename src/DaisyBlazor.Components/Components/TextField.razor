@@ -1,0 +1,181 @@
+@namespace DaisyBlazor
+@using System.Linq.Expressions
+
+@* MudTextField replacement. daisyUI .input / .textarea inside a .fieldset with a .label.
+   Supports adornments, helper/error text, multi-line (Lines > 1 => textarea). *@
+
+<div class="@_fieldsetCls" style="@Style">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label class="label">
+            <span class="label-text">@Label@(Required ? " *" : null)</span>
+        </label>
+    }
+
+    @if (Lines > 1)
+    {
+        <textarea class="@_textareaCls"
+                  placeholder="@Placeholder"
+                  rows="@Lines"
+                  disabled="@Disabled"
+                  readonly="@ReadOnly"
+                  required="@Required"
+                  value="@Value"
+                  @oninput="OnInput"
+                  @onkeyup="OnKeyUpHandler"
+                  @attributes="UserAttributes"></textarea>
+    }
+    else if (Adornment != Adornment.None && (!string.IsNullOrEmpty(AdornmentIcon) || !string.IsNullOrEmpty(AdornmentText)))
+    {
+        <label class="@_inputWrapperCls">
+            @if (Adornment == Adornment.Start)
+            {
+                @AdornmentInner
+            }
+            <input type="@_htmlType"
+                   class="grow"
+                   placeholder="@Placeholder"
+                   disabled="@Disabled"
+                   readonly="@ReadOnly"
+                   required="@Required"
+                   value="@Value"
+                   @oninput="OnInput"
+                   @onkeyup="OnKeyUpHandler"
+                   @attributes="UserAttributes" />
+            @if (Adornment == Adornment.End)
+            {
+                @AdornmentInner
+            }
+        </label>
+    }
+    else
+    {
+        <input type="@_htmlType"
+               class="@_inputCls"
+               placeholder="@Placeholder"
+               disabled="@Disabled"
+               readonly="@ReadOnly"
+               required="@Required"
+               value="@Value"
+               @oninput="OnInput"
+               @onkeyup="OnKeyUpHandler"
+               @attributes="UserAttributes" />
+    }
+
+    @if (Error && !string.IsNullOrEmpty(ErrorText))
+    {
+        <span class="label-text text-error text-xs mt-1">@ErrorText</span>
+    }
+    else if (!string.IsNullOrEmpty(HelperText))
+    {
+        <span class="label-text text-xs opacity-70 mt-1">@HelperText</span>
+    }
+</div>
+
+@code {
+    [Parameter] public string? Value { get; set; }
+    [Parameter] public EventCallback<string?> ValueChanged { get; set; }
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public string? Placeholder { get; set; }
+    [Parameter] public Variant Variant { get; set; } = Variant.Outlined;
+    [Parameter] public Margin Margin { get; set; } = Margin.Normal;
+    [Parameter] public bool Dense { get; set; }
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public bool ReadOnly { get; set; }
+    [Parameter] public bool Required { get; set; }
+    [Parameter] public string? RequiredError { get; set; }
+    [Parameter] public bool Immediate { get; set; }
+    [Parameter] public EventCallback<KeyboardEventArgs> OnKeyUp { get; set; }
+    [Parameter] public bool FullWidth { get; set; } = true;
+    [Parameter] public bool Clearable { get; set; }
+    [Parameter] public int Lines { get; set; } = 1;
+    [Parameter] public Adornment Adornment { get; set; } = Adornment.None;
+    [Parameter] public string? AdornmentIcon { get; set; }
+    [Parameter] public string? AdornmentText { get; set; }
+    [Parameter] public string? HelperText { get; set; }
+    [Parameter] public bool Error { get; set; }
+    [Parameter] public string? ErrorText { get; set; }
+    [Parameter] public InputType InputType { get; set; } = InputType.Text;
+    /// <summary>Validation expression (MudBlazor compat; not used for HTML rendering).</summary>
+    [Parameter] public object? For { get; set; }
+    /// <summary>Input mask (MudBlazor compat; ignored).</summary>
+    [Parameter] public object? Mask { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private bool _isDense => Dense || Margin == Margin.Dense;
+
+    private string _htmlType => InputType switch
+    {
+        InputType.Password => "password",
+        InputType.Email => "email",
+        InputType.Number => "number",
+        InputType.Search => "search",
+        InputType.Telephone => "tel",
+        InputType.Url => "url",
+        InputType.Date => "date",
+        InputType.DateTimeLocal => "datetime-local",
+        InputType.Month => "month",
+        InputType.Time => "time",
+        InputType.Week => "week",
+        InputType.Color => "color",
+        _ => "text"
+    };
+
+    private string _fieldsetCls => CssClass.Merge(
+        "fieldset",
+        FullWidth ? "w-full" : null,
+        Class);
+
+    private string _inputCls => CssClass.Merge(
+        "input",
+        Variant == Variant.Outlined ? "input-bordered" : null,
+        Variant == Variant.Filled ? "input-bordered bg-base-200" : null,
+        _isDense ? "input-sm" : null,
+        FullWidth ? "w-full" : null,
+        Error ? "input-error" : null);
+
+    private string _inputWrapperCls => CssClass.Merge(
+        "input",
+        Variant == Variant.Outlined ? "input-bordered" : null,
+        Variant == Variant.Filled ? "input-bordered bg-base-200" : null,
+        _isDense ? "input-sm" : null,
+        FullWidth ? "w-full" : null,
+        Error ? "input-error" : null,
+        "flex items-center gap-2");
+
+    private string _textareaCls => CssClass.Merge(
+        "textarea",
+        Variant == Variant.Outlined ? "textarea-bordered" : null,
+        Variant == Variant.Filled ? "textarea-bordered bg-base-200" : null,
+        _isDense ? "textarea-sm" : null,
+        FullWidth ? "w-full" : null,
+        Error ? "textarea-error" : null);
+
+    private RenderFragment AdornmentInner => @<text>
+        @if (!string.IsNullOrEmpty(AdornmentIcon))
+        {
+            <Icon Name="@AdornmentIcon" Size="Size.Small" />
+        }
+        @if (!string.IsNullOrEmpty(AdornmentText))
+        {
+            <span class="opacity-70">@AdornmentText</span>
+        }
+    </text>;
+
+    private async Task OnInput(ChangeEventArgs args)
+    {
+        Value = args.Value?.ToString();
+        await ValueChanged.InvokeAsync(Value);
+    }
+
+    private async Task OnKeyUpHandler(KeyboardEventArgs args)
+    {
+        if (OnKeyUp.HasDelegate)
+        {
+            await OnKeyUp.InvokeAsync(args);
+        }
+    }
+}

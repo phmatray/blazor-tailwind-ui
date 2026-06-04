@@ -1,0 +1,35 @@
+@namespace DaisyBlazor
+@typeparam T
+
+@* MudRadioGroup<T> replacement. Holds the selected Value and a shared input name; Radio children
+   register and read the value via a cascading reference. *@
+
+<div class="@_cls" style="@Style" role="radiogroup" @attributes="UserAttributes">
+    <CascadingValue Value="this" IsFixed="true">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    [Parameter] public T? Value { get; set; }
+    [Parameter] public EventCallback<T?> ValueChanged { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    /// <summary>Shared HTML radio group name so the browser enforces single selection.</summary>
+    public string Name { get; } = $"radiogroup-{Guid.NewGuid():N}";
+
+    internal bool IsSelected(T? option) => EqualityComparer<T?>.Default.Equals(Value, option);
+
+    internal async Task SelectAsync(T? option)
+    {
+        Value = option;
+        await ValueChanged.InvokeAsync(option);
+        StateHasChanged();
+    }
+
+    private string _cls => CssClass.Merge("flex flex-col gap-1", Class);
+}
