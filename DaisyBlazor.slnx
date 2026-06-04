@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/DaisyBlazor.Charts/DaisyBlazor.Charts.csproj" />
     <Project Path="src/DaisyBlazor.Components/DaisyBlazor.Components.csproj" />
   </Folder>
 </Solution>

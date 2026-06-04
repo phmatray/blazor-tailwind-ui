@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>DaisyBlazor.Charts</RootNamespace>
+    <AssemblyName>DaisyBlazor.Charts</AssemblyName>
+
+    <IsPackable>true</IsPackable>
+    <PackageId>DaisyBlazor.Charts</PackageId>
+    <Description>Dependency-free, theme-aware SVG charts for Blazor: line, area, bar, pie, donut and sparkline components rendered as pure inline SVG. Colors follow the active daisyUI v5 theme via CSS custom properties (--color-primary, etc.) with zero charting runtime dependency.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Reuses the public Color enum and CssClass helper from the component kit; no charting runtime. -->
+    <ProjectReference Include="..\DaisyBlazor.Components\DaisyBlazor.Components.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" Condition="Exists('README.md')" />
+  </ItemGroup>
+
+</Project>

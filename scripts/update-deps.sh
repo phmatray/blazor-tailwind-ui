@@ -40,8 +40,8 @@ echo "   (verify the @plugin \"daisyui\" theme list + safelist in src/DaisyBlazo
 
 # 3. .NET dependencies (Central Package Management).
 bold ">> dotnet: outdated NuGet packages"
-dotnet restore DaisyBlazor.sln >/dev/null 2>&1 || true
-dotnet list DaisyBlazor.sln package --outdated || true
+dotnet restore DaisyBlazor.slnx >/dev/null 2>&1 || true
+dotnet list DaisyBlazor.slnx package --outdated || true
 
 if [[ "${1:-}" == "--dotnet" ]]; then
   bold ">> Edit Directory.Packages.props to bump the versions listed above, then re-run 'dotnet restore'."
