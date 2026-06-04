@@ -1,6 +1,9 @@
 {
   "name": "@daisyblazor/tailwind",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Tailwind CSS v4 + daisyUI v5 preset used by the DaisyBlazor component library. Import preset.css to enable daisyUI, the neutral DaisyBlazor themes, and the dynamic-class safelist.",
   "type": "module",
   "exports": {

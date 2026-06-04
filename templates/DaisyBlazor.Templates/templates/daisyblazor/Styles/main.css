@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
-/* The shippable DaisyBlazor preset: daisyUI plugin + neutral daisyblazor / daisyblazor-dark
-   themes (plus all built-in daisyUI themes) + the C#-class safelist. Resolved through the
-   "@daisyblazor/tailwind" npm package listed in package.json. */
-@import "@daisyblazor/tailwind/preset.css";
+/* The DaisyBlazor preset: daisyUI plugin + neutral daisyblazor / daisyblazor-dark themes
+   (plus all built-in daisyUI themes) + the C#-class safelist. Vendored locally here so the
+   app has no npm dependency on the DaisyBlazor packages — edit it freely. */
+@import "./preset.css";
 
 /* Scan THIS app's own markup so Tailwind emits every utility class you use. One line per
    extension — Tailwind v4 source globs do not support brace groups like *.{razor,cs}. */

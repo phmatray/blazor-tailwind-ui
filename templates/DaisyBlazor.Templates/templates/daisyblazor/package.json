@@ -8,7 +8,6 @@
     "watch:css": "tailwindcss -i ./Styles/main.css -o ./wwwroot/css/app.css --watch"
   },
   "devDependencies": {
-    "@daisyblazor/tailwind": "0.1.0",
     "@tailwindcss/cli": "^4.1.0",
     "daisyui": "5.5.20",
     "tailwindcss": "^4.1.0"

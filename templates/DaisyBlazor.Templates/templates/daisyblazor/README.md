@@ -24,9 +24,10 @@ npm run watch:css
 
 | Path | What it is |
 |------|------------|
-| `Styles/main.css` | Tailwind entry point: imports the DaisyBlazor preset, declares `@source` globs, and the app brand layer. **Edit themes / source globs here.** |
+| `Styles/main.css` | Tailwind entry point: imports the local preset, declares `@source` globs, and the app brand layer. **Edit themes / source globs here.** |
+| `Styles/preset.css` | The DaisyBlazor Tailwind/daisyUI preset (daisyUI plugin + themes + C# safelist), vendored locally so the app needs no npm dependency on DaisyBlazor. Edit freely. |
 | `wwwroot/css/app.css` | Generated stylesheet (do not hand-edit). |
-| `package.json` | Tailwind CLI, daisyUI, and `@daisyblazor/tailwind` (the shipped preset). |
+| `package.json` | Tailwind CLI + daisyUI (the front-end build tools). |
 | `Program.cs` | `AddRazorComponents().AddInteractiveServerComponents()` + `AddDaisyBlazor()`. |
 | `Components/App.razor` | Host page — links `app.css`, Material Symbols + Plus Jakarta Sans fonts. |
 | `Components/Layout/MainLayout.razor` | `ThemeProvider`, navbar, theme picker, `DialogProvider` + `SnackbarProvider`. |
