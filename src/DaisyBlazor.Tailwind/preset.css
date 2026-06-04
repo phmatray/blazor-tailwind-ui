@@ -1,13 +1,11 @@
 /* ===========================================================================
    DaisyBlazor preset  —  Tailwind CSS v4 + daisyUI v5
    ---------------------------------------------------------------------------
-   Import this AFTER `@import "tailwindcss";` in your app's main stylesheet:
+   Bring this in after the Tailwind import in your app's main stylesheet, then
+   add source globs pointing at the DaisyBlazor component files. See styles/README.md
+   for the exact wiring.
 
-       @import "tailwindcss";
-       @import "daisyblazor/preset.css";
-       @source "../../**/DaisyBlazor.Components/**/*.{razor,cs}";  // see styles/README.md
-
-   It enables daisyUI, registers two neutral default themes (daisyblazor /
+   It enables daisyUI, registers two neutral default themes (daisyblazor and
    daisyblazor-dark) plus all built-in daisyUI themes, and — crucially — keeps
    the classes that DaisyBlazor builds dynamically in C# from being purged.
    =========================================================================== */
