@@ -1,0 +1,62 @@
+@namespace DaisyBlazor
+
+@* CSS-only daisyUI dropdown built on <details>/<summary>.
+   Root: .dropdown  +  optional .dropdown-top|bottom|left|right|start|end
+   + .dropdown-hover + .dropdown-open.
+   The <summary> renders the Activator slot; ChildContent becomes the
+   .dropdown-content .menu list. No JS required. *@
+
+<details class="@_cls" style="@Style" @attributes="UserAttributes" open="@Open">
+    <summary class="list-none cursor-pointer">
+        @Activator
+    </summary>
+    <div class="@_contentCls">
+        @ChildContent
+    </div>
+</details>
+
+@code {
+    /// <summary>The trigger element rendered inside the &lt;summary&gt; tag.</summary>
+    [Parameter] public RenderFragment? Activator { get; set; }
+
+    /// <summary>The dropdown panel content (typically a &lt;ul&gt; menu list).</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Placement of the dropdown content relative to the trigger.</summary>
+    [Parameter] public DropdownPlacement? Placement { get; set; }
+
+    /// <summary>When true, adds .dropdown-hover so the panel opens on mouse-over (CSS only).</summary>
+    [Parameter] public bool Hover { get; set; }
+
+    /// <summary>Forces the dropdown open via the HTML open attribute and .dropdown-open class.</summary>
+    [Parameter] public bool Open { get; set; }
+
+    /// <summary>Extra CSS classes forwarded to the .dropdown-content wrapper.</summary>
+    [Parameter] public string? ContentClass { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string? _placementClass => Placement switch
+    {
+        DropdownPlacement.Top => "dropdown-top",
+        DropdownPlacement.Bottom => "dropdown-bottom",
+        DropdownPlacement.Left => "dropdown-left",
+        DropdownPlacement.Right => "dropdown-right",
+        DropdownPlacement.Start => "dropdown-start",
+        DropdownPlacement.End => "dropdown-end",
+        _ => null
+    };
+
+    private string _cls => CssClass.Merge(
+        "dropdown",
+        _placementClass,
+        Hover ? "dropdown-hover" : null,
+        Open ? "dropdown-open" : null,
+        Class);
+
+    private string _contentCls => CssClass.Merge(
+        "dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-lg",
+        ContentClass);
+}

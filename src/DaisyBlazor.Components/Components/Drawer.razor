@@ -1,0 +1,58 @@
+@namespace DaisyBlazor
+
+@* daisyUI drawer layout component. Uses the CSS-only checkbox toggle pattern.
+   Root: .drawer (.drawer-end when End=true, .drawer-open when Open=true).
+   Children: .drawer-toggle (hidden checkbox), .drawer-content (main), .drawer-side (.drawer-overlay + side panel). *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    <input id="@Id"
+           type="checkbox"
+           class="drawer-toggle"
+           checked="@Open"
+           @onchange="OnCheckedChanged" />
+
+    <div class="drawer-content">
+        @ChildContent
+    </div>
+
+    <div class="drawer-side">
+        <label for="@Id" aria-label="close sidebar" class="drawer-overlay"></label>
+        @SideContent
+    </div>
+</div>
+
+@code {
+    /// <summary>The main content rendered inside the drawer-content region.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>The panel content rendered inside the drawer-side region.</summary>
+    [Parameter] public RenderFragment? SideContent { get; set; }
+
+    /// <summary>Whether the drawer is currently open (two-way bindable).</summary>
+    [Parameter] public bool Open { get; set; }
+
+    /// <summary>Raised when the open state changes (checkbox toggle or overlay click).</summary>
+    [Parameter] public EventCallback<bool> OpenChanged { get; set; }
+
+    /// <summary>When true, the drawer slides in from the right end instead of the left.</summary>
+    [Parameter] public bool End { get; set; }
+
+    /// <summary>Unique id for the hidden checkbox used to drive the CSS toggle. Defaults to a generated value.</summary>
+    [Parameter] public string Id { get; set; } = $"drawer-{Guid.NewGuid():N}";
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "drawer",
+        End ? "drawer-end" : null,
+        Open ? "drawer-open" : null,
+        Class);
+
+    private async Task OnCheckedChanged(ChangeEventArgs e)
+    {
+        bool newValue = e.Value is bool b ? b : false;
+        await OpenChanged.InvokeAsync(newValue);
+    }
+}

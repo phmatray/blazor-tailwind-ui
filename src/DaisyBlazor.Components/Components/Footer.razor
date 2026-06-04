@@ -1,0 +1,58 @@
+@namespace DaisyBlazor
+
+@* daisyUI footer component. Uses .footer, optional .footer-center, and
+   .footer-horizontal / .footer-vertical for direction. Accepts <nav> sections
+   as ChildContent. Background colour via Color (bg-*). *@
+
+<footer class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</footer>
+
+@code {
+    /// <summary>Content of the footer, typically one or more &lt;nav&gt; sections.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Adds .footer-center to centre-align all items.</summary>
+    [Parameter] public bool Center { get; set; }
+
+    /// <summary>
+    /// When <c>true</c> adds .footer-horizontal; when <c>false</c> adds .footer-vertical;
+    /// when <c>null</c> (default) neither modifier is applied and daisyUI uses its default
+    /// responsive direction.
+    /// </summary>
+    [Parameter] public bool? Horizontal { get; set; }
+
+    /// <summary>daisyUI / Tailwind semantic colour for the footer background (e.g. Color.Neutral).</summary>
+    [Parameter] public Color Color { get; set; } = Color.Default;
+
+    /// <summary>Padding utility class applied to the footer. Defaults to "p-10".</summary>
+    [Parameter] public string Padding { get; set; } = "p-10";
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string? _bgClass
+    {
+        get
+        {
+            string? token = CssClass.ColorToken(Color);
+            return token is { } t ? $"bg-{t}" : null;
+        }
+    }
+
+    private string? _directionClass => Horizontal switch
+    {
+        true  => "footer-horizontal",
+        false => "footer-vertical",
+        null  => null
+    };
+
+    private string _cls => CssClass.Merge(
+        "footer",
+        Center ? "footer-center" : null,
+        _directionClass,
+        _bgClass,
+        Padding,
+        Class);
+}

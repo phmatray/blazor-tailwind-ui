@@ -1,0 +1,88 @@
+@namespace DaisyBlazor
+
+@* daisyUI theme-controller: a CSS-only mechanism that sets the page's data-theme attribute
+   via the :checked selector on an <input class="theme-controller">.
+   - Checkbox variant: unchecked = browser/default theme; checked = Value theme.
+     Wrap a <Swap> (or any label content) in ChildContent for a visual toggle.
+   - Radio variant: selecting this input activates the Value theme; inputs sharing
+     the same Name form a mutually-exclusive group covering any number of themes.
+   No JavaScript is needed; daisyUI's CSS handles data-theme propagation entirely.
+   This component is intentionally independent of the C# ThemeProvider — it drives
+   theming through the daisyUI CSS layer only. *@
+
+<label class="@_labelCls" style="@Style" @attributes="UserAttributes">
+    <input type="@_inputType"
+           class="@_inputCls"
+           value="@Value"
+           name="@(Type == ThemeControllerType.Radio ? Name : null)"
+           checked="@_checked"
+           @onchange="OnChanged" />
+    @ChildContent
+</label>
+
+@code {
+    /// <summary>
+    /// The daisyUI theme name this controller activates (e.g. "dark", "cupcake", "horizon").
+    /// For the checkbox variant this is the theme applied when checked; unchecked reverts to
+    /// the page default. For the radio variant this is the theme applied when this option
+    /// is selected.
+    /// </summary>
+    [Parameter, EditorRequired] public string Value { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Whether this controller renders as a checkbox toggle or a radio button.
+    /// Defaults to <see cref="ThemeControllerType.Checkbox"/>.
+    /// </summary>
+    [Parameter] public ThemeControllerType Type { get; set; } = ThemeControllerType.Checkbox;
+
+    /// <summary>
+    /// The radio group name. Only used when <see cref="Type"/> is
+    /// <see cref="ThemeControllerType.Radio"/>. All radio theme-controllers that share
+    /// the same Name are mutually exclusive.
+    /// </summary>
+    [Parameter] public string? Name { get; set; }
+
+    /// <summary>
+    /// Whether this controller is currently in its active (checked) state.
+    /// For checkboxes: true = <see cref="Value"/> theme is active.
+    /// For radios: true = this option is currently selected.
+    /// </summary>
+    [Parameter] public bool Checked { get; set; }
+
+    /// <summary>Raised when the checked state changes.</summary>
+    [Parameter] public EventCallback<bool> CheckedChanged { get; set; }
+
+    /// <summary>
+    /// Content rendered inside the wrapping label — typically a <see cref="Swap"/> component
+    /// showing themed icons, or a plain text label for radio variants.
+    /// </summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private bool _checked => Checked;
+
+    private string _inputType => Type switch
+    {
+        ThemeControllerType.Radio => "radio",
+        _                        => "checkbox"
+    };
+
+    private string _inputCls => Type switch
+    {
+        ThemeControllerType.Radio => "theme-controller radio",
+        _                        => "theme-controller toggle"
+    };
+
+    private string _labelCls => CssClass.Merge(
+        "cursor-pointer",
+        Class);
+
+    private async Task OnChanged(ChangeEventArgs e)
+    {
+        bool next = e.Value is bool b ? b : bool.Parse(e.Value?.ToString() ?? "false");
+        await CheckedChanged.InvokeAsync(next);
+    }
+}

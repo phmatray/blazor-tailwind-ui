@@ -1,0 +1,47 @@
+@namespace DaisyBlazor
+
+@* daisyUI mockup-browser — renders a browser chrome with an optional URL toolbar
+   and arbitrary child content in the display area.
+   Classes used: mockup-browser, mockup-browser-toolbar *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    <div class="mockup-browser-toolbar">
+        @if (!string.IsNullOrEmpty(Url))
+        {
+            <div class="input">@Url</div>
+        }
+        @if (Toolbar is not null)
+        {
+            @Toolbar
+        }
+    </div>
+    @if (ChildContent is not null)
+    {
+        <div class="flex justify-center px-4 py-8 border-t border-base-300">
+            @ChildContent
+        </div>
+    }
+</div>
+
+@code {
+    /// <summary>Content rendered inside the browser display area.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Optional URL string shown in the address bar input.</summary>
+    [Parameter] public string? Url { get; set; }
+
+    /// <summary>Optional custom toolbar content; rendered inside the toolbar bar instead of the default URL input.</summary>
+    [Parameter] public RenderFragment? Toolbar { get; set; }
+
+    /// <summary>Optional border color token applied as <c>border-{token}</c>; defaults to no extra border class.</summary>
+    [Parameter] public Color BorderColor { get; set; } = Color.Default;
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "mockup-browser",
+        CssClass.ColorToken(BorderColor) is { } t ? $"border-{t}" : "border-base-300",
+        Class);
+}

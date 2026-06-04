@@ -1,0 +1,26 @@
+@namespace DaisyBlazor
+
+@* daisyUI floating-label: wraps any input element with an animated floating label.
+   Uses .floating-label on the outer <label>; the <span> holds the label text.
+   ChildContent receives the actual <input> (or any form control). *@
+
+<label class="@_cls" style="@Style" @attributes="UserAttributes">
+    <span>@Label</span>
+    @ChildContent
+</label>
+
+@code {
+    /// <summary>The floating label text displayed above the input when focused or filled.</summary>
+    [Parameter] public string? Label { get; set; }
+
+    /// <summary>The input element (or any form control) to wrap with the floating label.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "floating-label",
+        Class);
+}

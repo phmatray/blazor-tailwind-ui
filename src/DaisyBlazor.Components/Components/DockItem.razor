@@ -1,0 +1,56 @@
+@namespace DaisyBlazor
+
+@* A single item inside a <Dock>. Renders as <a> when Href is set, otherwise <button>.
+   daisyUI .dock-active marks the selected item; the optional label uses .dock-label. *@
+
+@if (!string.IsNullOrEmpty(Href))
+{
+    <a href="@Href" class="@_cls" style="@Style" @attributes="UserAttributes">
+        @if (!string.IsNullOrEmpty(Icon))
+        {
+            <Icon Name="@Icon" />
+        }
+        @if (!string.IsNullOrEmpty(Label))
+        {
+            <span class="dock-label">@Label</span>
+        }
+    </a>
+}
+else
+{
+    <button type="button" class="@_cls" style="@Style" @onclick="OnClick" @attributes="UserAttributes">
+        @if (!string.IsNullOrEmpty(Icon))
+        {
+            <Icon Name="@Icon" />
+        }
+        @if (!string.IsNullOrEmpty(Label))
+        {
+            <span class="dock-label">@Label</span>
+        }
+    </button>
+}
+
+@code {
+    /// <summary>Marks this item as the currently active/selected dock entry.</summary>
+    [Parameter] public bool Active { get; set; }
+
+    /// <summary>Optional text label rendered below the icon via the daisyUI .dock-label class.</summary>
+    [Parameter] public string? Label { get; set; }
+
+    /// <summary>Material Symbol ligature name (e.g. Icons.Material.Filled.Home). When set, renders an <see cref="Icon"/> child.</summary>
+    [Parameter] public string? Icon { get; set; }
+
+    /// <summary>When set the item renders as an &lt;a&gt; element pointing to this URL; otherwise a &lt;button&gt; is rendered.</summary>
+    [Parameter] public string? Href { get; set; }
+
+    /// <summary>Click handler used when the item is rendered as a &lt;button&gt; (ignored when Href is set).</summary>
+    [Parameter] public EventCallback OnClick { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        Active ? "dock-active" : null,
+        Class);
+}

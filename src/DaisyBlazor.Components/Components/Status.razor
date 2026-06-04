@@ -1,0 +1,59 @@
+@namespace DaisyBlazor
+
+@* daisyUI .status — a tiny inline indicator dot.
+   Root class:  status
+   Color:       status-primary  status-secondary  status-accent  status-info  status-success  status-warning  status-error  status-neutral
+   Size:        status-xs  status-sm  status-md  status-lg  status-xl
+   Animation:   wraps the dot in an inline-grid with an animate-ping overlay layer (CSS-only, no JS).
+                daisyUI v5 pattern: <span class="inline-grid"><span class="status ... [col-start-1] [row-start-1] animate-ping opacity-75"></span><span class="status ... [col-start-1] [row-start-1]"></span></span> *@
+
+@if (Animated)
+{
+    <span class="@_wrapperCls" style="@Style" @attributes="UserAttributes" aria-label="@AriaLabel">
+        <span class="@_dotCls [col-start-1] [row-start-1] animate-ping opacity-75"></span>
+        <span class="@_dotCls [col-start-1] [row-start-1]"></span>
+    </span>
+}
+else
+{
+    <span class="@_cls" style="@Style" @attributes="UserAttributes" aria-label="@AriaLabel"></span>
+}
+
+@code {
+    /// <summary>Semantic color of the dot; maps to daisyUI <c>status-{token}</c>.</summary>
+    [Parameter] public Color Color { get; set; } = Color.Default;
+
+    /// <summary>Size of the dot; maps to daisyUI <c>status-{size}</c>.</summary>
+    [Parameter] public StatusSize Size { get; set; } = StatusSize.Medium;
+
+    /// <summary>When <c>true</c> renders a ping / pulse animation (inline-grid + animate-ping layer).</summary>
+    [Parameter] public bool Animated { get; set; }
+
+    /// <summary>Accessible label surfaced via <c>aria-label</c> (recommended when the dot conveys status without visible text).</summary>
+    [Parameter] public string? AriaLabel { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string? _colorClass =>
+        CssClass.ColorToken(Color) is { } t ? $"status-{t}" : null;
+
+    private string? _sizeClass => Size switch
+    {
+        StatusSize.ExtraSmall => "status-xs",
+        StatusSize.Small => "status-sm",
+        StatusSize.Large => "status-lg",
+        StatusSize.ExtraLarge => "status-xl",
+        _ => null   // Medium is the daisyUI default — no modifier needed
+    };
+
+    // Plain (non-animated) root element classes.
+    private string _cls => CssClass.Merge("status", _colorClass, _sizeClass, Class);
+
+    // Animated: outer wrapper (inline-grid positions both layers)
+    private string _wrapperCls => CssClass.Merge("inline-grid", Class);
+
+    // Animated: the shared dot classes (color + size, no outer Class to avoid duplication)
+    private string _dotCls => CssClass.Merge("status", _colorClass, _sizeClass);
+}

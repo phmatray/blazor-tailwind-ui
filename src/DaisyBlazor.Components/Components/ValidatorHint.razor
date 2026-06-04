@@ -1,0 +1,20 @@
+@namespace DaisyBlazor
+
+@* daisyUI validator-hint paragraph. Standalone .validator-hint element for rendering
+   a validation message beneath an input. Shown/hidden by daisyUI's CSS-only validation
+   logic based on the input's :valid/:invalid pseudo-class state. *@
+
+<p class="@_cls" style="@Style" @attributes="UserAttributes">@ChildContent</p>
+
+@code {
+    /// <summary>The hint message content to display beneath a validated input.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "validator-hint",
+        Class);
+}

@@ -1,0 +1,74 @@
+@namespace DaisyBlazor
+
+@* Floating Action Button / Speed Dial. daisyUI .fab with optional .fab-flower layout.
+   The trigger is a focusable div (tabindex="0") — required for CSS focus-within to work
+   on all browsers. When Flower is true the speed-dial items radiate outward; otherwise
+   they stack vertically. When ShowClose is true a .fab-close overlay appears while open
+   so clicking outside collapses the menu. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @* Focusable trigger — tabindex + role required for cross-browser focus-within *@
+    <div tabindex="0" role="button" class="@_triggerCls">
+        <Icon Name="@_icon" />
+    </div>
+
+    @if (ShowClose)
+    {
+        @* fab-close must NOT be focusable so it collapses on click without re-opening *@
+        <div class="fab-close">
+            <span class="@_closeCls">
+                <Icon Name="@Icons.Material.Filled.Close" />
+            </span>
+        </div>
+    }
+
+    @ChildContent
+</div>
+
+@code {
+    /// <summary>Material Symbols ligature for the trigger icon. Defaults to "add".</summary>
+    [Parameter] public string? Icon { get; set; }
+
+    /// <summary>Semantic color applied to the trigger button.</summary>
+    [Parameter] public Color Color { get; set; } = Color.Primary;
+
+    /// <summary>Speed-dial action items (typically &lt;FabAction&gt; elements or plain daisyUI buttons).</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// When true the items spread in a flower/radial pattern (.fab-flower).
+    /// When false (default) they stack in a vertical list.
+    /// </summary>
+    [Parameter] public bool Flower { get; set; }
+
+    /// <summary>
+    /// When true a .fab-close layer is rendered so the user can click the trigger again
+    /// (or anywhere outside) to collapse the speed dial.
+    /// </summary>
+    [Parameter] public bool ShowClose { get; set; } = true;
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _icon => !string.IsNullOrWhiteSpace(Icon)
+        ? Icon!
+        : Icons.Material.Filled.Add;
+
+    private string _cls => CssClass.Merge(
+        "fab",
+        Flower ? "fab-flower" : null,
+        Class);
+
+    private string _triggerCls => CssClass.Merge(
+        "btn",
+        "btn-circle",
+        "btn-lg",
+        CssClass.ButtonColor(Color));
+
+    private string _closeCls => CssClass.Merge(
+        "btn",
+        "btn-circle",
+        "btn-lg",
+        CssClass.ButtonColor(Color));
+}

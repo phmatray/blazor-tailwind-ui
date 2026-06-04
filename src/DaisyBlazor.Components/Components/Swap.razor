@@ -1,0 +1,50 @@
+@namespace DaisyBlazor
+
+@* daisyUI swap toggle. Renders a <label class="swap"> wrapping a hidden checkbox,
+   a .swap-on child and a .swap-off child. Animation modifier:
+   swap-rotate (SwapAnimation.Rotate) or swap-flip (SwapAnimation.Flip). *@
+
+<label class="@_cls" style="@Style" @attributes="UserAttributes">
+    <input type="checkbox" class="hidden" checked="@Active" @onchange="OnCheckboxChanged" />
+    <div class="swap-on">@On</div>
+    <div class="swap-off">@Off</div>
+</label>
+
+@code {
+    /// <summary>Whether the swap is in the active (on) state.</summary>
+    [Parameter] public bool Active { get; set; }
+
+    /// <summary>Raised when the active state changes.</summary>
+    [Parameter] public EventCallback<bool> ActiveChanged { get; set; }
+
+    /// <summary>Content shown when the swap is active (checked).</summary>
+    [Parameter] public RenderFragment? On { get; set; }
+
+    /// <summary>Content shown when the swap is inactive (unchecked).</summary>
+    [Parameter] public RenderFragment? Off { get; set; }
+
+    /// <summary>Animation applied to the swap transition.</summary>
+    [Parameter] public SwapAnimation Animation { get; set; } = SwapAnimation.None;
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _animationClass => Animation switch
+    {
+        SwapAnimation.Rotate => "swap-rotate",
+        SwapAnimation.Flip   => "swap-flip",
+        _                    => string.Empty
+    };
+
+    private string _cls => CssClass.Merge(
+        "swap",
+        _animationClass,
+        Class);
+
+    private async Task OnCheckboxChanged(ChangeEventArgs e)
+    {
+        bool next = e.Value is bool b ? b : bool.Parse(e.Value?.ToString() ?? "false");
+        await ActiveChanged.InvokeAsync(next);
+    }
+}

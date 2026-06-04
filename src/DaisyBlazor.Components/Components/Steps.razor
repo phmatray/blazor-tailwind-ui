@@ -1,0 +1,26 @@
+@namespace DaisyBlazor
+
+@* daisyUI steps container. Renders a <ul class="steps"> (adds steps-vertical when Vertical is true).
+   Contains <Step> children each of which maps to an <li class="step">. *@
+
+<ul class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</ul>
+
+@code {
+    /// <summary>Child <see cref="Step"/> elements to render inside the steps list.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>When true, renders the steps vertically (adds the <c>steps-vertical</c> class).
+    /// When false (default) the steps are rendered horizontally (<c>steps-horizontal</c>).</summary>
+    [Parameter] public bool Vertical { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "steps",
+        Vertical ? "steps-vertical" : "steps-horizontal",
+        Class);
+}

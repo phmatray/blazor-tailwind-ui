@@ -1,0 +1,66 @@
+@namespace DaisyBlazor
+
+@* daisyUI step item. Renders an <li class="step"> inside a <Steps> container.
+   Adds a step-{color} class for semantic color via ColorToken, and sets the
+   data-content attribute when DataContent is provided (custom marker symbol). *@
+
+<li class="@_cls" style="@Style" data-content="@DataContent" @attributes="UserAttributes">
+    @ChildContent
+</li>
+
+@code {
+    /// <summary>Label text or markup rendered inside the step item.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Semantic color applied to the step marker (e.g. <c>Color.Primary</c> adds <c>step-primary</c>).
+    /// Defaults to <c>Color.Default</c> (no color modifier).</summary>
+    [Parameter] public Color Color { get; set; } = Color.Default;
+
+    /// <summary>Custom marker content placed in the <c>data-content</c> attribute.
+    /// Use a single character or symbol (e.g. "✓", "?", "!").
+    /// When null the step uses its default numeric counter.</summary>
+    [Parameter] public string? DataContent { get; set; }
+
+    /// <summary>Convenience shortcut: marks the step as completed by applying <c>step-primary</c>
+    /// when no explicit <see cref="Color"/> is set. Ignored when <see cref="Color"/> is not Default.</summary>
+    [Parameter] public bool Completed { get; set; }
+
+    /// <summary>Convenience shortcut: marks the step as the currently active step.
+    /// Applies <c>step-secondary</c> when no explicit <see cref="Color"/> is set and
+    /// <see cref="Completed"/> is false. Ignored when <see cref="Color"/> is not Default.</summary>
+    [Parameter] public bool Active { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string? _colorClass
+    {
+        get
+        {
+            string? token = CssClass.ColorToken(Color);
+            if (token is not null)
+            {
+                return $"step-{token}";
+            }
+
+            // Convenience booleans only apply when no explicit Color is set.
+            if (Completed)
+            {
+                return "step-primary";
+            }
+
+            if (Active)
+            {
+                return "step-secondary";
+            }
+
+            return null;
+        }
+    }
+
+    private string _cls => CssClass.Merge(
+        "step",
+        _colorClass,
+        Class);
+}

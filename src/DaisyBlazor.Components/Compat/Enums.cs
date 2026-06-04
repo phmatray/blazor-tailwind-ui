@@ -191,6 +191,17 @@ public enum SkeletonType
     Rectangle
 }
 
+/// <summary>Animation style for the daisyUI loading indicator.</summary>
+public enum LoadingType
+{
+    Spinner,
+    Dots,
+    Ring,
+    Ball,
+    Bars,
+    Infinity
+}
+
 /// <summary>Flex wrap behavior (MudBlazor compatibility).</summary>
 public enum Wrap
 {
@@ -221,6 +232,26 @@ public enum Underline
     None,
     Hover,
     Always
+}
+
+/// <summary>Size axis for the <see cref="Status"/> dot; covers all five daisyUI status-size steps.</summary>
+public enum StatusSize
+{
+    ExtraSmall,
+    Small,
+    Medium,
+    Large,
+    ExtraLarge
+}
+
+/// <summary>Size modifier for the daisyUI dock component (dock-xs … dock-xl).</summary>
+public enum DockSize
+{
+    Xs,
+    Sm,
+    Md,
+    Lg,
+    Xl
 }
 
 /// <summary>Input type for text fields.</summary>

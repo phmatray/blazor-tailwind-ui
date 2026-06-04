@@ -1,0 +1,56 @@
+@namespace DaisyBlazor
+
+@* daisyUI mask shape clip. Applies .mask + one of the mask-* shape utilities to clip
+   child content (usually an <img>) into a geometric silhouette.
+   Classes: mask, mask-squircle, mask-circle, mask-hexagon, mask-star, mask-star-2,
+            mask-triangle, mask-heart, mask-diamond, mask-pentagon,
+            mask-half-1, mask-half-2. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    /// <summary>Geometric shape used to clip the content.</summary>
+    [Parameter] public MaskShape Shape { get; set; } = MaskShape.Squircle;
+
+    /// <summary>
+    /// Optional half-mask modifier. Pass <c>1</c> to apply <c>mask-half-1</c>
+    /// (left/top half) or <c>2</c> for <c>mask-half-2</c> (right/bottom half).
+    /// Any other value is ignored.
+    /// </summary>
+    [Parameter] public int? Half { get; set; }
+
+    /// <summary>Content to clip — typically an <c>&lt;img&gt;</c> element.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _shapeClass => Shape switch
+    {
+        MaskShape.Circle   => "mask-circle",
+        MaskShape.Hexagon  => "mask-hexagon",
+        MaskShape.Star     => "mask-star",
+        MaskShape.Star2    => "mask-star-2",
+        MaskShape.Triangle => "mask-triangle",
+        MaskShape.Heart    => "mask-heart",
+        MaskShape.Diamond  => "mask-diamond",
+        MaskShape.Pentagon => "mask-pentagon",
+        _                  => "mask-squircle"
+    };
+
+    private string? _halfClass => Half switch
+    {
+        1 => "mask-half-1",
+        2 => "mask-half-2",
+        _ => null
+    };
+
+    private string _cls => CssClass.Merge(
+        "mask",
+        _shapeClass,
+        _halfClass,
+        Class);
+}

@@ -1,0 +1,33 @@
+@namespace DaisyBlazor
+
+@* daisyUI .list container. Renders a <ul class="list"> with optional bg-base-100,
+   rounded-box, and shadow modifiers. Child content should be <ListRow> elements. *@
+
+<ul class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</ul>
+
+@code {
+    /// <summary>The row content — typically one or more <ListRow> components.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Apply bg-base-100 background (matches the daisyUI list demo surface).</summary>
+    [Parameter] public bool Background { get; set; } = true;
+
+    /// <summary>Apply rounded-box border-radius around the list.</summary>
+    [Parameter] public bool Rounded { get; set; } = true;
+
+    /// <summary>Apply a drop shadow via the daisyUI shadow utility.</summary>
+    [Parameter] public bool Shadowed { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "list",
+        Background ? "bg-base-100" : null,
+        Rounded ? "rounded-box" : null,
+        Shadowed ? "shadow" : null,
+        Class);
+}

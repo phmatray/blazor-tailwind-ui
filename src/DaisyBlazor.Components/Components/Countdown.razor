@@ -1,0 +1,51 @@
+@namespace DaisyBlazor
+
+@* daisyUI .countdown display component. Renders one or more animated digit cells using
+   the CSS custom-property trick: <span class="countdown"><span style="--value:NN;"></span></span>.
+   Value is clamped to 0-99. Use the Digits helper to split a larger number into cells. *@
+
+<span class="@_cls" style="@Style" @attributes="UserAttributes">
+    <span style="--value:@_clamped;">@_clamped</span>
+</span>
+
+@if (!string.IsNullOrEmpty(Label))
+{
+    <span class="text-xs text-center block">@Label</span>
+}
+
+@code {
+    /// <summary>
+    /// The countdown value to display. Clamped to the range 0–99 (daisyUI supports 0–99).
+    /// </summary>
+    [Parameter] public int Value { get; set; }
+
+    /// <summary>
+    /// Optional label rendered below the countdown digit (e.g. "sec", "min", "hours").
+    /// </summary>
+    [Parameter] public string? Label { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private int _clamped => Math.Clamp(Value, 0, 99);
+
+    private string _cls => CssClass.Merge("countdown", Class);
+
+    /// <summary>
+    /// Splits <paramref name="value"/> into an array of digit pairs suitable for rendering
+    /// multiple <see cref="Countdown"/> components side-by-side (e.g. hours + minutes + seconds).
+    /// Each element is clamped to 0–99. Values above 99 in any single cell are clamped.
+    /// Example: <c>Countdown.Digits(3723)</c> → <c>[1, 2, 3]</c> (hours=1, min=2, sec=3).
+    /// </summary>
+    /// <param name="value">Total seconds (non-negative).</param>
+    /// <returns>Array of [hours, minutes, seconds], each clamped to 0–99.</returns>
+    public static int[] Digits(int value)
+    {
+        int total = Math.Max(0, value);
+        int hours = Math.Clamp(total / 3600, 0, 99);
+        int minutes = Math.Clamp((total % 3600) / 60, 0, 99);
+        int seconds = Math.Clamp(total % 60, 0, 99);
+        return [hours, minutes, seconds];
+    }
+}

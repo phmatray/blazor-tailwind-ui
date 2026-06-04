@@ -1,0 +1,36 @@
+@namespace DaisyBlazor
+
+@* daisyUI .carousel container. Supports vertical/horizontal orientation via .carousel-vertical,
+   and snap-alignment variants .carousel-center and .carousel-end. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    /// <summary>Child content; should consist of CarouselItem components.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>When true renders a vertical carousel (.carousel-vertical); horizontal by default.</summary>
+    [Parameter] public bool Vertical { get; set; }
+
+    /// <summary>Scroll-snap alignment for carousel items. None (default), Center, or End.</summary>
+    [Parameter] public CarouselSnap Snap { get; set; } = CarouselSnap.None;
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string? _snapClass => Snap switch
+    {
+        CarouselSnap.Center => "carousel-center",
+        CarouselSnap.End    => "carousel-end",
+        _                   => null
+    };
+
+    private string _cls => CssClass.Merge(
+        "carousel",
+        Vertical ? "carousel-vertical" : null,
+        _snapClass,
+        Class);
+}

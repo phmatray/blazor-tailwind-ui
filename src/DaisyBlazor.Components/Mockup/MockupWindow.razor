@@ -1,0 +1,40 @@
+@namespace DaisyBlazor
+
+@* daisyUI mockup-window — renders a desktop window chrome with a title bar
+   and arbitrary child content.
+   Classes used: mockup-window *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @if (!string.IsNullOrEmpty(Title))
+    {
+        <div class="flex items-center gap-2 px-4 py-2 border-b border-base-300">
+            <span class="text-sm font-medium truncate">@Title</span>
+        </div>
+    }
+    @if (ChildContent is not null)
+    {
+        <div class="flex justify-center px-4 py-8">
+            @ChildContent
+        </div>
+    }
+</div>
+
+@code {
+    /// <summary>Content rendered inside the window body.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Optional window title shown in the title bar.</summary>
+    [Parameter] public string? Title { get; set; }
+
+    /// <summary>Optional border color token applied as <c>border-{token}</c>; defaults to base-300.</summary>
+    [Parameter] public Color BorderColor { get; set; } = Color.Default;
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "mockup-window",
+        CssClass.ColorToken(BorderColor) is { } t ? $"border-{t}" : "border-base-300",
+        Class);
+}

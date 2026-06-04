@@ -1,0 +1,39 @@
+@namespace DaisyBlazor
+
+@* daisyUI mockup-code — renders a terminal/code block with prefixed lines.
+   Supports either a list of string Lines (each rendered as <pre data-prefix="..."><code>)
+   or freeform ChildContent for custom <pre> rows.
+   Classes used: mockup-code *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @if (Lines is not null && Lines.Count > 0)
+    {
+        @foreach (string line in Lines)
+        {
+            <pre data-prefix="@Prefix"><code>@line</code></pre>
+        }
+    }
+    else
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    /// <summary>Content rendered verbatim inside the code block (use when you need custom &lt;pre&gt; rows).</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Convenience list of code lines; each is wrapped in <c>&lt;pre data-prefix="..."&gt;&lt;code&gt;</c> automatically.</summary>
+    [Parameter] public IReadOnlyList<string>? Lines { get; set; }
+
+    /// <summary>The prefix shown before each line when using <see cref="Lines"/>. Defaults to "$".</summary>
+    [Parameter] public string Prefix { get; set; } = "$";
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "mockup-code",
+        Class);
+}
