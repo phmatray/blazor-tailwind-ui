@@ -89,6 +89,10 @@ else
 
         @if (NavCards is not null)
         {
+            @if (NavCardsTitle is not null)
+            {
+                <Typography Typo="Typo.h5" Class="mb-4">@NavCardsTitle</Typography>
+            }
             <Grid Class="equal-height-cards">
                 @NavCards
             </Grid>

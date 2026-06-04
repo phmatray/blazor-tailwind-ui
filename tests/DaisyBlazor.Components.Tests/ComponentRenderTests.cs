@@ -120,6 +120,29 @@ public class ComponentRenderTests : BunitContext
         cut.Markup.ShouldContain("tab-active");
         cut.Markup.ShouldContain("tab-content");
     }
+
+    [Fact]
+    public void FeatureHomePage_renders_NavCardsTitle_above_nav_cards()
+    {
+        IRenderedComponent<FeatureHomePage> cut = Render<FeatureHomePage>(ps => ps
+            .Add(p => p.Title, "Operations")
+            .Add(p => p.NavCardsTitle, "Quick access")
+            .Add(p => p.NavCards, "<div class=\"probe-card\">card</div>"));
+
+        cut.Markup.ShouldContain("Quick access");
+        cut.Markup.ShouldContain("probe-card");
+    }
+
+    [Fact]
+    public void FeatureHomePage_omits_NavCardsTitle_when_not_provided()
+    {
+        IRenderedComponent<FeatureHomePage> cut = Render<FeatureHomePage>(ps => ps
+            .Add(p => p.Title, "Operations")
+            .Add(p => p.NavCards, "<div class=\"probe-card\">card</div>"));
+
+        cut.Markup.ShouldContain("probe-card");
+        cut.Markup.ShouldNotContain("Quick access");
+    }
 }
 
 /// <summary>Tests for the dependency-free SVG charts.</summary>

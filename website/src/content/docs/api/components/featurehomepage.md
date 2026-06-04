@@ -54,6 +54,10 @@ When false (with `FeatureHomePage.RequireAccessCheck`), shows the access-denied 
 
 Grid of feature nav cards (use `FeatureNavCard`).
 
+### `NavCardsTitle`
+
+Optional title rendered above the `NavCards` grid.
+
 ### `QuickAccessButtons`
 
 Optional quick-access strip (use `QuickAccessButton`).

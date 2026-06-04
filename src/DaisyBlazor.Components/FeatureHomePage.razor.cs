@@ -52,6 +52,10 @@ public partial class FeatureHomePage
     [Parameter]
     public RenderFragment? NavCards { get; set; }
 
+    /// <summary>Optional title rendered above the <see cref="NavCards"/> grid.</summary>
+    [Parameter]
+    public string? NavCardsTitle { get; set; }
+
     /// <summary>Optional title above the quick-access strip.</summary>
     [Parameter]
     public string? QuickAccessTitle { get; set; }
