@@ -114,6 +114,12 @@
 @source inline("text-{xs,sm,base,lg,xl,2xl,3xl,4xl,5xl}");
 @source inline("loading-{spinner,dots,bars,ring,ball,infinity,xs,sm,md,lg,xl}");
 @source inline("tabs-{box,border,lift} tab-{active,disabled}");
+/* Base component CONTAINER classes. daisyUI emits a component's base rule (e.g. `.tabs` flex
+   layout, `.toast` position:fixed) only when the BARE class is seen. These are rendered solely
+   inside DaisyBlazor's compiled components — never in a consumer's own markup — so without this
+   they are silently dropped, leaving the component unstyled: the tab strip collapses into
+   run-together text, the Snackbar toast loses `position:fixed` and falls to the page end, etc. */
+@source inline("tabs tab toast tooltip steps step timeline carousel chat chat-bubble");
 @source inline("steps-{vertical,horizontal} step-{primary,secondary,accent,info,success,warning,error,neutral}");
 @source inline("timeline-{vertical,horizontal,compact,snap-icon} carousel-{vertical,horizontal,start,center,end}");
 @source inline("chat-{start,end} chat-bubble-{primary,secondary,accent,info,success,warning,error,neutral}");
