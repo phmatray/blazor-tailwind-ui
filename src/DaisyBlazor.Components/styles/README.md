@@ -53,3 +53,37 @@ The `Icon` component and the `Icons.Material.*` constants render
 <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 ```
+
+### Using a different icon font or icon set
+
+The Material Symbols font is the default, not a hard requirement — there are two opt-outs.
+
+**1. Swap the icon font** by cascading an `IconOptions` near the app root. Every component that
+renders icons (`Pagination`, `Alert`, `Menu`, …) inherits the new `FontClass`:
+
+```razor
+<CascadingValue Value="_icons" IsFixed="true">
+    <Router ... />
+</CascadingValue>
+
+@code { readonly IconOptions _icons = new() { FontClass = "material-symbols-rounded" }; }
+```
+
+Because Material Symbols renders through **ligatures** (the span text `chevron_left` becomes a
+glyph), this swap is transparent only for a *ligature-compatible* font that shares Material's
+ligature names — e.g. another Material Symbols build or variant (`-outlined` / `-rounded` /
+`-sharp`), or a self-hosted Material Symbols. The built-in composites (`Pagination`, `Alert`, …)
+pass `Icons.Material.*` ligature names, so an **arbitrary** icon set (Lucide, Heroicons, …) is
+*not* yet wired through them — overriding those built-in icons is a separate, not-yet-implemented
+step. For your own icons, use the SVG escape below.
+
+**2. Render inline SVG** by passing child content to `Icon` instead of a ligature `Name`
+(the icon-font class is then omitted entirely). This covers any `<Icon>` you author directly:
+
+```razor
+<Icon><svg viewBox="0 0 24 24" class="w-6 h-6">...</svg></Icon>
+```
+
+> Notes: `Size` is ignored when child content is supplied — size the SVG yourself (e.g. `w-6 h-6`).
+> The hero-badge and nav-card icon-sizing CSS still targets `.material-symbols-outlined`, so a
+> fully custom icon set may need to restyle those two spots.
