@@ -28,13 +28,19 @@ public partial class FeatureHomePage
     [Parameter]
     public string? Eyebrow { get; set; }
 
-    /// <summary>Hero gradient start colour. Only used when <see cref="Icon"/> is set.</summary>
+    /// <summary>
+    /// Hero gradient start colour. Only used when <see cref="Icon"/> is set. When
+    /// <see langword="null"/> (the default), the hero falls back to the daisyUI theme.
+    /// </summary>
     [Parameter]
-    public string GradientStart { get; set; } = "#1976d2";
+    public string? GradientStart { get; set; }
 
-    /// <summary>Hero gradient end colour. Only used when <see cref="Icon"/> is set.</summary>
+    /// <summary>
+    /// Hero gradient end colour. Only used when <see cref="Icon"/> is set. When
+    /// <see langword="null"/> (the default), the hero falls back to the daisyUI theme.
+    /// </summary>
     [Parameter]
-    public string GradientEnd { get; set; } = "#42a5f5";
+    public string? GradientEnd { get; set; }
 
     /// <summary>Optional stat strip rendered inside the hero (only when <see cref="Icon"/> is set).</summary>
     [Parameter]

@@ -177,7 +177,7 @@
 .nav-card.hover-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 24px 42px -26px var(--nav-card-glow, rgba(15, 23, 42, 0.5));
-    border-color: color-mix(in srgb, var(--nav-card-to, #1976d2) 55%, transparent);
+    border-color: color-mix(in srgb, var(--nav-card-to, var(--color-primary)) 55%, transparent);
 }
 
 .nav-card.hover-card:hover::after {

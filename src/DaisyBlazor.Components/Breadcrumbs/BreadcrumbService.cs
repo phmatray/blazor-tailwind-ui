@@ -46,7 +46,7 @@ public sealed class BreadcrumbService<TResource> : IBreadcrumbService
 
         List<BreadcrumbItem> breadcrumbs =
         [
-            new(_localizer[_options.HomeTitleKey], Href: "/", Icon: _options.HomeIcon)
+            new(_localizer[_options.HomeTitleKey], Href: _options.HomeHref, Icon: _options.HomeIcon)
         ];
 
         foreach (BreadcrumbDefinition def in definitions)
@@ -70,4 +70,10 @@ public sealed class BreadcrumbServiceOptions
 
     /// <summary>Icon for the Home breadcrumb. Defaults to <c>Icons.Material.Filled.Home</c>.</summary>
     public string HomeIcon { get; set; } = Icons.Material.Filled.Home;
+
+    /// <summary>
+    /// Href for the Home breadcrumb. Defaults to <c>"/"</c>. Set this when the app is mounted
+    /// under a path base (e.g. <c>"/app/"</c>) so the Home link resolves correctly.
+    /// </summary>
+    public string HomeHref { get; set; } = "/";
 }

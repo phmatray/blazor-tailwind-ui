@@ -26,13 +26,19 @@ public partial class FeatureHero
     [Parameter]
     public string? Eyebrow { get; set; }
 
-    /// <summary>Gradient start colour (CSS colour, e.g. <c>#0ea5e9</c>).</summary>
+    /// <summary>
+    /// Gradient start colour (CSS colour, e.g. <c>#0ea5e9</c>). When <see langword="null"/>
+    /// (the default), the hero falls back to the active daisyUI theme's <c>--color-primary</c>.
+    /// </summary>
     [Parameter]
-    public string GradientStart { get; set; } = "#1976d2";
+    public string? GradientStart { get; set; }
 
-    /// <summary>Gradient end colour (CSS colour, e.g. <c>#38bdf8</c>).</summary>
+    /// <summary>
+    /// Gradient end colour (CSS colour, e.g. <c>#38bdf8</c>). When <see langword="null"/>
+    /// (the default), the hero falls back to the active daisyUI theme's <c>--color-secondary</c>.
+    /// </summary>
     [Parameter]
-    public string GradientEnd { get; set; } = "#42a5f5";
+    public string? GradientEnd { get; set; }
 
     /// <summary>Optional trailing action area (buttons, chips) aligned to the hero edge.</summary>
     [Parameter]
@@ -71,7 +77,13 @@ public partial class FeatureHero
     {
         get
         {
-            string style = $"--hero-start:{GradientStart};--hero-end:{GradientEnd};";
+            // Only emit the inline custom-properties when an explicit colour is supplied;
+            // otherwise the scoped-CSS theme-token fallback (var(--color-primary/secondary)) wins.
+            string style = string.Empty;
+            if (GradientStart is not null)
+                style += $"--hero-start:{GradientStart};";
+            if (GradientEnd is not null)
+                style += $"--hero-end:{GradientEnd};";
             if (UserAttributes is not null
                 && UserAttributes.TryGetValue("style", out object? extra)
                 && extra is string s

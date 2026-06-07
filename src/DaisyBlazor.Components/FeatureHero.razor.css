@@ -5,9 +5,9 @@
     border-radius: 24px;
     padding: 2.25rem 2.5rem;
     color: #fff;
-    background: linear-gradient(135deg, var(--hero-start) 0%, var(--hero-end) 100%);
+    background: linear-gradient(135deg, var(--hero-start, var(--color-primary)) 0%, var(--hero-end, var(--color-secondary)) 100%);
     box-shadow:
-        0 18px 40px -18px color-mix(in srgb, var(--hero-end) 70%, transparent),
+        0 18px 40px -18px color-mix(in srgb, var(--hero-end, var(--color-secondary)) 70%, transparent),
         0 2px 8px rgba(15, 23, 42, 0.12);
     animation: hero-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
