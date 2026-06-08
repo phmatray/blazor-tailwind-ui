@@ -122,6 +122,28 @@ public class ComponentRenderTests : BunitContext
     }
 
     [Fact]
+    public void Tabs_expose_WAI_ARIA_selected_state_and_tab_panel_linkage()
+    {
+        IRenderedComponent<Tabs> cut = Render<Tabs>(ps => ps
+            .Add(p => p.ActiveIndex, 1)
+            .AddChildContent<Tab>(tab => tab.Add(t => t.Title, "One").AddChildContent("first"))
+            .AddChildContent<Tab>(tab => tab.Add(t => t.Title, "Two").AddChildContent("second")));
+
+        var tabs = cut.FindAll("[role=tab]");
+        tabs.Count.ShouldBe(2);
+        // role=tab REQUIRES aria-selected; exactly the active (index 1) tab is selected.
+        tabs[0].GetAttribute("aria-selected").ShouldBe("false");
+        tabs[1].GetAttribute("aria-selected").ShouldBe("true");
+
+        // The active tab is linked to the panel, and the panel is labelled back by it.
+        var panel = cut.Find("[role=tabpanel]");
+        var panelId = panel.GetAttribute("id");
+        panelId.ShouldNotBeNullOrEmpty();
+        tabs[1].GetAttribute("aria-controls").ShouldBe(panelId);
+        panel.GetAttribute("aria-labelledby").ShouldBe(tabs[1].GetAttribute("id"));
+    }
+
+    [Fact]
     public void FeatureHomePage_renders_NavCardsTitle_above_nav_cards()
     {
         IRenderedComponent<FeatureHomePage> cut = Render<FeatureHomePage>(ps => ps

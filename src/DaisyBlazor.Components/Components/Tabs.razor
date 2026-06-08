@@ -13,8 +13,14 @@
         <div role="tablist" class="tabs @_variantClass @_sizeClass">
             @foreach (Tab tab in _tabs)
             {
+                bool isActive = _activeTab == tab;
+                @* WAI-ARIA tabs: each tab declares its selected state and is linked to the shared
+                   panel; the panel is labelled back by the active tab (aria-labelledby below). *@
                 <button role="tab"
                         type="button"
+                        id="@TabId(tab)"
+                        aria-selected="@(isActive ? "true" : "false")"
+                        aria-controls="@PanelId"
                         class="@TabButtonClass(tab)"
                         disabled="@tab.Disabled"
                         @onclick="() => SetActive(tab)">
@@ -26,7 +32,7 @@
         @* Active tab panel *@
         @if (_activeTab is not null)
         {
-            <div role="tabpanel" class="tab-content">
+            <div role="tabpanel" id="@PanelId" aria-labelledby="@TabId(_activeTab)" tabindex="0" class="tab-content">
                 @_activeTab.ChildContent
             </div>
         }
@@ -36,6 +42,15 @@
 @code {
     private readonly List<Tab> _tabs = new();
     private Tab? _activeTab;
+
+    // Per-instance id prefix so the tab buttons and the panel can reference each other (WAI-ARIA).
+    private readonly string _id = "tabs-" + Guid.NewGuid().ToString("N")[..8];
+
+    /// <summary>The shared tab-panel element id (one panel renders the active tab's content).</summary>
+    private string PanelId => $"{_id}-panel";
+
+    /// <summary>A stable element id for a tab button, by its registration index.</summary>
+    private string TabId(Tab tab) => $"{_id}-tab-{_tabs.IndexOf(tab)}";
 
     /// <summary>The tab definitions (one or more <see cref="Tab"/> components).</summary>
     [Parameter] public RenderFragment? ChildContent { get; set; }

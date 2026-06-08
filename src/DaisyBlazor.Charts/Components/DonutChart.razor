@@ -14,8 +14,11 @@
             <svg viewBox="0 0 @_size.ToString(_ci) @_size.ToString(_ci)"
                  role="img"
                  style="@($"height:{Height};max-width:100%;")"
-                 aria-label="@_ariaLabel">
+                 aria-label="@_ariaLabel"
+                 aria-describedby="@_descId">
                 <title>@_ariaLabel</title>
+                @* Screen-reader data description: the slice breakdown the legend conveys visually. *@
+                <desc id="@_descId">@_dataDescription</desc>
 
                 @if (_total <= 0)
                 {
@@ -93,6 +96,14 @@
     private List<Slice> _slices = new();
 
     private string _ariaLabel => string.IsNullOrEmpty(Title) ? "Donut chart" : Title!;
+
+    // Per-instance id for the SVG <desc> so role="img" exposes the slice data to screen readers
+    // (the visual legend conveys this to sighted users only).
+    private readonly string _descId = "donut-desc-" + Guid.NewGuid().ToString("N")[..8];
+
+    private string _dataDescription => _total <= 0
+        ? "No data."
+        : string.Join("; ", _slices.Select(s => $"{s.Label}: {s.Percent.ToString("0.#", _ci)}%"));
 
     protected override void OnParametersSet()
     {
