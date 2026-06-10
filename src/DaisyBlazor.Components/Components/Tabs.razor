@@ -23,7 +23,6 @@
                         aria-controls="@PanelId"
                         class="@TabButtonClass(tab)"
                         disabled="@tab.Disabled"
-                        aria-selected="@((_activeTab == tab) ? "true" : "false")"
                         aria-disabled="@(tab.Disabled ? "true" : null)"
                         @onclick="() => SetActive(tab)">
                     @tab.Title
