@@ -5,6 +5,10 @@ registers two neutral default themes (`daisyblazor` / `daisyblazor-dark`) plus a
 themes, and force-generates the classes DaisyBlazor composes dynamically in C# (so they are never
 purged).
 
+`safelist.css` holds just that last part — the `@source inline(...)` rules, with no daisyUI plugin
+or theme blocks. `preset.css` `@import`s it. Import `safelist.css` directly when your app declares
+its **own** daisyUI themes (see [Custom themes](#custom-themes) below).
+
 ## Consumer wiring
 
 In your app's source stylesheet (e.g. `Styles/main.css`):
@@ -27,15 +31,25 @@ setup:
 
 ## Custom themes
 
-Add your own daisyUI theme blocks after the import and reference them in `ThemeProvider`:
+If you declare your own daisyUI themes, import `safelist.css` instead of the full `preset.css`
+(which would also register the daisyUI plugin and the neutral `daisyblazor` themes), then add your
+own `@plugin "daisyui"` block:
 
 ```css
+@import "tailwindcss";
+@import "daisyblazor/safelist.css";   /* kit class safelist only — no plugin, no themes */
+
+@plugin "daisyui" {
+    themes: mybrand --default, mybrand-dark --prefersdark;
+}
 @plugin "daisyui/theme" {
     name: "mybrand";
     default: true;
     /* --color-primary: ...; etc. */
 }
 ```
+
+Then reference your themes in `ThemeProvider`:
 
 ```razor
 <ThemeProvider SystemLightTheme="mybrand" SystemDarkTheme="daisyblazor-dark"
