@@ -1,5 +1,20 @@
 # Blazor Tailwind UI
 
+<!-- portfolio-badges:start -->
+<!-- Identity -->
+[![phmatray - blazor-tailwind-ui](https://img.shields.io/static/v1?label=phmatray&message=blazor-tailwind-ui&color=blue&logo=github)](https://github.com/phmatray/blazor-tailwind-ui)
+![Top language](https://img.shields.io/github/languages/top/phmatray/blazor-tailwind-ui)
+[![Stars](https://img.shields.io/github/stars/phmatray/blazor-tailwind-ui?style=social)](https://github.com/phmatray/blazor-tailwind-ui/stargazers)
+[![Forks](https://img.shields.io/github/forks/phmatray/blazor-tailwind-ui?style=social)](https://github.com/phmatray/blazor-tailwind-ui/network/members)
+[![License](https://img.shields.io/github/license/phmatray/blazor-tailwind-ui)](https://github.com/phmatray/blazor-tailwind-ui/blob/HEAD/LICENSE)
+
+<!-- Activity -->
+[![Issues](https://img.shields.io/github/issues/phmatray/blazor-tailwind-ui)](https://github.com/phmatray/blazor-tailwind-ui/issues)
+[![Pull requests](https://img.shields.io/github/issues-pr/phmatray/blazor-tailwind-ui)](https://github.com/phmatray/blazor-tailwind-ui/pulls)
+[![Last commit](https://img.shields.io/github/last-commit/phmatray/blazor-tailwind-ui)](https://github.com/phmatray/blazor-tailwind-ui/commits)
+<!-- portfolio-badges:end -->
+
+
 > Everything for building **Tailwind CSS + Blazor** UIs — three component kits, a
 > starter template, and a setup CLI, in one workspace.
 
