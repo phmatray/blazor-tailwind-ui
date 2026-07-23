@@ -2,6 +2,20 @@
 
 # ShadBz
 
+<!-- portfolio-badges:start -->
+<!-- Identity -->
+[![phmatray - ShadBz](https://img.shields.io/static/v1?label=phmatray&message=ShadBz&color=blue&logo=github)](https://github.com/phmatray/ShadBz)
+![Top language](https://img.shields.io/github/languages/top/phmatray/ShadBz)
+[![Stars](https://img.shields.io/github/stars/phmatray/ShadBz?style=social)](https://github.com/phmatray/ShadBz/stargazers)
+[![Forks](https://img.shields.io/github/forks/phmatray/ShadBz?style=social)](https://github.com/phmatray/ShadBz/network/members)
+
+<!-- Activity -->
+[![Issues](https://img.shields.io/github/issues/phmatray/ShadBz)](https://github.com/phmatray/ShadBz/issues)
+[![Pull requests](https://img.shields.io/github/issues-pr/phmatray/ShadBz)](https://github.com/phmatray/ShadBz/pulls)
+[![Last commit](https://img.shields.io/github/last-commit/phmatray/ShadBz)](https://github.com/phmatray/ShadBz/commits)
+<!-- portfolio-badges:end -->
+
+
 > ShadCN-inspired UI component library for Blazor applications.
 
 ## Description
