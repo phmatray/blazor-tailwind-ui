@@ -2,6 +2,26 @@
 
 # Tailwind Blazor CLI
 
+<!-- portfolio-toc:start -->
+
+## Table of Contents
+
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Commands](#commands)
+- [Project Structure After Setup](#project-structure-after-setup)
+- [Validation Categories](#validation-categories)
+- [Troubleshooting](#troubleshooting)
+- [Development](#development)
+- [Technology Stack](#technology-stack)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
+- [Acknowledgments](#acknowledgments)
+
+<!-- portfolio-toc:end -->
+
+
 A command-line tool that automates Tailwind CSS setup, configuration, and management for Blazor projects.
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-blue)](https://dotnet.microsoft.com/)
