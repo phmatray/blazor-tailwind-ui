@@ -1,0 +1,442 @@
+@page "/icon-button-demo"
+
+<PageTitle>IconButton Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">IconButton Component</Heading>
+                <Text Size="4" Color="gray">Interactive button optimized for single icon display.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic IconButtons</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <IconButton>
+                        <Text>🔍</Text>
+                    </IconButton>
+                    <IconButton>
+                        <Text>⚙️</Text>
+                    </IconButton>
+                    <IconButton>
+                        <Text>📝</Text>
+                    </IconButton>
+                    <IconButton>
+                        <Text>🗑️</Text>
+                    </IconButton>
+                    <IconButton>
+                        <Text>❤️</Text>
+                    </IconButton>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">IconButton Sizes</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <IconButton Size="ButtonSize.Small">
+                        <Text Size="2">🔍</Text>
+                    </IconButton>
+                    <IconButton Size="ButtonSize.Medium">
+                        <Text Size="3">🔍</Text>
+                    </IconButton>
+                    <IconButton Size="ButtonSize.Large">
+                        <Text Size="4">🔍</Text>
+                    </IconButton>
+                    <IconButton Size="ButtonSize.ExtraLarge">
+                        <Text Size="5">🔍</Text>
+                    </IconButton>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">IconButton Variants</Heading>
+                <Grid Columns="3" Gap="4">
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Classic</Text>
+                            <Flex Gap="2">
+                                <IconButton Variant="ButtonVariant.Classic" Color="gray">
+                                    <Text>📁</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Classic" Color="indigo">
+                                    <Text>🔔</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Classic" Color="green">
+                                    <Text>✓</Text>
+                                </IconButton>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Solid</Text>
+                            <Flex Gap="2">
+                                <IconButton Variant="ButtonVariant.Solid" Color="gray">
+                                    <Text>📁</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Solid" Color="indigo">
+                                    <Text>🔔</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Solid" Color="green">
+                                    <Text>✓</Text>
+                                </IconButton>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Soft</Text>
+                            <Flex Gap="2">
+                                <IconButton Variant="ButtonVariant.Soft" Color="gray">
+                                    <Text>📁</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Soft" Color="indigo">
+                                    <Text>🔔</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Soft" Color="green">
+                                    <Text>✓</Text>
+                                </IconButton>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Surface</Text>
+                            <Flex Gap="2">
+                                <IconButton Variant="ButtonVariant.Surface" Color="gray">
+                                    <Text>📁</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Surface" Color="indigo">
+                                    <Text>🔔</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Surface" Color="green">
+                                    <Text>✓</Text>
+                                </IconButton>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Outline</Text>
+                            <Flex Gap="2">
+                                <IconButton Variant="ButtonVariant.Outline" Color="gray">
+                                    <Text>📁</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Outline" Color="indigo">
+                                    <Text>🔔</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Outline" Color="green">
+                                    <Text>✓</Text>
+                                </IconButton>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Ghost</Text>
+                            <Flex Gap="2">
+                                <IconButton Variant="ButtonVariant.Ghost" Color="gray">
+                                    <Text>📁</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Ghost" Color="indigo">
+                                    <Text>🔔</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Ghost" Color="green">
+                                    <Text>✓</Text>
+                                </IconButton>
+                            </Flex>
+                        </Flex>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">IconButton Colors</Heading>
+                <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                    <IconButton Variant="ButtonVariant.Soft" Color="gray"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="gold"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="bronze"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="yellow"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="amber"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="orange"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="tomato"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="red"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="ruby"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="crimson"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="pink"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="plum"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="purple"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="violet"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="iris"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="indigo"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="blue"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="cyan"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="teal"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="jade"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="green"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="grass"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="lime"><Text>⭐</Text></IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="mint"><Text>⭐</Text></IconButton>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">IconButton Radius</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <IconButton Radius="none" Variant="ButtonVariant.Soft" Color="indigo">
+                        <Text>📦</Text>
+                    </IconButton>
+                    <IconButton Radius="small" Variant="ButtonVariant.Soft" Color="indigo">
+                        <Text>📦</Text>
+                    </IconButton>
+                    <IconButton Radius="medium" Variant="ButtonVariant.Soft" Color="indigo">
+                        <Text>📦</Text>
+                    </IconButton>
+                    <IconButton Radius="large" Variant="ButtonVariant.Soft" Color="indigo">
+                        <Text>📦</Text>
+                    </IconButton>
+                    <IconButton Radius="full" Variant="ButtonVariant.Soft" Color="indigo">
+                        <Text>📦</Text>
+                    </IconButton>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">High Contrast</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <IconButton Variant="ButtonVariant.Soft" Color="indigo">
+                        <Text>🎨</Text>
+                    </IconButton>
+                    <IconButton Variant="ButtonVariant.Soft" Color="indigo" HighContrast="true">
+                        <Text>🎨</Text>
+                    </IconButton>
+                    <Text Size="2" Color="gray">Normal vs High Contrast</Text>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">States</Heading>
+                <Grid Columns="3" Gap="4">
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Normal</Text>
+                            <IconButton>
+                                <Text>💾</Text>
+                            </IconButton>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Loading</Text>
+                            <IconButton Loading="true">
+                                <Text>💾</Text>
+                            </IconButton>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Disabled</Text>
+                            <IconButton Disabled="true">
+                                <Text>💾</Text>
+                            </IconButton>
+                        </Flex>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Toolbar</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                        <Flex Gap="1">
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                <Text Size="2">🏠</Text>
+                            </IconButton>
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                <Text Size="2">←</Text>
+                            </IconButton>
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                <Text Size="2">→</Text>
+                            </IconButton>
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                <Text Size="2">🔄</Text>
+                            </IconButton>
+                        </Flex>
+                        
+                        <Flex Gap="1">
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                <Text Size="2">⭐</Text>
+                            </IconButton>
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                <Text Size="2">📥</Text>
+                            </IconButton>
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                <Text Size="2">⋯</Text>
+                            </IconButton>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Social Actions</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Flex Align="FlexAlign.Center" Gap="3">
+                            <Avatar Size="AvatarSize.Size3">
+                                <Fallback>JD</Fallback>
+                            </Avatar>
+                            <Box Style="flex: 1;">
+                                <Text Size="2" Weight="TextWeight.Medium">John Doe</Text>
+                                <Text Size="1" Color="gray">Posted 2 hours ago</Text>
+                            </Box>
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                <Text Size="2">⋯</Text>
+                            </IconButton>
+                        </Flex>
+                        
+                        <Text Size="2">
+                            Just shipped a new feature! Excited to see how users respond to the updated interface.
+                        </Text>
+                        
+                        <Flex Gap="3">
+                            <Flex Align="FlexAlign.Center" Gap="1">
+                                <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small" Color="red">
+                                    <Text Size="2">❤️</Text>
+                                </IconButton>
+                                <Text Size="1" Color="gray">24</Text>
+                            </Flex>
+                            
+                            <Flex Align="FlexAlign.Center" Gap="1">
+                                <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                    <Text Size="2">💬</Text>
+                                </IconButton>
+                                <Text Size="1" Color="gray">12</Text>
+                            </Flex>
+                            
+                            <Flex Align="FlexAlign.Center" Gap="1">
+                                <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                    <Text Size="2">🔄</Text>
+                                </IconButton>
+                                <Text Size="1" Color="gray">5</Text>
+                            </Flex>
+                            
+                            <Box Style="flex: 1;"></Box>
+                            
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                <Text Size="2">🔖</Text>
+                            </IconButton>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Media Player</Heading>
+                <Card Size="CardSize.Size3" Variant="CardVariant.Surface">
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Box>
+                            <Text Size="3" Weight="TextWeight.Medium">Now Playing</Text>
+                            <Text Size="2" Color="gray">Your Favorite Song - Artist Name</Text>
+                        </Box>
+                        
+                        <Box Height="4px" Style="background: var(--gray-6); border-radius: var(--radius-2); position: relative;">
+                            <Box Width="40%" Height="100%" Style="background: var(--accent-9); border-radius: var(--radius-2);"></Box>
+                        </Box>
+                        
+                        <Flex Justify="FlexJustify.Center" Align="FlexAlign.Center" Gap="3">
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                <Text Size="2">🔀</Text>
+                            </IconButton>
+                            <IconButton Variant="ButtonVariant.Soft" Size="ButtonSize.Small">
+                                <Text Size="2">⏮️</Text>
+                            </IconButton>
+                            <IconButton Variant="ButtonVariant.Solid" Size="ButtonSize.Large" Color="indigo">
+                                <Text Size="4">▶️</Text>
+                            </IconButton>
+                            <IconButton Variant="ButtonVariant.Soft" Size="ButtonSize.Small">
+                                <Text Size="2">⏭️</Text>
+                            </IconButton>
+                            <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                <Text Size="2">🔁</Text>
+                            </IconButton>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: List Actions</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="2">
+                        <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center" P="2">
+                            <Flex Gap="3" Align="FlexAlign.Center">
+                                <Text Size="2">Document.pdf</Text>
+                                <Badge Color="green" Size="BadgeSize.Size1">Active</Badge>
+                            </Flex>
+                            <Flex Gap="1">
+                                <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                    <Text Size="1">👁️</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                    <Text Size="1">✏️</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small" Color="red">
+                                    <Text Size="1">🗑️</Text>
+                                </IconButton>
+                            </Flex>
+                        </Flex>
+                        
+                        <Separator />
+                        
+                        <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center" P="2">
+                            <Flex Gap="3" Align="FlexAlign.Center">
+                                <Text Size="2">Spreadsheet.xlsx</Text>
+                                <Badge Color="orange" Size="BadgeSize.Size1">Pending</Badge>
+                            </Flex>
+                            <Flex Gap="1">
+                                <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                    <Text Size="1">👁️</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                    <Text Size="1">✏️</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small" Color="red">
+                                    <Text Size="1">🗑️</Text>
+                                </IconButton>
+                            </Flex>
+                        </Flex>
+                        
+                        <Separator />
+                        
+                        <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center" P="2">
+                            <Flex Gap="3" Align="FlexAlign.Center">
+                                <Text Size="2">Presentation.pptx</Text>
+                                <Badge Color="gray" Size="BadgeSize.Size1">Archived</Badge>
+                            </Flex>
+                            <Flex Gap="1">
+                                <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                    <Text Size="1">👁️</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">
+                                    <Text Size="1">✏️</Text>
+                                </IconButton>
+                                <IconButton Variant="ButtonVariant.Ghost" Size="ButtonSize.Small" Color="red">
+                                    <Text Size="1">🗑️</Text>
+                                </IconButton>
+                            </Flex>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Container>
+</Section>

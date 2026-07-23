@@ -1,0 +1,11 @@
+@namespace Radixor.Components.Overlays
+@inherits ComponentBase
+
+<span @ref="_triggerRef" 
+      @onmouseenter="HandleMouseEnter" 
+      @onmouseleave="HandleMouseLeave"
+      @onfocus="HandleFocus"
+      @onblur="HandleBlur"
+      style="display: contents;">
+    @ChildContent
+</span>

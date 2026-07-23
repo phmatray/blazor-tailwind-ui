@@ -1,0 +1,25 @@
+@namespace Radixor.Components.DataDisplay
+@inherits ComponentBase
+
+<tr class="@RowCssClass" @attributes="AdditionalAttributes">
+    @ChildContent
+</tr>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public TableRowAlign? Align { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    
+    private string RowCssClass => new CssBuilder("rt-TableRow")
+        .AddClass(GetAlignClass())
+        .Build();
+    
+    private string GetAlignClass() => Align switch
+    {
+        TableRowAlign.Start => "rt-align-start",
+        TableRowAlign.Center => "rt-align-center",
+        TableRowAlign.End => "rt-align-end",
+        TableRowAlign.Baseline => "rt-align-baseline",
+        _ => ""
+    };
+}

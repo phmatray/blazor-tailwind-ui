@@ -1,0 +1,31 @@
+@namespace Radixor.Components.Feedback
+@inherits Radixor.Components.Base.SpacingComponentBase
+
+<div class="@CalloutCssClass" data-accent-color="@(Color?.ToLower())" style="@GetStyle()" @attributes="AdditionalAttributes">
+    @if (Icon != null)
+    {
+        <div class="rt-CalloutIcon">
+            @Icon
+        </div>
+    }
+    <div class="rt-CalloutContent">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    [Parameter] public RenderFragment? Icon { get; set; }
+    
+    private string CalloutCssClass => new CssBuilder("rt-Callout")
+        .AddClass($"rt-r-size-{((int)Size) + 1}")
+        .AddClass($"rt-variant-{Variant.ToString().ToLower()}")
+        .AddClass("rt-high-contrast", HighContrast)
+        .AddClass(GetMarginClasses())
+        .AddClass(Class)
+        .Build();
+    
+    private string GetStyle()
+    {
+        return "";
+    }
+}

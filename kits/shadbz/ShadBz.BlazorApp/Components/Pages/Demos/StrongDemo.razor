@@ -1,0 +1,211 @@
+@page "/demos/strong"
+
+<PageTitle>Strong Component Demo</PageTitle>
+
+<Container Size="ContainerSize.Size2">
+    <Flex Direction="FlexDirection.Column" Gap="8">
+        <Heading Size="HeadingSize.Size8">Strong Component Demo</Heading>
+        
+        @* Basic Example *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Basic Usage</Heading>
+            <Text>
+                The most important thing to remember is, <Strong>stay positive</Strong>.
+            </Text>
+        </Flex>
+        
+        @* Multiple Strong Elements *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Multiple Strong Elements</Heading>
+            <Text>
+                <Strong>Warning:</Strong> This action is <Strong>irreversible</Strong>. 
+                Please make sure you have <Strong>backed up your data</Strong> before proceeding.
+            </Text>
+        </Flex>
+        
+        @* Truncate Example *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Truncated Strong Text</Heading>
+            <Flex MaxWidth="300px">
+                <Text>
+                    <Strong Truncate="true">
+                        This is a very long piece of strong text that will be truncated with an ellipsis 
+                        when it exceeds the width of its container
+                    </Strong>
+                </Text>
+            </Flex>
+        </Flex>
+        
+        @* Wrap Options *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Wrap Options</Heading>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Wrap (default)</Text>
+                <Box MaxWidth="250px" P="3" Style="border: 1px solid var(--gray-6);">
+                    <Text>
+                        <Strong Wrap="StrongWrap.Wrap">
+                            This is strong text that demonstrates how text wrapping works with different wrap options
+                        </Strong>
+                    </Text>
+                </Box>
+            </Box>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Nowrap</Text>
+                <Box MaxWidth="250px" P="3" Style="border: 1px solid var(--gray-6); overflow: auto;">
+                    <Text>
+                        <Strong Wrap="StrongWrap.Nowrap">
+                            This is strong text that demonstrates how text wrapping works with different wrap options
+                        </Strong>
+                    </Text>
+                </Box>
+            </Box>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Pretty</Text>
+                <Box MaxWidth="250px" P="3" Style="border: 1px solid var(--gray-6);">
+                    <Text>
+                        <Strong Wrap="StrongWrap.Pretty">
+                            This is strong text that demonstrates how text wrapping works with different wrap options
+                        </Strong>
+                    </Text>
+                </Box>
+            </Box>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Balance</Text>
+                <Box MaxWidth="250px" P="3" Style="border: 1px solid var(--gray-6);">
+                    <Text>
+                        <Strong Wrap="StrongWrap.Balance">
+                            This is strong text that demonstrates how text wrapping works with different wrap options
+                        </Strong>
+                    </Text>
+                </Box>
+            </Box>
+        </Flex>
+        
+        @* In Different Contexts *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">In Different Contexts</Heading>
+            
+            <Card Size="CardSize.Size2">
+                <Text>
+                    <Strong>Important Notice:</Strong> Your subscription will renew automatically 
+                    unless cancelled at least 24 hours before the end of the current period.
+                </Text>
+            </Card>
+            
+            <Callout Size="CalloutSize.Size2">
+                <Text>
+                    <Strong>Pro tip:</Strong> Use keyboard shortcuts to speed up your workflow. 
+                    Press <Kbd>Ctrl</Kbd> + <Kbd>K</Kbd> to open the command palette.
+                </Text>
+            </Callout>
+        </Flex>
+        
+        @* Combined with Other Formatting *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Combined with Other Formatting</Heading>
+            <Text>
+                The <Strong><Code>useState</Code></Strong> hook is <Strong>essential</Strong> for managing state in React.
+                As the documentation states: <Quote><Strong>Never mutate state directly</Strong></Quote>.
+            </Text>
+        </Flex>
+        
+        @* Nested Strong Elements *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Nested Strong Elements</Heading>
+            <Text>
+                <Strong>
+                    This entire sentence is strong, but <Strong style="color: var(--red-9);">
+                    this part is extra important</Strong> and styled differently.
+                </Strong>
+            </Text>
+        </Flex>
+        
+        @* With Different Text Sizes *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Different Text Sizes</Heading>
+            
+            <Text Size="TextSize.Size1">
+                Small text with <Strong>strong emphasis</Strong>.
+            </Text>
+            
+            <Text Size="TextSize.Size3">
+                Regular text with <Strong>strong emphasis</Strong>.
+            </Text>
+            
+            <Text Size="TextSize.Size5">
+                Large text with <Strong>strong emphasis</Strong>.
+            </Text>
+            
+            <Text Size="TextSize.Size7">
+                Extra large text with <Strong>strong emphasis</Strong>.
+            </Text>
+        </Flex>
+        
+        @* Lists with Strong Text *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Lists with Strong Text</Heading>
+            <Box>
+                <ul>
+                    <li><Strong>First priority:</Strong> Fix critical bugs</li>
+                    <li><Strong>Second priority:</Strong> Implement new features</li>
+                    <li><Strong>Third priority:</Strong> Performance optimizations</li>
+                </ul>
+            </Box>
+        </Flex>
+        
+        @* Real-World Examples *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Real-World Examples</Heading>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size3" Mb="2">Error Message</Heading>
+                <Text Color="red">
+                    <Strong>Error:</Strong> Failed to connect to database. 
+                    <Strong>Please check your connection settings</Strong> and try again.
+                </Text>
+            </Box>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size3" Mb="2">Success Message</Heading>
+                <Text Color="green">
+                    <Strong>Success!</Strong> Your changes have been saved. 
+                    The updates will take effect <Strong>immediately</Strong>.
+                </Text>
+            </Box>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size3" Mb="2">Documentation</Heading>
+                <Text>
+                    <Strong>Note:</Strong> This method is <Strong>deprecated</Strong> as of version 5.0. 
+                    Please use <Code>newMethod()</Code> instead. 
+                    Support for this method will be <Strong>removed in version 6.0</Strong>.
+                </Text>
+            </Box>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size3" Mb="2">Terms and Conditions</Heading>
+                <Text Size="TextSize.Size2">
+                    By clicking "Accept", you agree to our <Strong>Terms of Service</Strong> and 
+                    acknowledge that you have read our <Strong>Privacy Policy</Strong>. 
+                    This agreement is <Strong>legally binding</Strong>.
+                </Text>
+            </Box>
+        </Flex>
+        
+        @* Accessibility Note *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Accessibility Note</Heading>
+            <Callout Size="CalloutSize.Size2">
+                <Text>
+                    The <Strong>strong</Strong> element indicates that its contents have 
+                    <Strong>strong importance, seriousness, or urgency</Strong>. 
+                    Screen readers will typically announce strong text with verbal stress.
+                </Text>
+            </Callout>
+        </Flex>
+    </Flex>
+</Container>

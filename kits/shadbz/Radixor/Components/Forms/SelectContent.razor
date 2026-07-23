@@ -1,0 +1,13 @@
+@namespace Radixor.Components.Forms
+@typeparam TValue
+
+@if (SelectRoot?.IsOpen == true)
+{
+    <div class="rt-SelectContent" @attributes="GetContentAttributes()">
+        <div class="rt-SelectViewport">
+            <div class="rt-SelectContentWrapper">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+}

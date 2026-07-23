@@ -1,0 +1,270 @@
+@page "/code"
+
+<div class="demo-container">
+    <h1>Code Component</h1>
+    <p>Marks text as computer code with monospaced font.</p>
+    
+    <div class="demo-section">
+        <h2>Basic Code</h2>
+        <div class="demo-example">
+            <Text Size="TextSize.Size3">
+                The <Code>console.log()</Code> function writes a message to the console.
+                You can also use <Code>console.error()</Code> for errors.
+            </Text>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Different Sizes</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Text Size="TextSize.Size1">
+                    Size 1: <Code Size="CodeSize.Size1">const tiny = true;</Code>
+                </Text>
+                <Text Size="TextSize.Size2">
+                    Size 2: <Code Size="CodeSize.Size2">const small = true;</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    Size 3: <Code Size="CodeSize.Size3">const medium = true;</Code>
+                </Text>
+                <Text Size="TextSize.Size4">
+                    Size 4: <Code Size="CodeSize.Size4">const large = true;</Code>
+                </Text>
+                <Text Size="TextSize.Size5">
+                    Size 5: <Code Size="CodeSize.Size5">const xlarge = true;</Code>
+                </Text>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Different Variants</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Text Size="TextSize.Size3">
+                    Solid: <Code Variant="CodeVariant.Solid">background: solid</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    Soft: <Code Variant="CodeVariant.Soft">background: soft</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    Outline: <Code Variant="CodeVariant.Outline">border: outline</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    Ghost: <Code Variant="CodeVariant.Ghost">background: transparent</Code>
+                </Text>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Different Weights</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Text Size="TextSize.Size3">
+                    Light: <Code Weight="CodeWeight.Light">font-weight: 300</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    Regular: <Code Weight="CodeWeight.Regular">font-weight: 400</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    Medium: <Code Weight="CodeWeight.Medium">font-weight: 500</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    Bold: <Code Weight="CodeWeight.Bold">font-weight: 700</Code>
+                </Text>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Different Colors</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Text Size="TextSize.Size3">
+                    Gray: <Code Color="gray">defaultColor()</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    Blue: <Code Color="blue">primaryAction()</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    Green: <Code Color="green">successStatus()</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    Yellow: <Code Color="yellow">warningLevel()</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    Red: <Code Color="red">errorState()</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    Purple: <Code Color="purple">customTheme()</Code>
+                </Text>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>High Contrast</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Text Size="TextSize.Size3">
+                    Regular: <Code Color="blue">normalContrast()</Code>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    High Contrast: <Code Color="blue" HighContrast="true">highContrast()</Code>
+                </Text>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>In Context</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap4">
+                <Card>
+                    <Heading Size="HeadingSize.Size3" Mb="2">Installation</Heading>
+                    <Text Size="TextSize.Size2">
+                        To install the package, run <Code>npm install @@radix-ui/themes</Code> or 
+                        <Code>yarn add @@radix-ui/themes</Code> in your terminal.
+                    </Text>
+                </Card>
+                
+                <Card>
+                    <Heading Size="HeadingSize.Size3" Mb="2">Configuration</Heading>
+                    <Text Size="TextSize.Size2" Mb="2">
+                        Add the following to your <Code>app.config.js</Code> file:
+                    </Text>
+                    <Box P="3" Style="background: var(--gray-2); border-radius: var(--radius-2); font-family: monospace;">
+                        <Code Variant="CodeVariant.Ghost">export default {</Code><br />
+                        <Code Variant="CodeVariant.Ghost">  theme: 'dark',</Code><br />
+                        <Code Variant="CodeVariant.Ghost">  colors: ['blue', 'green']</Code><br />
+                        <Code Variant="CodeVariant.Ghost">}</Code>
+                    </Box>
+                </Card>
+                
+                <Card>
+                    <Heading Size="HeadingSize.Size3" Mb="2">API Reference</Heading>
+                    <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap2">
+                        <Flex Gap="FlexGap.Gap2" Align="FlexAlign.Center">
+                            <Code Color="blue">getData()</Code>
+                            <Text Size="TextSize.Size2" Color="TextColor.Gray">- Returns the current data</Text>
+                        </Flex>
+                        <Flex Gap="FlexGap.Gap2" Align="FlexAlign.Center">
+                            <Code Color="blue">setData(value)</Code>
+                            <Text Size="TextSize.Size2" Color="TextColor.Gray">- Updates the data</Text>
+                        </Flex>
+                        <Flex Gap="FlexGap.Gap2" Align="FlexAlign.Center">
+                            <Code Color="blue">resetData()</Code>
+                            <Text Size="TextSize.Size2" Color="TextColor.Gray">- Resets to default</Text>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Inline vs Block</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Inline (default):</Text>
+                    <Text Size="TextSize.Size2">
+                        The function <Code>parseInt()</Code> parses a string and returns an integer.
+                        Use <Code>parseFloat()</Code> for decimal numbers.
+                    </Text>
+                </Box>
+                
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Block-like with background:</Text>
+                    <Box P="3" Style="background: var(--gray-2); border-radius: var(--radius-2);">
+                        <Code Size="CodeSize.Size2" Variant="CodeVariant.Ghost">
+                            function greet(name) {<br />
+                            &nbsp;&nbsp;return `Hello, ${name}!`;<br />
+                            }
+                        </Code>
+                    </Box>
+                </Box>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Combined with Other Components</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Callout Color="blue">
+                    <ChildContent>
+                        <Text Size="TextSize.Size2">
+                            <strong>Tip:</strong> Use <Code>Ctrl+Space</Code> to trigger autocomplete in your editor.
+                        </Text>
+                    </ChildContent>
+                </Callout>
+                
+                <Badge Variant="BadgeVariant.Soft" Color="purple">
+                    <Code Size="CodeSize.Size1" Variant="CodeVariant.Ghost">v2.0.0</Code>
+                </Badge>
+                
+                <Button Variant="ButtonVariant.Soft">
+                    Copy <Code Size="CodeSize.Size1" Variant="CodeVariant.Ghost" Color="gray">npm install</Code>
+                </Button>
+            </Flex>
+        </div>
+    </div>
+</div>
+
+<style>
+    .demo-container {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .demo-section {
+        margin-bottom: 3rem;
+    }
+    
+    .demo-section h2 {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    
+    .demo-example {
+        padding: 2rem;
+        background: var(--gray-2);
+        border-radius: var(--radius-3);
+    }
+    
+    /* Code styles */
+    .rt-Code {
+        font-family: var(--code-font-family);
+        font-variant-ligatures: none;
+        border-radius: var(--radius-2);
+        padding: 0.1em 0.4em;
+        white-space: nowrap;
+    }
+    
+    .rt-Code.rt-variant-solid {
+        background: var(--color-a9);
+        color: white;
+    }
+    
+    .rt-Code.rt-variant-soft {
+        background: var(--color-a3);
+        color: var(--color-a11);
+    }
+    
+    .rt-Code.rt-variant-outline {
+        border: 1px solid var(--color-a6);
+        color: var(--color-a11);
+    }
+    
+    .rt-Code.rt-variant-ghost {
+        color: var(--color-a11);
+    }
+    
+    .rt-Code.rt-high-contrast {
+        background: var(--color-a10);
+    }
+</style>

@@ -1,0 +1,372 @@
+@page "/demos/popover"
+
+<PageTitle>Popover Component - Radix UI Blazor</PageTitle>
+
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="HeadingSize.Size8" Mb="2">Popover</Heading>
+                <Text Size="4" Color="gray">
+                    Displays rich content in a portal, triggered by a button.
+                </Text>
+            </Box>
+
+            <!-- Basic Popover -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Basic Popover</Heading>
+                <Card>
+                    <PopoverRoot>
+                        <PopoverTrigger>
+                            <Button>Open Popover</Button>
+                        </PopoverTrigger>
+                        <PopoverContent>
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Heading Size="HeadingSize.Size4">Popover Title</Heading>
+                                <Text Size="2">
+                                    This is a basic popover with some content. Click outside or press Escape to close.
+                                </Text>
+                                <PopoverClose AsChild="true">
+                                    <Button Size="ButtonSize.Small" Variant="ButtonVariant.Soft">Close</Button>
+                                </PopoverClose>
+                            </Flex>
+                        </PopoverContent>
+                    </PopoverRoot>
+                </Card>
+            </Box>
+
+            <!-- Popover with Form -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Popover with Form</Heading>
+                <Card>
+                    <PopoverRoot>
+                        <PopoverTrigger>
+                            <Button Variant="ButtonVariant.Outline">Update Status</Button>
+                        </PopoverTrigger>
+                        <PopoverContent Size="PopoverSize.Size3">
+                            <Flex Direction="FlexDirection.Column" Gap="4">
+                                <Box>
+                                    <Heading Size="HeadingSize.Size4" Mb="2">Update Status</Heading>
+                                    <Text Size="2" Color="gray">Set your current status</Text>
+                                </Box>
+                                
+                                <Box>
+                                    <Text Size="2" Weight="TextWeight.Medium" Mb="1">Status</Text>
+                                    <SelectRoot DefaultValue="@("online")">
+                                        <SelectTrigger TValue="string" Placeholder="Select status" />
+                                        <SelectContent TValue="string">
+                                            <SelectItem TValue="string" Value="@("online")">🟢 Online</SelectItem>
+                                            <SelectItem TValue="string" Value="@("away")">🟡 Away</SelectItem>
+                                            <SelectItem TValue="string" Value="@("busy")">🔴 Busy</SelectItem>
+                                            <SelectItem TValue="string" Value="@("offline")">⚫ Offline</SelectItem>
+                                        </SelectContent>
+                                    </SelectRoot>
+                                </Box>
+                                
+                                <Box>
+                                    <Text Size="2" Weight="TextWeight.Medium" Mb="1">Message</Text>
+                                    <TextFieldRoot Size="TextFieldSize.Size2" Placeholder="What's your status?" />
+                                </Box>
+                                
+                                <Flex Gap="2" Justify="FlexJustify.End">
+                                    <PopoverClose AsChild="true">
+                                        <Button Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">Cancel</Button>
+                                    </PopoverClose>
+                                    <PopoverClose AsChild="true">
+                                        <Button Size="ButtonSize.Small">Save</Button>
+                                    </PopoverClose>
+                                </Flex>
+                            </Flex>
+                        </PopoverContent>
+                    </PopoverRoot>
+                </Card>
+            </Box>
+
+            <!-- Popover Positions -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Popover Positions</Heading>
+                <Card>
+                    <Grid Columns="3" Gap="4">
+                        @foreach (var side in Enum.GetValues<PopoverSide>())
+                        {
+                            <PopoverRoot>
+                                <PopoverTrigger>
+                                    <Button Variant="ButtonVariant.Outline" Style="width: 100%;">@side</Button>
+                                </PopoverTrigger>
+                                <PopoverContent Side="@side" Size="PopoverSize.Size2">
+                                    <Text Size="2">Popover positioned on the @side</Text>
+                                </PopoverContent>
+                            </PopoverRoot>
+                        }
+                    </Grid>
+                </Card>
+            </Box>
+
+            <!-- Popover Sizes -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Popover Sizes</Heading>
+                <Card>
+                    <Flex Gap="3" Wrap="FlexWrap.Wrap">
+                        @foreach (var size in Enum.GetValues<PopoverSize>())
+                        {
+                            <PopoverRoot>
+                                <PopoverTrigger>
+                                    <Button Variant="ButtonVariant.Soft">@size</Button>
+                                </PopoverTrigger>
+                                <PopoverContent Size="@size">
+                                    <Box>
+                                        <Heading Size="HeadingSize.Size4" Mb="2">@size Popover</Heading>
+                                        <Text Size="2">
+                                            This is a @size sized popover. Notice how the width changes based on the size.
+                                        </Text>
+                                    </Box>
+                                </PopoverContent>
+                            </PopoverRoot>
+                        }
+                    </Flex>
+                </Card>
+            </Box>
+
+            <!-- Controlled Popover -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Controlled Popover</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Flex Gap="2" Align="FlexAlign.Center">
+                            <Switch @bind-Checked="_isPopoverOpen" />
+                            <Text Size="2">Popover is @(_isPopoverOpen ? "open" : "closed")</Text>
+                        </Flex>
+                        
+                        <PopoverRoot @bind-Open="_isPopoverOpen">
+                            <PopoverTrigger>
+                                <Button>Toggle Popover</Button>
+                            </PopoverTrigger>
+                            <PopoverContent>
+                                <Box>
+                                    <Heading Size="HeadingSize.Size4" Mb="2">Controlled Popover</Heading>
+                                    <Text Size="2">
+                                        This popover's open state is controlled by the parent component.
+                                        You can toggle it using the switch above.
+                                    </Text>
+                                </Box>
+                            </PopoverContent>
+                        </PopoverRoot>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <!-- Modal Popover -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Modal Popover</Heading>
+                <Card>
+                    <Flex Gap="3">
+                        <PopoverRoot Modal="false">
+                            <PopoverTrigger>
+                                <Button Variant="ButtonVariant.Outline">Non-Modal</Button>
+                            </PopoverTrigger>
+                            <PopoverContent>
+                                <Box>
+                                    <Heading Size="HeadingSize.Size4" Mb="2">Non-Modal Popover</Heading>
+                                    <Text Size="2">
+                                        This popover doesn't block interaction with the rest of the page.
+                                        You can interact with other elements while it's open.
+                                    </Text>
+                                </Box>
+                            </PopoverContent>
+                        </PopoverRoot>
+                        
+                        <PopoverRoot Modal="true">
+                            <PopoverTrigger>
+                                <Button>Modal</Button>
+                            </PopoverTrigger>
+                            <PopoverContent>
+                                <Box>
+                                    <Heading Size="HeadingSize.Size4" Mb="2">Modal Popover</Heading>
+                                    <Text Size="2">
+                                        This popover blocks interaction with the rest of the page.
+                                        You must close it to interact with other elements.
+                                    </Text>
+                                </Box>
+                            </PopoverContent>
+                        </PopoverRoot>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <!-- Complex Example - User Profile -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">User Profile Popover</Heading>
+                <Card>
+                    <PopoverRoot>
+                        <PopoverTrigger>
+                            <Button Variant="ButtonVariant.Ghost">
+                                <Flex Align="FlexAlign.Center" Gap="2">
+                                    <Avatar Size="AvatarSize.Size1">
+                                        <Fallback>JD</Fallback>
+                                    </Avatar>
+                                    <Text Size="2">John Doe</Text>
+                                </Flex>
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent Size="PopoverSize.Size3">
+                            <Flex Direction="FlexDirection.Column" Gap="4">
+                                <Flex Align="FlexAlign.Center" Gap="3">
+                                    <Avatar Size="AvatarSize.Size3">
+                                        <Fallback>JD</Fallback>
+                                    </Avatar>
+                                    <Box>
+                                        <Heading Size="HeadingSize.Size4">John Doe</Heading>
+                                        <Text Size="2" Color="gray">john.doe@example.com</Text>
+                                    </Box>
+                                </Flex>
+                                
+                                <Separator />
+                                
+                                <Flex Direction="FlexDirection.Column" Gap="1">
+                                    <Button Variant="ButtonVariant.Ghost" Size="ButtonSize.Small" Style="justify-content: start;">
+                                        View Profile
+                                    </Button>
+                                    <Button Variant="ButtonVariant.Ghost" Size="ButtonSize.Small" Style="justify-content: start;">
+                                        Settings
+                                    </Button>
+                                    <Button Variant="ButtonVariant.Ghost" Size="ButtonSize.Small" Style="justify-content: start;">
+                                        Help Center
+                                    </Button>
+                                </Flex>
+                                
+                                <Separator />
+                                
+                                <PopoverClose AsChild="true">
+                                    <Button Variant="ButtonVariant.Soft" Size="ButtonSize.Small" Color="red">
+                                        Sign Out
+                                    </Button>
+                                </PopoverClose>
+                            </Flex>
+                        </PopoverContent>
+                    </PopoverRoot>
+                </Card>
+            </Box>
+
+            <!-- Complex Example - Notifications -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Notifications Popover</Heading>
+                <Card>
+                    <PopoverRoot>
+                        <PopoverTrigger>
+                            <IconButton>
+                                🔔
+                            </IconButton>
+                        </PopoverTrigger>
+                        <PopoverContent Size="PopoverSize.Size4">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                    <Heading Size="HeadingSize.Size4">Notifications</Heading>
+                                    <Link Size="2">Mark all as read</Link>
+                                </Flex>
+                                
+                                <Separator />
+                                
+                                @for (int i = 1; i <= 3; i++)
+                                {
+                                    <Box P="2" Style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                                        <Flex Gap="2">
+                                            <Box Width="2" Height="2" Mt="1" Style="background: var(--blue-9); border-radius: 50%; flex-shrink: 0;"></Box>
+                                            <Flex Direction="FlexDirection.Column" Gap="1">
+                                                <Text Size="2" Weight="TextWeight.Medium">New message from User @i</Text>
+                                                <Text Size="1" Color="gray">@i hours ago</Text>
+                                            </Flex>
+                                        </Flex>
+                                    </Box>
+                                }
+                                
+                                <PopoverClose AsChild="true">
+                                    <Button Variant="ButtonVariant.Soft" Size="ButtonSize.Small" Style="width: 100%;">
+                                        View All Notifications
+                                    </Button>
+                                </PopoverClose>
+                            </Flex>
+                        </PopoverContent>
+                    </PopoverRoot>
+                </Card>
+            </Box>
+
+            <!-- Interactive Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Interactive Example</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Grid Columns="3" Gap="3">
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Size</Text>
+                                <SelectRoot @bind-Value="_selectedSize">
+                                    <SelectTrigger TValue="string" Placeholder="Select size" />
+                                    <SelectContent TValue="string">
+                                        @foreach (var size in Enum.GetValues<PopoverSize>())
+                                        {
+                                            <SelectItem TValue="string" Value="@size.ToString()">@size</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Side</Text>
+                                <SelectRoot @bind-Value="_selectedSide">
+                                    <SelectTrigger TValue="string" Placeholder="Select side" />
+                                    <SelectContent TValue="string">
+                                        @foreach (var side in Enum.GetValues<PopoverSide>())
+                                        {
+                                            <SelectItem TValue="string" Value="@side.ToString()">@side</SelectItem>
+                                        }
+                                    </SelectContent>
+                                </SelectRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="2">Modal</Text>
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Switch @bind-Checked="_isModal" />
+                                    <Text Size="2">@(_isModal ? "Modal" : "Non-modal")</Text>
+                                </Flex>
+                            </Box>
+                        </Grid>
+                        
+                        <Separator />
+                        
+                        <Box Style="text-align: center;">
+                            <PopoverRoot Modal="@_isModal">
+                                <PopoverTrigger>
+                                    <Button>Open Custom Popover</Button>
+                                </PopoverTrigger>
+                                <PopoverContent Size="@GetPopoverSize()" Side="@GetPopoverSide()">
+                                    <Box>
+                                        <Heading Size="HeadingSize.Size4" Mb="2">Custom Popover</Heading>
+                                        <Text Size="2" Mb="3">
+                                            This popover uses your selected settings:
+                                        </Text>
+                                        <Box P="3" Style="background: var(--gray-a2); border-radius: var(--radius-2);">
+                                            <Text Size="2">
+                                                Size: @_selectedSize<br />
+                                                Side: @_selectedSide<br />
+                                                Modal: @_isModal
+                                            </Text>
+                                        </Box>
+                                    </Box>
+                                </PopoverContent>
+                            </PopoverRoot>
+                        </Box>
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Section>
+</Container>
+
+@code {
+    private bool _isPopoverOpen = false;
+    private string _selectedSize = "Size2";
+    private string _selectedSide = "Bottom";
+    private bool _isModal = false;
+    
+    private PopoverSize GetPopoverSize() => Enum.Parse<PopoverSize>(_selectedSize);
+    private PopoverSide GetPopoverSide() => Enum.Parse<PopoverSide>(_selectedSide);
+}

@@ -1,0 +1,161 @@
+@page "/"
+
+<PageTitle>Radix UI Blazor Components</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="8" Weight="TextWeight.Bold" Align="TextAlign.Center" Mb="2">
+                    Radix UI for Blazor
+                </Heading>
+                <Text Size="5" Align="TextAlign.Center" Color="gray">
+                    A comprehensive port of Radix UI components to Blazor
+                </Text>
+            </Box>
+
+            <Box Mt="6">
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Component Demos
+                </Heading>
+                
+                <Grid Columns="3" Gap="4">
+                    @RenderCard("Button", "Interactive button component with multiple variants and sizes", "/button-demo", true)
+                    @RenderCard("Box", "Fundamental layout component with flexible styling options", "/box-demo", true)
+                    @RenderCard("Text", "Typography component for rendering text with various styles", "/text-demo", true)
+                    @RenderCard("Heading", "Semantic heading component with size and weight variants", "/heading-demo", true)
+                    @RenderCard("Flex", "Flexbox layout component for flexible arrangements", "/flex-demo", true)
+                    @RenderCard("Grid", "CSS Grid layout component for complex layouts", "/grid-demo", true)
+                    @RenderCard("Container", "Responsive container with max-width constraints", "/container-demo", true)
+                    @RenderCard("Section", "Semantic section component with vertical spacing", "/section-demo", true)
+                    @RenderCard("Card", "Container component for grouping related content", "/card-demo", true)
+                    @RenderCard("Link", "Text-based navigation component with underline styles", "/link-demo", true)
+                    @RenderCard("Avatar", "User avatar with image fallback and initials", "/avatar-demo", true)
+                    @RenderCard("Badge", "Small label component for status and counts", "/badge-demo", true)
+                    @RenderCard("Separator", "Visually or semantically separates content", "/separator-demo", true)
+                    @RenderCard("IconButton", "Button optimized for single icon display", "/icon-button-demo", true)
+                    @RenderCard("Checkbox", "Interactive checkbox with multiple states", "/checkbox-demo", true)
+                    @RenderCard("Radio", "Single-choice selection from multiple options", "/radio-demo", true)
+                    @RenderCard("Switch", "Toggle switch for binary on/off states", "/switch-demo", true)
+                    @RenderCard("TextField", "Text input field with slots and validation", "/text-field-demo", true)
+                    @RenderCard("TextArea", "Multi-line text input with resizing options", "/text-area-demo", true)
+                    @RenderCard("Select", "Customizable dropdown selection component", "/select-demo", true)
+                    @RenderCard("Slider", "Input control for selecting numeric values", "/slider-demo", true)
+                    @RenderCard("Progress", "Visual indicator for task completion", "/progress-demo", true)
+                    @RenderCard("Spinner", "Loading indicator with overlay support", "/demos/spinner", true)
+                    @RenderCard("Dialog", "Modal dialog for important interactions", "/demos/dialog", true)
+                    @RenderCard("AlertDialog", "Critical action confirmation dialog", "/demos/alert-dialog", true)
+                    @RenderCard("Popover", "Rich content in a floating portal", "/demos/popover", true)
+                    @RenderCard("DropdownMenu", "Menu for actions and functions", "/demos/dropdown-menu", true)
+                    @RenderCard("ContextMenu", "Right-click menu at pointer position", "/demos/context-menu", true)
+                    @RenderCard("Tooltip", "Informative popup on hover or focus", "/demos/tooltip", true)
+                    @RenderCard("HoverCard", "Rich content preview on hover", "/hovercard", true)
+                    @RenderCard("Tabs", "Layered sections of content", "/tabs", true)
+                    @RenderCard("ScrollArea", "Custom scrollbar styling", "/scroll-area", true)
+                    @RenderCard("Table", "Semantic table with variants", "/table", true)
+                    @RenderCard("Callout", "Informational panel with icon support", "/callout", true)
+                    @RenderCard("Code", "Inline code formatting", "/code", true)
+                    @RenderCard("Em", "Emphasized text styling", "/demos/em", true)
+                    @RenderCard("Kbd", "Keyboard input or hotkeys", "/demos/kbd", true)
+                    @RenderCard("Quote", "Inline quotation marks", "/demos/quote", true)
+                    @RenderCard("Strong", "Strong importance text", "/demos/strong", true)
+                    @RenderCard("Blockquote", "Block-level quotations", "/demos/blockquote", true)
+                    @RenderCard("AspectRatio", "Maintains content within a desired ratio", "/aspect-ratio-demo", true)
+                    @RenderCard("Skeleton", "Loading placeholders for content", "/skeleton-demo", true)
+                </Grid>
+            </Box>
+
+            <Box Mt="6">
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Coming Soon
+                </Heading>
+                
+                <Grid Columns="3" Gap="4">
+                    @RenderCard("Accordion", "Expandable content sections", null, false)
+                    @RenderCard("Toast", "Brief notification messages", null, false)
+                    @RenderCard("Breadcrumb", "Navigation hierarchy display", null, false)
+                </Grid>
+            </Box>
+
+            <Box Mt="6">
+                <Heading Size="6" Weight="TextWeight.Medium" Mb="4">
+                    Project Status
+                </Heading>
+                
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Flex Align="FlexAlign.Center" Gap="2">
+                        <Box Width="4" Height="4" Style="background: var(--green-9); border-radius: var(--radius-1);"></Box>
+                        <Text Size="3">42 Components Completed</Text>
+                    </Flex>
+                    <Flex Align="FlexAlign.Center" Gap="2">
+                        <Box Width="4" Height="4" Style="background: var(--gray-6); border-radius: var(--radius-1);"></Box>
+                        <Text Size="3">14 Components Pending</Text>
+                    </Flex>
+                    <Flex Align="FlexAlign.Center" Gap="2">
+                        <Box Width="4" Height="4" Style="background: var(--blue-9); border-radius: var(--radius-1);"></Box>
+                        <Text Size="3">Code refactored with shared base classes</Text>
+                    </Flex>
+                </Flex>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
+
+@code {
+    private RenderFragment RenderCard(string title, string description, string? href, bool isCompleted)
+    {
+        return builder =>
+        {
+            builder.OpenComponent<Box>(0);
+            builder.AddAttribute(1, "P", "4");
+            builder.AddAttribute(2, "Style", $"background: var(--gray-2); border-radius: var(--radius-3); border: 1px solid var(--gray-4); height: 100%; {(isCompleted ? "" : "opacity: 0.6;")}");
+            builder.AddAttribute(3, "ChildContent", (RenderFragment)(builder2 =>
+            {
+                builder2.OpenComponent<Flex>(4);
+                builder2.AddAttribute(5, "Direction", FlexDirection.Column);
+                builder2.AddAttribute(6, "Gap", "2");
+                builder2.AddAttribute(7, "Height", "100%");
+                builder2.AddAttribute(8, "ChildContent", (RenderFragment)(builder3 =>
+                {
+                    // Title
+                    builder3.OpenComponent<Heading>(9);
+                    builder3.AddAttribute(10, "Size", "4");
+                    builder3.AddAttribute(11, "Weight", TextWeight.Medium);
+                    builder3.AddAttribute(12, "ChildContent", (RenderFragment)(builder4 =>
+                    {
+                        builder4.AddContent(13, title);
+                    }));
+                    builder3.CloseComponent();
+
+                    // Description
+                    builder3.OpenComponent<Text>(14);
+                    builder3.AddAttribute(15, "Size", "2");
+                    builder3.AddAttribute(16, "Color", "gray");
+                    builder3.AddAttribute(17, "ChildContent", (RenderFragment)(builder4 =>
+                    {
+                        builder4.AddContent(18, description);
+                    }));
+                    builder3.CloseComponent();
+
+                    // Link (if provided)
+                    if (!string.IsNullOrEmpty(href))
+                    {
+                        builder3.OpenComponent<Box>(19);
+                        builder3.AddAttribute(20, "Mt", "auto");
+                        builder3.AddAttribute(21, "ChildContent", (RenderFragment)(builder4 =>
+                        {
+                            builder4.OpenElement(22, "a");
+                            builder4.AddAttribute(23, "href", href);
+                            builder4.AddAttribute(24, "style", "color: var(--accent-9); text-decoration: none; font-size: var(--font-size-2);");
+                            builder4.AddContent(25, "View Demo →");
+                            builder4.CloseElement();
+                        }));
+                        builder3.CloseComponent();
+                    }
+                }));
+                builder2.CloseComponent();
+            }));
+            builder.CloseComponent();
+        };
+    }
+}

@@ -1,0 +1,206 @@
+@page "/demos/kbd"
+
+<PageTitle>Kbd Component Demo</PageTitle>
+
+<Container Size="ContainerSize.Size2">
+    <Flex Direction="FlexDirection.Column" Gap="8">
+        <Heading Size="HeadingSize.Size8">Kbd Component Demo</Heading>
+        
+        @* Basic Example *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Basic Usage</Heading>
+            <Text>
+                Press <Kbd>Shift</Kbd> + <Kbd>Tab</Kbd> to navigate backwards
+            </Text>
+        </Flex>
+        
+        @* Sizes *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Sizes</Heading>
+            <Flex Direction="FlexDirection.Column" Align="FlexAlign.Start" Gap="3">
+                <Text Size="TextSize.Size1">
+                    <Kbd Size="KbdSize.Size1">Shift + Tab</Kbd>
+                </Text>
+                <Text Size="TextSize.Size2">
+                    <Kbd Size="KbdSize.Size2">Shift + Tab</Kbd>
+                </Text>
+                <Text Size="TextSize.Size3">
+                    <Kbd Size="KbdSize.Size3">Shift + Tab</Kbd>
+                </Text>
+                <Text Size="TextSize.Size4">
+                    <Kbd Size="KbdSize.Size4">Shift + Tab</Kbd>
+                </Text>
+                <Text Size="TextSize.Size5">
+                    <Kbd Size="KbdSize.Size5">Shift + Tab</Kbd>
+                </Text>
+                <Text Size="TextSize.Size6">
+                    <Kbd Size="KbdSize.Size6">Shift + Tab</Kbd>
+                </Text>
+                <Text Size="TextSize.Size7">
+                    <Kbd Size="KbdSize.Size7">Shift + Tab</Kbd>
+                </Text>
+                <Text Size="TextSize.Size8">
+                    <Kbd Size="KbdSize.Size8">Shift + Tab</Kbd>
+                </Text>
+                <Text Size="TextSize.Size9">
+                    <Kbd Size="KbdSize.Size9">Shift + Tab</Kbd>
+                </Text>
+            </Flex>
+        </Flex>
+        
+        @* Common Shortcuts *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Common Shortcuts</Heading>
+            <Flex Direction="FlexDirection.Column" Gap="2">
+                <Text>
+                    Copy: <Kbd>Ctrl</Kbd> + <Kbd>C</Kbd> (Windows/Linux) or <Kbd>⌘</Kbd> + <Kbd>C</Kbd> (Mac)
+                </Text>
+                <Text>
+                    Paste: <Kbd>Ctrl</Kbd> + <Kbd>V</Kbd> (Windows/Linux) or <Kbd>⌘</Kbd> + <Kbd>V</Kbd> (Mac)
+                </Text>
+                <Text>
+                    Undo: <Kbd>Ctrl</Kbd> + <Kbd>Z</Kbd> (Windows/Linux) or <Kbd>⌘</Kbd> + <Kbd>Z</Kbd> (Mac)
+                </Text>
+                <Text>
+                    Save: <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> (Windows/Linux) or <Kbd>⌘</Kbd> + <Kbd>S</Kbd> (Mac)
+                </Text>
+            </Flex>
+        </Flex>
+        
+        @* Special Keys *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Special Keys</Heading>
+            <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                <Kbd>Enter</Kbd>
+                <Kbd>Esc</Kbd>
+                <Kbd>Tab</Kbd>
+                <Kbd>Space</Kbd>
+                <Kbd>Backspace</Kbd>
+                <Kbd>Delete</Kbd>
+                <Kbd>Home</Kbd>
+                <Kbd>End</Kbd>
+                <Kbd>Page Up</Kbd>
+                <Kbd>Page Down</Kbd>
+                <Kbd>↑</Kbd>
+                <Kbd>↓</Kbd>
+                <Kbd>←</Kbd>
+                <Kbd>→</Kbd>
+            </Flex>
+        </Flex>
+        
+        @* Modifier Keys *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Modifier Keys</Heading>
+            <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                <Kbd>Ctrl</Kbd>
+                <Kbd>Alt</Kbd>
+                <Kbd>Shift</Kbd>
+                <Kbd>Meta</Kbd>
+                <Kbd>⌘</Kbd>
+                <Kbd>⌥</Kbd>
+                <Kbd>⇧</Kbd>
+                <Kbd>⌃</Kbd>
+                <Kbd>Fn</Kbd>
+            </Flex>
+        </Flex>
+        
+        @* Function Keys *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Function Keys</Heading>
+            <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                <Kbd>F1</Kbd>
+                <Kbd>F2</Kbd>
+                <Kbd>F3</Kbd>
+                <Kbd>F4</Kbd>
+                <Kbd>F5</Kbd>
+                <Kbd>F6</Kbd>
+                <Kbd>F7</Kbd>
+                <Kbd>F8</Kbd>
+                <Kbd>F9</Kbd>
+                <Kbd>F10</Kbd>
+                <Kbd>F11</Kbd>
+                <Kbd>F12</Kbd>
+            </Flex>
+        </Flex>
+        
+        @* Complex Combinations *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Complex Combinations</Heading>
+            <Flex Direction="FlexDirection.Column" Gap="2">
+                <Text>
+                    Force quit: <Kbd>Ctrl</Kbd> + <Kbd>Alt</Kbd> + <Kbd>Delete</Kbd>
+                </Text>
+                <Text>
+                    Switch apps: <Kbd>Alt</Kbd> + <Kbd>Tab</Kbd> or <Kbd>⌘</Kbd> + <Kbd>Tab</Kbd>
+                </Text>
+                <Text>
+                    Task Manager: <Kbd>Ctrl</Kbd> + <Kbd>Shift</Kbd> + <Kbd>Esc</Kbd>
+                </Text>
+                <Text>
+                    Developer Tools: <Kbd>F12</Kbd> or <Kbd>Ctrl</Kbd> + <Kbd>Shift</Kbd> + <Kbd>I</Kbd>
+                </Text>
+            </Flex>
+        </Flex>
+        
+        @* In Context *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">In Context</Heading>
+            <Card Size="CardSize.Size2">
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Text Weight="TextWeight.Bold">Keyboard Shortcuts</Text>
+                    <table style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Action</th>
+                                <th style="text-align: left;">Windows/Linux</th>
+                                <th style="text-align: left;">Mac</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>New file</td>
+                                <td><Kbd>Ctrl</Kbd> + <Kbd>N</Kbd></td>
+                                <td><Kbd>⌘</Kbd> + <Kbd>N</Kbd></td>
+                            </tr>
+                            <tr>
+                                <td>Open file</td>
+                                <td><Kbd>Ctrl</Kbd> + <Kbd>O</Kbd></td>
+                                <td><Kbd>⌘</Kbd> + <Kbd>O</Kbd></td>
+                            </tr>
+                            <tr>
+                                <td>Save file</td>
+                                <td><Kbd>Ctrl</Kbd> + <Kbd>S</Kbd></td>
+                                <td><Kbd>⌘</Kbd> + <Kbd>S</Kbd></td>
+                            </tr>
+                            <tr>
+                                <td>Find</td>
+                                <td><Kbd>Ctrl</Kbd> + <Kbd>F</Kbd></td>
+                                <td><Kbd>⌘</Kbd> + <Kbd>F</Kbd></td>
+                            </tr>
+                            <tr>
+                                <td>Replace</td>
+                                <td><Kbd>Ctrl</Kbd> + <Kbd>H</Kbd></td>
+                                <td><Kbd>⌘</Kbd> + <Kbd>⌥</Kbd> + <Kbd>F</Kbd></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </Flex>
+            </Card>
+        </Flex>
+        
+        @* With Other Components *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">With Other Components</Heading>
+            <Callout Size="CalloutSize.Size2">
+                <Text>
+                    Pro tip: Use <Kbd>Tab</Kbd> to navigate between form fields and <Kbd>Shift</Kbd> + <Kbd>Tab</Kbd> to go backwards.
+                </Text>
+            </Callout>
+            <Card Size="CardSize.Size2">
+                <Text>
+                    To select all text, press <Kbd>Ctrl</Kbd> + <Kbd>A</Kbd> on Windows/Linux or <Kbd>⌘</Kbd> + <Kbd>A</Kbd> on Mac.
+                </Text>
+            </Card>
+        </Flex>
+    </Flex>
+</Container>

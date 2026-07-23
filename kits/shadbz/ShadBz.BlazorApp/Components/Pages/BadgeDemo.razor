@@ -1,0 +1,241 @@
+@page "/badge-demo"
+
+<PageTitle>Badge Component Demo</PageTitle>
+
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="HeadingSize.Size8">Badge</Heading>
+                <Text Size="4" Color="gray">Small label component for status and counts.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic Badges</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <Badge>Default</Badge>
+                    <Badge Color="blue">In review</Badge>
+                    <Badge Color="green">Complete</Badge>
+                    <Badge Color="orange">In progress</Badge>
+                    <Badge Color="red">Canceled</Badge>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Badge Sizes</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <Badge Size="BadgeSize.Size1" Color="indigo">Size 1</Badge>
+                    <Badge Size="BadgeSize.Size2" Color="indigo">Size 2</Badge>
+                    <Badge Size="BadgeSize.Size3" Color="indigo">Size 3</Badge>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Badge Variants</Heading>
+                <Grid Columns="2" Gap="4">
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Soft Variant (Default)</Text>
+                            <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                                <Badge Variant="BadgeVariant.Soft" Color="indigo">Soft</Badge>
+                                <Badge Variant="BadgeVariant.Soft" Color="cyan">Soft</Badge>
+                                <Badge Variant="BadgeVariant.Soft" Color="orange">Soft</Badge>
+                                <Badge Variant="BadgeVariant.Soft" Color="crimson">Soft</Badge>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Solid Variant</Text>
+                            <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                                <Badge Variant="BadgeVariant.Solid" Color="indigo">Solid</Badge>
+                                <Badge Variant="BadgeVariant.Solid" Color="cyan">Solid</Badge>
+                                <Badge Variant="BadgeVariant.Solid" Color="orange">Solid</Badge>
+                                <Badge Variant="BadgeVariant.Solid" Color="crimson">Solid</Badge>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Surface Variant</Text>
+                            <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                                <Badge Variant="BadgeVariant.Surface" Color="indigo">Surface</Badge>
+                                <Badge Variant="BadgeVariant.Surface" Color="cyan">Surface</Badge>
+                                <Badge Variant="BadgeVariant.Surface" Color="orange">Surface</Badge>
+                                <Badge Variant="BadgeVariant.Surface" Color="crimson">Surface</Badge>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Outline Variant</Text>
+                            <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                                <Badge Variant="BadgeVariant.Outline" Color="indigo">Outline</Badge>
+                                <Badge Variant="BadgeVariant.Outline" Color="cyan">Outline</Badge>
+                                <Badge Variant="BadgeVariant.Outline" Color="orange">Outline</Badge>
+                                <Badge Variant="BadgeVariant.Outline" Color="crimson">Outline</Badge>
+                            </Flex>
+                        </Flex>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Badge Colors</Heading>
+                <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                    <Badge Color="gray">Gray</Badge>
+                    <Badge Color="gold">Gold</Badge>
+                    <Badge Color="bronze">Bronze</Badge>
+                    <Badge Color="brown">Brown</Badge>
+                    <Badge Color="yellow">Yellow</Badge>
+                    <Badge Color="amber">Amber</Badge>
+                    <Badge Color="orange">Orange</Badge>
+                    <Badge Color="tomato">Tomato</Badge>
+                    <Badge Color="red">Red</Badge>
+                    <Badge Color="ruby">Ruby</Badge>
+                    <Badge Color="crimson">Crimson</Badge>
+                    <Badge Color="pink">Pink</Badge>
+                    <Badge Color="plum">Plum</Badge>
+                    <Badge Color="purple">Purple</Badge>
+                    <Badge Color="violet">Violet</Badge>
+                    <Badge Color="iris">Iris</Badge>
+                    <Badge Color="indigo">Indigo</Badge>
+                    <Badge Color="blue">Blue</Badge>
+                    <Badge Color="cyan">Cyan</Badge>
+                    <Badge Color="teal">Teal</Badge>
+                    <Badge Color="jade">Jade</Badge>
+                    <Badge Color="green">Green</Badge>
+                    <Badge Color="grass">Grass</Badge>
+                    <Badge Color="lime">Lime</Badge>
+                    <Badge Color="mint">Mint</Badge>
+                    <Badge Color="sky">Sky</Badge>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Badge Radius</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <Badge Radius="none" Color="indigo">None</Badge>
+                    <Badge Radius="small" Color="indigo">Small</Badge>
+                    <Badge Radius="medium" Color="indigo">Medium</Badge>
+                    <Badge Radius="large" Color="indigo">Large</Badge>
+                    <Badge Radius="full" Color="indigo">Full</Badge>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">High Contrast</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <Badge Color="indigo">Normal</Badge>
+                    <Badge Color="indigo" HighContrast="true">High Contrast</Badge>
+                    <Text Size="2" Color="gray">High contrast increases background intensity</Text>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Badges with Icons</Heading>
+                <Flex Gap="3" Align="FlexAlign.Center">
+                    <Badge Color="green">
+                        <Flex Gap="1" Align="FlexAlign.Center">
+                            <Text Size="1">✓</Text>
+                            <Text>Active</Text>
+                        </Flex>
+                    </Badge>
+                    <Badge Color="orange">
+                        <Flex Gap="1" Align="FlexAlign.Center">
+                            <Text Size="1">⏳</Text>
+                            <Text>Pending</Text>
+                        </Flex>
+                    </Badge>
+                    <Badge Color="red">
+                        <Flex Gap="1" Align="FlexAlign.Center">
+                            <Text Size="1">×</Text>
+                            <Text>Closed</Text>
+                        </Flex>
+                    </Badge>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Badges in Context</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Flex Justify="FlexJustify.Between" Align="FlexAlign.Start">
+                            <Box>
+                                <Heading Size="3">Project Dashboard</Heading>
+                                <Text Size="2" Color="gray">Track your project status</Text>
+                            </Box>
+                            <Badge Color="green" Size="BadgeSize.Size2">Active</Badge>
+                        </Flex>
+                        
+                        <Grid Columns="3" Gap="3">
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text Size="2" Color="gray">Tasks</Text>
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Text Size="5" Weight="TextWeight.Bold">24</Text>
+                                    <Badge Size="BadgeSize.Size1" Color="blue">+3 new</Badge>
+                                </Flex>
+                            </Flex>
+                            
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text Size="2" Color="gray">Issues</Text>
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Text Size="5" Weight="TextWeight.Bold">7</Text>
+                                    <Badge Size="BadgeSize.Size1" Color="orange" Variant="BadgeVariant.Outline">2 urgent</Badge>
+                                </Flex>
+                            </Flex>
+                            
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text Size="2" Color="gray">Pull Requests</Text>
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Text Size="5" Weight="TextWeight.Bold">5</Text>
+                                    <Badge Size="BadgeSize.Size1" Color="green">1 ready</Badge>
+                                </Flex>
+                            </Flex>
+                        </Grid>
+                        
+                        <Flex Gap="2">
+                            <Badge Color="gray" Size="BadgeSize.Size1">Frontend</Badge>
+                            <Badge Color="gray" Size="BadgeSize.Size1">Backend</Badge>
+                            <Badge Color="gray" Size="BadgeSize.Size1">Database</Badge>
+                            <Badge Color="gray" Size="BadgeSize.Size1">API</Badge>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Badge Groups</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">User Profile</Text>
+                            <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                                <Badge Color="purple" Size="BadgeSize.Size1">Pro</Badge>
+                                <Badge Color="blue" Size="BadgeSize.Size1">Verified</Badge>
+                                <Badge Color="green" Size="BadgeSize.Size1">Online</Badge>
+                                <Badge Color="orange" Size="BadgeSize.Size1">Team Lead</Badge>
+                            </Flex>
+                        </Flex>
+                    </Card>
+                    
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Article Tags</Text>
+                            <Flex Gap="2" Wrap="FlexWrap.Wrap">
+                                <Badge Variant="BadgeVariant.Surface" Size="BadgeSize.Size2">React</Badge>
+                                <Badge Variant="BadgeVariant.Surface" Size="BadgeSize.Size2">TypeScript</Badge>
+                                <Badge Variant="BadgeVariant.Surface" Size="BadgeSize.Size2">Next.js</Badge>
+                                <Badge Variant="BadgeVariant.Surface" Size="BadgeSize.Size2">Tutorial</Badge>
+                                <Badge Variant="BadgeVariant.Surface" Size="BadgeSize.Size2" Color="cyan">Featured</Badge>
+                            </Flex>
+                        </Flex>
+                    </Card>
+                </Flex>
+            </Box>
+        </Flex>
+    </Section>
+</Container>

@@ -1,0 +1,10 @@
+@namespace Radixor.Components.Forms
+@inherits Radixor.Components.Base.SpacingComponentBase
+
+<div role="radiogroup" 
+     @attributes="GetRadioGroupAttributes()"
+     aria-orientation="@(Orientation == RadioGroupOrientation.Horizontal ? "horizontal" : "vertical")">
+    <CascadingValue Value="this" IsFixed="true">
+        @ChildContent
+    </CascadingValue>
+</div>

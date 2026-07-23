@@ -1,0 +1,174 @@
+@page "/demos/quote"
+
+<PageTitle>Quote Component Demo</PageTitle>
+
+<Container Size="ContainerSize.Size2">
+    <Flex Direction="FlexDirection.Column" Gap="8">
+        <Heading Size="HeadingSize.Size8">Quote Component Demo</Heading>
+        
+        @* Basic Example *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Basic Usage</Heading>
+            <Text>
+                His famous quote, <Quote>Styles come and go. Good design is a language, not a style</Quote>, 
+                elegantly sums up Massimo's philosophy of design.
+            </Text>
+        </Flex>
+        
+        @* Multiple Quotes in Text *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Multiple Quotes</Heading>
+            <Text>
+                When asked about her inspiration, she said <Quote>Art is not what you see, but what you make others see</Quote>.
+                Later, she added <Quote>Every artist was first an amateur</Quote>, encouraging young creators.
+            </Text>
+        </Flex>
+        
+        @* Truncate Example *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Truncated Quote</Heading>
+            <Flex MaxWidth="300px">
+                <Text>
+                    <Quote Truncate="true">
+                        The goal of typography is to relate font size, line height, and line width 
+                        in a proportional way that maximizes beauty and makes reading easier and more pleasant.
+                    </Quote>
+                </Text>
+            </Flex>
+        </Flex>
+        
+        @* Wrap Options *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Wrap Options</Heading>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Wrap (default)</Text>
+                <Box MaxWidth="250px" P="3" Style="border: 1px solid var(--gray-6);">
+                    <Text>
+                        <Quote Wrap="QuoteWrap.Wrap">
+                            This is a very long quote that demonstrates how text wrapping works with different wrap options
+                        </Quote>
+                    </Text>
+                </Box>
+            </Box>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Nowrap</Text>
+                <Box MaxWidth="250px" P="3" Style="border: 1px solid var(--gray-6); overflow: auto;">
+                    <Text>
+                        <Quote Wrap="QuoteWrap.Nowrap">
+                            This is a very long quote that demonstrates how text wrapping works with different wrap options
+                        </Quote>
+                    </Text>
+                </Box>
+            </Box>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Pretty</Text>
+                <Box MaxWidth="250px" P="3" Style="border: 1px solid var(--gray-6);">
+                    <Text>
+                        <Quote Wrap="QuoteWrap.Pretty">
+                            This is a very long quote that demonstrates how text wrapping works with different wrap options
+                        </Quote>
+                    </Text>
+                </Box>
+            </Box>
+            
+            <Box>
+                <Text Size="TextSize.Size2" Weight="TextWeight.Bold" Mb="2">Balance</Text>
+                <Box MaxWidth="250px" P="3" Style="border: 1px solid var(--gray-6);">
+                    <Text>
+                        <Quote Wrap="QuoteWrap.Balance">
+                            This is a very long quote that demonstrates how text wrapping works with different wrap options
+                        </Quote>
+                    </Text>
+                </Box>
+            </Box>
+        </Flex>
+        
+        @* In Different Contexts *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">In Different Contexts</Heading>
+            
+            <Card Size="CardSize.Size2">
+                <Text>
+                    The architect famously stated: <Quote>Less is more</Quote>, 
+                    which became a fundamental principle of minimalist design.
+                </Text>
+            </Card>
+            
+            <Callout Size="CalloutSize.Size2">
+                <Text>
+                    Remember: <Quote>The best way to predict the future is to invent it</Quote> - Alan Kay
+                </Text>
+            </Callout>
+        </Flex>
+        
+        @* With Emphasis *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">With Emphasis</Heading>
+            <Text>
+                The speaker emphasized <Strong><Quote>Quality is not an act, it is a habit</Quote></Strong>, 
+                reminding us that excellence comes from consistent practice.
+            </Text>
+        </Flex>
+        
+        @* Nested Quotes *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Nested Quotes</Heading>
+            <Text>
+                She recalled her mentor saying, <Quote>As Picasso once said, 
+                <Quote>Good artists copy, great artists steal</Quote>, 
+                but I believe great artists transform</Quote>.
+            </Text>
+        </Flex>
+        
+        @* With Different Text Sizes *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Different Text Sizes</Heading>
+            
+            <Text Size="TextSize.Size1">
+                Small text with <Quote>a small quote</Quote> inline.
+            </Text>
+            
+            <Text Size="TextSize.Size3">
+                Regular text with <Quote>a regular quote</Quote> inline.
+            </Text>
+            
+            <Text Size="TextSize.Size5">
+                Large text with <Quote>a large quote</Quote> inline.
+            </Text>
+        </Flex>
+        
+        @* Real-World Examples *@
+        <Flex Direction="FlexDirection.Column" Gap="3">
+            <Heading Size="HeadingSize.Size4">Real-World Examples</Heading>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size3" Mb="2">Article Quote</Heading>
+                <Text>
+                    In her latest book, the author writes about the importance of perseverance: 
+                    <Quote>Success is not final, failure is not fatal: it is the courage to continue that counts</Quote>. 
+                    This message resonates throughout the entire narrative.
+                </Text>
+            </Box>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size3" Mb="2">Product Review</Heading>
+                <Text>
+                    The customer said <Quote>This is the best product I've ever used</Quote> 
+                    and gave it a 5-star rating. Another reviewer added, 
+                    <Quote>Worth every penny</Quote>.
+                </Text>
+            </Box>
+            
+            <Box>
+                <Heading Size="HeadingSize.Size3" Mb="2">Documentation</Heading>
+                <Code>
+                    The API documentation states: <Quote>All requests must include an authentication token</Quote>.
+                    See the authentication section for details.
+                </Code>
+            </Box>
+        </Flex>
+    </Flex>
+</Container>

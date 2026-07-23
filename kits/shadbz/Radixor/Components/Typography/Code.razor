@@ -1,0 +1,25 @@
+@namespace Radixor.Components.Typography
+@inherits Radixor.Components.Base.SpacingComponentBase
+
+@if (AsChild)
+{
+    @ChildContent
+}
+else
+{
+    <code class="@CodeCssClass" data-accent-color="@(Color?.ToLower())" @attributes="AdditionalAttributes">@ChildContent</code>
+}
+
+@code {
+    [Parameter] public bool AsChild { get; set; }
+    
+    private string CodeCssClass => new CssBuilder("rt-Code")
+        .AddClass($"rt-r-size-{((int)Size) + 1}")
+        .AddClass($"rt-variant-{Variant.ToString().ToLower()}")
+        .AddClass($"rt-r-weight-{Weight.ToString().ToLower()}")
+        .AddClass("rt-high-contrast", HighContrast)
+        .AddClass("rt-truncate", Truncate)
+        .AddClass(GetMarginClasses())
+        .AddClass(Class)
+        .Build();
+}

@@ -1,0 +1,536 @@
+@page "/radio-demo"
+
+<PageTitle>Radio Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">Radio Component</Heading>
+                <Text Size="4" Color="gray">Single-choice selection from multiple options.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic Radio Group</Heading>
+                <Card Size="CardSize.Size3">
+                    <RadioGroup DefaultValue="1" Name="basic">
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Radio Value="1" />
+                                    <Text>Option 1 (Default)</Text>
+                                </Flex>
+                            </Text>
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Radio Value="2" />
+                                    <Text>Option 2</Text>
+                                </Flex>
+                            </Text>
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Radio Value="3" />
+                                    <Text>Option 3</Text>
+                                </Flex>
+                            </Text>
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Radio Value="4" Disabled="true" />
+                                    <Text Color="gray">Option 4 (Disabled)</Text>
+                                </Flex>
+                            </Text>
+                        </Flex>
+                    </RadioGroup>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Radio Sizes</Heading>
+                <Grid Columns="3" Gap="4">
+                    <Card Size="CardSize.Size2">
+                        <RadioGroup Size="RadioSize.Size1" DefaultValue="1" Name="size1">
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text Size="3" Weight="TextWeight.Medium" Mb="2">Size 1</Text>
+                                <Text As="label" Size="1">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Radio Value="1" />
+                                        <Text Size="1">Small option</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="1">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Radio Value="2" />
+                                        <Text Size="1">Another option</Text>
+                                    </Flex>
+                                </Text>
+                            </Flex>
+                        </RadioGroup>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <RadioGroup Size="RadioSize.Size2" DefaultValue="1" Name="size2">
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text Size="3" Weight="TextWeight.Medium" Mb="2">Size 2 (Default)</Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Radio Value="1" />
+                                        <Text Size="2">Medium option</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Radio Value="2" />
+                                        <Text Size="2">Another option</Text>
+                                    </Flex>
+                                </Text>
+                            </Flex>
+                        </RadioGroup>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <RadioGroup Size="RadioSize.Size3" DefaultValue="1" Name="size3">
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text Size="3" Weight="TextWeight.Medium" Mb="2">Size 3</Text>
+                                <Text As="label" Size="3">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Radio Value="1" />
+                                        <Text Size="3">Large option</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="3">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Radio Value="2" />
+                                        <Text Size="3">Another option</Text>
+                                    </Flex>
+                                </Text>
+                            </Flex>
+                        </RadioGroup>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Radio Variants</Heading>
+                <Grid Columns="3" Gap="4">
+                    <Card Size="CardSize.Size2">
+                        <RadioGroup Variant="RadioVariant.Surface" DefaultValue="1" Name="surface">
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text Size="3" Weight="TextWeight.Medium" Mb="2">Surface (Default)</Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Radio Value="1" />
+                                        <Text>Option A</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Radio Value="2" />
+                                        <Text>Option B</Text>
+                                    </Flex>
+                                </Text>
+                            </Flex>
+                        </RadioGroup>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <RadioGroup Variant="RadioVariant.Classic" DefaultValue="1" Name="classic">
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text Size="3" Weight="TextWeight.Medium" Mb="2">Classic</Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Radio Value="1" />
+                                        <Text>Option A</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Radio Value="2" />
+                                        <Text>Option B</Text>
+                                    </Flex>
+                                </Text>
+                            </Flex>
+                        </RadioGroup>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <RadioGroup Variant="RadioVariant.Soft" DefaultValue="1" Name="soft">
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text Size="3" Weight="TextWeight.Medium" Mb="2">Soft</Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Radio Value="1" />
+                                        <Text>Option A</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="2" Align="FlexAlign.Center">
+                                        <Radio Value="2" />
+                                        <Text>Option B</Text>
+                                    </Flex>
+                                </Text>
+                            </Flex>
+                        </RadioGroup>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Radio Colors</Heading>
+                <Flex Gap="4" Wrap="FlexWrap.Wrap">
+                    <RadioGroup Color="gray" DefaultValue="1" Name="gray">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Gray</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="gold" DefaultValue="1" Name="gold">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Gold</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="bronze" DefaultValue="1" Name="bronze">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Bronze</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="orange" DefaultValue="1" Name="orange">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Orange</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="red" DefaultValue="1" Name="red">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Red</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="crimson" DefaultValue="1" Name="crimson">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Crimson</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="purple" DefaultValue="1" Name="purple">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Purple</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="violet" DefaultValue="1" Name="violet">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Violet</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="indigo" DefaultValue="1" Name="indigo">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Indigo</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="blue" DefaultValue="1" Name="blue">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Blue</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="cyan" DefaultValue="1" Name="cyan">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Cyan</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="teal" DefaultValue="1" Name="teal">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Teal</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="green" DefaultValue="1" Name="green">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Green</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="grass" DefaultValue="1" Name="grass">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Grass</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">High Contrast</Heading>
+                <Flex Gap="4">
+                    <RadioGroup Color="indigo" DefaultValue="1" Name="normal">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>Normal contrast</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                    
+                    <RadioGroup Color="indigo" HighContrast="true" DefaultValue="1" Name="high">
+                        <Text As="label" Size="2">
+                            <Flex Gap="2" Align="FlexAlign.Center">
+                                <Radio Value="1" />
+                                <Text>High contrast</Text>
+                            </Flex>
+                        </Text>
+                    </RadioGroup>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Interactive Example</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Text Size="3" Weight="TextWeight.Medium">Select your plan:</Text>
+                        
+                        <RadioGroup @bind-Value="selectedPlan" Name="plan">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Card Size="CardSize.Size2" Variant="@(selectedPlan == "free" ? CardVariant.Surface : CardVariant.Ghost)">
+                                    <Text As="label">
+                                        <Flex Gap="3" Align="FlexAlign.Start">
+                                            <Radio Value="free" />
+                                            <Box>
+                                                <Text Size="3" Weight="TextWeight.Medium">Free Plan</Text>
+                                                <Text Size="2" Color="gray">Basic features for personal use</Text>
+                                                <Text Size="4" Weight="TextWeight.Bold" Mt="2">$0/month</Text>
+                                            </Box>
+                                        </Flex>
+                                    </Text>
+                                </Card>
+                                
+                                <Card Size="CardSize.Size2" Variant="@(selectedPlan == "pro" ? CardVariant.Surface : CardVariant.Ghost)">
+                                    <Text As="label">
+                                        <Flex Gap="3" Align="FlexAlign.Start">
+                                            <Radio Value="pro" />
+                                            <Box>
+                                                <Flex Gap="2" Align="FlexAlign.Center">
+                                                    <Text Size="3" Weight="TextWeight.Medium">Pro Plan</Text>
+                                                    <Badge Size="BadgeSize.Size1" Color="blue">Popular</Badge>
+                                                </Flex>
+                                                <Text Size="2" Color="gray">Advanced features for professionals</Text>
+                                                <Text Size="4" Weight="TextWeight.Bold" Mt="2">$19/month</Text>
+                                            </Box>
+                                        </Flex>
+                                    </Text>
+                                </Card>
+                                
+                                <Card Size="CardSize.Size2" Variant="@(selectedPlan == "enterprise" ? CardVariant.Surface : CardVariant.Ghost)">
+                                    <Text As="label">
+                                        <Flex Gap="3" Align="FlexAlign.Start">
+                                            <Radio Value="enterprise" />
+                                            <Box>
+                                                <Text Size="3" Weight="TextWeight.Medium">Enterprise Plan</Text>
+                                                <Text Size="2" Color="gray">Custom solutions for large teams</Text>
+                                                <Text Size="4" Weight="TextWeight.Bold" Mt="2">Contact us</Text>
+                                            </Box>
+                                        </Flex>
+                                    </Text>
+                                </Card>
+                            </Flex>
+                        </RadioGroup>
+                        
+                        <Separator My="2" />
+                        
+                        <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                            <Text Size="2">
+                                Selected: <Badge Color="indigo">@GetPlanDisplayName()</Badge>
+                            </Text>
+                            <Button Variant="ButtonVariant.Solid">Continue with @GetPlanDisplayName()</Button>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Horizontal Orientation</Heading>
+                <Card Size="CardSize.Size3">
+                    <RadioGroup Orientation="RadioGroupOrientation.Horizontal" DefaultValue="left" Name="alignment">
+                        <Flex Gap="4">
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Radio Value="left" />
+                                    <Text>Left</Text>
+                                </Flex>
+                            </Text>
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Radio Value="center" />
+                                    <Text>Center</Text>
+                                </Flex>
+                            </Text>
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Radio Value="right" />
+                                    <Text>Right</Text>
+                                </Flex>
+                            </Text>
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Radio Value="justify" />
+                                    <Text>Justify</Text>
+                                </Flex>
+                            </Text>
+                        </Flex>
+                    </RadioGroup>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Settings</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Box>
+                            <Heading Size="3" Mb="2">Appearance</Heading>
+                            <RadioGroup @bind-Value="theme" Name="theme">
+                                <Flex Direction="FlexDirection.Column" Gap="2">
+                                    <Text As="label" Size="2">
+                                        <Flex Gap="2" Align="FlexAlign.Center">
+                                            <Radio Value="light" />
+                                            <Text>Light theme</Text>
+                                        </Flex>
+                                    </Text>
+                                    <Text As="label" Size="2">
+                                        <Flex Gap="2" Align="FlexAlign.Center">
+                                            <Radio Value="dark" />
+                                            <Text>Dark theme</Text>
+                                        </Flex>
+                                    </Text>
+                                    <Text As="label" Size="2">
+                                        <Flex Gap="2" Align="FlexAlign.Center">
+                                            <Radio Value="system" />
+                                            <Text>System default</Text>
+                                        </Flex>
+                                    </Text>
+                                </Flex>
+                            </RadioGroup>
+                        </Box>
+                        
+                        <Separator />
+                        
+                        <Box>
+                            <Heading Size="3" Mb="2">Language</Heading>
+                            <RadioGroup @bind-Value="language" Name="language">
+                                <Flex Direction="FlexDirection.Column" Gap="2">
+                                    <Text As="label" Size="2">
+                                        <Flex Gap="2" Align="FlexAlign.Center">
+                                            <Radio Value="en" />
+                                            <Text>English</Text>
+                                        </Flex>
+                                    </Text>
+                                    <Text As="label" Size="2">
+                                        <Flex Gap="2" Align="FlexAlign.Center">
+                                            <Radio Value="es" />
+                                            <Text>Español</Text>
+                                        </Flex>
+                                    </Text>
+                                    <Text As="label" Size="2">
+                                        <Flex Gap="2" Align="FlexAlign.Center">
+                                            <Radio Value="fr" />
+                                            <Text>Français</Text>
+                                        </Flex>
+                                    </Text>
+                                </Flex>
+                            </RadioGroup>
+                        </Box>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Disabled Group</Heading>
+                <Card Size="CardSize.Size3">
+                    <RadioGroup Disabled="true" DefaultValue="1" Name="disabled">
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Radio Value="1" />
+                                    <Text Color="gray">All options are disabled</Text>
+                                </Flex>
+                            </Text>
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Radio Value="2" />
+                                    <Text Color="gray">Cannot be selected</Text>
+                                </Flex>
+                            </Text>
+                            <Text As="label" Size="2">
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Radio Value="3" />
+                                    <Text Color="gray">Group is disabled</Text>
+                                </Flex>
+                            </Text>
+                        </Flex>
+                    </RadioGroup>
+                </Card>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
+
+@code {
+    private string? selectedPlan = "pro";
+    private string? theme = "system";
+    private string? language = "en";
+    
+    private string GetPlanDisplayName()
+    {
+        return selectedPlan switch
+        {
+            "free" => "Free Plan",
+            "pro" => "Pro Plan",
+            "enterprise" => "Enterprise Plan",
+            _ => "Select a plan"
+        };
+    }
+}

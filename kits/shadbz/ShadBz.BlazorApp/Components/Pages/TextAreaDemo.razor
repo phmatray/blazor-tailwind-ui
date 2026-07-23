@@ -1,0 +1,337 @@
+@page "/text-area-demo"
+
+<PageTitle>TextAreaField Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">TextAreaField Component</Heading>
+                <Text Size="4" Color="gray">Multi-line text input with resizing and styling options.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic TextAreaFields</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <TextAreaField Placeholder="Write your message..." />
+                    <TextAreaField Placeholder="Enter your comments..." Rows="4" />
+                    <TextAreaField Placeholder="Disabled textarea..." Disabled="true" />
+                    <TextAreaField Value="Read-only content that cannot be edited." ReadOnly="true" />
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">TextAreaField Sizes</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <TextAreaField Size="TextAreaSize.Size1" Placeholder="Size 1 - Small" />
+                    <TextAreaField Size="TextAreaSize.Size2" Placeholder="Size 2 - Default" />
+                    <TextAreaField Size="TextAreaSize.Size3" Placeholder="Size 3 - Large" />
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">TextAreaField Variants</Heading>
+                <Grid Columns="3" Gap="4">
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Surface (Default)</Text>
+                        <TextAreaField Variant="TextAreaVariant.Surface" Placeholder="Surface variant" />
+                    </Box>
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Classic</Text>
+                        <TextAreaField Variant="TextAreaVariant.Classic" Placeholder="Classic variant" />
+                    </Box>
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Soft</Text>
+                        <TextAreaField Variant="TextAreaVariant.Soft" Placeholder="Soft variant" />
+                    </Box>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Resize Behavior</Heading>
+                <Grid Columns="2" Gap="4">
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">No Resize</Text>
+                        <TextAreaField Resize="TextAreaResize.None" Placeholder="Cannot be resized" Rows="3" />
+                    </Box>
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Vertical Only (Default)</Text>
+                        <TextAreaField Resize="TextAreaResize.Vertical" Placeholder="Resize vertically" Rows="3" />
+                    </Box>
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Horizontal Only</Text>
+                        <TextAreaField Resize="TextAreaResize.Horizontal" Placeholder="Resize horizontally" Rows="3" />
+                    </Box>
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Both Directions</Text>
+                        <TextAreaField Resize="TextAreaResize.Both" Placeholder="Resize in any direction" Rows="3" />
+                    </Box>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">TextAreaField Colors</Heading>
+                <Grid Columns="3" Gap="3">
+                    <TextAreaField Color="gray" Placeholder="Gray" Rows="2" />
+                    <TextAreaField Color="gold" Placeholder="Gold" Rows="2" />
+                    <TextAreaField Color="bronze" Placeholder="Bronze" Rows="2" />
+                    <TextAreaField Color="brown" Placeholder="Brown" Rows="2" />
+                    <TextAreaField Color="yellow" Placeholder="Yellow" Rows="2" />
+                    <TextAreaField Color="amber" Placeholder="Amber" Rows="2" />
+                    <TextAreaField Color="orange" Placeholder="Orange" Rows="2" />
+                    <TextAreaField Color="tomato" Placeholder="Tomato" Rows="2" />
+                    <TextAreaField Color="red" Placeholder="Red" Rows="2" />
+                    <TextAreaField Color="ruby" Placeholder="Ruby" Rows="2" />
+                    <TextAreaField Color="crimson" Placeholder="Crimson" Rows="2" />
+                    <TextAreaField Color="pink" Placeholder="Pink" Rows="2" />
+                    <TextAreaField Color="plum" Placeholder="Plum" Rows="2" />
+                    <TextAreaField Color="purple" Placeholder="Purple" Rows="2" />
+                    <TextAreaField Color="violet" Placeholder="Violet" Rows="2" />
+                    <TextAreaField Color="iris" Placeholder="Iris" Rows="2" />
+                    <TextAreaField Color="indigo" Placeholder="Indigo" Rows="2" />
+                    <TextAreaField Color="blue" Placeholder="Blue" Rows="2" />
+                    <TextAreaField Color="cyan" Placeholder="Cyan" Rows="2" />
+                    <TextAreaField Color="teal" Placeholder="Teal" Rows="2" />
+                    <TextAreaField Color="jade" Placeholder="Jade" Rows="2" />
+                    <TextAreaField Color="green" Placeholder="Green" Rows="2" />
+                    <TextAreaField Color="grass" Placeholder="Grass" Rows="2" />
+                    <TextAreaField Color="lime" Placeholder="Lime" Rows="2" />
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">TextAreaField Radius</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <TextAreaField Radius="none" Placeholder="No radius" Rows="2" />
+                    <TextAreaField Radius="small" Placeholder="Small radius" Rows="2" />
+                    <TextAreaField Radius="medium" Placeholder="Medium radius" Rows="2" />
+                    <TextAreaField Radius="large" Placeholder="Large radius" Rows="2" />
+                    <TextAreaField Radius="full" Placeholder="Full radius" Rows="2" />
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Interactive Form Example</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Heading Size="3">Contact Form</Heading>
+                        
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="1">Subject</Text>
+                                <TextFieldRoot @bind-Value="subject" Placeholder="What's this about?" Required="true" />
+                            </Box>
+                            
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="1">Message</Text>
+                                <TextAreaField @bind-Value="message" 
+                                         Placeholder="Write your message here..." 
+                                         Required="true" 
+                                         MinLength="10" 
+                                         MaxLength="500"
+                                         Rows="5" />
+                                <Text Size="1" Color="gray" Mt="1">
+                                    @(message?.Length ?? 0) / 500 characters
+                                </Text>
+                            </Box>
+                            
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="1">Additional Notes</Text>
+                                <TextAreaField @bind-Value="notes" 
+                                         Placeholder="Any additional information (optional)"
+                                         Rows="3" />
+                            </Box>
+                        </Flex>
+                        
+                        <Separator My="2" />
+                        
+                        <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                            <Text Size="2" Color="gray">
+                                @if (!string.IsNullOrEmpty(subject) && !string.IsNullOrEmpty(message) && message.Length >= 10)
+                                {
+                                    <span>✅ Ready to send</span>
+                                }
+                                else
+                                {
+                                    <span>Please fill required fields (min 10 characters for message)</span>
+                                }
+                            </Text>
+                            <Button Variant="ButtonVariant.Solid" 
+                                   Disabled="@(string.IsNullOrEmpty(subject) || string.IsNullOrEmpty(message) || message.Length < 10)">
+                                Send Message
+                            </Button>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Use Cases</Heading>
+                <Grid Columns="2" Gap="4">
+                    <Card Size="CardSize.Size2">
+                        <Box>
+                            <Text Size="3" Weight="TextWeight.Medium" Mb="2">Comment Box</Text>
+                            <TextAreaField @bind-Value="comment" 
+                                     Placeholder="Share your thoughts..." 
+                                     Size="TextAreaSize.Size2"
+                                     Rows="3" />
+                            @if (!string.IsNullOrEmpty(comment))
+                            {
+                                <Box Mt="2">
+                                    <Badge Size="BadgeSize.Size1" Color="green">Typing...</Badge>
+                                </Box>
+                            }
+                        </Box>
+                    </Card>
+                    
+                    <Card Size="CardSize.Size2">
+                        <Box>
+                            <Text Size="3" Weight="TextWeight.Medium" Mb="2">Bio/Description</Text>
+                            <TextAreaField @bind-Value="bio" 
+                                     Placeholder="Tell us about yourself..." 
+                                     MaxLength="200"
+                                     Rows="4" />
+                            <Text Size="1" Color="gray" Mt="1">
+                                @(200 - (bio?.Length ?? 0)) characters remaining
+                            </Text>
+                        </Box>
+                    </Card>
+                    
+                    <Card Size="CardSize.Size2">
+                        <Box>
+                            <Text Size="3" Weight="TextWeight.Medium" Mb="2">Code Input</Text>
+                            <TextAreaField @bind-Value="code" 
+                                     Placeholder="Paste your code here..." 
+                                     SpellCheck="false"
+                                     Variant="TextAreaVariant.Classic"
+                                     Rows="5"
+                                     Style="font-family: monospace;" />
+                        </Box>
+                    </Card>
+                    
+                    <Card Size="CardSize.Size2">
+                        <Box>
+                            <Text Size="3" Weight="TextWeight.Medium" Mb="2">Feedback Form</Text>
+                            <TextAreaField @bind-Value="feedback" 
+                                     Placeholder="How can we improve?" 
+                                     Variant="TextAreaVariant.Soft"
+                                     Color="blue"
+                                     Rows="4" />
+                            <Button Size="ButtonSize.Small" Mt="2" Variant="ButtonVariant.Soft">
+                                Submit Feedback
+                            </Button>
+                        </Box>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Validation States</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">Required Field</Text>
+                        <TextAreaField Placeholder="This field is required" Required="true" Rows="2" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">With Min/Max Length</Text>
+                        <TextAreaField Placeholder="Between 20 and 100 characters" MinLength="20" MaxLength="100" Rows="3" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Weight="TextWeight.Medium" Mb="1">With Character Counter</Text>
+                        <TextAreaField @bind-Value="validatedText" 
+                                 Placeholder="Type at least 50 characters..." 
+                                 MinLength="50"
+                                 MaxLength="200"
+                                 Rows="4" />
+                        <Flex Justify="FlexJustify.Between" Mt="1">
+                            <Text Size="1" Color="@(validatedText?.Length >= 50 ? "green" : "red")">
+                                @if (validatedText?.Length >= 50)
+                                {
+                                    <span>✅ Minimum length reached</span>
+                                }
+                                else
+                                {
+                                    <span>Need @(50 - (validatedText?.Length ?? 0)) more characters</span>
+                                }
+                            </Text>
+                            <Text Size="1" Color="gray">
+                                @(validatedText?.Length ?? 0) / 200
+                            </Text>
+                        </Flex>
+                    </Box>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Article Editor</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="1">Title</Text>
+                            <TextFieldRoot @bind-Value="articleTitle" Placeholder="Enter article title..." Size="TextFieldSize.Size3" />
+                        </Box>
+                        
+                        <Box>
+                            <Text Size="2" Weight="TextWeight.Medium" Mb="1">Content</Text>
+                            <TextAreaField @bind-Value="articleContent" 
+                                     Placeholder="Start writing your article..." 
+                                     Size="TextAreaSize.Size2"
+                                     Rows="10"
+                                     MinLength="100" />
+                        </Box>
+                        
+                        <Grid Columns="2" Gap="3">
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="1">Tags</Text>
+                                <TextAreaField @bind-Value="articleTags" 
+                                         Placeholder="Enter tags separated by commas..." 
+                                         Rows="2" />
+                            </Box>
+                            <Box>
+                                <Text Size="2" Weight="TextWeight.Medium" Mb="1">Excerpt</Text>
+                                <TextAreaField @bind-Value="articleExcerpt" 
+                                         Placeholder="Brief description..." 
+                                         MaxLength="160"
+                                         Rows="2" />
+                            </Box>
+                        </Grid>
+                        
+                        <Separator />
+                        
+                        <Flex Justify="FlexJustify.Between">
+                            <Flex Gap="2">
+                                <Badge Size="BadgeSize.Size2" Variant="BadgeVariant.Surface">
+                                    @((articleContent?.Split(' ').Length ?? 0)) words
+                                </Badge>
+                                <Badge Size="BadgeSize.Size2" Variant="BadgeVariant.Surface">
+                                    @((articleContent?.Length ?? 0)) characters
+                                </Badge>
+                            </Flex>
+                            <Flex Gap="2">
+                                <Button Variant="ButtonVariant.Soft">Save Draft</Button>
+                                <Button Variant="ButtonVariant.Solid">Publish</Button>
+                            </Flex>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
+
+@code {
+    private string? subject = "";
+    private string? message = "";
+    private string? notes = "";
+    private string? comment = "";
+    private string? bio = "";
+    private string? code = "";
+    private string? feedback = "";
+    private string? validatedText = "";
+    private string? articleTitle = "";
+    private string? articleContent = "";
+    private string? articleTags = "";
+    private string? articleExcerpt = "";
+}

@@ -1,0 +1,289 @@
+@page "/tabs"
+
+<div class="demo-container">
+    <h1>Tabs Component</h1>
+    <p>A set of layered sections of content—known as tab panels—that are displayed one at a time.</p>
+    
+    <div class="demo-section">
+        <h2>Basic Tabs</h2>
+        <div class="demo-example">
+            <TabsRoot DefaultValue="@("account")" TValue="string">
+                <TabsList TValue="string">
+                    <TabsTrigger Value="@("account")" TValue="string">Account</TabsTrigger>
+                    <TabsTrigger Value="@("password")" TValue="string">Password</TabsTrigger>
+                    <TabsTrigger Value="@("settings")" TValue="string">Settings</TabsTrigger>
+                </TabsList>
+                <TabsContent Value="@("account")" TValue="string">
+                    <Card>
+                        <Heading Size="HeadingSize.Size4">Account</Heading>
+                        <Text Size="TextSize.Size2" Color="TextColor.Gray" Mt="2">
+                            Make changes to your account here. Click save when you're done.
+                        </Text>
+                        <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3" Mt="4">
+                            <Box>
+                                <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="1">Name</Text>
+                                <TextFieldRoot>
+                                    <TextFieldSlot Placeholder="Enter your name" />
+                                </TextFieldRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="1">Username</Text>
+                                <TextFieldRoot>
+                                    <TextFieldSlot Placeholder="Enter your username" />
+                                </TextFieldRoot>
+                            </Box>
+                            <Button Size="ButtonSize.Small">Save changes</Button>
+                        </Flex>
+                    </Card>
+                </TabsContent>
+                <TabsContent Value="@("password")" TValue="string">
+                    <Card>
+                        <Heading Size="HeadingSize.Size4">Password</Heading>
+                        <Text Size="TextSize.Size2" Color="TextColor.Gray" Mt="2">
+                            Change your password here. After saving, you'll be logged out.
+                        </Text>
+                        <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3" Mt="4">
+                            <Box>
+                                <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="1">Current password</Text>
+                                <TextFieldRoot>
+                                    <TextFieldSlot Type="password" />
+                                </TextFieldRoot>
+                            </Box>
+                            <Box>
+                                <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="1">New password</Text>
+                                <TextFieldRoot>
+                                    <TextFieldSlot Type="password" />
+                                </TextFieldRoot>
+                            </Box>
+                            <Button Size="ButtonSize.Small">Save password</Button>
+                        </Flex>
+                    </Card>
+                </TabsContent>
+                <TabsContent Value="@("settings")" TValue="string">
+                    <Card>
+                        <Heading Size="HeadingSize.Size4">Settings</Heading>
+                        <Text Size="TextSize.Size2" Color="TextColor.Gray" Mt="2">
+                            Manage your application settings and preferences here.
+                        </Text>
+                        <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3" Mt="4">
+                            <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                <Box>
+                                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium">Email notifications</Text>
+                                    <Text Size="TextSize.Size1" Color="TextColor.Gray">Receive emails about your account activity</Text>
+                                </Box>
+                                <Switch />
+                            </Flex>
+                            <Separator />
+                            <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                <Box>
+                                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium">Marketing emails</Text>
+                                    <Text Size="TextSize.Size1" Color="TextColor.Gray">Receive emails about new products and features</Text>
+                                </Box>
+                                <Switch />
+                            </Flex>
+                        </Flex>
+                    </Card>
+                </TabsContent>
+            </TabsRoot>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Controlled Tabs</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap3">
+                <Text Size="TextSize.Size2">Current tab: @selectedTab</Text>
+                <TabsRoot @bind-Value="selectedTab" TValue="string">
+                    <TabsList TValue="string">
+                        <TabsTrigger Value="@("tab1")" TValue="string">Tab 1</TabsTrigger>
+                        <TabsTrigger Value="@("tab2")" TValue="string">Tab 2</TabsTrigger>
+                        <TabsTrigger Value="@("tab3")" TValue="string">Tab 3</TabsTrigger>
+                    </TabsList>
+                    <TabsContent Value="@("tab1")" TValue="string">
+                        <Text>Content for Tab 1</Text>
+                    </TabsContent>
+                    <TabsContent Value="@("tab2")" TValue="string">
+                        <Text>Content for Tab 2</Text>
+                    </TabsContent>
+                    <TabsContent Value="@("tab3")" TValue="string">
+                        <Text>Content for Tab 3</Text>
+                    </TabsContent>
+                </TabsRoot>
+                <Flex Gap="FlexGap.Gap2">
+                    <Button Size="ButtonSize.Small" @onclick="@(() => selectedTab = "tab1")">Go to Tab 1</Button>
+                    <Button Size="ButtonSize.Small" @onclick="@(() => selectedTab = "tab2")">Go to Tab 2</Button>
+                    <Button Size="ButtonSize.Small" @onclick="@(() => selectedTab = "tab3")">Go to Tab 3</Button>
+                </Flex>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Disabled Tabs</h2>
+        <div class="demo-example">
+            <TabsRoot DefaultValue="@("enabled")" TValue="string">
+                <TabsList TValue="string">
+                    <TabsTrigger Value="@("enabled")" TValue="string">Enabled</TabsTrigger>
+                    <TabsTrigger Value="@("disabled")" Disabled="true" TValue="string">Disabled</TabsTrigger>
+                    <TabsTrigger Value="@("another")" TValue="string">Another</TabsTrigger>
+                </TabsList>
+                <TabsContent Value="@("enabled")" TValue="string">
+                    <Text>This tab is enabled and can be selected.</Text>
+                </TabsContent>
+                <TabsContent Value="@("disabled")" TValue="string">
+                    <Text>This content won't be shown as the tab is disabled.</Text>
+                </TabsContent>
+                <TabsContent Value="@("another")" TValue="string">
+                    <Text>This is another enabled tab.</Text>
+                </TabsContent>
+            </TabsRoot>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Tab Variants</h2>
+        <div class="demo-example">
+            <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap4">
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Classic Variant</Text>
+                    <TabsRoot DefaultValue="@("tab1")" Variant="TabsVariant.Classic" TValue="string">
+                        <TabsList TValue="string">
+                            <TabsTrigger Value="@("tab1")" TValue="string">Tab 1</TabsTrigger>
+                            <TabsTrigger Value="@("tab2")" TValue="string">Tab 2</TabsTrigger>
+                            <TabsTrigger Value="@("tab3")" TValue="string">Tab 3</TabsTrigger>
+                        </TabsList>
+                        <TabsContent Value="@("tab1")" TValue="string">
+                            <Text>Classic variant content</Text>
+                        </TabsContent>
+                        <TabsContent Value="@("tab2")" TValue="string">
+                            <Text>Classic variant content</Text>
+                        </TabsContent>
+                        <TabsContent Value="@("tab3")" TValue="string">
+                            <Text>Classic variant content</Text>
+                        </TabsContent>
+                    </TabsRoot>
+                </Box>
+                
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Surface Variant</Text>
+                    <TabsRoot DefaultValue="@("tab1")" Variant="TabsVariant.Surface" TValue="string">
+                        <TabsList TValue="string">
+                            <TabsTrigger Value="@("tab1")" TValue="string">Tab 1</TabsTrigger>
+                            <TabsTrigger Value="@("tab2")" TValue="string">Tab 2</TabsTrigger>
+                            <TabsTrigger Value="@("tab3")" TValue="string">Tab 3</TabsTrigger>
+                        </TabsList>
+                        <TabsContent Value="@("tab1")" TValue="string">
+                            <Text>Surface variant content</Text>
+                        </TabsContent>
+                        <TabsContent Value="@("tab2")" TValue="string">
+                            <Text>Surface variant content</Text>
+                        </TabsContent>
+                        <TabsContent Value="@("tab3")" TValue="string">
+                            <Text>Surface variant content</Text>
+                        </TabsContent>
+                    </TabsRoot>
+                </Box>
+                
+                <Box>
+                    <Text Size="TextSize.Size2" Weight="TextWeight.Medium" Mb="2">Ghost Variant</Text>
+                    <TabsRoot DefaultValue="@("tab1")" Variant="TabsVariant.Ghost" TValue="string">
+                        <TabsList TValue="string">
+                            <TabsTrigger Value="@("tab1")" TValue="string">Tab 1</TabsTrigger>
+                            <TabsTrigger Value="@("tab2")" TValue="string">Tab 2</TabsTrigger>
+                            <TabsTrigger Value="@("tab3")" TValue="string">Tab 3</TabsTrigger>
+                        </TabsList>
+                        <TabsContent Value="@("tab1")" TValue="string">
+                            <Text>Ghost variant content</Text>
+                        </TabsContent>
+                        <TabsContent Value="@("tab2")" TValue="string">
+                            <Text>Ghost variant content</Text>
+                        </TabsContent>
+                        <TabsContent Value="@("tab3")" TValue="string">
+                            <Text>Ghost variant content</Text>
+                        </TabsContent>
+                    </TabsRoot>
+                </Box>
+            </Flex>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>Vertical Orientation</h2>
+        <div class="demo-example">
+            <TabsRoot DefaultValue="@("overview")" Orientation="TabsOrientation.Vertical" TValue="string">
+                <Flex Gap="FlexGap.Gap4">
+                    <TabsList TValue="string">
+                        <Flex Direction="FlexDirection.Column" Gap="FlexGap.Gap1">
+                            <TabsTrigger Value="@("overview")" TValue="string">Overview</TabsTrigger>
+                            <TabsTrigger Value="@("analytics")" TValue="string">Analytics</TabsTrigger>
+                            <TabsTrigger Value="@("reports")" TValue="string">Reports</TabsTrigger>
+                            <TabsTrigger Value="@("notifications")" TValue="string">Notifications</TabsTrigger>
+                        </Flex>
+                    </TabsList>
+                    <Box Style="flex: 1;">
+                        <TabsContent Value="@("overview")" TValue="string">
+                            <Card>
+                                <Heading Size="HeadingSize.Size4">Overview</Heading>
+                                <Text Size="TextSize.Size2" Color="TextColor.Gray" Mt="2">
+                                    Welcome to your dashboard overview. Here you can see a summary of your key metrics.
+                                </Text>
+                            </Card>
+                        </TabsContent>
+                        <TabsContent Value="@("analytics")" TValue="string">
+                            <Card>
+                                <Heading Size="HeadingSize.Size4">Analytics</Heading>
+                                <Text Size="TextSize.Size2" Color="TextColor.Gray" Mt="2">
+                                    View detailed analytics and insights about your data.
+                                </Text>
+                            </Card>
+                        </TabsContent>
+                        <TabsContent Value="@("reports")" TValue="string">
+                            <Card>
+                                <Heading Size="HeadingSize.Size4">Reports</Heading>
+                                <Text Size="TextSize.Size2" Color="TextColor.Gray" Mt="2">
+                                    Generate and download comprehensive reports.
+                                </Text>
+                            </Card>
+                        </TabsContent>
+                        <TabsContent Value="@("notifications")" TValue="string">
+                            <Card>
+                                <Heading Size="HeadingSize.Size4">Notifications</Heading>
+                                <Text Size="TextSize.Size2" Color="TextColor.Gray" Mt="2">
+                                    Manage your notification preferences and view recent alerts.
+                                </Text>
+                            </Card>
+                        </TabsContent>
+                    </Box>
+                </Flex>
+            </TabsRoot>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string selectedTab = "tab2";
+}
+
+<style>
+    .demo-container {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .demo-section {
+        margin-bottom: 3rem;
+    }
+    
+    .demo-section h2 {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    
+    .demo-example {
+        padding: 2rem;
+        background: var(--gray-2);
+        border-radius: var(--radius-3);
+    }
+</style>

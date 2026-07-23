@@ -1,0 +1,133 @@
+@page "/select-demo"
+
+<PageTitle>Select Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">Select Component</Heading>
+                <Text Size="4" Color="gray">Customizable dropdown selection component with multiple variants.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic Select</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <SelectRoot TValue="string" DefaultValue="@("apple")">
+                        <SelectTrigger TValue="string" Placeholder="Select a fruit..." />
+                        <SelectContent TValue="string">
+                            <SelectItem TValue="string" Value="@("apple")">Apple</SelectItem>
+                            <SelectItem TValue="string" Value="@("banana")">Banana</SelectItem>
+                            <SelectItem TValue="string" Value="@("orange")">Orange</SelectItem>
+                        </SelectContent>
+                    </SelectRoot>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Select Sizes</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <SelectRoot TValue="string" Size="SelectSize.Size1">
+                        <SelectTrigger TValue="string" Placeholder="Size 1 - Small" />
+                        <SelectContent TValue="string">
+                            <SelectItem TValue="string" Value="@("1")">Option 1</SelectItem>
+                            <SelectItem TValue="string" Value="@("2")">Option 2</SelectItem>
+                        </SelectContent>
+                    </SelectRoot>
+                    
+                    <SelectRoot TValue="string" Size="SelectSize.Size2">
+                        <SelectTrigger TValue="string" Placeholder="Size 2 - Default" />
+                        <SelectContent TValue="string">
+                            <SelectItem TValue="string" Value="@("1")">Option 1</SelectItem>
+                            <SelectItem TValue="string" Value="@("2")">Option 2</SelectItem>
+                        </SelectContent>
+                    </SelectRoot>
+                    
+                    <SelectRoot TValue="string" Size="SelectSize.Size3">
+                        <SelectTrigger TValue="string" Placeholder="Size 3 - Large" />
+                        <SelectContent TValue="string">
+                            <SelectItem TValue="string" Value="@("1")">Option 1</SelectItem>
+                            <SelectItem TValue="string" Value="@("2")">Option 2</SelectItem>
+                        </SelectContent>
+                    </SelectRoot>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Trigger Variants</Heading>
+                <Grid Columns="2" Gap="4">
+                    <SelectRoot TValue="string">
+                        <SelectTrigger TValue="string" Variant="SelectVariant.Surface" Placeholder="Surface variant" />
+                        <SelectContent TValue="string">
+                            <SelectItem TValue="string" Value="@("1")">Option 1</SelectItem>
+                        </SelectContent>
+                    </SelectRoot>
+                    
+                    <SelectRoot TValue="string">
+                        <SelectTrigger TValue="string" Variant="SelectVariant.Classic" Placeholder="Classic variant" />
+                        <SelectContent TValue="string">
+                            <SelectItem TValue="string" Value="@("1")">Option 1</SelectItem>
+                        </SelectContent>
+                    </SelectRoot>
+                    
+                    <SelectRoot TValue="string">
+                        <SelectTrigger TValue="string" Variant="SelectVariant.Soft" Placeholder="Soft variant" />
+                        <SelectContent TValue="string">
+                            <SelectItem TValue="string" Value="@("1")">Option 1</SelectItem>
+                        </SelectContent>
+                    </SelectRoot>
+                    
+                    <SelectRoot TValue="string">
+                        <SelectTrigger TValue="string" Variant="SelectVariant.Ghost" Placeholder="Ghost variant" />
+                        <SelectContent TValue="string">
+                            <SelectItem TValue="string" Value="@("1")">Option 1</SelectItem>
+                        </SelectContent>
+                    </SelectRoot>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Grouped Options</Heading>
+                <SelectRoot TValue="string" DefaultValue="@("usa")">
+                    <SelectTrigger TValue="string" Placeholder="Select a country..." />
+                    <SelectContent TValue="string">
+                        <SelectGroup>
+                            <SelectLabel>North America</SelectLabel>
+                            <SelectItem TValue="string" Value="@("usa")">United States</SelectItem>
+                            <SelectItem TValue="string" Value="@("canada")">Canada</SelectItem>
+                        </SelectGroup>
+                        <SelectSeparator />
+                        <SelectGroup>
+                            <SelectLabel>Europe</SelectLabel>
+                            <SelectItem TValue="string" Value="@("uk")">United Kingdom</SelectItem>
+                            <SelectItem TValue="string" Value="@("france")">France</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </SelectRoot>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Interactive Example</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Text Size="2" Weight="TextWeight.Medium">Language</Text>
+                        <SelectRoot TValue="string" @bind-Value="language">
+                            <SelectTrigger TValue="string" Placeholder="Select language..." />
+                            <SelectContent TValue="string">
+                                <SelectItem TValue="string" Value="@("en")">English</SelectItem>
+                                <SelectItem TValue="string" Value="@("es")">Spanish</SelectItem>
+                                <SelectItem TValue="string" Value="@("fr")">French</SelectItem>
+                            </SelectContent>
+                        </SelectRoot>
+                        
+                        <Text Size="2" Color="gray">Selected: @language</Text>
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
+
+@code {
+    private string? language = "en";
+}

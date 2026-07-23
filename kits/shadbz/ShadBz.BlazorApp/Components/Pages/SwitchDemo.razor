@@ -1,0 +1,536 @@
+@page "/switch-demo"
+
+<PageTitle>Switch Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">Switch Component</Heading>
+                <Text Size="4" Color="gray">Toggle switch for binary on/off states.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic Switches</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch DefaultChecked="true" />
+                            <Text>On by default</Text>
+                        </Flex>
+                    </Text>
+                    
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch />
+                            <Text>Off by default</Text>
+                        </Flex>
+                    </Text>
+                    
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Disabled="true" />
+                            <Text Color="gray">Disabled switch</Text>
+                        </Flex>
+                    </Text>
+                    
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Disabled="true" DefaultChecked="true" />
+                            <Text Color="gray">Disabled (on)</Text>
+                        </Flex>
+                    </Text>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Switch Sizes</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Text As="label" Size="1">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Size="SwitchSize.Size1" DefaultChecked="true" />
+                            <Text Size="1">Size 1 - Small switch</Text>
+                        </Flex>
+                    </Text>
+                    
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Size="SwitchSize.Size2" DefaultChecked="true" />
+                            <Text Size="2">Size 2 - Default size</Text>
+                        </Flex>
+                    </Text>
+                    
+                    <Text As="label" Size="3">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Size="SwitchSize.Size3" DefaultChecked="true" />
+                            <Text Size="3">Size 3 - Large switch</Text>
+                        </Flex>
+                    </Text>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Switch Variants</Heading>
+                <Grid Columns="3" Gap="4">
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Surface (Default)</Text>
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text As="label" Size="2">
+                                    <Flex Gap="3" Align="FlexAlign.Center">
+                                        <Switch Variant="SwitchVariant.Surface" DefaultChecked="true" />
+                                        <Text>Enabled</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="3" Align="FlexAlign.Center">
+                                        <Switch Variant="SwitchVariant.Surface" />
+                                        <Text>Disabled</Text>
+                                    </Flex>
+                                </Text>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Classic</Text>
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text As="label" Size="2">
+                                    <Flex Gap="3" Align="FlexAlign.Center">
+                                        <Switch Variant="SwitchVariant.Classic" DefaultChecked="true" />
+                                        <Text>Enabled</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="3" Align="FlexAlign.Center">
+                                        <Switch Variant="SwitchVariant.Classic" />
+                                        <Text>Disabled</Text>
+                                    </Flex>
+                                </Text>
+                            </Flex>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="3" Weight="TextWeight.Medium">Soft</Text>
+                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                <Text As="label" Size="2">
+                                    <Flex Gap="3" Align="FlexAlign.Center">
+                                        <Switch Variant="SwitchVariant.Soft" DefaultChecked="true" />
+                                        <Text>Enabled</Text>
+                                    </Flex>
+                                </Text>
+                                <Text As="label" Size="2">
+                                    <Flex Gap="3" Align="FlexAlign.Center">
+                                        <Switch Variant="SwitchVariant.Soft" />
+                                        <Text>Disabled</Text>
+                                    </Flex>
+                                </Text>
+                            </Flex>
+                        </Flex>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Switch Colors</Heading>
+                <Grid Columns="4" Gap="3">
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="gray" DefaultChecked="true" />
+                            <Text>Gray</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="gold" DefaultChecked="true" />
+                            <Text>Gold</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="bronze" DefaultChecked="true" />
+                            <Text>Bronze</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="brown" DefaultChecked="true" />
+                            <Text>Brown</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="yellow" DefaultChecked="true" />
+                            <Text>Yellow</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="amber" DefaultChecked="true" />
+                            <Text>Amber</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="orange" DefaultChecked="true" />
+                            <Text>Orange</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="tomato" DefaultChecked="true" />
+                            <Text>Tomato</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="red" DefaultChecked="true" />
+                            <Text>Red</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="ruby" DefaultChecked="true" />
+                            <Text>Ruby</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="crimson" DefaultChecked="true" />
+                            <Text>Crimson</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="pink" DefaultChecked="true" />
+                            <Text>Pink</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="plum" DefaultChecked="true" />
+                            <Text>Plum</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="purple" DefaultChecked="true" />
+                            <Text>Purple</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="violet" DefaultChecked="true" />
+                            <Text>Violet</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="iris" DefaultChecked="true" />
+                            <Text>Iris</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="indigo" DefaultChecked="true" />
+                            <Text>Indigo</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="blue" DefaultChecked="true" />
+                            <Text>Blue</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="cyan" DefaultChecked="true" />
+                            <Text>Cyan</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="teal" DefaultChecked="true" />
+                            <Text>Teal</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="jade" DefaultChecked="true" />
+                            <Text>Jade</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="green" DefaultChecked="true" />
+                            <Text>Green</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="grass" DefaultChecked="true" />
+                            <Text>Grass</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="lime" DefaultChecked="true" />
+                            <Text>Lime</Text>
+                        </Flex>
+                    </Text>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Switch Radius</Heading>
+                <Flex Gap="3">
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Radius="none" DefaultChecked="true" Color="indigo" />
+                            <Text>None</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Radius="small" DefaultChecked="true" Color="indigo" />
+                            <Text>Small</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Radius="medium" DefaultChecked="true" Color="indigo" />
+                            <Text>Medium</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Radius="large" DefaultChecked="true" Color="indigo" />
+                            <Text>Large</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Radius="full" DefaultChecked="true" Color="indigo" />
+                            <Text>Full</Text>
+                        </Flex>
+                    </Text>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">High Contrast</Heading>
+                <Flex Gap="4">
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="indigo" DefaultChecked="true" />
+                            <Text>Normal contrast</Text>
+                        </Flex>
+                    </Text>
+                    <Text As="label" Size="2">
+                        <Flex Gap="3" Align="FlexAlign.Center">
+                            <Switch Color="indigo" HighContrast="true" DefaultChecked="true" />
+                            <Text>High contrast</Text>
+                        </Flex>
+                    </Text>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Interactive Example</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Text Size="3" Weight="TextWeight.Medium">Notification Settings</Text>
+                        
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                <Box>
+                                    <Text Size="2" Weight="TextWeight.Medium">Email Notifications</Text>
+                                    <Text Size="1" Color="gray">Receive email updates about your account</Text>
+                                </Box>
+                                <Switch @bind-Checked="emailEnabled" Color="indigo" />
+                            </Flex>
+                            
+                            <Separator />
+                            
+                            <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                <Box>
+                                    <Text Size="2" Weight="TextWeight.Medium">Push Notifications</Text>
+                                    <Text Size="1" Color="gray">Receive push notifications on your device</Text>
+                                </Box>
+                                <Switch @bind-Checked="pushEnabled" Color="indigo" />
+                            </Flex>
+                            
+                            <Separator />
+                            
+                            <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                <Box>
+                                    <Text Size="2" Weight="TextWeight.Medium">SMS Alerts</Text>
+                                    <Text Size="1" Color="gray">Get important alerts via text message</Text>
+                                </Box>
+                                <Switch @bind-Checked="smsEnabled" Color="indigo" />
+                            </Flex>
+                            
+                            <Separator />
+                            
+                            <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                <Box>
+                                    <Text Size="2" Weight="TextWeight.Medium">Marketing Communications</Text>
+                                    <Text Size="1" Color="gray">Receive promotional offers and updates</Text>
+                                </Box>
+                                <Switch @bind-Checked="marketingEnabled" Color="indigo" />
+                            </Flex>
+                        </Flex>
+                        
+                        <Box Mt="3" P="3" Style="background: var(--gray-2); border-radius: var(--radius-2);">
+                            <Text Size="2">
+                                Active channels: 
+                                @if (emailEnabled) { <Badge Size="BadgeSize.Size1" Mr="1">Email</Badge> }
+                                @if (pushEnabled) { <Badge Size="BadgeSize.Size1" Mr="1">Push</Badge> }
+                                @if (smsEnabled) { <Badge Size="BadgeSize.Size1" Mr="1">SMS</Badge> }
+                                @if (marketingEnabled) { <Badge Size="BadgeSize.Size1">Marketing</Badge> }
+                                @if (!emailEnabled && !pushEnabled && !smsEnabled && !marketingEnabled) { <span style="color: var(--gray-11);">None</span> }
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Privacy Settings</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Heading Size="3">Privacy & Security</Heading>
+                        
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                <Box Style="flex: 1; margin-right: var(--space-4);">
+                                    <Text Size="2" Weight="TextWeight.Medium">Make profile public</Text>
+                                    <Text Size="1" Color="gray">Anyone can see your profile information</Text>
+                                </Box>
+                                <Switch @bind-Checked="profilePublic" />
+                            </Flex>
+                            
+                            <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                <Box Style="flex: 1; margin-right: var(--space-4);">
+                                    <Text Size="2" Weight="TextWeight.Medium">Show online status</Text>
+                                    <Text Size="1" Color="gray">Let others see when you're active</Text>
+                                </Box>
+                                <Switch @bind-Checked="showOnline" />
+                            </Flex>
+                            
+                            <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                <Box Style="flex: 1; margin-right: var(--space-4);">
+                                    <Text Size="2" Weight="TextWeight.Medium">Two-factor authentication</Text>
+                                    <Text Size="1" Color="gray">Add an extra layer of security to your account</Text>
+                                </Box>
+                                <Switch @bind-Checked="twoFactorEnabled" Color="green" />
+                            </Flex>
+                            
+                            <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                <Box Style="flex: 1; margin-right: var(--space-4);">
+                                    <Text Size="2" Weight="TextWeight.Medium">Data collection</Text>
+                                    <Text Size="1" Color="gray">Help improve our services with anonymous usage data</Text>
+                                </Box>
+                                <Switch @bind-Checked="dataCollection" />
+                            </Flex>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Feature Toggles</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Heading Size="3">Experimental Features</Heading>
+                        
+                        <Grid Columns="2" Gap="3">
+                            <Card Size="CardSize.Size1" Variant="CardVariant.Surface">
+                                <Flex Direction="FlexDirection.Column" Gap="2">
+                                    <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                        <Badge Size="BadgeSize.Size1" Color="blue">Beta</Badge>
+                                        <Switch @bind-Checked="darkMode" Size="SwitchSize.Size1" />
+                                    </Flex>
+                                    <Text Size="2" Weight="TextWeight.Medium">Dark Mode</Text>
+                                    <Text Size="1" Color="gray">Enable dark theme across the application</Text>
+                                </Flex>
+                            </Card>
+                            
+                            <Card Size="CardSize.Size1" Variant="CardVariant.Surface">
+                                <Flex Direction="FlexDirection.Column" Gap="2">
+                                    <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                        <Badge Size="BadgeSize.Size1" Color="orange">Alpha</Badge>
+                                        <Switch @bind-Checked="aiAssistant" Size="SwitchSize.Size1" />
+                                    </Flex>
+                                    <Text Size="2" Weight="TextWeight.Medium">AI Assistant</Text>
+                                    <Text Size="1" Color="gray">Get intelligent suggestions and help</Text>
+                                </Flex>
+                            </Card>
+                            
+                            <Card Size="CardSize.Size1" Variant="CardVariant.Surface">
+                                <Flex Direction="FlexDirection.Column" Gap="2">
+                                    <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                        <Badge Size="BadgeSize.Size1" Color="green">Stable</Badge>
+                                        <Switch @bind-Checked="shortcuts" Size="SwitchSize.Size1" />
+                                    </Flex>
+                                    <Text Size="2" Weight="TextWeight.Medium">Keyboard Shortcuts</Text>
+                                    <Text Size="1" Color="gray">Navigate faster with keyboard commands</Text>
+                                </Flex>
+                            </Card>
+                            
+                            <Card Size="CardSize.Size1" Variant="CardVariant.Surface">
+                                <Flex Direction="FlexDirection.Column" Gap="2">
+                                    <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                        <Badge Size="BadgeSize.Size1" Color="purple">New</Badge>
+                                        <Switch @bind-Checked="animations" Size="SwitchSize.Size1" />
+                                    </Flex>
+                                    <Text Size="2" Weight="TextWeight.Medium">Animations</Text>
+                                    <Text Size="1" Color="gray">Enable smooth transitions and effects</Text>
+                                </Flex>
+                            </Card>
+                        </Grid>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Inline with Text</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Text Size="2">
+                            Enable <Switch Size="SwitchSize.Size1" DefaultChecked="true" /> automatic updates to keep your software secure.
+                        </Text>
+                        
+                        <Text Size="3">
+                            The feature is currently <Switch Size="SwitchSize.Size2" Color="green" DefaultChecked="true" /> and working properly.
+                        </Text>
+                        
+                        <Text Size="1" Color="gray">
+                            Debug mode: <Switch Size="SwitchSize.Size1" Color="red" /> (only enable for troubleshooting)
+                        </Text>
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
+
+@code {
+    private bool emailEnabled = true;
+    private bool pushEnabled = false;
+    private bool smsEnabled = false;
+    private bool marketingEnabled = false;
+    
+    private bool profilePublic = false;
+    private bool showOnline = true;
+    private bool twoFactorEnabled = true;
+    private bool dataCollection = false;
+    
+    private bool darkMode = true;
+    private bool aiAssistant = false;
+    private bool shortcuts = true;
+    private bool animations = true;
+}

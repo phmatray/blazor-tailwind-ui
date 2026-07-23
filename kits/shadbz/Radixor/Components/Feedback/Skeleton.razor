@@ -1,0 +1,20 @@
+@namespace Radixor.Components.Feedback
+@inherits SkeletonBase
+
+@if (Loading)
+{
+    @if (AsChild && ChildContent != null)
+    {
+        <CascadingValue Value="GetSkeletonAttributes()" Name="SkeletonAttributes">
+            @ChildContent
+        </CascadingValue>
+    }
+    else
+    {
+        <span @attributes="GetSkeletonAttributes()"></span>
+    }
+}
+else
+{
+    @ChildContent
+}

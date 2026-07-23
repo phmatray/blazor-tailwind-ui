@@ -1,0 +1,345 @@
+@page "/section-demo"
+
+<PageTitle>Section Component - Radix UI Blazor</PageTitle>
+
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="HeadingSize.Size8" Mb="2">Section</Heading>
+                <Text Size="4" Color="gray">
+                    Provides consistent vertical padding for page sections and content areas.
+                </Text>
+            </Box>
+
+            <!-- Section Sizes -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Sizes</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    @foreach (var size in new[] { 
+                        (SectionSize.Size1, "24px", "Compact sections"),
+                        (SectionSize.Size2, "40px", "Small sections"),
+                        (SectionSize.Size3, "64px", "Default sections"),
+                        (SectionSize.Size4, "80px", "Hero sections")
+                    })
+                    {
+                        <Card>
+                            <Section Size="@size.Item1" Style="background: var(--accent-a3);">
+                                <Container Size="ContainerSize.Size3">
+                                    <Heading Size="HeadingSize.Size4">Size @((int)size.Item1 + 1)</Heading>
+                                    <Text Size="2" Color="gray" Mt="1">
+                                        @size.Item2 vertical padding - @size.Item3
+                                    </Text>
+                                </Container>
+                            </Section>
+                        </Card>
+                    }
+                </Flex>
+            </Box>
+
+            <!-- Display Property -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Display Control</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column">
+                        <Section Size="SectionSize.Size2" Style="background: var(--blue-a3);">
+                            <Text Size="3" Align="TextAlign.Center">Visible Section</Text>
+                        </Section>
+                        <Section Size="SectionSize.Size2" Display="SectionDisplay.None">
+                            <Text Size="3" Align="TextAlign.Center">Hidden Section (display: none)</Text>
+                        </Section>
+                        <Section Size="SectionSize.Size2" Style="background: var(--green-a3);">
+                            <Text Size="3" Align="TextAlign.Center">Another Visible Section</Text>
+                        </Section>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <!-- Custom Spacing -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Custom Spacing</Heading>
+                <Grid Columns="2" Gap="4">
+                    <Card>
+                        <Section Py="2" Px="4" Style="background: var(--cyan-a3);">
+                            <Heading Size="HeadingSize.Size4">Custom Padding</Heading>
+                            <Text Size="2" Mt="2">Py="2" Px="4"</Text>
+                        </Section>
+                    </Card>
+                    <Card>
+                        <Section P="6" Style="background: var(--pink-a3);">
+                            <Heading Size="HeadingSize.Size4">Uniform Padding</Heading>
+                            <Text Size="2" Mt="2">P="6"</Text>
+                        </Section>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <!-- Margins -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Margins</Heading>
+                <Card P="4">
+                    <Flex Direction="FlexDirection.Column" Gap="2">
+                        <Section Size="SectionSize.Size2" M="3" Style="background: var(--indigo-a3);">
+                            <Text Align="TextAlign.Center">M="3" - Margin on all sides</Text>
+                        </Section>
+                        <Section Size="SectionSize.Size2" Mx="5" My="2" Style="background: var(--orange-a3);">
+                            <Text Align="TextAlign.Center">Mx="5" My="2" - Different X/Y margins</Text>
+                        </Section>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <!-- Nested Sections -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Nested Sections</Heading>
+                <Card>
+                    <Section Size="SectionSize.Size3" Style="background: var(--gray-a3);">
+                        <Container Size="ContainerSize.Size4">
+                            <Heading Size="HeadingSize.Size5" Mb="3">Outer Section</Heading>
+                            <Section Size="SectionSize.Size2" Style="background: var(--blue-a3); border-radius: var(--radius-3);">
+                                <Container Size="ContainerSize.Size3">
+                                    <Heading Size="HeadingSize.Size4">Inner Section</Heading>
+                                    <Text Size="2" Mt="2">Nested for complex layouts</Text>
+                                </Container>
+                            </Section>
+                        </Container>
+                    </Section>
+                </Card>
+            </Box>
+
+            <!-- Hero Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Hero Section Example</Heading>
+                <Card Style="overflow: hidden;">
+                    <Section Size="SectionSize.Size4" Style="background: linear-gradient(135deg, var(--blue-9), var(--purple-9));">
+                        <Container Size="ContainerSize.Size3" Align="ContainerAlign.Center">
+                            <Flex Direction="FlexDirection.Column" Align="FlexAlign.Center" Style="text-align: center;">
+                                <Badge Size="BadgeSize.Size2" Variant="BadgeVariant.Surface" Mb="3" Style="background: rgba(255,255,255,0.2); color: white;">
+                                    NEW RELEASE
+                                </Badge>
+                                <Heading Size="HeadingSize.Size8" Style="color: white;">
+                                    Build Amazing Apps
+                                </Heading>
+                                <Text Size="4" Mt="3" Style="color: var(--gray-3); max-width: 600px;">
+                                    Create beautiful, responsive applications with our comprehensive component library
+                                </Text>
+                                <Flex Gap="3" Mt="5">
+                                    <Button Size="ButtonSize.Large" Variant="ButtonVariant.Solid">
+                                        Get Started
+                                    </Button>
+                                    <Button Size="ButtonSize.Large" Variant="ButtonVariant.Outline" Style="color: white; border-color: white;">
+                                        Learn More
+                                    </Button>
+                                </Flex>
+                            </Flex>
+                        </Container>
+                    </Section>
+                </Card>
+            </Box>
+
+            <!-- Blog Layout Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Blog Post Layout</Heading>
+                <Card Style="overflow: hidden;">
+                    <!-- Article Header -->
+                    <Section Size="SectionSize.Size3" Style="background: var(--gray-12); color: white;">
+                        <Container Size="ContainerSize.Size2">
+                            <Badge Size="BadgeSize.Size1" Variant="BadgeVariant.Soft" Color="blue" Mb="3">
+                                TECHNOLOGY
+                            </Badge>
+                            <Heading Size="HeadingSize.Size7" Style="color: white;">
+                                Understanding Modern Web Architecture
+                            </Heading>
+                            <Flex Gap="3" Mt="3" Align="FlexAlign.Center">
+                                <Avatar Size="AvatarSize.Size2">
+                                    <Fallback>JD</Fallback>
+                                </Avatar>
+                                <Flex Gap="2" Align="FlexAlign.Center">
+                                    <Text Size="2" Style="color: var(--gray-11);">Jane Doe</Text>
+                                    <Text Size="2" Style="color: var(--gray-11);">•</Text>
+                                    <Text Size="2" Style="color: var(--gray-11);">Dec 15, 2024</Text>
+                                    <Text Size="2" Style="color: var(--gray-11);">•</Text>
+                                    <Badge Size="BadgeSize.Size1" Variant="BadgeVariant.Surface">
+                                        10 min read
+                                    </Badge>
+                                </Flex>
+                            </Flex>
+                        </Container>
+                    </Section>
+                    
+                    <!-- Article Content -->
+                    <Section Size="SectionSize.Size2" Style="background: white;">
+                        <Container Size="ContainerSize.Size2">
+                            <Text Size="3" Color="gray" Mb="3">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </Text>
+                            <Heading Size="HeadingSize.Size5" Mt="4" Mb="2">Introduction</Heading>
+                            <Text Size="3" Color="gray">
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </Text>
+                        </Container>
+                    </Section>
+                    
+                    <!-- Author Bio -->
+                    <Section Size="SectionSize.Size2" Style="background: var(--gray-2);">
+                        <Container Size="ContainerSize.Size2">
+                            <Card>
+                                <Flex Gap="3">
+                                    <Avatar Size="AvatarSize.Size4">
+                                        <Fallback>JD</Fallback>
+                                    </Avatar>
+                                    <Box>
+                                        <Heading Size="HeadingSize.Size4">About the Author</Heading>
+                                        <Text Size="2" Color="gray" Mt="1">
+                                            Jane Doe is a senior software engineer with over 10 years of experience.
+                                        </Text>
+                                        <Flex Gap="2" Mt="2">
+                                            <Button Size="ButtonSize.Small" Variant="ButtonVariant.Soft">
+                                                Follow
+                                            </Button>
+                                            <Button Size="ButtonSize.Small" Variant="ButtonVariant.Ghost">
+                                                More Articles
+                                            </Button>
+                                        </Flex>
+                                    </Box>
+                                </Flex>
+                            </Card>
+                        </Container>
+                    </Section>
+                </Card>
+            </Box>
+
+            <!-- Full Page Layout -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Full Page Layout</Heading>
+                <Card Style="overflow: hidden;">
+                    <!-- Navigation -->
+                    <Box P="3" Style="background: white; border-bottom: 1px solid var(--gray-4);">
+                        <Container Size="ContainerSize.Size4">
+                            <Flex Align="FlexAlign.Center" Justify="FlexJustify.Between">
+                                <Flex Align="FlexAlign.Center" Gap="5">
+                                    <Text Size="3" Weight="TextWeight.Bold">Logo</Text>
+                                    <Flex Gap="4">
+                                        <Link Size="2">Products</Link>
+                                        <Link Size="2">Solutions</Link>
+                                        <Link Size="2">Pricing</Link>
+                                    </Flex>
+                                </Flex>
+                                <Button Size="ButtonSize.Small">Sign In</Button>
+                            </Flex>
+                        </Container>
+                    </Box>
+                    
+                    <!-- Announcement Bar -->
+                    <Section Size="SectionSize.Size1" Style="background: var(--accent-3);">
+                        <Container Size="ContainerSize.Size4">
+                            <Flex Align="FlexAlign.Center" Justify="FlexJustify.Center" Gap="2">
+                                <Badge Size="BadgeSize.Size1" Variant="BadgeVariant.Solid">NEW</Badge>
+                                <Text Size="2">Check out our latest features →</Text>
+                            </Flex>
+                        </Container>
+                    </Section>
+                    
+                    <!-- Main Content -->
+                    <Section Size="SectionSize.Size3">
+                        <Container Size="ContainerSize.Size4">
+                            <Grid Columns="3" Gap="5">
+                                <Box GridColumn="span 2">
+                                    <Heading Size="HeadingSize.Size6">Main Content</Heading>
+                                    <Text Size="3" Mt="3" Color="gray">
+                                        This demonstrates how sections create consistent spacing in layouts.
+                                    </Text>
+                                </Box>
+                                <Card>
+                                    <Heading Size="HeadingSize.Size4">Sidebar</Heading>
+                                    <Text Size="2" Mt="2" Color="gray">Related links</Text>
+                                </Card>
+                            </Grid>
+                        </Container>
+                    </Section>
+                    
+                    <!-- Footer -->
+                    <Section Size="SectionSize.Size2" Style="background: var(--gray-12);">
+                        <Container Size="ContainerSize.Size4">
+                            <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                <Text Size="2" Style="color: var(--gray-11);">© 2024 Company</Text>
+                                <Flex Gap="3">
+                                    <Link Size="2" Style="color: var(--gray-11);">Privacy</Link>
+                                    <Link Size="2" Style="color: var(--gray-11);">Terms</Link>
+                                    <Link Size="2" Style="color: var(--gray-11);">Contact</Link>
+                                </Flex>
+                            </Flex>
+                        </Container>
+                    </Section>
+                </Card>
+            </Box>
+
+            <!-- AsChild Pattern -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">AsChild Pattern</Heading>
+                <Card>
+                    <Section Size="SectionSize.Size2" AsChild="true">
+                        <article Style="background: var(--indigo-a3); border-radius: var(--radius-3);">
+                            <Container Size="ContainerSize.Size3">
+                                <Heading Size="HeadingSize.Size4">Custom Article Element</Heading>
+                                <Text Size="2" Mt="2">
+                                    The Section's padding is applied to the article element directly.
+                                </Text>
+                            </Container>
+                        </article>
+                    </Section>
+                </Card>
+            </Box>
+
+            <!-- Interactive Example -->
+            <Box>
+                <Heading Size="HeadingSize.Size6" Mb="4">Interactive Example</Heading>
+                <Card>
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Flex Gap="2">
+                            <SelectRoot @bind-Value="_selectedSize">
+                                <SelectTrigger TValue="string">
+                                    <Text>Size: @_selectedSize</Text>
+                                </SelectTrigger>
+                                <SelectContent TValue="string">
+                                    <SelectItem TValue="string" Value="@("1")">Size 1</SelectItem>
+                                    <SelectItem TValue="string" Value="@("2")">Size 2</SelectItem>
+                                    <SelectItem TValue="string" Value="@("3")">Size 3</SelectItem>
+                                    <SelectItem TValue="string" Value="@("4")">Size 4</SelectItem>
+                                </SelectContent>
+                            </SelectRoot>
+                            <Switch @bind-Checked="_showContent" />
+                            <Text Size="2">Show Content</Text>
+                        </Flex>
+                        
+                        <Section Size="@GetSectionSize()" Style="background: var(--accent-a3); border-radius: var(--radius-3);">
+                            @if (_showContent)
+                            {
+                                <Container Size="ContainerSize.Size3">
+                                    <Heading Size="HeadingSize.Size4">Dynamic Section</Heading>
+                                    <Text Size="2" Mt="2">
+                                        This section's size changes based on your selection.
+                                    </Text>
+                                </Container>
+                            }
+                        </Section>
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Section>
+</Container>
+
+@code {
+    private string _selectedSize = "3";
+    private bool _showContent = true;
+    
+    private SectionSize GetSectionSize() => _selectedSize switch
+    {
+        "1" => SectionSize.Size1,
+        "2" => SectionSize.Size2,
+        "4" => SectionSize.Size4,
+        _ => SectionSize.Size3
+    };
+}

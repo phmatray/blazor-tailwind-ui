@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+#
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadBz.BlazorApp", "ShadBz.BlazorApp\ShadBz.BlazorApp.csproj", "{DE8258F4-CD96-496A-BD8C-FBE2B13D9BD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radixor", "Radixor\Radixor.csproj", "{20CFBF79-A2D5-4508-A115-06788A1F53B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radixor.Tests", "Radixor.Tests\Radixor.Tests.csproj", "{7EBFD816-ADC2-440F-8E56-8BB63C37DC0F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE8258F4-CD96-496A-BD8C-FBE2B13D9BD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE8258F4-CD96-496A-BD8C-FBE2B13D9BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE8258F4-CD96-496A-BD8C-FBE2B13D9BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE8258F4-CD96-496A-BD8C-FBE2B13D9BD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20CFBF79-A2D5-4508-A115-06788A1F53B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20CFBF79-A2D5-4508-A115-06788A1F53B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20CFBF79-A2D5-4508-A115-06788A1F53B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20CFBF79-A2D5-4508-A115-06788A1F53B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EBFD816-ADC2-440F-8E56-8BB63C37DC0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EBFD816-ADC2-440F-8E56-8BB63C37DC0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EBFD816-ADC2-440F-8E56-8BB63C37DC0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EBFD816-ADC2-440F-8E56-8BB63C37DC0F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

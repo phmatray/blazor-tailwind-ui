@@ -1,0 +1,340 @@
+@page "/flex-demo"
+
+<PageTitle>Flex Demo</PageTitle>
+
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="HeadingSize.Size8">Flex Component</Heading>
+                <Text Size="4" Color="gray">A flexible box layout component for arranging elements in rows or columns with precise control over alignment, spacing, and wrapping.</Text>
+            </Box>
+            
+            <!-- Direction Examples -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Direction</Heading>
+                        <Text Size="2" Color="gray">Control the main axis direction of flex items.</Text>
+                    </Box>
+                    
+                    <Grid Columns="2" Gap="4">
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Row (default)</Text>
+                                <Flex Gap="2">
+                                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Column</Text>
+                                <Flex Direction="FlexDirection.Column" Gap="2">
+                                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Row Reverse</Text>
+                                <Flex Direction="FlexDirection.RowReverse" Gap="2">
+                                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Column Reverse</Text>
+                                <Flex Direction="FlexDirection.ColumnReverse" Gap="2">
+                                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                </Flex>
+            </Card>
+
+            <!-- Alignment Examples -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Alignment</Heading>
+                        <Text Size="2" Color="gray">Control how flex items are aligned along the cross axis.</Text>
+                    </Box>
+                    
+                    <Grid Columns="2" Gap="4">
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Align Start</Text>
+                                <Flex Align="FlexAlign.Start" Gap="2" Height="80px" style="background: var(--gray-a3); padding: var(--space-2); border-radius: var(--radius-2);">
+                                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="3" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="1" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Align Center</Text>
+                                <Flex Align="FlexAlign.Center" Gap="2" Height="80px" style="background: var(--gray-a3); padding: var(--space-2); border-radius: var(--radius-2);">
+                                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="1" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Align End</Text>
+                                <Flex Align="FlexAlign.End" Gap="2" Height="80px" style="background: var(--gray-a3); padding: var(--space-2); border-radius: var(--radius-2);">
+                                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="3" style="background: var(--amber-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="1" style="background: var(--amber-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Align Stretch</Text>
+                                <Flex Align="FlexAlign.Stretch" Gap="2" Height="80px" style="background: var(--gray-a3); padding: var(--space-2); border-radius: var(--radius-2);">
+                                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                    
+                    <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="2" Weight="TextWeight.Medium">Align Baseline</Text>
+                            <Text Size="1" Color="gray">Aligns items along their text baseline.</Text>
+                            <Flex Align="FlexAlign.Baseline" Gap="3" style="background: var(--gray-a3); padding: var(--space-3); border-radius: var(--radius-2);">
+                                <Text Size="5" style="background: var(--cyan-5); padding: var(--space-1); border-radius: var(--radius-1); color: white;">Large</Text>
+                                <Text Size="3" style="background: var(--cyan-5); padding: var(--space-1); border-radius: var(--radius-1); color: white;">Medium</Text>
+                                <Text Size="1" style="background: var(--cyan-5); padding: var(--space-1); border-radius: var(--radius-1); color: white;">Small</Text>
+                            </Flex>
+                        </Flex>
+                    </Card>
+                </Flex>
+            </Card>
+
+            <!-- Justification Examples -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Justification</Heading>
+                        <Text Size="2" Color="gray">Control how flex items are distributed along the main axis.</Text>
+                    </Box>
+                    
+                    <Grid Columns="2" Gap="4">
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Justify Start</Text>
+                                <Flex Justify="FlexJustify.Start" Gap="2" style="background: var(--gray-a3); padding: var(--space-2); border-radius: var(--radius-2);">
+                                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="2" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Justify Center</Text>
+                                <Flex Justify="FlexJustify.Center" Gap="2" style="background: var(--gray-a3); padding: var(--space-2); border-radius: var(--radius-2);">
+                                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Justify End</Text>
+                                <Flex Justify="FlexJustify.End" Gap="2" style="background: var(--gray-a3); padding: var(--space-2); border-radius: var(--radius-2);">
+                                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Justify Between</Text>
+                                <Flex Justify="FlexJustify.Between" style="background: var(--gray-a3); padding: var(--space-2); border-radius: var(--radius-2);">
+                                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                </Flex>
+            </Card>
+
+            <!-- Gap Examples -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Gap</Heading>
+                        <Text Size="2" Color="gray">Control the spacing between flex items.</Text>
+                    </Box>
+                    
+                    <Grid Columns="2" Gap="4">
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Gap 0</Text>
+                                <Flex Gap="0" style="background: var(--gray-a3); padding: var(--space-2); border-radius: var(--radius-2);">
+                                    <Box P="2" style="background: var(--blue-5); color: white;">Item 1</Box>
+                                    <Box P="2" style="background: var(--blue-6); color: white;">Item 2</Box>
+                                    <Box P="2" style="background: var(--blue-5); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Gap 4</Text>
+                                <Flex Gap="4" style="background: var(--gray-a3); padding: var(--space-2); border-radius: var(--radius-2);">
+                                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="2" style="background: var(--amber-6); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                </Flex>
+            </Card>
+
+            <!-- Wrap Examples -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Wrap</Heading>
+                        <Text Size="2" Color="gray">Control how flex items wrap to new lines when space is limited.</Text>
+                    </Box>
+                    
+                    <Grid Columns="2" Gap="4">
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">No Wrap (default)</Text>
+                                <Text Size="1" Color="gray">Items overflow container</Text>
+                                <Box Width="300px" style="background: var(--gray-a3); overflow: auto; padding: var(--space-2); border-radius: var(--radius-2);">
+                                    <Flex Wrap="FlexWrap.NoWrap" Gap="2">
+                                        <Box P="2" MinWidth="100px" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                        <Box P="2" MinWidth="100px" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                        <Box P="2" MinWidth="100px" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                        <Box P="2" MinWidth="100px" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 4</Box>
+                                    </Flex>
+                                </Box>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Wrap</Text>
+                                <Text Size="1" Color="gray">Items wrap to new lines</Text>
+                                <Box Width="300px" style="background: var(--gray-a3); padding: var(--space-2); border-radius: var(--radius-2);">
+                                    <Flex Wrap="FlexWrap.Wrap" Gap="2">
+                                        <Box P="2" MinWidth="100px" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                        <Box P="2" MinWidth="100px" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                        <Box P="2" MinWidth="100px" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                        <Box P="2" MinWidth="100px" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 4</Box>
+                                    </Flex>
+                                </Box>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                </Flex>
+            </Card>
+
+            <!-- Practical Examples -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Practical Examples</Heading>
+                        <Text Size="2" Color="gray">Real-world layouts built with flexbox.</Text>
+                    </Box>
+                    
+                    <Grid Columns="1" Gap="4">
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Navigation Bar</Text>
+                                <Flex Align="FlexAlign.Center" Justify="FlexJustify.Between" P="3" style="background: white; border-radius: var(--radius-2); box-shadow: var(--shadow-1);">
+                                    <Flex Align="FlexAlign.Center" Gap="4">
+                                        <Text Size="3" Weight="TextWeight.Bold">Logo</Text>
+                                        <Flex Gap="3">
+                                            <Text Size="2">Home</Text>
+                                            <Text Size="2">About</Text>
+                                            <Text Size="2">Services</Text>
+                                        </Flex>
+                                    </Flex>
+                                    <Flex Gap="2">
+                                        <Button Variant="ButtonVariant.Ghost" Size="ButtonSize.Small">Sign In</Button>
+                                        <Button Size="ButtonSize.Small">Sign Up</Button>
+                                    </Flex>
+                                </Flex>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Card Layout</Text>
+                                <Card Size="CardSize.Size2">
+                                    <Flex Direction="FlexDirection.Column" Gap="3">
+                                        <Heading Size="HeadingSize.Size4">Product Card</Heading>
+                                        <Text Size="2" Color="gray">A beautifully designed product with amazing features.</Text>
+                                        <Box FlexGrow="1">
+                                            <Text Size="2">Main content area that expands to fill available space.</Text>
+                                        </Box>
+                                        <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                                            <Text Size="3" Weight="TextWeight.Bold">$99.99</Text>
+                                            <Button Size="ButtonSize.Small">Add to Cart</Button>
+                                        </Flex>
+                                    </Flex>
+                                </Card>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Responsive Item Grid</Text>
+                                <Flex Wrap="FlexWrap.Wrap" Gap="3">
+                                    @for (int i = 1; i <= 6; i++)
+                                    {
+                                        <Box FlexBasis="calc(33.333% - var(--space-2))" MinWidth="120px" P="2" 
+                                             style="background: var(--gray-2); border-radius: var(--radius-2);">
+                                            <Flex Direction="FlexDirection.Column" Gap="1" Align="FlexAlign.Center">
+                                                <Box Width="40px" Height="40px" style="background: var(--accent-9); border-radius: var(--radius-1);"></Box>
+                                                <Text Size="1">Item @i</Text>
+                                            </Flex>
+                                        </Box>
+                                    }
+                                </Flex>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                </Flex>
+            </Card>
+        </Flex>
+    </Section>
+</Container>

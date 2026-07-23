@@ -1,0 +1,238 @@
+@page "/demos/spinner"
+
+<PageTitle>Spinner Demo</PageTitle>
+
+<div class="demo-container">
+    <h1>Spinner Component Demo</h1>
+    
+    <section>
+        <h2>Basic Spinner</h2>
+        <div class="demo-section">
+            <Spinner />
+        </div>
+    </section>
+
+    <section>
+        <h2>Sizes</h2>
+        <div class="demo-section">
+            <div class="demo-row">
+                <Spinner Size="SpinnerSize.Size1" />
+                <Spinner Size="SpinnerSize.Size2" />
+                <Spinner Size="SpinnerSize.Size3" />
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>With Content</h2>
+        <div class="demo-section">
+            <Spinner Loading="@_isLoading1">
+                <Button Size="ButtonSize.Medium" @onclick="() => SimulateLoading(1)">
+                    Submit
+                </Button>
+            </Spinner>
+            
+            <Spinner Loading="@_isLoading2">
+                <Card>
+                    <Box P="4">
+                        <Text>This content shows a spinner overlay when loading</Text>
+                        <Button Size="ButtonSize.Small" @onclick="() => SimulateLoading(2)">
+                            Load Data
+                        </Button>
+                    </Box>
+                </Card>
+            </Spinner>
+        </div>
+    </section>
+
+    <section>
+        <h2>Loading States</h2>
+        <div class="demo-section">
+            <div class="demo-row">
+                <div>
+                    <Heading Size="HeadingSize.Size3">Always Loading</Heading>
+                    <Spinner Loading="true" />
+                </div>
+                
+                <div>
+                    <Heading Size="HeadingSize.Size3">Never Loading</Heading>
+                    <Spinner Loading="false">
+                        <Text>Content always visible</Text>
+                    </Spinner>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Interactive Example</h2>
+        <div class="demo-section">
+            <Spinner Loading="@_isLoadingInteractive" Size="@_selectedSize">
+                <Box P="3">
+                    <Text Size="3">Content with dynamic size</Text>
+                </Box>
+            </Spinner>
+            
+            <div class="demo-controls">
+                <SelectRoot Value="@_sizeOption" ValueChanged="@((string val) => OnSizeChanged(val))">
+                    <SelectTrigger TValue="string">
+                        <Text>@GetSizeText()</Text>
+                    </SelectTrigger>
+                    <SelectContent TValue="string">
+                        <SelectItem TValue="string" Value="@("1")">Size 1</SelectItem>
+                        <SelectItem TValue="string" Value="@("2")">Size 2</SelectItem>
+                        <SelectItem TValue="string" Value="@("3")">Size 3</SelectItem>
+                    </SelectContent>
+                </SelectRoot>
+                
+                <Button @onclick="ToggleInteractiveLoading">
+                    Toggle Loading
+                </Button>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>With Different Components</h2>
+        <div class="demo-section">
+            <div class="demo-row">
+                <Spinner Loading="@_isLoading3">
+                    <Badge Size="BadgeSize.Size2">Processing</Badge>
+                </Spinner>
+                
+                <Spinner Loading="@_isLoading4">
+                    <Checkbox />
+                </Spinner>
+                
+                <Spinner Loading="@_isLoading5">
+                    <Avatar Size="AvatarSize.Size3">
+                        <Fallback>JD</Fallback>
+                    </Avatar>
+                </Spinner>
+            </div>
+            
+            <Button @onclick="ToggleAllLoading">
+                Toggle All Loading States
+            </Button>
+        </div>
+    </section>
+
+    <section>
+        <h2>Spacing</h2>
+        <div class="demo-section">
+            <div class="demo-column">
+                <Spinner M="2" />
+                <Spinner My="3" />
+                <Spinner Mx="4" />
+                <Spinner Mt="2" Mb="2" />
+            </div>
+        </div>
+    </section>
+</div>
+
+@code {
+    private bool _isLoading1 = false;
+    private bool _isLoading2 = false;
+    private bool _isLoading3 = false;
+    private bool _isLoading4 = false;
+    private bool _isLoading5 = false;
+    private bool _isLoadingInteractive = false;
+    private string _sizeOption = "2";
+    
+    private SpinnerSize _selectedSize => _sizeOption switch
+    {
+        "1" => SpinnerSize.Size1,
+        "3" => SpinnerSize.Size3,
+        _ => SpinnerSize.Size2
+    };
+    
+    private string GetSizeText() => _sizeOption switch
+    {
+        "1" => "Size 1",
+        "2" => "Size 2",
+        "3" => "Size 3",
+        _ => "Select size..."
+    };
+    
+    private void OnSizeChanged(string value)
+    {
+        _sizeOption = value;
+    }
+    
+    private void ToggleInteractiveLoading()
+    {
+        _isLoadingInteractive = !_isLoadingInteractive;
+    }
+
+    private async Task SimulateLoading(int buttonNumber)
+    {
+        switch (buttonNumber)
+        {
+            case 1:
+                _isLoading1 = true;
+                StateHasChanged();
+                await Task.Delay(2000);
+                _isLoading1 = false;
+                break;
+            case 2:
+                _isLoading2 = true;
+                StateHasChanged();
+                await Task.Delay(3000);
+                _isLoading2 = false;
+                break;
+        }
+        StateHasChanged();
+    }
+
+    private void ToggleAllLoading()
+    {
+        var newState = !_isLoading3;
+        _isLoading3 = newState;
+        _isLoading4 = newState;
+        _isLoading5 = newState;
+    }
+}
+
+<style>
+    .demo-container {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .demo-section {
+        background: var(--gray-2);
+        padding: 2rem;
+        border-radius: var(--radius-3);
+        margin-bottom: 1rem;
+    }
+
+    .demo-row {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .demo-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .demo-controls {
+        margin-top: 1rem;
+        display: flex;
+        gap: 1rem;
+    }
+
+    section {
+        margin-bottom: 3rem;
+    }
+
+    h2 {
+        margin-bottom: 1rem;
+        color: var(--gray-12);
+    }
+</style>

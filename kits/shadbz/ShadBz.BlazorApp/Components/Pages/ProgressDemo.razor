@@ -1,0 +1,403 @@
+@page "/progress-demo"
+@implements IDisposable
+
+<PageTitle>Progress Component Demo</PageTitle>
+
+<Section Size="SectionSize.Size3">
+    <Container Size="ContainerSize.Size4">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="6" Weight="TextWeight.Bold" Mb="2">Progress Component</Heading>
+                <Text Size="4" Color="gray">Visual indicator for task completion and loading states.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic Progress</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Text Size="2" Mb="2">Determinate Progress (75%)</Text>
+                        <Progress Value="75" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Mb="2">Indeterminate Progress (Loading)</Text>
+                        <Progress />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Mb="2">Complete (100%)</Text>
+                        <Progress Value="100" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Mb="2">Just Started (5%)</Text>
+                        <Progress Value="5" />
+                    </Box>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Progress Sizes</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Text Size="2" Mb="2">Size 1 - Small</Text>
+                        <Progress Size="ProgressSize.Size1" Value="60" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Mb="2">Size 2 - Default</Text>
+                        <Progress Size="ProgressSize.Size2" Value="60" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="2" Mb="2">Size 3 - Large</Text>
+                        <Progress Size="ProgressSize.Size3" Value="60" />
+                    </Box>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Progress Variants</Heading>
+                <Grid Columns="3" Gap="4">
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Surface (Default)</Text>
+                        <Progress Variant="ProgressVariant.Surface" Value="50" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Classic</Text>
+                        <Progress Variant="ProgressVariant.Classic" Value="50" />
+                    </Box>
+                    
+                    <Box>
+                        <Text Size="3" Weight="TextWeight.Medium" Mb="2">Soft</Text>
+                        <Progress Variant="ProgressVariant.Soft" Value="50" />
+                    </Box>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Progress Colors</Heading>
+                <Grid Columns="3" Gap="4">
+                    <Box>
+                        <Text Size="2" Mb="2">Gray</Text>
+                        <Progress Color="gray" Value="70" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Blue</Text>
+                        <Progress Color="blue" Value="70" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Green</Text>
+                        <Progress Color="green" Value="70" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Red</Text>
+                        <Progress Color="red" Value="70" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Purple</Text>
+                        <Progress Color="purple" Value="70" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Orange</Text>
+                        <Progress Color="orange" Value="70" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Cyan</Text>
+                        <Progress Color="cyan" Value="70" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Pink</Text>
+                        <Progress Color="pink" Value="70" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Indigo</Text>
+                        <Progress Color="indigo" Value="70" />
+                    </Box>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Progress Radius</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Text Size="2" Mb="2">No radius</Text>
+                        <Progress Radius="none" Value="60" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Small radius</Text>
+                        <Progress Radius="small" Value="60" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Medium radius</Text>
+                        <Progress Radius="medium" Value="60" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Large radius</Text>
+                        <Progress Radius="large" Value="60" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">Full radius</Text>
+                        <Progress Radius="full" Value="60" />
+                    </Box>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">High Contrast</Heading>
+                <Grid Columns="2" Gap="4">
+                    <Box>
+                        <Text Size="2" Mb="2">Normal</Text>
+                        <Progress Color="indigo" Value="65" />
+                    </Box>
+                    <Box>
+                        <Text Size="2" Mb="2">High Contrast</Text>
+                        <Progress Color="indigo" HighContrast="true" Value="65" />
+                    </Box>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Interactive Progress Example</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Flex Justify="FlexJustify.Between" Align="FlexAlign.Center">
+                            <Text Size="3" Weight="TextWeight.Medium">File Upload Progress</Text>
+                            <Badge Size="BadgeSize.Size2" Color="@(uploadProgress >= 100 ? "green" : "blue")">
+                                @uploadProgress%
+                            </Badge>
+                        </Flex>
+                        
+                        <Progress Value="@uploadProgress" Color="@(uploadProgress >= 100 ? "green" : "blue")" />
+                        
+                        <Flex Gap="2">
+                            <Button Size="ButtonSize.Small" Variant="ButtonVariant.Soft" OnClick="StartUpload">
+                                Start Upload
+                            </Button>
+                            <Button Size="ButtonSize.Small" Variant="ButtonVariant.Soft" OnClick="ResetUpload">
+                                Reset
+                            </Button>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Loading States</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="2" Weight="TextWeight.Medium">Fetching data...</Text>
+                            <Progress Duration="500ms" />
+                        </Flex>
+                    </Card>
+                    
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="2" Weight="TextWeight.Medium">Processing (slow)</Text>
+                            <Progress Duration="2000ms" Color="orange" />
+                        </Flex>
+                    </Card>
+                    
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="2" Weight="TextWeight.Medium">Almost done!</Text>
+                            <Progress Value="95" Color="green" />
+                        </Flex>
+                    </Card>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Multi-Step Process</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="4">
+                        <Heading Size="3">Installation Progress</Heading>
+                        
+                        <Box>
+                            <Flex Justify="FlexJustify.Between" Mb="2">
+                                <Text Size="2">Step @currentStep of 4: @GetStepName(currentStep)</Text>
+                                <Text Size="2" Color="gray">@((currentStep - 1) * 25)%</Text>
+                            </Flex>
+                            <Progress Value="@((currentStep - 1) * 25)" Color="indigo" />
+                        </Box>
+                        
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Flex Align="FlexAlign.Center" Gap="2">
+                                <Badge Size="BadgeSize.Size1" Color="@(currentStep > 1 ? "green" : "gray")">
+                                    @(currentStep > 1 ? "✓" : "1")
+                                </Badge>
+                                <Text Size="2" Color="@(currentStep > 1 ? "gray" : "black")">Download files</Text>
+                            </Flex>
+                            
+                            <Flex Align="FlexAlign.Center" Gap="2">
+                                <Badge Size="BadgeSize.Size1" Color="@(currentStep > 2 ? "green" : currentStep == 2 ? "blue" : "gray")">
+                                    @(currentStep > 2 ? "✓" : "2")
+                                </Badge>
+                                <Text Size="2" Color="@(currentStep == 2 ? "black" : "gray")">Extract packages</Text>
+                            </Flex>
+                            
+                            <Flex Align="FlexAlign.Center" Gap="2">
+                                <Badge Size="BadgeSize.Size1" Color="@(currentStep > 3 ? "green" : currentStep == 3 ? "blue" : "gray")">
+                                    @(currentStep > 3 ? "✓" : "3")
+                                </Badge>
+                                <Text Size="2" Color="@(currentStep == 3 ? "black" : "gray")">Install components</Text>
+                            </Flex>
+                            
+                            <Flex Align="FlexAlign.Center" Gap="2">
+                                <Badge Size="BadgeSize.Size1" Color="@(currentStep > 4 ? "green" : currentStep == 4 ? "blue" : "gray")">
+                                    @(currentStep > 4 ? "✓" : "4")
+                                </Badge>
+                                <Text Size="2" Color="@(currentStep == 4 ? "black" : "gray")">Configure settings</Text>
+                            </Flex>
+                        </Flex>
+                        
+                        <Button Variant="ButtonVariant.Solid" OnClick="NextStep" Disabled="@(currentStep > 4)">
+                            @(currentStep > 4 ? "Complete!" : "Next Step")
+                        </Button>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">In Context: Download Manager</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Heading Size="3">Active Downloads</Heading>
+                        
+                        @foreach (var download in downloads)
+                        {
+                            <Box P="3" Style="background: var(--gray-2); border-radius: var(--radius-2);">
+                                <Flex Direction="FlexDirection.Column" Gap="2">
+                                    <Flex Justify="FlexJustify.Between">
+                                        <Text Size="2" Weight="TextWeight.Medium">@download.Name</Text>
+                                        <Badge Size="BadgeSize.Size1" Color="@(download.Progress >= 100 ? "green" : "blue")">
+                                            @download.Progress%
+                                        </Badge>
+                                    </Flex>
+                                    <Progress Value="@download.Progress" Size="ProgressSize.Size1" Color="@(download.Progress >= 100 ? "green" : "blue")" />
+                                    <Flex Justify="FlexJustify.Between">
+                                        <Text Size="1" Color="gray">@download.Size MB</Text>
+                                        <Text Size="1" Color="gray">@(download.Progress >= 100 ? "Complete" : "Downloading...")</Text>
+                                    </Flex>
+                                </Flex>
+                            </Box>
+                        }
+                        
+                        <Button Variant="ButtonVariant.Soft" OnClick="SimulateDownloads">
+                            Simulate Downloads
+                        </Button>
+                    </Flex>
+                </Card>
+            </Box>
+        </Flex>
+    </Container>
+</Section>
+
+@code {
+    private System.Threading.Timer? _timer;
+    private double uploadProgress = 0;
+    private int currentStep = 1;
+    
+    private class Download
+    {
+        public string Name { get; set; } = "";
+        public double Progress { get; set; }
+        public double Size { get; set; }
+    }
+    
+    private List<Download> downloads = new List<Download>
+    {
+        new Download { Name = "Document.pdf", Progress = 100, Size = 2.5 },
+        new Download { Name = "Presentation.pptx", Progress = 75, Size = 15.3 },
+        new Download { Name = "Dataset.csv", Progress = 45, Size = 8.7 }
+    };
+    
+    private void StartUpload()
+    {
+        uploadProgress = 0;
+        _timer?.Dispose();
+        _timer = new System.Threading.Timer(_ =>
+        {
+            InvokeAsync(() =>
+            {
+                if (uploadProgress < 100)
+                {
+                    uploadProgress += 5;
+                    StateHasChanged();
+                }
+                else
+                {
+                    _timer?.Dispose();
+                }
+            });
+        }, null, 0, 100);
+    }
+    
+    private void ResetUpload()
+    {
+        _timer?.Dispose();
+        uploadProgress = 0;
+    }
+    
+    private void NextStep()
+    {
+        if (currentStep <= 4)
+        {
+            currentStep++;
+        }
+    }
+    
+    private string GetStepName(int step)
+    {
+        return step switch
+        {
+            1 => "Download files",
+            2 => "Extract packages",
+            3 => "Install components",
+            4 => "Configure settings",
+            _ => "Complete"
+        };
+    }
+    
+    private void SimulateDownloads()
+    {
+        downloads = new List<Download>
+        {
+            new Download { Name = "Video.mp4", Progress = 0, Size = 125.5 },
+            new Download { Name = "Archive.zip", Progress = 0, Size = 45.2 },
+            new Download { Name = "Image.png", Progress = 0, Size = 3.8 }
+        };
+        
+        _timer?.Dispose();
+        _timer = new System.Threading.Timer(_ =>
+        {
+            InvokeAsync(() =>
+            {
+                var allComplete = true;
+                foreach (var download in downloads)
+                {
+                    if (download.Progress < 100)
+                    {
+                        download.Progress += Random.Shared.Next(1, 10);
+                        if (download.Progress > 100) download.Progress = 100;
+                        allComplete = false;
+                    }
+                }
+                
+                StateHasChanged();
+                
+                if (allComplete)
+                {
+                    _timer?.Dispose();
+                }
+            });
+        }, null, 0, 200);
+    }
+    
+    public void Dispose()
+    {
+        _timer?.Dispose();
+    }
+}

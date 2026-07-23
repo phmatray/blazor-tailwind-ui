@@ -1,0 +1,285 @@
+@page "/grid-demo"
+
+<PageTitle>Grid Demo</PageTitle>
+
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <!-- Header -->
+            <Box>
+                <Heading Size="HeadingSize.Size8">Grid Component</Heading>
+                <Text Size="4" Color="gray">A powerful two-dimensional layout system for creating responsive grids with precise control over columns, rows, gaps, and alignment.</Text>
+            </Box>
+            
+            <!-- Basic Grid Columns -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Basic Grid Columns</Heading>
+                        <Text Size="2" Color="gray">Simple column-based layouts with automatic row creation.</Text>
+                    </Box>
+                    
+                    <Grid Columns="1" Gap="4">
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">2 Columns</Text>
+                                <Grid Columns="2" Gap="2">
+                                    <Box P="3" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="3" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="3" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                    <Box P="3" style="background: var(--blue-5); border-radius: var(--radius-1); color: white;">Item 4</Box>
+                                </Grid>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">3 Columns</Text>
+                                <Grid Columns="3" Gap="2">
+                                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 1</Box>
+                                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 2</Box>
+                                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 3</Box>
+                                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 4</Box>
+                                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 5</Box>
+                                    <Box P="3" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">Item 6</Box>
+                                </Grid>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">4 Columns</Text>
+                                <Grid Columns="4" Gap="2">
+                                    @for (int i = 1; i <= 8; i++)
+                                    {
+                                        <Box P="2" style="background: var(--amber-5); border-radius: var(--radius-1); color: white;">@i</Box>
+                                    }
+                                </Grid>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                </Flex>
+            </Card>
+
+            <!-- Custom Column Sizes -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Custom Column Sizes</Heading>
+                        <Text Size="2" Color="gray">Advanced column definitions using fractions, fixed sizes, and responsive patterns.</Text>
+                    </Box>
+                    
+                    <Grid Columns="1" Gap="4">
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Fractional Units (1fr 2fr 1fr)</Text>
+                                <Text Size="1" Color="gray">The middle column takes twice the space</Text>
+                                <Grid Columns="1fr 2fr 1fr" Gap="2">
+                                    <Box P="3" style="background: var(--purple-5); border-radius: var(--radius-1); color: white;">1fr</Box>
+                                    <Box P="3" style="background: var(--purple-6); border-radius: var(--radius-1); color: white;">2fr (wider)</Box>
+                                    <Box P="3" style="background: var(--purple-5); border-radius: var(--radius-1); color: white;">1fr</Box>
+                                </Grid>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Mixed Units (200px 1fr 150px)</Text>
+                                <Text Size="1" Color="gray">Fixed sidebars with flexible center</Text>
+                                <Grid Columns="200px 1fr 150px" Gap="2">
+                                    <Box P="3" style="background: var(--cyan-5); border-radius: var(--radius-1); color: white;">Fixed 200px</Box>
+                                    <Box P="3" style="background: var(--cyan-6); border-radius: var(--radius-1); color: white;">Flexible</Box>
+                                    <Box P="3" style="background: var(--cyan-5); border-radius: var(--radius-1); color: white;">Fixed 150px</Box>
+                                </Grid>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Auto-fit Responsive</Text>
+                                <Text Size="1" Color="gray">repeat(auto-fit, minmax(150px, 1fr))</Text>
+                                <Grid Columns="repeat(auto-fit, minmax(150px, 1fr))" Gap="2">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <Box P="3" style="background: var(--pink-5); border-radius: var(--radius-1); color: white;">Auto @i</Box>
+                                    }
+                                </Grid>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                </Flex>
+            </Card>
+
+            <!-- Grid Areas -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Grid Areas</Heading>
+                        <Text Size="2" Color="gray">Named grid areas for creating complex layouts with semantic structure.</Text>
+                    </Box>
+                    
+                    <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="2" Weight="TextWeight.Medium">Layout with Named Areas</Text>
+                            <Text Size="1" Color="gray">Classic header/sidebar/content/footer layout</Text>
+                            <Grid 
+                                Areas="'header header header' 'sidebar content content' 'footer footer footer'"
+                                Columns="200px 1fr 1fr"
+                                Rows="auto 1fr auto"
+                                Gap="3"
+                                Height="300px">
+                                <Box P="3" style="grid-area: header; background: var(--blue-5); border-radius: var(--radius-2); color: white;">
+                                    <Heading Size="HeadingSize.Size4">Header</Heading>
+                                </Box>
+                                <Box P="3" style="grid-area: sidebar; background: var(--green-5); border-radius: var(--radius-2); color: white;">
+                                    <Text Size="2" Weight="TextWeight.Medium">Sidebar</Text>
+                                    <Text Size="1" Mt="1">Navigation items</Text>
+                                </Box>
+                                <Box P="3" style="grid-area: content; background: var(--amber-5); border-radius: var(--radius-2); color: white;">
+                                    <Text Size="2" Weight="TextWeight.Medium">Main Content</Text>
+                                    <Text Size="1" Mt="1">This spans two columns</Text>
+                                </Box>
+                                <Box P="3" style="grid-area: footer; background: var(--purple-5); border-radius: var(--radius-2); color: white;">
+                                    <Text Size="1">Footer content</Text>
+                                </Box>
+                            </Grid>
+                        </Flex>
+                    </Card>
+                </Flex>
+            </Card>
+            
+            <!-- Gap Variations -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Gap Variations</Heading>
+                        <Text Size="2" Color="gray">Control spacing between grid items with uniform or directional gaps.</Text>
+                    </Box>
+                    
+                    <Grid Columns="2" Gap="4">
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">No Gap (Gap 0)</Text>
+                                <Grid Columns="3" Gap="0">
+                                    <Box P="2" style="background: var(--blue-5); color: white;">1</Box>
+                                    <Box P="2" style="background: var(--blue-6); color: white;">2</Box>
+                                    <Box P="2" style="background: var(--blue-5); color: white;">3</Box>
+                                </Grid>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Standard Gap (Gap 3)</Text>
+                                <Grid Columns="3" Gap="3">
+                                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">1</Box>
+                                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">2</Box>
+                                    <Box P="2" style="background: var(--green-5); border-radius: var(--radius-1); color: white;">3</Box>
+                                </Grid>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                    
+                    <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                        <Flex Direction="FlexDirection.Column" Gap="3">
+                            <Text Size="2" Weight="TextWeight.Medium">Different X and Y Gaps</Text>
+                            <Text Size="1" Color="gray">GapX="5" GapY="2" - More horizontal than vertical spacing</Text>
+                            <Grid Columns="4" GapX="5" GapY="2">
+                                @for (int i = 1; i <= 8; i++)
+                                {
+                                    <Box P="2" style="background: var(--purple-5); border-radius: var(--radius-1); color: white;">@i</Box>
+                                }
+                            </Grid>
+                        </Flex>
+                    </Card>
+                </Flex>
+            </Card>
+
+            <!-- Practical Examples -->
+            <Card Size="CardSize.Size3">
+                <Flex Direction="FlexDirection.Column" Gap="4">
+                    <Box>
+                        <Heading Size="HeadingSize.Size6" Mb="2">Practical Examples</Heading>
+                        <Text Size="2" Color="gray">Real-world layouts demonstrating grid's power for complex designs.</Text>
+                    </Box>
+                    
+                    <Grid Columns="1" Gap="4">
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Responsive Card Grid</Text>
+                                <Text Size="1" Color="gray">auto-fill with minmax() creates responsive layouts</Text>
+                                <Grid Columns="repeat(auto-fill, minmax(200px, 1fr))" Gap="3">
+                                    @for (int i = 1; i <= 6; i++)
+                                    {
+                                        <Card Size="CardSize.Size2">
+                                            <Flex Direction="FlexDirection.Column" Gap="2">
+                                                <Box Height="80px" style="background: var(--gray-3); border-radius: var(--radius-1);"></Box>
+                                                <Text Size="2" Weight="TextWeight.Medium">Card @i</Text>
+                                                <Text Size="1" Color="gray">Description text</Text>
+                                            </Flex>
+                                        </Card>
+                                    }
+                                </Grid>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Dashboard Layout</Text>
+                                <Text Size="1" Color="gray">Fixed sidebar with flexible main area</Text>
+                                <Grid Columns="180px 1fr" Rows="60px 1fr 40px" Gap="3" Height="300px" style="background: var(--gray-a2); border-radius: var(--radius-2); padding: var(--space-3);">
+                                    <Box GridColumn="1 / -1" P="2" style="background: var(--gray-12); color: white; border-radius: var(--radius-1);">
+                                        <Flex Align="FlexAlign.Center" Justify="FlexJustify.Between">
+                                            <Text Size="2" Weight="TextWeight.Bold">App Header</Text>
+                                            <Text Size="1">Menu</Text>
+                                        </Flex>
+                                    </Box>
+                                    <Box P="2" style="background: var(--gray-3); border-radius: var(--radius-1);">
+                                        <Text Size="1" Weight="TextWeight.Medium" Mb="2">Sidebar</Text>
+                                        <Flex Direction="FlexDirection.Column" Gap="1">
+                                            <Text Size="1">Nav 1</Text>
+                                            <Text Size="1">Nav 2</Text>
+                                            <Text Size="1">Nav 3</Text>
+                                        </Flex>
+                                    </Box>
+                                    <Box P="2" style="background: white; border-radius: var(--radius-1);">
+                                        <Text Size="1" Weight="TextWeight.Medium" Mb="2">Main Content</Text>
+                                        <Grid Columns="repeat(auto-fit, minmax(80px, 1fr))" Gap="2">
+                                            <Box P="2" style="background: var(--blue-2); border-radius: var(--radius-1);">
+                                                <Text Size="1">Metric 1</Text>
+                                            </Box>
+                                            <Box P="2" style="background: var(--green-2); border-radius: var(--radius-1);">
+                                                <Text Size="1">Metric 2</Text>
+                                            </Box>
+                                            <Box P="2" style="background: var(--amber-2); border-radius: var(--radius-1);">
+                                                <Text Size="1">Metric 3</Text>
+                                            </Box>
+                                        </Grid>
+                                    </Box>
+                                    <Box GridColumn="1 / -1" P="1" style="background: var(--gray-3); border-radius: var(--radius-1);">
+                                        <Text Size="1" Align="TextAlign.Center">Footer</Text>
+                                    </Box>
+                                </Grid>
+                            </Flex>
+                        </Card>
+                        
+                        <Card Size="CardSize.Size2" Variant="CardVariant.Ghost">
+                            <Flex Direction="FlexDirection.Column" Gap="3">
+                                <Text Size="2" Weight="TextWeight.Medium">Photo Gallery</Text>
+                                <Text Size="1" Color="gray">Masonry-style layout with different aspect ratios</Text>
+                                <Grid Columns="repeat(auto-fit, minmax(120px, 1fr))" Gap="2" style="grid-auto-rows: 80px;">
+                                    <Box style="background: var(--blue-3); border-radius: var(--radius-1); grid-row: span 1;"></Box>
+                                    <Box style="background: var(--green-3); border-radius: var(--radius-1); grid-row: span 2;"></Box>
+                                    <Box style="background: var(--amber-3); border-radius: var(--radius-1); grid-row: span 1;"></Box>
+                                    <Box style="background: var(--purple-3); border-radius: var(--radius-1); grid-row: span 2;"></Box>
+                                    <Box style="background: var(--cyan-3); border-radius: var(--radius-1); grid-row: span 1;"></Box>
+                                    <Box style="background: var(--pink-3); border-radius: var(--radius-1); grid-row: span 1;"></Box>
+                                </Grid>
+                            </Flex>
+                        </Card>
+                    </Grid>
+                </Flex>
+            </Card>
+        </Flex>
+    </Section>
+</Container>

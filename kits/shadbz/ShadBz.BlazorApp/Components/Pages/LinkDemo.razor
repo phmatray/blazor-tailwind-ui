@@ -1,0 +1,243 @@
+@page "/link-demo"
+
+<PageTitle>Link Component Demo</PageTitle>
+
+<Container Size="ContainerSize.Size4">
+    <Section Size="SectionSize.Size3">
+        <Flex Direction="FlexDirection.Column" Gap="6">
+            <Box>
+                <Heading Size="HeadingSize.Size8">Link</Heading>
+                <Text Size="4" Color="gray">A text-based navigation component with various styling options.</Text>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Basic Links</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Text>
+                        This is a paragraph with a <Link Href="#basic">basic link</Link> inside it. 
+                        Links inherit text properties and can be styled independently.
+                    </Text>
+                    
+                    <Text>
+                        Links can have different weights: 
+                        <Link Href="#light" Weight="TextWeight.Light">Light</Link>, 
+                        <Link Href="#regular" Weight="TextWeight.Regular">Regular</Link>, 
+                        <Link Href="#medium" Weight="TextWeight.Medium">Medium</Link>, 
+                        <Link Href="#bold" Weight="TextWeight.Bold">Bold</Link>.
+                    </Text>
+                    
+                    <Text>
+                        Links with target blank: 
+                        <Link Href="https://example.com" Target="_blank" Rel="noopener noreferrer">External Link</Link>
+                    </Text>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Link Sizes</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Link Href="#size1" Size="1">Size 1 - Extra small link</Link>
+                    <Link Href="#size2" Size="2">Size 2 - Small link</Link>
+                    <Link Href="#size3" Size="3">Size 3 - Medium link</Link>
+                    <Link Href="#size4" Size="4">Size 4 - Large link</Link>
+                    <Link Href="#size5" Size="5">Size 5 - Extra large link</Link>
+                    <Link Href="#size6" Size="6">Size 6 - Heading size link</Link>
+                    <Link Href="#size7" Size="7">Size 7 - Larger heading link</Link>
+                    <Link Href="#size8" Size="8">Size 8 - Display link</Link>
+                    <Link Href="#size9" Size="9">Size 9 - Extra display link</Link>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Underline Variants</Heading>
+                <Grid Columns="2" Gap="3">
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Link Href="#auto" Underline="LinkUnderline.Auto" Size="3">
+                                Auto underline (default)
+                            </Link>
+                            <Text Size="2" Color="gray">
+                                Underlines on hover, always underlined when high contrast
+                            </Text>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Link Href="#always" Underline="LinkUnderline.Always" Size="3">
+                                Always underlined
+                            </Link>
+                            <Text Size="2" Color="gray">
+                                Permanent underline decoration
+                            </Text>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Link Href="#hover" Underline="LinkUnderline.Hover" Size="3">
+                                Hover underline
+                            </Link>
+                            <Text Size="2" Color="gray">
+                                Only underlines on hover
+                            </Text>
+                        </Flex>
+                    </Card>
+
+                    <Card Size="CardSize.Size2">
+                        <Flex Direction="FlexDirection.Column" Gap="2">
+                            <Link Href="#none" Underline="LinkUnderline.None" Size="3">
+                                No underline
+                            </Link>
+                            <Text Size="2" Color="gray">
+                                Never shows underline
+                            </Text>
+                        </Flex>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Link Colors</Heading>
+                <Flex Wrap="FlexWrap.Wrap" Gap="4">
+                    <Link Href="#gray" Color="gray" Size="3">Gray Link</Link>
+                    <Link Href="#gold" Color="gold" Size="3">Gold Link</Link>
+                    <Link Href="#bronze" Color="bronze" Size="3">Bronze Link</Link>
+                    <Link Href="#brown" Color="brown" Size="3">Brown Link</Link>
+                    <Link Href="#yellow" Color="yellow" Size="3">Yellow Link</Link>
+                    <Link Href="#amber" Color="amber" Size="3">Amber Link</Link>
+                    <Link Href="#orange" Color="orange" Size="3">Orange Link</Link>
+                    <Link Href="#tomato" Color="tomato" Size="3">Tomato Link</Link>
+                    <Link Href="#red" Color="red" Size="3">Red Link</Link>
+                    <Link Href="#ruby" Color="ruby" Size="3">Ruby Link</Link>
+                    <Link Href="#crimson" Color="crimson" Size="3">Crimson Link</Link>
+                    <Link Href="#pink" Color="pink" Size="3">Pink Link</Link>
+                    <Link Href="#plum" Color="plum" Size="3">Plum Link</Link>
+                    <Link Href="#purple" Color="purple" Size="3">Purple Link</Link>
+                    <Link Href="#violet" Color="violet" Size="3">Violet Link</Link>
+                    <Link Href="#iris" Color="iris" Size="3">Iris Link</Link>
+                    <Link Href="#indigo" Color="indigo" Size="3">Indigo Link</Link>
+                    <Link Href="#blue" Color="blue" Size="3">Blue Link</Link>
+                    <Link Href="#cyan" Color="cyan" Size="3">Cyan Link</Link>
+                    <Link Href="#teal" Color="teal" Size="3">Teal Link</Link>
+                    <Link Href="#jade" Color="jade" Size="3">Jade Link</Link>
+                    <Link Href="#green" Color="green" Size="3">Green Link</Link>
+                    <Link Href="#grass" Color="grass" Size="3">Grass Link</Link>
+                    <Link Href="#lime" Color="lime" Size="3">Lime Link</Link>
+                    <Link Href="#mint" Color="mint" Size="3">Mint Link</Link>
+                    <Link Href="#sky" Color="sky" Size="3">Sky Link</Link>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">High Contrast</Heading>
+                <Grid Columns="2" Gap="3">
+                    <Card Size="CardSize.Size2">
+                        <Link Href="#normal" Size="3">
+                            Normal contrast link
+                        </Link>
+                    </Card>
+                    
+                    <Card Size="CardSize.Size2">
+                        <Link Href="#high" Size="3" HighContrast="true">
+                            High contrast link
+                        </Link>
+                    </Card>
+                </Grid>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Button Links</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Text>
+                        Links without href render as buttons: 
+                        <Link Size="3" OnClick="@(() => clickCount++)">
+                            Click me (clicked @clickCount times)
+                        </Link>
+                    </Text>
+                    
+                    <Text>
+                        Disabled button link: 
+                        <Link Size="3" Disabled="true">
+                            Disabled link button
+                        </Link>
+                    </Text>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Text Properties</Heading>
+                <Flex Direction="FlexDirection.Column" Gap="3">
+                    <Box>
+                        <Link Href="#truncate" Truncate="true" Size="3" Display="block" Width="200px">
+                            This is a very long link text that will be truncated with ellipsis when it exceeds the container width
+                        </Link>
+                        <Text Size="2" Color="gray" Mt="1">Truncated link with ellipsis</Text>
+                    </Box>
+                    
+                    <Box>
+                        <Link Href="#wrap" Wrap="TextWrap.Balance" Size="3">
+                            This link uses text wrap balance for better text distribution across lines when wrapping occurs
+                        </Link>
+                        <Text Size="2" Color="gray" Mt="1">Balanced text wrapping</Text>
+                    </Box>
+                    
+                    <Box>
+                        <Link Href="#trim" Trim="true" Size="6">
+                            Trimmed Leading Edge
+                        </Link>
+                        <Text Size="2" Color="gray" Mt="1">Leading trim for better alignment</Text>
+                    </Box>
+                </Flex>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">Links in Context</Heading>
+                <Card Size="CardSize.Size3">
+                    <Flex Direction="FlexDirection.Column" Gap="3">
+                        <Heading Size="3">Article Title</Heading>
+                        <Text Size="2" Color="gray">
+                            By <Link Href="#author">John Doe</Link> • 
+                            Published on <Link Href="#date">December 1, 2024</Link>
+                        </Text>
+                        <Text>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            <Link Href="#reference1">Sed do eiusmod</Link> tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+                            <Link Href="#reference2">aliquip ex ea commodo</Link> consequat.
+                        </Text>
+                        <Flex Gap="3">
+                            <Link Href="#read-more" Size="2" Weight="TextWeight.Medium">
+                                Read more →
+                            </Link>
+                            <Link Href="#share" Size="2" Weight="TextWeight.Medium">
+                                Share
+                            </Link>
+                            <Link Href="#save" Size="2" Weight="TextWeight.Medium">
+                                Save for later
+                            </Link>
+                        </Flex>
+                    </Flex>
+                </Card>
+            </Box>
+
+            <Box>
+                <Heading Size="4" Weight="TextWeight.Medium" Mb="3">AsChild Pattern</Heading>
+                <Text>
+                    The Link component supports the AsChild pattern for custom implementations:
+                </Text>
+                <Box Mt="3">
+                    <Link AsChild="true" Size="3" Color="indigo">
+                        <Button Variant="ButtonVariant.Ghost">
+                            Link rendered as Button
+                        </Button>
+                    </Link>
+                </Box>
+            </Box>
+        </Flex>
+    </Section>
+</Container>
+
+@code {
+    private int clickCount = 0;
+}
