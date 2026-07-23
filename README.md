@@ -2,6 +2,22 @@
 
 # CatalystUI — Blazor component library based on Catalyst UI Kit
 
+<!-- portfolio-toc:start -->
+
+## Table of Contents
+
+- [✨ Features](#-features)
+- [📦 Installation](#-installation)
+- [🚀 Quick Start](#-quick-start)
+- [🏗 Project Structure](#-project-structure)
+- [🛠 Development](#-development)
+- [Tech Stack](#tech-stack)
+- [📄 License](#-license)
+- [Contributing](#contributing)
+
+<!-- portfolio-toc:end -->
+
+
 ![Build](https://img.shields.io/github/actions/workflow/status/phmatray/CatalystUI/dotnet.yml?branch=main)
 ![NuGet](https://img.shields.io/nuget/v/CatalystUI.Components)
 ![License](https://img.shields.io/github/license/phmatray/CatalystUI)
