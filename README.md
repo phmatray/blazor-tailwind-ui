@@ -1,3 +1,5 @@
+![TailwindToolbox banner](.github/banner.png)
+
 # Tailwind Blazor CLI
 
 A command-line tool that automates Tailwind CSS setup, configuration, and management for Blazor projects.
