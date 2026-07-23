@@ -1,0 +1,72 @@
+@page "/orders"
+@using CatalystUI.Demo.Services
+@using CatalystUI.Demo.Models
+@inject DataService DataService
+
+<PageTitle>Orders - CatalystUI</PageTitle>
+
+<div class="flex items-end justify-between gap-4">
+    <Heading>Orders</Heading>
+    <Button Href="/orders/export">Export</Button>
+</div>
+<Table Class="mt-8 [--gutter:--spacing(6)] lg:[--gutter:--spacing(10)]">
+    <TableHead>
+        <TableRow>
+            <TableHeader>Order number</TableHeader>
+            <TableHeader>Purchase date</TableHeader>
+            <TableHeader>Customer</TableHeader>
+            <TableHeader>Event</TableHeader>
+            <TableHeader Class="text-right">Amount</TableHeader>
+        </TableRow>
+    </TableHead>
+    <TableBody>
+        @if (orders != null)
+        {
+            @foreach (var order in orders)
+            {
+                <TableRow>
+                    <TableCell>
+                        <HyperLink Href="@order.Url">@order.Id</HyperLink>
+                    </TableCell>
+                    <TableCell Class="text-zinc-500">@order.Date</TableCell>
+                    <TableCell>@order.Customer.Name</TableCell>
+                    <TableCell>
+                        <div class="flex items-center gap-2">
+                            <Avatar Src="@order.Event.ThumbUrl" Class="size-6" />
+                            <span>@order.Event.Name</span>
+                        </div>
+                    </TableCell>
+                    <TableCell Class="text-right">US@order.Amount.Usd</TableCell>
+                </TableRow>
+            }
+        }
+    </TableBody>
+</Table>
+
+@if (orders != null && orders.Count > 10)
+{
+    <div class="mt-8 flex justify-center">
+        <Pagination>
+            <PaginationPrevious Href="#" />
+            <PaginationList>
+                <PaginationPage Href="#" Current="true">1</PaginationPage>
+                <PaginationPage Href="#">2</PaginationPage>
+                <PaginationPage Href="#">3</PaginationPage>
+                <PaginationGap />
+                <PaginationPage Href="#">8</PaginationPage>
+                <PaginationPage Href="#">9</PaginationPage>
+                <PaginationPage Href="#">10</PaginationPage>
+            </PaginationList>
+            <PaginationNext Href="#" />
+        </Pagination>
+    </div>
+}
+
+@code {
+    private List<Order>? orders;
+
+    protected override async Task OnInitializedAsync()
+    {
+        orders = await DataService.GetOrdersAsync();
+    }
+}

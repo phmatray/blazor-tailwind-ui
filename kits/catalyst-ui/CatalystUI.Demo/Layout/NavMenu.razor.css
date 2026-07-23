@@ -1,0 +1,11 @@
+.nav-link ::deep.active {
+    background-color: rgb(239 246 255);
+    color: rgb(79 70 229);
+}
+
+@media (prefers-color-scheme: dark) {
+    .nav-link ::deep.active {
+        background-color: rgb(55 48 163);
+        color: rgb(255 255 255);
+    }
+}

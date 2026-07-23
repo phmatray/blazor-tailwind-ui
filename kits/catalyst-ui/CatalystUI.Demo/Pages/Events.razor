@@ -1,0 +1,109 @@
+@page "/events"
+@using CatalystUI.Demo.Services
+@using CatalystUI.Demo.Models
+@inject DataService DataService
+
+<PageTitle>Events - CatalystUI</PageTitle>
+
+<div class="flex items-end justify-between gap-4">
+    <div class="max-sm:w-full sm:flex-1">
+        <Heading>Events</Heading>
+        <div class="mt-4 flex max-sm:flex-col sm:items-center sm:gap-4">
+            <div class="flex-1 max-sm:order-2">
+                <Input TValue="string" Name="search" Placeholder="Search events..." Type="search" />
+            </div>
+            <div class="max-sm:mb-4 max-sm:order-1">
+                <Select TValue="string" Name="sort" Class="w-full">
+                    <option value="name">Name</option>
+                    <option value="date">Date</option>
+                    <option value="status">Status</option>
+                    <option value="revenue">Revenue</option>
+                </Select>
+            </div>
+        </div>
+    </div>
+    <Button Href="/events/new">
+        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+        </svg>
+        New event
+    </Button>
+</div>
+<div class="mt-8">
+    @if (events != null)
+    {
+        <Table>
+            <TableHead>
+                <TableRow>
+                    <TableHeader Class="w-10"></TableHeader>
+                    <TableHeader>Name</TableHeader>
+                    <TableHeader>Date & Time</TableHeader>
+                    <TableHeader>Location</TableHeader>
+                    <TableHeader>Revenue</TableHeader>
+                    <TableHeader Class="text-right">Tickets</TableHeader>
+                    <TableHeader>Status</TableHeader>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                @foreach (var evt in events)
+                {
+                    <TableRow>
+                        <TableCell>
+                            <Avatar Src="@evt.ThumbUrl" Class="size-10" />
+                        </TableCell>
+                        <TableCell>
+                            <div class="font-medium">
+                                <HyperLink Href="@evt.Url">@evt.Name</HyperLink>
+                            </div>
+                        </TableCell>
+                        <TableCell>
+                            <div class="text-zinc-500">@evt.Date</div>
+                            <div class="text-zinc-500">@evt.Time</div>
+                        </TableCell>
+                        <TableCell Class="text-zinc-500">@evt.Location</TableCell>
+                        <TableCell>
+                            <div>@evt.TotalRevenue</div>
+                            <div class="@GetChangeClass(evt.TotalRevenueChange) text-xs">@evt.TotalRevenueChange</div>
+                        </TableCell>
+                        <TableCell Class="text-right">
+                            <div>@evt.TicketsSold / @evt.TicketsAvailable</div>
+                            <div class="@GetChangeClass(evt.TicketsSoldChange) text-xs">@evt.TicketsSoldChange</div>
+                        </TableCell>
+                        <TableCell>
+                            <Badge Color="@GetStatusColor(evt.Status)">@evt.Status</Badge>
+                        </TableCell>
+                    </TableRow>
+                }
+            </TableBody>
+        </Table>
+    }
+</div>
+
+@code {
+    private List<Event>? events;
+
+    protected override async Task OnInitializedAsync()
+    {
+        events = await DataService.GetEventsAsync();
+    }
+
+    private string GetChangeClass(string change)
+    {
+        if (change.StartsWith("+"))
+            return "text-green-600 dark:text-green-400";
+        else if (change.StartsWith("-"))
+            return "text-red-600 dark:text-red-400";
+        
+        return "text-zinc-600 dark:text-zinc-400";
+    }
+
+    private Badge.BadgeColor GetStatusColor(string status)
+    {
+        return status switch
+        {
+            "On Sale" => Badge.BadgeColor.Green,
+            "Closed" => Badge.BadgeColor.Red,
+            _ => Badge.BadgeColor.Yellow
+        };
+    }
+}

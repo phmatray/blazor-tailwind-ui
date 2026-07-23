@@ -1,0 +1,15 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<td @ref="cellElement" class="@CombineClasses(GetCellClasses())" @attributes="GetAttributes()">
+    @if (!string.IsNullOrWhiteSpace(ParentRow?.Href))
+    {
+        <a data-row-link
+           href="@ParentRow.Href"
+           target="@ParentRow.Target"
+           aria-label="@ParentRow.Title"
+           tabindex="@(IsFirstCell ? 0 : -1)"
+           class="absolute inset-0 focus:outline-hidden"></a>
+    }
+    @ChildContent
+</td>

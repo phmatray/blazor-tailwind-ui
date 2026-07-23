@@ -1,0 +1,15 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<textarea @ref="Element"
+          value="@Value"
+          @oninput="OnInput"
+          @onchange="OnChange"
+          @onfocus="OnFocus"
+          @onblur="OnBlur"
+          placeholder="@Placeholder"
+          rows="@Rows"
+          class="@CombineClasses(GetTextareaClasses())"
+          name="@Name"
+          readonly="@ReadOnly"
+          @attributes="GetAttributes()">@Value</textarea>

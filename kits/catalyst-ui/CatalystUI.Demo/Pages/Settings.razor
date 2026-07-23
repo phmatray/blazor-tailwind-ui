@@ -1,0 +1,151 @@
+@page "/settings"
+@using CatalystUI.Demo.Models
+@using CatalystUI.Demo.Services
+@inject DataService DataService
+
+<PageTitle>Settings - CatalystUI</PageTitle>
+
+<form method="post" class="mx-auto max-w-4xl">
+    <Heading>Settings</Heading>
+    <Divider Class="my-10 mt-6" />
+
+    <section class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        <div class="space-y-1">
+            <Subheading>Organization Name</Subheading>
+            <Text>This will be displayed on your public profile.</Text>
+        </div>
+        <div>
+            <Input TValue="string" Name="name" Value="@("Catalyst")" />
+        </div>
+    </section>
+
+    <Divider Class="my-10" />
+
+    <section class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        <div class="space-y-1">
+            <Subheading>Organization Bio</Subheading>
+            <Text>This will be displayed on your public profile. Maximum 240 characters.</Text>
+        </div>
+        <div>
+            <Textarea Name="bio" />
+        </div>
+    </section>
+
+    <Divider Class="my-10" />
+
+    <section class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        <div class="space-y-1">
+            <Subheading>Organization Email</Subheading>
+            <Text>This is how customers can contact you for support.</Text>
+        </div>
+        <div class="space-y-4">
+            <Input TValue="string" Type="email" Name="email" Value="@("info@example.com")" />
+            <Field>
+                <FieldGroup>
+                    <Checkbox Name="email_is_public" @bind-Value="emailIsPublic" />
+                    <Label>Show email on public profile</Label>
+                </FieldGroup>
+            </Field>
+        </div>
+    </section>
+
+    <Divider Class="my-10" />
+
+    <section class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        <div class="space-y-1">
+            <Subheading>Address</Subheading>
+            <Text>This is where your organization is registered.</Text>
+        </div>
+        <div class="space-y-2">
+            @AddressFields
+        </div>
+    </section>
+
+    <Divider Class="my-10" />
+
+    <section class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        <div class="space-y-1">
+            <Subheading>Currency</Subheading>
+            <Text>The currency that your organization will be collecting.</Text>
+        </div>
+        <div>
+            <Select TValue="string" Name="currency" @bind-Value="selectedCurrency">
+                <option value="cad">CAD - Canadian Dollar</option>
+                <option value="usd">USD - United States Dollar</option>
+            </Select>
+        </div>
+    </section>
+
+    <Divider Class="my-10" />
+
+    <div class="flex justify-end gap-4">
+        <Button Type="reset" Variant="Button.ButtonVariant.Plain">
+            Reset
+        </Button>
+        <Button Type="submit">Save changes</Button>
+    </div>
+</form>
+
+@code {
+    private bool emailIsPublic = true;
+    private string selectedCurrency = "cad";
+    private List<Country> countries = new();
+    private Country? currentCountry;
+    private string selectedCountry = "CA";
+
+    private RenderFragment AddressFields => @<text>
+        <Fieldset>
+            <FieldGroup>
+                <Field>
+                    <Label>Country</Label>
+                    <Select TValue="string" Name="country" @bind-Value="selectedCountry" @onchange="OnCountryChange">
+                        @foreach (var country in countries)
+                        {
+                            <option value="@country.Code">@country.Name</option>
+                        }
+                    </Select>
+                </Field>
+                @if (currentCountry != null)
+                {
+                    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-4">
+                        <Field>
+                            <Label>State / Province</Label>
+                            <Select TValue="string" Name="state">
+                                @foreach (var region in currentCountry.Regions)
+                                {
+                                    <option value="@region">@region</option>
+                                }
+                            </Select>
+                        </Field>
+                        <Field>
+                            <Label>City</Label>
+                            <Input TValue="string" Name="city" />
+                        </Field>
+                    </div>
+                    <Field>
+                        <Label>Street address</Label>
+                        <Input TValue="string" Name="street" />
+                    </Field>
+                    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-4">
+                        <Field>
+                            <Label>Postal code</Label>
+                            <Input TValue="string" Name="postal" />
+                        </Field>
+                    </div>
+                }
+            </FieldGroup>
+        </Fieldset>
+    </text>;
+
+    protected override void OnInitialized()
+    {
+        countries = DataService.GetCountries();
+        currentCountry = countries.FirstOrDefault(c => c.Code == selectedCountry);
+    }
+
+    private void OnCountryChange(ChangeEventArgs e)
+    {
+        selectedCountry = e.Value?.ToString() ?? "CA";
+        currentCountry = countries.FirstOrDefault(c => c.Code == selectedCountry);
+    }
+}

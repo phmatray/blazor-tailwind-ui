@@ -1,0 +1,6 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<div class="@CombineClasses("flex", "flex-col", "border-b", "border-zinc-950/5", "p-4", "dark:border-white/5", "[&>[data-slot=section]+[data-slot=section]]:mt-2.5")" @attributes="GetAttributes()">
+    @ChildContent
+</div>

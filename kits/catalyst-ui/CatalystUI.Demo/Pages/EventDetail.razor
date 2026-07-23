@@ -1,0 +1,104 @@
+@page "/events/{id:int}"
+@using CatalystUI.Demo.Components
+@using CatalystUI.Demo.Services
+@using CatalystUI.Demo.Models
+@inject DataService DataService
+@inject NavigationManager Navigation
+
+<PageTitle>@evt?.Name - CatalystUI</PageTitle>
+
+@if (evt != null)
+{
+    <div class="max-lg:hidden">
+        <HyperLink Href="/events" Class="inline-flex items-center gap-2 text-sm/6 text-zinc-500 dark:text-zinc-400">
+            <svg class="size-4 fill-zinc-400 dark:fill-zinc-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+                <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
+            </svg>
+            Events
+        </HyperLink>
+    </div>
+    <div class="mt-4 flex flex-wrap items-end justify-between gap-4">
+        <div class="flex flex-wrap items-center gap-6">
+            <div class="w-32 shrink-0">
+                <img class="aspect-3/2 rounded-lg shadow-sm" src="@evt.ImgUrl" alt="" />
+            </div>
+            <div>
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+                    <Heading>@evt.Name</Heading>
+                    <Badge Color="@GetStatusColor(evt.Status)">@evt.Status</Badge>
+                </div>
+                <div class="mt-2 text-sm/6 text-zinc-500">
+                    @evt.Date at @evt.Time <span aria-hidden="true">·</span> @evt.Location
+                </div>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <Button Variant="Button.ButtonVariant.Outline">Edit</Button>
+            <Button>View</Button>
+        </div>
+    </div>
+    <div class="mt-8 grid gap-8 sm:grid-cols-3">
+        <Stat Title="Total revenue" Value="@evt.TotalRevenue" Change="@evt.TotalRevenueChange" />
+        <Stat Title="Tickets sold" Value="@($"{evt.TicketsSold}/{evt.TicketsAvailable}")" Change="@evt.TicketsSoldChange" />
+        <Stat Title="Pageviews" Value="@evt.PageViews" Change="@evt.PageViewsChange" />
+    </div>
+    <Subheading Class="mt-12">Recent orders</Subheading>
+    <Table Class="mt-4 [--gutter:--spacing(6)] lg:[--gutter:--spacing(10)]">
+        <TableHead>
+            <TableRow>
+                <TableHeader>Order number</TableHeader>
+                <TableHeader>Purchase date</TableHeader>
+                <TableHeader>Customer</TableHeader>
+                <TableHeader Class="text-right">Amount</TableHeader>
+            </TableRow>
+        </TableHead>
+        <TableBody>
+            @if (orders != null)
+            {
+                @foreach (var order in orders)
+                {
+                    <TableRow>
+                        <TableCell>
+                            <HyperLink Href="@order.Url">@order.Id</HyperLink>
+                        </TableCell>
+                        <TableCell Class="text-zinc-500">@order.Date</TableCell>
+                        <TableCell>@order.Customer.Name</TableCell>
+                        <TableCell Class="text-right">US@order.Amount.Usd</TableCell>
+                    </TableRow>
+                }
+            }
+        </TableBody>
+    </Table>
+}
+else
+{
+    <div class="text-center py-8">
+        <Text>Event not found</Text>
+    </div>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+    
+    private Event? evt;
+    private List<Order>? orders;
+
+    protected override async Task OnInitializedAsync()
+    {
+        evt = await DataService.GetEventAsync(Id);
+        if (evt != null)
+        {
+            orders = await DataService.GetEventOrdersAsync(Id);
+        }
+    }
+
+    private Badge.BadgeColor GetStatusColor(string status)
+    {
+        return status switch
+        {
+            "On Sale" => Badge.BadgeColor.Green,
+            "Closed" => Badge.BadgeColor.Red,
+            _ => Badge.BadgeColor.Yellow
+        };
+    }
+}

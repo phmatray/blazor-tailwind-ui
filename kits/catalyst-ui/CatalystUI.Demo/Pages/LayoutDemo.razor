@@ -1,0 +1,145 @@
+@page "/layout"
+
+<PageTitle>Layout Components - CatalystUI Demo</PageTitle>
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8 text-zinc-900 dark:text-white">Layout Components</h1>
+
+    <div class="space-y-8">
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Auth Layout Example</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <p class="text-zinc-700 dark:text-zinc-300 mb-4">
+                    The AuthLayout component provides a centered layout suitable for authentication pages.
+                    See the example below (contained in a div for demo purposes):
+                </p>
+                <div class="h-96 relative border border-zinc-200 dark:border-zinc-700 rounded overflow-hidden">
+                    <CatalystUI.Components.AuthLayout>
+                        <div class="w-full max-w-sm">
+                            <h3 class="text-2xl font-bold mb-4">Sign In</h3>
+                            <form class="space-y-4">
+                                <Input TValue="string" type="email" placeholder="Email" />
+                                <Input TValue="string" type="password" placeholder="Password" />
+                                <Button Color="Button.ButtonColor.Zinc" Class="w-full">Sign In</Button>
+                            </form>
+                        </div>
+                    </CatalystUI.Components.AuthLayout>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Navbar Components</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Navbar>
+                    <NavbarSection>
+                        <NavbarItem Current="true">
+                            <svg data-slot="icon" class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            <NavbarLabel>Home</NavbarLabel>
+                        </NavbarItem>
+                        <NavbarItem>
+                            <svg data-slot="icon" class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                            <NavbarLabel>Products</NavbarLabel>
+                        </NavbarItem>
+                        <NavbarItem>
+                            <NavbarLabel>About</NavbarLabel>
+                        </NavbarItem>
+                    </NavbarSection>
+                    <NavbarDivider />
+                    <NavbarSection>
+                        <NavbarItem>
+                            <NavbarLabel>Contact</NavbarLabel>
+                        </NavbarItem>
+                    </NavbarSection>
+                    <NavbarSpacer />
+                    <NavbarSection>
+                        <NavbarItem>
+                            <Avatar Src="https://catalyst-demo.tailwindui.com/users/erica.jpg" />
+                        </NavbarItem>
+                    </NavbarSection>
+                </Navbar>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Sidebar Components</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <div class="h-96 relative border border-zinc-200 dark:border-zinc-700 rounded overflow-hidden bg-white dark:bg-zinc-900">
+                    <Sidebar Class="w-64 border-r border-zinc-200 dark:border-zinc-700">
+                        <SidebarHeader>
+                            <SidebarSection>
+                                <SidebarItem Current="true">
+                                    <svg data-slot="icon" class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                    </svg>
+                                    <SidebarLabel>Dashboard</SidebarLabel>
+                                </SidebarItem>
+                            </SidebarSection>
+                        </SidebarHeader>
+                        <SidebarBody>
+                            <SidebarSection>
+                                <SidebarHeading>Products</SidebarHeading>
+                                <SidebarItem>
+                                    <SidebarLabel>All Products</SidebarLabel>
+                                </SidebarItem>
+                                <SidebarItem>
+                                    <SidebarLabel>Categories</SidebarLabel>
+                                </SidebarItem>
+                                <SidebarItem>
+                                    <SidebarLabel>Inventory</SidebarLabel>
+                                </SidebarItem>
+                            </SidebarSection>
+                            <SidebarDivider />
+                            <SidebarSection>
+                                <SidebarHeading>Analytics</SidebarHeading>
+                                <SidebarItem>
+                                    <SidebarLabel>Reports</SidebarLabel>
+                                </SidebarItem>
+                                <SidebarItem>
+                                    <SidebarLabel>Metrics</SidebarLabel>
+                                </SidebarItem>
+                            </SidebarSection>
+                            <SidebarSpacer />
+                        </SidebarBody>
+                        <SidebarFooter>
+                            <SidebarSection>
+                                <SidebarItem>
+                                    <Avatar Src="https://catalyst-demo.tailwindui.com/users/erica.jpg" />
+                                    <SidebarLabel>Erica Martin</SidebarLabel>
+                                </SidebarItem>
+                            </SidebarSection>
+                        </SidebarFooter>
+                    </Sidebar>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Layout Examples</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <p class="text-zinc-700 dark:text-zinc-300 mb-4">
+                    Full page layouts (SidebarLayout and StackedLayout) are best viewed in their own pages.
+                    These layouts manage the entire viewport and provide responsive behavior with mobile sidebars.
+                </p>
+                <div class="space-y-2">
+                    <p class="text-zinc-700 dark:text-zinc-300">
+                        • <strong>SidebarLayout</strong>: Fixed sidebar on desktop, collapsible on mobile
+                    </p>
+                    <p class="text-zinc-700 dark:text-zinc-300">
+                        • <strong>StackedLayout</strong>: Navbar at top with optional mobile sidebar
+                    </p>
+                    <p class="text-zinc-700 dark:text-zinc-300">
+                        • <strong>AuthLayout</strong>: Centered content for authentication flows
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@code {
+}

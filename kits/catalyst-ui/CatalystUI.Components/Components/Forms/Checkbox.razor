@@ -1,0 +1,18 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<label class="@CombineClasses("catalyst-checkbox-container", "inline-flex", "items-center", "gap-x-3", ContainerClass)">
+    <input type="checkbox"
+           @ref="Element"
+           checked="@Value"
+           @onchange="OnChange"
+           name="@Name"
+           class="@CombineClasses(GetCheckboxClasses())"
+           @attributes="GetAttributes()" />
+    @if (ChildContent != null)
+    {
+        <span class="@LabelClasses">
+            @ChildContent
+        </span>
+    }
+</label>

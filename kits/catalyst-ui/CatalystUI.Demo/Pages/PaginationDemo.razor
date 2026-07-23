@@ -1,0 +1,156 @@
+@page "/pagination"
+
+<PageTitle>Pagination - CatalystUI Demo</PageTitle>
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8 text-zinc-900 dark:text-white">Pagination Component</h1>
+
+    <div class="space-y-8">
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Basic Pagination</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Pagination>
+                    <PaginationPrevious Href="/pagination?page=1" />
+                    <PaginationList>
+                        <PaginationPage Href="/pagination?page=1">1</PaginationPage>
+                        <PaginationPage Href="/pagination?page=2" Current="true">2</PaginationPage>
+                        <PaginationPage Href="/pagination?page=3">3</PaginationPage>
+                        <PaginationPage Href="/pagination?page=4">4</PaginationPage>
+                        <PaginationPage Href="/pagination?page=5">5</PaginationPage>
+                    </PaginationList>
+                    <PaginationNext Href="/pagination?page=3" />
+                </Pagination>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Pagination with Gap</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Pagination>
+                    <PaginationPrevious />
+                    <PaginationList>
+                        <PaginationPage Href="/pagination?page=1" Current="true">1</PaginationPage>
+                        <PaginationPage Href="/pagination?page=2">2</PaginationPage>
+                        <PaginationPage Href="/pagination?page=3">3</PaginationPage>
+                        <PaginationGap />
+                        <PaginationPage Href="/pagination?page=8">8</PaginationPage>
+                        <PaginationPage Href="/pagination?page=9">9</PaginationPage>
+                        <PaginationPage Href="/pagination?page=10">10</PaginationPage>
+                    </PaginationList>
+                    <PaginationNext Href="/pagination?page=2" />
+                </Pagination>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Pagination at End</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Pagination>
+                    <PaginationPrevious Href="/pagination?page=9" />
+                    <PaginationList>
+                        <PaginationPage Href="/pagination?page=1">1</PaginationPage>
+                        <PaginationPage Href="/pagination?page=2">2</PaginationPage>
+                        <PaginationPage Href="/pagination?page=3">3</PaginationPage>
+                        <PaginationGap />
+                        <PaginationPage Href="/pagination?page=8">8</PaginationPage>
+                        <PaginationPage Href="/pagination?page=9">9</PaginationPage>
+                        <PaginationPage Href="/pagination?page=10" Current="true">10</PaginationPage>
+                    </PaginationList>
+                    <PaginationNext />
+                </Pagination>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Custom Text</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Pagination AriaLabel="Blog post navigation">
+                    <PaginationPrevious Href="/posts?page=1">← Newer Posts</PaginationPrevious>
+                    <PaginationList>
+                        <PaginationPage Href="/posts?page=1">1</PaginationPage>
+                        <PaginationPage Href="/posts?page=2" Current="true">2</PaginationPage>
+                        <PaginationPage Href="/posts?page=3">3</PaginationPage>
+                    </PaginationList>
+                    <PaginationNext Href="/posts?page=3">Older Posts →</PaginationNext>
+                </Pagination>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">Interactive Example</h2>
+            <div class="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg">
+                <Pagination>
+                    <PaginationPrevious Href="@GetPageUrl(CurrentPage - 1)" />
+                    <PaginationList>
+                        @for (int i = 1; i <= TotalPages; i++)
+                        {
+                            var pageNum = i;
+                            if (ShouldShowPage(pageNum))
+                            {
+                                <PaginationPage Href="@GetPageUrl(pageNum)" Current="@(pageNum == CurrentPage)">
+                                    @pageNum
+                                </PaginationPage>
+                            }
+                            else if (ShouldShowGapAfter(pageNum - 1))
+                            {
+                                <PaginationGap />
+                            }
+                        }
+                    </PaginationList>
+                    <PaginationNext Href="@GetPageUrl(CurrentPage + 1)" />
+                </Pagination>
+            </div>
+            <div class="mt-4 space-x-4">
+                <button @onclick="() => SetPage(1)" class="px-4 py-2 bg-zinc-200 dark:bg-zinc-700 rounded">First</button>
+                <button @onclick="() => SetPage(5)" class="px-4 py-2 bg-zinc-200 dark:bg-zinc-700 rounded">Page 5</button>
+                <button @onclick="() => SetPage(10)" class="px-4 py-2 bg-zinc-200 dark:bg-zinc-700 rounded">Page 10</button>
+                <button @onclick="() => SetPage(15)" class="px-4 py-2 bg-zinc-200 dark:bg-zinc-700 rounded">Last</button>
+            </div>
+        </section>
+    </div>
+</div>
+
+@code {
+    private int CurrentPage = 1;
+    private int TotalPages = 15;
+
+    private string GetPageUrl(int page)
+    {
+        if (page < 1 || page > TotalPages)
+            return "";
+        return $"/pagination?page={page}";
+    }
+
+    private void SetPage(int page)
+    {
+        if (page >= 1 && page <= TotalPages)
+        {
+            CurrentPage = page;
+        }
+    }
+
+    private bool ShouldShowPage(int page)
+    {
+        // Always show first and last page
+        if (page == 1 || page == TotalPages)
+            return true;
+
+        // Show pages around current page
+        if (Math.Abs(page - CurrentPage) <= 1)
+            return true;
+
+        // Show pages at boundaries
+        if (page <= 3 || page >= TotalPages - 2)
+            return CurrentPage <= 3 || CurrentPage >= TotalPages - 2;
+
+        return false;
+    }
+
+    private bool ShouldShowGapAfter(int page)
+    {
+        if (page < 1 || page >= TotalPages)
+            return false;
+
+        return ShouldShowPage(page) && !ShouldShowPage(page + 1) && page < TotalPages - 1;
+    }
+}

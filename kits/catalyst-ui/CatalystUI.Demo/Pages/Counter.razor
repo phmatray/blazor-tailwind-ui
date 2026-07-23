@@ -1,0 +1,26 @@
+@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<div class="max-w-2xl">
+    <h1 class="text-3xl font-bold text-zinc-900 dark:text-white mb-6">Counter</h1>
+
+    <div class="p-6 bg-zinc-50 dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700">
+        <p class="text-lg text-zinc-700 dark:text-zinc-300 mb-4" role="status">
+            Current count: <span class="font-semibold text-indigo-600 dark:text-indigo-400">@currentCount</span>
+        </p>
+
+        <Button Color="Button.ButtonColor.Indigo" OnClick="IncrementCount">
+            Click me
+        </Button>
+    </div>
+</div>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

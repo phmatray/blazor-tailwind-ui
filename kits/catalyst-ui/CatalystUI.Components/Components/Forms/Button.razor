@@ -1,0 +1,20 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+@if (IsLink && !string.IsNullOrWhiteSpace(Href))
+{
+    <a href="@Href"
+       class="@CombineClasses(GetButtonClasses())"
+       @attributes="GetAttributes()">
+        @ChildContent
+    </a>
+}
+else
+{
+    <button type="@Type"
+            class="@CombineClasses(GetButtonClasses())"
+            @onclick="HandleClick"
+            @attributes="GetAttributes()">
+        @ChildContent
+    </button>
+}

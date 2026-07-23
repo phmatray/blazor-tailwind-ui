@@ -1,0 +1,6 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<span class="@CombineClasses("flex", "flex-1", "overflow-hidden", "text-zinc-500", "group-hover/option:text-white", "before:w-2", "before:min-w-0", "before:shrink", "dark:text-zinc-400")" @attributes="GetAttributes()">
+    <span class="flex-1 truncate">@ChildContent</span>
+</span>

@@ -1,0 +1,224 @@
+@page "/components"
+
+<PageTitle>CatalystUI Components Demo</PageTitle>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h1 class="text-4xl font-bold text-zinc-900 dark:text-white mb-2">CatalystUI Blazor Components</h1>
+    <p class="text-lg text-zinc-600 dark:text-zinc-400 mb-8">A collection of Blazor components based on Catalyst UI Kit</p>
+
+    <div class="space-y-12">
+        <!-- Button Component -->
+        <section>
+            <h2 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-4">Button Component</h2>
+            <div class="flex flex-wrap gap-3">
+                <Button OnClick="HandleButtonClick">Default Button</Button>
+                <Button Color="Button.ButtonColor.Indigo" OnClick="HandleButtonClick">Indigo Button</Button>
+                <Button Color="Button.ButtonColor.Red" OnClick="HandleButtonClick">Red Button</Button>
+                <Button Variant="Button.ButtonVariant.Outline" OnClick="HandleButtonClick">Outline Button</Button>
+                <Button Variant="Button.ButtonVariant.Plain" OnClick="HandleButtonClick">Plain Button</Button>
+                <Button Disabled="true">Disabled Button</Button>
+                <Button Href="https://example.com">Link Button</Button>
+            </div>
+            <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">Button clicked: @buttonClickCount times</p>
+        </section>
+
+        <!-- Input Components -->
+        <section>
+            <h2 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-4">Input Components</h2>
+            <div class="space-y-4 max-w-md">
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Text Input</label>
+                    <Input @bind-Value="textValue" Placeholder="Enter some text..." />
+                    <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Value: @textValue</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Number Input</label>
+                    <Input @bind-Value="numberValue" InputType="number" Placeholder="Enter a number..." />
+                    <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Value: @numberValue</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Invalid Input</label>
+                    <Input @bind-Value="invalidValue" Invalid="true" Placeholder="This field has an error..." />
+                </div>
+            </div>
+        </section>
+
+        <!-- Select Component -->
+        <section>
+            <h2 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-4">Select Component</h2>
+            <div class="max-w-md">
+                <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Select an option</label>
+                <Select TValue="string" @bind-Value="selectedOption" Placeholder="Choose an option...">
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </Select>
+                <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Selected: @selectedOption</p>
+            </div>
+        </section>
+
+        <!-- Textarea Component -->
+        <section>
+            <h2 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-4">Textarea Component</h2>
+            <div class="max-w-md">
+                <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Message</label>
+                <Textarea @bind-Value="textareaValue" Placeholder="Enter your message..." Rows="5" />
+                <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Characters: @(textareaValue?.Length ?? 0)</p>
+            </div>
+        </section>
+
+        <!-- Checkbox Component -->
+        <section>
+            <h2 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-4">Checkbox Component</h2>
+            <div>
+                <Checkbox @bind-Value="checkboxValue">
+                    I agree to the terms and conditions
+                </Checkbox>
+                <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Checked: @checkboxValue</p>
+            </div>
+        </section>
+
+        <!-- Radio Component -->
+        <section>
+            <h2 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-4">Radio Component</h2>
+            <div class="space-y-2">
+                <Radio Name="demo-radio" OptionValue="@("option1")" @bind-Value="radioValue">
+                    Option 1
+                </Radio>
+                <Radio Name="demo-radio" OptionValue="@("option2")" @bind-Value="radioValue">
+                    Option 2
+                </Radio>
+                <Radio Name="demo-radio" OptionValue="@("option3")" @bind-Value="radioValue">
+                    Option 3
+                </Radio>
+            </div>
+            <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">Selected: @radioValue</p>
+        </section>
+
+        <!-- Switch Component -->
+        <section>
+            <h2 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-4">Switch Component</h2>
+            <div>
+                <Switch @bind-Value="switchValue">
+                    Enable notifications
+                </Switch>
+                <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Enabled: @switchValue</p>
+            </div>
+        </section>
+
+        <Divider />
+
+        <!-- Alert Component -->
+        <section>
+            <h2 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-4">Alert Component</h2>
+            <div class="space-y-4">
+                <Alert Type="Alert.AlertType.Info" Title="Information">
+                    This is an informational alert with a title and content.
+                </Alert>
+                <Alert Type="Alert.AlertType.Success">
+                    Your changes have been saved successfully!
+                </Alert>
+                <Alert Type="Alert.AlertType.Warning" Title="Warning" Dismissible="true">
+                    Please review your input before continuing.
+                </Alert>
+                <Alert Type="Alert.AlertType.Error" ShowIcon="false">
+                    An error occurred while processing your request.
+                </Alert>
+            </div>
+        </section>
+
+        <!-- Avatar Component -->
+        <section>
+            <h2 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-4">Avatar Component</h2>
+            <div class="flex items-center gap-4">
+                <Avatar Initials="JD" Size="Avatar.AvatarSize.Small" />
+                <Avatar Initials="AB" />
+                <Avatar Initials="CD" Size="Avatar.AvatarSize.Large" Square="true" />
+                <Avatar Src="https://via.placeholder.com/150" Alt="User avatar" Size="Avatar.AvatarSize.ExtraLarge" />
+                <Avatar Initials="EF" IsButton="true" OnClick="() => avatarClickCount++" />
+            </div>
+            <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">Avatar button clicked: @avatarClickCount times</p>
+        </section>
+
+        <!-- Badge Component -->
+        <section>
+            <h2 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-4">Badge Component</h2>
+            <div class="flex flex-wrap gap-2">
+                <Badge>Default</Badge>
+                <Badge Color="Badge.BadgeColor.Blue">Blue</Badge>
+                <Badge Color="Badge.BadgeColor.Green">Success</Badge>
+                <Badge Color="Badge.BadgeColor.Yellow">Warning</Badge>
+                <Badge Color="Badge.BadgeColor.Red">Error</Badge>
+                <Badge Color="Badge.BadgeColor.Purple">Purple</Badge>
+                <Badge Color="Badge.BadgeColor.Indigo" IsButton="true" OnClick="() => badgeClickCount++">
+                    Clickable
+                </Badge>
+            </div>
+            <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">Badge button clicked: @badgeClickCount times</p>
+        </section>
+
+        <!-- Typography Components -->
+        <section>
+            <h2 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-4">Typography Components</h2>
+            <div class="space-y-4">
+                <div>
+                    <Heading Level="1">Heading Level 1</Heading>
+                    <Heading Level="2">Heading Level 2</Heading>
+                    <Heading Level="3">Heading Level 3</Heading>
+                </div>
+                <div>
+                    <Subheading Level="2">This is a subheading</Subheading>
+                    <Subheading Level="3">Another subheading at level 3</Subheading>
+                </div>
+                <div>
+                    <Text>
+                        This is a regular text paragraph with <Strong>strong emphasis</Strong> and 
+                        <Code>inline code</Code> examples.
+                    </Text>
+                </div>
+                <div>
+                    <Text>
+                        Check out our <HyperLink Href="https://example.com" Style="HyperLink.HyperLinkStyle.Primary">documentation</HyperLink> or 
+                        visit the <HyperLink Href="https://github.com">GitHub repository</HyperLink> for more information.
+                    </Text>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider Component -->
+        <section>
+            <h2 class="text-2xl font-semibold text-zinc-900 dark:text-white mb-4">Divider Component</h2>
+            <div class="space-y-4">
+                <div>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-2">Regular divider:</p>
+                    <Divider />
+                </div>
+                <div>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-2">Soft divider:</p>
+                    <Divider Soft="true" />
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@code {
+    private int buttonClickCount = 0;
+    private string? textValue = "";
+    private int numberValue = 0;
+    private string? invalidValue = "";
+    private string? selectedOption = "";
+    private string? textareaValue = "";
+    private bool checkboxValue = false;
+    private string radioValue = "option1";
+    private bool switchValue = false;
+    private int avatarClickCount = 0;
+    private int badgeClickCount = 0;
+
+    private void HandleButtonClick()
+    {
+        buttonClickCount++;
+    }
+}

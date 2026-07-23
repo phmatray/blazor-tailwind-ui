@@ -1,0 +1,8 @@
+using Microsoft.AspNetCore.Components;
+
+namespace CatalystUI.Components;
+
+public partial class Sidebar
+{
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

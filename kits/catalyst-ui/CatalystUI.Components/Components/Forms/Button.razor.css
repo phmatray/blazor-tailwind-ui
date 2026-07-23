@@ -1,0 +1,52 @@
+.catalyst-btn {
+    --btn-icon: var(--color-zinc-500);
+}
+
+.catalyst-btn:disabled {
+    pointer-events: none;
+}
+
+/* Icon styles within button */
+.catalyst-btn ::deep [data-slot="icon"] {
+    margin-left: -0.125rem;
+    margin-right: -0.125rem;
+    margin-top: 0.125rem;
+    margin-bottom: 0.125rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    align-self: center;
+    color: var(--btn-icon);
+}
+
+@media (min-width: 640px) {
+    .catalyst-btn ::deep [data-slot="icon"] {
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+        width: 1rem;
+        height: 1rem;
+    }
+}
+
+/* Solid button pseudo-elements for advanced styling */
+.catalyst-btn::before,
+.catalyst-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    border-radius: calc(var(--radius-lg) - 1px);
+    pointer-events: none;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .catalyst-btn::before {
+        display: none;
+    }
+    
+    .catalyst-btn::after {
+        inset: -1px;
+        border-radius: var(--radius-lg);
+    }
+}

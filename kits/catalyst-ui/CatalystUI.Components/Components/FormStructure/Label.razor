@@ -1,0 +1,6 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<label data-slot="label" class="@CombineClasses("text-base/6", "text-zinc-950", "select-none", "data-disabled:opacity-50", "sm:text-sm/6", "dark:text-white")" @attributes="GetAttributes()">
+    @ChildContent
+</label>

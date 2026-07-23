@@ -1,0 +1,17 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+@typeparam TValue
+
+<input @ref="Element"
+       type="@InputType"
+       value="@CurrentValueAsString"
+       @oninput="OnInput"
+       @onchange="OnChange"
+       @onfocus="OnFocus"
+       @onblur="OnBlur"
+       placeholder="@Placeholder"
+       class="@CombineClasses(GetInputClasses())"
+       name="@Name"
+       autocomplete="@AutoComplete"
+       readonly="@ReadOnly"
+       @attributes="GetAttributes()" />

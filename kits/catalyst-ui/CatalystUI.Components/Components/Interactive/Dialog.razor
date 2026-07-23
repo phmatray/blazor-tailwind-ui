@@ -1,0 +1,26 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+@implements IDisposable
+
+@if (Open)
+{
+    <div @onclick="HandleBackdropClick">
+        <!-- Backdrop -->
+        <div class="@GetBackdropClasses()"></div>
+
+        <!-- Dialog Container -->
+        <div class="fixed inset-0 w-screen overflow-y-auto pt-6 sm:pt-0" @onclick:stopPropagation="true">
+            <div class="grid min-h-full grid-rows-[1fr_auto] justify-items-center sm:grid-rows-[1fr_auto_3fr] sm:p-4">
+                <!-- Dialog Panel -->
+                <div @ref="dialogElement" 
+                     class="@CombineClasses(GetPanelClasses())" 
+                     @attributes="GetAttributes()"
+                     @onclick:stopPropagation="true">
+                    <CascadingValue Value="this">
+                        @ChildContent
+                    </CascadingValue>
+                </div>
+            </div>
+        </div>
+    </div>
+}

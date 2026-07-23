@@ -1,0 +1,6 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<fieldset class="@CombineClasses("*:data-[slot=text]:mt-1", "[&>*+[data-slot=control]]:mt-6")" @attributes="GetAttributes()">
+    @ChildContent
+</fieldset>

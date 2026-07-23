@@ -1,0 +1,10 @@
+@namespace CatalystUI.Components
+@inherits CatalystComponentBase
+
+<Button Href="@Href" 
+        Variant="Button.ButtonVariant.Plain" 
+        aria-label="@($"Page {ChildContent}")"
+        aria-current="@(Current ? "page" : null)"
+        Class="@CombineClasses("min-w-9", "before:absolute", "before:-inset-px", "before:rounded-lg", Current ? "before:bg-zinc-950/5 dark:before:bg-white/10" : "")">
+    <span class="-mx-0.5">@ChildContent</span>
+</Button>
