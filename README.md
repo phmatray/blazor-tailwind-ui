@@ -1,3 +1,5 @@
+![blazor-tailwind-ui banner](.github/banner.png)
+
 # Blazor Tailwind UI
 
 <!-- portfolio-badges:start -->
