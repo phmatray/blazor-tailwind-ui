@@ -1,3 +1,22 @@
+<!-- portfolio-toc:start -->
+
+## Table of Contents
+
+- [Features ✨](#features-)
+- [The problem it solves](#the-problem-it-solves)
+- [Quick start](#quick-start)
+- [Usage](#usage)
+- [Packages](#packages)
+- [Screenshots](#screenshots)
+- [Repo layout](#repo-layout)
+- [Documentation](#documentation)
+- [Tech Stack](#tech-stack)
+- [Roadmap 🗺️](#roadmap-)
+- [Contributing & releasing](#contributing--releasing)
+- [License](#license)
+
+<!-- portfolio-toc:end -->
+
 ![daisyblazor banner](.github/banner.png)
 
 <h1 align="center">🌼 DaisyBlazor</h1>
