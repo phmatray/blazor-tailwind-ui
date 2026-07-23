@@ -1,3 +1,5 @@
+![daisyblazor banner](.github/banner.png)
+
 <h1 align="center">🌼 DaisyBlazor</h1>
 
 <p align="center">
