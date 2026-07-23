@@ -1,3 +1,5 @@
+![ShadBz banner](.github/banner.png)
+
 # ShadBz
 
 > ShadCN-inspired UI component library for Blazor applications.
