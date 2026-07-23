@@ -93,6 +93,17 @@ dotnet pack
 
 Demo available at `https://localhost:7219`.
 
+<!-- portfolio-techstack:start -->
+
+## Tech Stack
+
+- **.NET 9**
+- Microsoft.AspNetCore.Components.Web
+- Microsoft.AspNetCore.Components.WebAssembly
+- Microsoft.AspNetCore.Components.WebAssembly.DevServer
+
+<!-- portfolio-techstack:end -->
+
 ## 📄 License
 
 MIT — see [LICENSE](LICENSE)
