@@ -1,3 +1,5 @@
+![CatalystUI banner](.github/banner.png)
+
 # CatalystUI — Blazor component library based on Catalyst UI Kit
 
 ![Build](https://img.shields.io/github/actions/workflow/status/phmatray/CatalystUI/dotnet.yml?branch=main)
