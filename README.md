@@ -35,6 +35,17 @@
 
 ShadBz brings the elegant, accessible ShadCN/UI component design system to Blazor. Built on Radix primitives adapted for Blazor, it provides a set of reusable, customizable UI components that follow modern design principles. Includes a conversion guide for migrating from existing component libraries.
 
+## Features
+
+- **40+ Radix-inspired components** — layout (`Box`, `Flex`, `Grid`, `Container`, `Section`), forms (`Button`, `Checkbox`, `Radio`, `Switch`, `Slider`, `Select`, `TextField`, `TextArea`), overlays (`Dialog`, `AlertDialog`, `Popover`, `DropdownMenu`, `ContextMenu`, `Tooltip`, `HoverCard`), data display (`Card`, `Avatar`, `Badge`, `Table`, `ScrollArea`) and typography primitives (`Heading`, `Text`, `Code`, `Blockquote`, `Kbd`, `Quote`, `Strong`, `Em`).
+- **`AsChild` composition pattern** — components implementing `IAsChildSupport` can render their behavior onto a child element instead of their own tag, mirroring Radix's `asChild` prop for flexible markup.
+- **Typed variant and size enums** — components like `Button` expose strongly-typed options (`ButtonVariant.Classic/Solid/Soft/Surface/Outline/Ghost`, `ButtonSize.Small/Medium/Large/ExtraLarge`) instead of raw strings, catching mistakes at compile time.
+- **Full Radix color system** — ships all 30 Radix color scales (e.g. `blue`, `gray`, `crimson`, `jade`, `mauve`) as CSS tokens under `Styles/tokens/colors`, with light and dark theme variants driven by `.dark`/`.dark-theme` classes.
+- **Design-token driven styling** — spacing, radius, shadow, typography, and scaling tokens live under `Styles/tokens` and compile through an npm `build:css` step wired into the `ShadBz.BlazorApp` MSBuild pipeline.
+- **Live component demo app** — `ShadBz.BlazorApp` renders a demo page per component (e.g. `ButtonDemo`, `DialogDemo`, `TabsDemo`) plus a home page cataloguing every available and "coming soon" component.
+- **bUnit test coverage** — the `Radixor.Tests` project contains dedicated test suites across Forms, Layout, Feedback, DataDisplay, and Typography components, plus integration tests.
+- **Conversion guide included** — `CONVERSION_GUIDE.md` documents the React-to-Blazor mapping conventions (props → parameters, `asChild` → `AsChild`, `className` → `Class`, etc.) used to port each Radix primitive.
+
 ## Stack / Tech
 - .NET / Blazor
 - C#
