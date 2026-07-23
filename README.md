@@ -28,6 +28,16 @@
 
 ---
 
+## Features ✨
+
+- **60+ daisyUI-native components** — organized under daisyUI's own taxonomy: Actions, Data display, Navigation, Feedback, Data input, Layout, and Mockup.
+- **MudBlazor-compatible API** — `Button`, `Card`, `Table`, `IDialogService`, `ISnackbar`, `Icons.Material.*` let existing MudBlazor apps migrate incrementally, one `MudX` → `X` rename at a time.
+- **`ThemeProvider` theming** — a cascading, MudThemeProvider-style component with 35 built-in daisyUI themes, dark-mode resolution via `prefers-color-scheme`, and SSR-safe persistence to localStorage/cookies.
+- **Dependency-free SVG charts** — `LineChart`, `AreaChart`, `BarChart`, `PieChart`, `DonutChart` render as plain SVG and automatically follow the active daisyUI theme, with no JS charting runtime.
+- **Shippable CSS preset** — one `@import "daisyblazor/preset.css";` wires up daisyUI, the theme set, and the dynamic-class safelist for Tailwind v4.
+- **`dotnet new daisyblazor` template** — scaffolds a fully wired app (Tailwind, daisyUI, DI) in seconds.
+- **Runnable component gallery** — `samples/DaisyBlazor.Gallery` showcases every component and chart live.
+
 ## The problem it solves
 
 Blazor has no first-class Tailwind/daisyUI component story. Today you usually pick one of two paths,
@@ -94,6 +104,37 @@ builder.Services.AddDaisyBlazor();
 
 Full setup (CSS pipeline, fonts, DI, theming) is in **[Getting started](https://phmatray.github.io/daisyblazor/getting-started/)**.
 
+## Usage
+
+Drop a themed, dependency-free chart straight into a page — no JS bundle, no client-side charting library:
+
+```razor
+<LineChart Series="_lineSeries"
+           Labels="_monthLabels"
+           Smooth="true"
+           ShowGrid="true"
+           ShowPoints="true"
+           ShowLegend="true"
+           Title="Monthly Revenue vs. Expenses (k€)" />
+```
+
+Wrap your app in `ThemeProvider` once to get 35 daisyUI themes, dark-mode detection, and persisted preferences for free:
+
+```razor
+@* MainLayout.razor *@
+<ThemeProvider>
+    <Router AppAssembly="typeof(Program).Assembly">
+        ...
+    </Router>
+</ThemeProvider>
+```
+
+Explore every component live with the gallery sample:
+
+```bash
+dotnet run --project samples/DaisyBlazor.Gallery
+```
+
 ## Packages
 
 | Package | Version | Description |
@@ -154,6 +195,16 @@ scripts/    update-deps, build-css, pack
 - xunit.runner.visualstudio
 
 <!-- portfolio-techstack:end -->
+
+## Roadmap 🗺️
+
+- [ ] Grow chart coverage beyond line/area/bar/pie/donut/sparkline (e.g. radar, scatter)
+- [ ] Add more MudBlazor-compatible surfaces to ease larger migrations
+- [ ] Expand the `dotnet new daisyblazor` template with more starter layouts
+- [ ] Broaden bUnit test coverage across the component set
+- [ ] Publish additional recipes for the `@daisyblazor/tailwind` npm preset in non-.NET pipelines
+
+Track progress and proposals in the [open issues](https://github.com/phmatray/daisyblazor/issues).
 
 ## Contributing & releasing
 
