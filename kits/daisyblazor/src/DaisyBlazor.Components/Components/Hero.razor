@@ -1,0 +1,66 @@
+@namespace DaisyBlazor
+
+@* Generic hero section. daisyUI .hero with .hero-content inside.
+   When BackgroundImage is set an absolutely-positioned .hero-overlay div is rendered
+   and the root gets an inline background-image style so the semi-transparent overlay
+   sits on top of the image (pure CSS, no JS). *@
+
+<div class="@_cls" style="@_rootStyle" @attributes="UserAttributes">
+    @if (!string.IsNullOrEmpty(BackgroundImage))
+    {
+        <div class="hero-overlay"></div>
+    }
+    <div class="@_contentCls">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    /// <summary>
+    /// URL of a background image. When provided a semi-transparent
+    /// <c>hero-overlay</c> layer is added and the image is applied as an
+    /// inline <c>background-image</c> style on the root element.
+    /// </summary>
+    [Parameter] public string? BackgroundImage { get; set; }
+
+    /// <summary>
+    /// Tailwind min-height utility applied to the root element.
+    /// Defaults to <c>"min-h-screen"</c>. Pass e.g. <c>"min-h-96"</c> for a shorter hero.
+    /// </summary>
+    [Parameter] public string? MinHeight { get; set; } = "min-h-screen";
+
+    /// <summary>
+    /// Extra CSS classes forwarded to the inner <c>hero-content</c> wrapper.
+    /// </summary>
+    [Parameter] public string? ContentClass { get; set; }
+
+    /// <summary>Content rendered inside <c>hero-content</c>.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "hero",
+        string.IsNullOrEmpty(MinHeight) ? "min-h-screen" : MinHeight,
+        Class);
+
+    private string _contentCls => CssClass.Merge(
+        "hero-content",
+        ContentClass);
+
+    private string _rootStyle
+    {
+        get
+        {
+            string backgroundStyle = !string.IsNullOrEmpty(BackgroundImage)
+                ? $"background-image:url('{BackgroundImage}');"
+                : string.Empty;
+
+            return string.IsNullOrEmpty(Style)
+                ? backgroundStyle
+                : $"{backgroundStyle}{Style}";
+        }
+    }
+}

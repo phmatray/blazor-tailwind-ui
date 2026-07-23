@@ -1,0 +1,29 @@
+@namespace DaisyBlazor
+
+@* daisyUI validator wrapper. Applies the .validator class to the root element so that
+   daisyUI's CSS-only validation styles are activated on the wrapped input (ChildContent).
+   An optional hint message is rendered below the input via <p class="validator-hint">. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+    @if (!string.IsNullOrEmpty(Hint))
+    {
+        <p class="validator-hint">@Hint</p>
+    }
+</div>
+
+@code {
+    /// <summary>The input element(s) to validate. The .validator class activates daisyUI validation styling on its children.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Optional validation hint message rendered below the input as a .validator-hint paragraph.</summary>
+    [Parameter] public string? Hint { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "validator",
+        Class);
+}

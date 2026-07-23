@@ -1,0 +1,47 @@
+@namespace DaisyBlazor
+
+@* daisyUI .indicator wrapper that overlays an indicator-item (badge, dot, or any fragment)
+   over ChildContent. Position classes used: indicator-top / indicator-middle / indicator-bottom
+   and indicator-start / indicator-center / indicator-end. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    <span class="@_itemCls">
+        @Item
+    </span>
+    @ChildContent
+</div>
+
+@code {
+    /// <summary>The element placed as the indicator overlay (badge, dot, icon, etc.).</summary>
+    [Parameter] public RenderFragment? Item { get; set; }
+
+    /// <summary>The base element over which the indicator is placed.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Horizontal position of the indicator item (Start / Center / End).</summary>
+    [Parameter] public IndicatorHorizontal Horizontal { get; set; } = IndicatorHorizontal.End;
+
+    /// <summary>Vertical position of the indicator item (Top / Middle / Bottom).</summary>
+    [Parameter] public IndicatorVertical Vertical { get; set; } = IndicatorVertical.Top;
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge("indicator", Class);
+
+    private string _itemCls => CssClass.Merge(
+        "indicator-item",
+        Vertical switch
+        {
+            IndicatorVertical.Middle => "indicator-middle",
+            IndicatorVertical.Bottom => "indicator-bottom",
+            _ => "indicator-top"
+        },
+        Horizontal switch
+        {
+            IndicatorHorizontal.Start => "indicator-start",
+            IndicatorHorizontal.Center => "indicator-center",
+            _ => "indicator-end"
+        });
+}

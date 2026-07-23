@@ -1,0 +1,40 @@
+@namespace DaisyBlazor
+
+@* MudForm replacement. Minimal form wrapper: renders ChildContent and exposes IsValid +
+   Validate()/ResetAsync() so existing @ref usage keeps compiling. Validation is left to the
+   individual field components / page logic. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public object? Model { get; set; }
+    [Parameter] public object? Validation { get; set; }
+    [Parameter] public bool IsValid { get; set; } = true;
+    [Parameter] public EventCallback<bool> IsValidChanged { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge("flex flex-col gap-3", Class);
+
+    /// <summary>MudBlazor compat: trigger validation. No-op (returns current validity).</summary>
+    public Task Validate()
+    {
+        return Task.CompletedTask;
+    }
+
+    /// <summary>MudBlazor compat: reset the form's validation state. No-op.</summary>
+    public Task ResetAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    /// <summary>MudBlazor compat: reset validation only. No-op.</summary>
+    public void ResetValidation()
+    {
+    }
+}

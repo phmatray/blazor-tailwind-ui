@@ -1,0 +1,69 @@
+@namespace DaisyBlazor
+
+@* MudIconButton replacement. daisyUI ghost circular .btn wrapping a single <Icon>.
+   Renders an <a> when Href is set, otherwise a <button>. aria-label/title flow
+   through UserAttributes. *@
+
+@if (!string.IsNullOrEmpty(Href))
+{
+    <a href="@Href" target="@Target" class="@_cls" style="@Style" title="@Title" @attributes="UserAttributes">
+        <Icon Name="@Icon" Size="Size" Color="Color" />
+    </a>
+}
+else
+{
+    <button type="button" class="@_cls" style="@Style" title="@Title" disabled="@Disabled"
+            @onclick="OnClickHandler" @onclick:stopPropagation="StopPropagation" @attributes="UserAttributes">
+        <Icon Name="@Icon" Size="Size" Color="Color" />
+    </button>
+}
+
+@code {
+    /// <summary>Material Symbols ligature for the rendered icon.</summary>
+    [Parameter] public string? Icon { get; set; }
+    [Parameter] public Color Color { get; set; } = Color.Inherit;
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+    [Parameter] public Edge Edge { get; set; } = Edge.False;
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public bool StopPropagation { get; set; }
+    [Parameter] public string? Href { get; set; }
+    [Parameter] public string? Target { get; set; }
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _sizeClass => Size switch
+    {
+        Size.Small => "btn-sm",
+        Size.Large => "btn-lg",
+        _ => string.Empty
+    };
+
+    private string _edgeClass => Edge switch
+    {
+        Edge.Start => "-ml-2",
+        Edge.End => "-mr-2",
+        _ => string.Empty
+    };
+
+    private string _cls => CssClass.Merge(
+        "btn btn-ghost btn-circle",
+        _sizeClass,
+        _edgeClass,
+        Class);
+
+    private async Task OnClickHandler(MouseEventArgs args)
+    {
+        if (Disabled)
+        {
+            return;
+        }
+
+        if (OnClick.HasDelegate)
+        {
+            await OnClick.InvokeAsync(args);
+        }
+    }
+}

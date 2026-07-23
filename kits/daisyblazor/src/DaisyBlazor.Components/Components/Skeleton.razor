@@ -1,0 +1,48 @@
+@namespace DaisyBlazor
+
+@* MudSkeleton replacement. daisyUI .skeleton placeholder block.
+   Width/Height become inline dimensions. *@
+
+<div class="@_cls" style="@_style" @attributes="UserAttributes"></div>
+
+@code {
+    /// <summary>CSS width (e.g. "100%", "200px"); applied as inline style.</summary>
+    [Parameter] public string? Width { get; set; }
+
+    /// <summary>CSS height (e.g. "1rem", "40px"); applied as inline style.</summary>
+    [Parameter] public string? Height { get; set; }
+
+    /// <summary>Placeholder shape (Circle renders a rounded block).</summary>
+    [Parameter] public SkeletonType SkeletonType { get; set; } = SkeletonType.Text;
+
+    /// <summary>Accepted for MudBlazor compatibility; daisyUI handles the pulse animation.</summary>
+    [Parameter] public object? Animation { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "skeleton",
+        SkeletonType == SkeletonType.Circle ? "rounded-full" : null,
+        Class);
+
+    private string _style
+    {
+        get
+        {
+            string dimensions = string.Empty;
+            if (!string.IsNullOrEmpty(Width))
+            {
+                dimensions += $"width:{Width};";
+            }
+
+            if (!string.IsNullOrEmpty(Height))
+            {
+                dimensions += $"height:{Height};";
+            }
+
+            return $"{dimensions}{Style}";
+        }
+    }
+}

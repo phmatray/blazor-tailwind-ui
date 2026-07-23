@@ -1,0 +1,15 @@
+@namespace DaisyBlazor.Feedback
+
+@* MudBlazor EmptyState replacement. Centered icon + message + optional subtitle. *@
+
+<Stack AlignItems="AlignItems.Center" Spacing="2" Class="p-8">
+    @if (Icon is not null)
+    {
+        <Icon Name="@Icon" Size="Size.Large" Color="Color.Secondary" />
+    }
+    <Typography Typo="Typo.body1" Color="Color.Secondary">@Message</Typography>
+    @if (Subtitle is not null)
+    {
+        <Typography Typo="Typo.body2" Color="Color.Secondary">@Subtitle</Typography>
+    }
+</Stack>

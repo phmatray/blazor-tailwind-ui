@@ -1,0 +1,72 @@
+@namespace DaisyBlazor
+
+@* daisyUI .list-row row inside a <List>. Renders a <li class="list-row">.
+   When Icon, Title, or Subtitle are supplied the component emits a ready-made
+   three-column layout using list-col-grow and list-col-wrap; otherwise raw
+   ChildContent is rendered so callers can compose their own columns. *@
+
+<li class="@_cls" style="@Style" @attributes="UserAttributes">
+    @if (_useConvenienceLayout)
+    {
+        @if (!string.IsNullOrEmpty(Icon))
+        {
+            <div>
+                <Icon Name="@Icon" />
+            </div>
+        }
+        <div class="list-col-grow">
+            @if (!string.IsNullOrEmpty(Title))
+            {
+                <div>@Title</div>
+            }
+            @if (!string.IsNullOrEmpty(Subtitle))
+            {
+                <div class="text-xs uppercase font-semibold opacity-60">@Subtitle</div>
+            }
+        </div>
+        @if (TrailingContent is not null)
+        {
+            <div class="list-col-wrap">
+                @TrailingContent
+            </div>
+        }
+    }
+    else
+    {
+        @ChildContent
+    }
+</li>
+
+@code {
+    /// <summary>
+    /// Freeform content rendered directly inside the row.
+    /// Used when Icon/Title/Subtitle are not set.
+    /// </summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Optional trailing slot rendered in a list-col-wrap column on the right.
+    /// Only used together with the Icon/Title/Subtitle convenience layout.
+    /// </summary>
+    [Parameter] public RenderFragment? TrailingContent { get; set; }
+
+    /// <summary>Material Symbols ligature name for the leading icon (e.g. Icons.Material.Filled.Star).</summary>
+    [Parameter] public string? Icon { get; set; }
+
+    /// <summary>Primary text displayed in the grow column.</summary>
+    [Parameter] public string? Title { get; set; }
+
+    /// <summary>Secondary / caption text shown beneath the title.</summary>
+    [Parameter] public string? Subtitle { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private bool _useConvenienceLayout =>
+        !string.IsNullOrEmpty(Icon) ||
+        !string.IsNullOrEmpty(Title) ||
+        !string.IsNullOrEmpty(Subtitle);
+
+    private string _cls => CssClass.Merge("list-row", Class);
+}

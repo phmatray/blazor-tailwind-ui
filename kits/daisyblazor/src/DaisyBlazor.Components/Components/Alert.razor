@@ -1,0 +1,53 @@
+@namespace DaisyBlazor
+
+@* MudAlert replacement. daisyUI .alert with severity color, optional soft/outline variant,
+   an automatic severity icon (unless NoIcon) and child content. *@
+
+<div role="alert" class="@_cls" style="@Style" @attributes="UserAttributes">
+    @if (!NoIcon)
+    {
+        <Icon Name="@_icon" />
+    }
+    <span>@ChildContent</span>
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public Severity Severity { get; set; } = Severity.Normal;
+    [Parameter] public Variant Variant { get; set; } = Variant.Filled;
+    [Parameter] public bool Dense { get; set; }
+
+    /// <summary>Explicit icon ligature; overrides the severity default when set.</summary>
+    [Parameter] public string? Icon { get; set; }
+
+    /// <summary>Suppress the leading severity icon.</summary>
+    [Parameter] public bool NoIcon { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _icon => !string.IsNullOrEmpty(Icon)
+        ? Icon!
+        : Severity switch
+        {
+            Severity.Success => Icons.Material.Filled.CheckCircle,
+            Severity.Warning => Icons.Material.Filled.Warning,
+            Severity.Error => Icons.Material.Filled.Error,
+            _ => Icons.Material.Filled.Info
+        };
+
+    private string _variantClass => Variant switch
+    {
+        Variant.Outlined => "alert-outline",
+        Variant.Text => "alert-soft",
+        _ => string.Empty
+    };
+
+    private string _cls => CssClass.Merge(
+        "alert",
+        CssClass.AlertSeverity(Severity),
+        _variantClass,
+        Dense ? "py-2" : null,
+        Class);
+}

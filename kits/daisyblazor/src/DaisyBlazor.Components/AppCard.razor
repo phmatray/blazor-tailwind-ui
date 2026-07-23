@@ -1,0 +1,18 @@
+@namespace DaisyBlazor
+
+@* MudAppCard replacement. Compact gradient-icon shortcut tile for the home page.
+   Uses the daisyUI <Paper> primitive for the gradient icon tile and <Badge> for the corner badge. *@
+
+<div class="app-card" @onclick="OnClick"
+     @onmouseenter="@(() => IsHovered = true)"
+     @onmouseleave="@(() => IsHovered = false)">
+    <Paper Class="app-icon" Elevation="@(IsHovered ? 6 : 2)"
+           Style="@($"background: linear-gradient(135deg, {GradientStart} 0%, {GradientEnd} 100%);")">
+        <Icon Name="@Icon" Style="color: white; font-size: 1.5rem;" />
+    </Paper>
+    <Typography Typo="Typo.body2" Class="app-name">@Name</Typography>
+    @if (!string.IsNullOrEmpty(Badge))
+    {
+        <Badge Content="@Badge" Color="Color.Error" Overlap="true" Class="app-badge" />
+    }
+</div>

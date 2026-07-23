@@ -1,0 +1,38 @@
+@namespace DaisyBlazor
+
+@* daisyUI stack — overlaps children on top of each other (NOT the flex Stack component).
+   Applies the .stack utility class and an optional alignment modifier:
+   stack-top, stack-bottom, stack-start, stack-end. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    /// <summary>
+    /// Optional alignment modifier that controls where the stacked children are anchored.
+    /// When <c>null</c> the default daisyUI centering is used.
+    /// </summary>
+    [Parameter] public StackAlign? Align { get; set; }
+
+    /// <summary>Children to overlap; each direct child is layered on top of the previous one.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string? _alignClass => Align switch
+    {
+        StackAlign.Top    => "stack-top",
+        StackAlign.Bottom => "stack-bottom",
+        StackAlign.Start  => "stack-start",
+        StackAlign.End    => "stack-end",
+        _                 => null
+    };
+
+    private string _cls => CssClass.Merge(
+        "stack",
+        _alignClass,
+        Class);
+}

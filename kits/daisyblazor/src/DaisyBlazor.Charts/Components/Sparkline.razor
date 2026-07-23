@@ -1,0 +1,148 @@
+@namespace DaisyBlazor.Charts
+
+@* Tiny, axis-less trend line for inline use (table cells, KPI tiles). Renders a single double[]
+   as a normalized inline SVG polyline with an optional area fill and end-point dot. Color follows
+   the active daisyUI theme unless overridden. *@
+
+<svg viewBox="0 0 @_w.ToString(_ci) @_h.ToString(_ci)"
+     preserveAspectRatio="none"
+     role="img"
+     class="@_cls"
+     style="@_style"
+     aria-label="@_ariaLabel"
+     @attributes="UserAttributes">
+    <title>@_ariaLabel</title>
+
+    @if (_points.Count > 0)
+    {
+        @if (Area)
+        {
+            <path d="@_areaPath" fill="@_color" fill-opacity="0.15" stroke="none" />
+        }
+
+        <path d="@_linePath" fill="none" stroke="@_color" stroke-width="@StrokeWidth.ToString(_ci)"
+              stroke-linejoin="round" stroke-linecap="round" />
+
+        @if (ShowEndDot)
+        {
+            <circle cx="@_points[^1].X.ToString(_ci)" cy="@_points[^1].Y.ToString(_ci)"
+                    r="@((StrokeWidth + 1).ToString(_ci))" fill="@_color" />
+        }
+    }
+</svg>
+
+@code {
+    /// <summary>The values to plot, oldest-to-newest.</summary>
+    [Parameter] public IReadOnlyList<double> Data { get; set; } = System.Array.Empty<double>();
+
+    /// <summary>Fill the area beneath the line.</summary>
+    [Parameter] public bool Area { get; set; }
+
+    /// <summary>Draw a dot on the most recent value.</summary>
+    [Parameter] public bool ShowEndDot { get; set; } = true;
+
+    /// <summary>Line stroke width in user units.</summary>
+    [Parameter] public double StrokeWidth { get; set; } = 2;
+
+    /// <summary>Optional explicit CSS color; defaults to the primary theme token.</summary>
+    [Parameter] public string? Color { get; set; }
+
+    /// <summary>CSS width (inline; defaults to a compact cell size).</summary>
+    [Parameter] public string? Width { get; set; } = "5rem";
+
+    /// <summary>CSS height (inline; defaults to a compact cell size).</summary>
+    [Parameter] public string? Height { get; set; } = "1.5rem";
+
+    /// <summary>Accessible description; defaults to a generic sparkline label.</summary>
+    [Parameter] public string? Title { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private const double _w = 100;
+    private const double _h = 30;
+    private const double _pad = 2; // keeps stroke/dot from clipping at the edges
+
+    private static readonly CultureInfo _ci = CultureInfo.InvariantCulture;
+
+    private List<(double X, double Y)> _points = new();
+
+    private string _color => string.IsNullOrWhiteSpace(Color) ? "var(--color-primary)" : Color!;
+    private string _ariaLabel => string.IsNullOrEmpty(Title) ? "Sparkline trend" : Title!;
+
+    protected override void OnParametersSet()
+    {
+        _points = new List<(double X, double Y)>();
+        IReadOnlyList<double> data = Data ?? System.Array.Empty<double>();
+
+        List<double> clean = new();
+        foreach (double v in data)
+        {
+            clean.Add(double.IsNaN(v) || double.IsInfinity(v) ? 0 : v);
+        }
+
+        if (clean.Count == 0)
+        {
+            return;
+        }
+
+        double min = clean.Min();
+        double max = clean.Max();
+        double span = max - min;
+        if (Math.Abs(span) < double.Epsilon)
+        {
+            span = 1; // flat data -> draw a centered horizontal line
+        }
+
+        double plotW = _w - 2 * _pad;
+        double plotH = _h - 2 * _pad;
+
+        for (int i = 0; i < clean.Count; i++)
+        {
+            double x = clean.Count == 1
+                ? _pad + plotW / 2
+                : _pad + plotW * i / (clean.Count - 1);
+            double ratio = (clean[i] - min) / span;
+            double y = _pad + plotH * (1 - ratio);
+            _points.Add((x, y));
+        }
+    }
+
+    private string _linePath => SvgGeometry.PolyPath(_points, _ci);
+
+    private string _areaPath
+    {
+        get
+        {
+            if (_points.Count == 0)
+            {
+                return string.Empty;
+            }
+
+            double baseY = _h - _pad;
+            return $"{_linePath} L {_points[^1].X.ToString(_ci)} {baseY.ToString(_ci)} L {_points[0].X.ToString(_ci)} {baseY.ToString(_ci)} Z";
+        }
+    }
+
+    private string _cls => CssClass.Merge("inline-block align-middle", Class);
+
+    private string _style
+    {
+        get
+        {
+            string dim = string.Empty;
+            if (!string.IsNullOrEmpty(Width))
+            {
+                dim += $"width:{Width};";
+            }
+
+            if (!string.IsNullOrEmpty(Height))
+            {
+                dim += $"height:{Height};";
+            }
+
+            return $"{dim}{Style}";
+        }
+    }
+}

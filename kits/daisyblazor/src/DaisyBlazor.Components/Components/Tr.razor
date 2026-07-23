@@ -1,0 +1,14 @@
+@namespace DaisyBlazor
+
+@* MudTr replacement. Plain <tr> passthrough. *@
+
+<tr class="@Class" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</tr>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+}

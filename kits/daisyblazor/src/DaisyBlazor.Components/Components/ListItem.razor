@@ -1,0 +1,71 @@
+@namespace DaisyBlazor
+@typeparam T
+
+@* MudListItem<T> replacement. Renders an <li> inside a .menu, with optional icon,
+   text, link (Href) or click behavior. *@
+
+<li class="@Class" style="@Style" @attributes="UserAttributes">
+    @if (!string.IsNullOrEmpty(Href))
+    {
+        <a href="@Href" class="@_innerCls">
+            @ItemInner
+        </a>
+    }
+    else if (OnClick.HasDelegate)
+    {
+        <button type="button" class="@_innerCls" disabled="@Disabled" @onclick="OnClickHandler">
+            @ItemInner
+        </button>
+    }
+    else
+    {
+        <div class="@_innerCls">
+            @ItemInner
+        </div>
+    }
+</li>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Icon { get; set; }
+    [Parameter] public string? Text { get; set; }
+    [Parameter] public string? Href { get; set; }
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public T? Value { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _innerCls => CssClass.Merge(
+        "flex items-center gap-2 w-full text-left",
+        Disabled ? "menu-disabled pointer-events-none opacity-50" : null);
+
+    private RenderFragment ItemInner => @<text>
+        @if (!string.IsNullOrEmpty(Icon))
+        {
+            <Icon Name="@Icon" Size="Size.Small" />
+        }
+        @if (ChildContent is not null)
+        {
+            @ChildContent
+        }
+        else if (!string.IsNullOrEmpty(Text))
+        {
+            <span>@Text</span>
+        }
+    </text>;
+
+    private async Task OnClickHandler(MouseEventArgs args)
+    {
+        if (Disabled)
+        {
+            return;
+        }
+
+        if (OnClick.HasDelegate)
+        {
+            await OnClick.InvokeAsync(args);
+        }
+    }
+}

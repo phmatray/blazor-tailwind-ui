@@ -1,0 +1,45 @@
+@namespace DaisyBlazor
+
+@* MudText replacement. Renders typography with an appropriate element + classes. *@
+
+@if (_element == "h1")
+{
+    <h1 class="@_cls" style="@Style" @attributes="UserAttributes">@ChildContent</h1>
+}
+else if (_element == "h2")
+{
+    <h2 class="@_cls" style="@Style" @attributes="UserAttributes">@ChildContent</h2>
+}
+else if (_element == "h3")
+{
+    <h3 class="@_cls" style="@Style" @attributes="UserAttributes">@ChildContent</h3>
+}
+else if (_element == "h4")
+{
+    <h4 class="@_cls" style="@Style" @attributes="UserAttributes">@ChildContent</h4>
+}
+else if (_element == "h5")
+{
+    <h5 class="@_cls" style="@Style" @attributes="UserAttributes">@ChildContent</h5>
+}
+else if (_element == "h6")
+{
+    <h6 class="@_cls" style="@Style" @attributes="UserAttributes">@ChildContent</h6>
+}
+else
+{
+    <p class="@_cls" style="@Style" @attributes="UserAttributes">@ChildContent</p>
+}
+
+@code {
+    [Parameter] public Typo Typo { get; set; } = Typo.body1;
+    [Parameter] public Color Color { get; set; } = Color.Inherit;
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Align { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _element => CssClass.TypographyElement(Typo);
+    private string _cls => CssClass.Merge(CssClass.Typography(Typo), CssClass.TextColor(Color), Class);
+}

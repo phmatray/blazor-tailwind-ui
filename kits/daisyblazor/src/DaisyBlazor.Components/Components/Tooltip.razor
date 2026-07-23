@@ -1,0 +1,34 @@
+@namespace DaisyBlazor
+
+@* MudTooltip replacement. Wraps ChildContent in a daisyUI .tooltip with data-tip text. *@
+
+<div class="@_cls" data-tip="@Text" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Tooltip text shown on hover.</summary>
+    [Parameter] public string? Text { get; set; }
+
+    /// <summary>Tooltip placement relative to the wrapped content.</summary>
+    [Parameter] public Placement Placement { get; set; } = Placement.Top;
+
+    /// <summary>Accepted for MudBlazor compatibility; daisyUI tooltips always show an arrow.</summary>
+    [Parameter] public bool Arrow { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _placementClass => Placement switch
+    {
+        Placement.Bottom => "tooltip-bottom",
+        Placement.Left => "tooltip-left",
+        Placement.Right => "tooltip-right",
+        _ => "tooltip-top"
+    };
+
+    private string _cls => CssClass.Merge("tooltip", _placementClass, Class);
+}

@@ -1,0 +1,77 @@
+@namespace DaisyBlazor
+
+@* daisyUI .radial-progress driven by CSS custom properties: --value, --size, --thickness.
+   Color is applied via text-{token}. role=progressbar with aria-valuenow/min/max. *@
+
+<div class="@_cls" style="@_style" role="progressbar"
+     aria-valuenow="@Value" aria-valuemin="0" aria-valuemax="100"
+     @attributes="UserAttributes">
+    @if (ChildContent is not null)
+    {
+        @ChildContent
+    }
+    else
+    {
+        @($"{Value}%")
+    }
+</div>
+
+@code {
+    /// <summary>Progress value between 0 and 100. Maps to the CSS --value custom property.</summary>
+    [Parameter] public double Value { get; set; }
+
+    /// <summary>
+    /// CSS size of the radial element (e.g. "5rem", "80px"). Maps to the CSS --size custom property.
+    /// Defaults to "5rem".
+    /// </summary>
+    [Parameter] public string? SizeRem { get; set; } = "5rem";
+
+    /// <summary>
+    /// CSS thickness of the progress ring (e.g. "4px", "0.5rem"). Maps to the CSS --thickness custom property.
+    /// When null the daisyUI default thickness is used.
+    /// </summary>
+    [Parameter] public string? Thickness { get; set; }
+
+    /// <summary>Color token for the ring and label text (maps to text-primary, text-success, etc.).</summary>
+    [Parameter] public Color Color { get; set; } = Color.Default;
+
+    /// <summary>Custom inner content; defaults to "@Value%" when not provided.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls
+    {
+        get
+        {
+            string? token = CssClass.ColorToken(Color);
+            string? colorClass = token is { } t ? $"text-{t}" : null;
+            return CssClass.Merge("radial-progress", colorClass, Class);
+        }
+    }
+
+    private string _style
+    {
+        get
+        {
+            string cssVars = $"--value:{Value};";
+
+            string size = string.IsNullOrEmpty(SizeRem) ? "5rem" : SizeRem!;
+            cssVars += $"--size:{size};";
+
+            if (!string.IsNullOrEmpty(Thickness))
+            {
+                cssVars += $"--thickness:{Thickness};";
+            }
+
+            if (!string.IsNullOrEmpty(Style))
+            {
+                cssVars += Style;
+            }
+
+            return cssVars;
+        }
+    }
+}

@@ -1,0 +1,117 @@
+@namespace DaisyBlazor.Data
+@typeparam T
+@attribute [CascadingTypeParameter(nameof(T))]
+
+@* MudDataGrid<T> replacement. daisyUI .table with sortable header + paged body.
+   Columns register themselves via the cascaded grid reference. *@
+
+<CascadingValue Value="this" IsFixed="true">
+    @* Column declarations render no markup; they register themselves with the grid. *@
+    @Columns
+    @ChildContent
+
+    <div class="@_wrapperClass" style="@Style" @attributes="UserAttributes">
+        <div class="overflow-x-auto">
+            <table class="@_tableClass">
+                <thead>
+                    <tr>
+                        @foreach (Column<T> column in _columns)
+                        {
+                            SortDirection dir = GetSortDirection(column);
+                            @if (column.CanSort)
+                            {
+                                <th class="@CssClass.Merge("cursor-pointer select-none", column.HeaderClass)"
+                                    @onclick="@(() => ToggleSortAsync(column))">
+                                    <span class="inline-flex items-center gap-1">
+                                        @column.Title
+                                        @if (dir == SortDirection.Ascending)
+                                        {
+                                            <Icon Name="@Icons.Material.Filled.ArrowDropDown" Size="Size.Small" Class="rotate-180" />
+                                        }
+                                        else if (dir == SortDirection.Descending)
+                                        {
+                                            <Icon Name="@Icons.Material.Filled.ArrowDropDown" Size="Size.Small" />
+                                        }
+                                    </span>
+                                </th>
+                            }
+                            else
+                            {
+                                <th class="@column.HeaderClass">@column.Title</th>
+                            }
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Loading)
+                    {
+                        @if (LoadingContent is not null)
+                        {
+                            @LoadingContent
+                        }
+                        else
+                        {
+                            @for (int i = 0; i < SkeletonRows; i++)
+                            {
+                                <tr>
+                                    <td colspan="@_columnCount">
+                                        <div class="skeleton h-8 w-full"></div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                    else if (_currentRows.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="@_columnCount">
+                                @if (NoRecordsContent is not null)
+                                {
+                                    @NoRecordsContent
+                                }
+                                else
+                                {
+                                    <div class="flex flex-col items-center gap-2 py-8 text-base-content/60">
+                                        <Icon Name="@Icons.Material.Filled.SearchOff" Size="Size.Large" />
+                                        <span>@EmptyText</span>
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @for (int rowIndex = 0; rowIndex < _currentRows.Count; rowIndex++)
+                        {
+                            int capturedIndex = rowIndex;
+                            T item = _currentRows[rowIndex];
+                            <tr class="@_rowClass" style="@RowStyle"
+                                @onclick="@(() => OnRowClickedAsync(item, capturedIndex))">
+                                @foreach (Column<T> column in _columns)
+                                {
+                                    <td class="@column.CellClass">@column.RenderCell(item)</td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (PagerContent is not null)
+        {
+            <div class="mt-2">
+                @PagerContent
+            </div>
+        }
+    </div>
+</CascadingValue>
+
+@code {
+    private int _columnCount => Math.Max(1, _columns.Count);
+
+    private string _wrapperClass => CssClass.Merge(
+        "w-full",
+        Bordered ? "border border-base-300 rounded-box" : null,
+        Elevation > 0 ? "shadow" : null);
+}

@@ -1,0 +1,23 @@
+@namespace DaisyBlazor
+@typeparam T
+@attribute [CascadingTypeParameter(nameof(T))]
+
+@* MudList<T> replacement. daisyUI .menu vertical list; ListItem children render <li>.
+   CascadingTypeParameter lets nested <ListItem> infer T from the parent <ItemList T="...">. *@
+
+<ul class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</ul>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public bool Dense { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "menu w-full p-0",
+        Dense ? "menu-sm" : null,
+        Class);
+}

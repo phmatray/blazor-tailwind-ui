@@ -1,0 +1,25 @@
+@namespace DaisyBlazor
+
+@* daisyUI mockup-phone — renders a phone device chrome with a camera notch
+   and a display area for arbitrary child content.
+   Classes used: mockup-phone, mockup-phone-camera, mockup-phone-display *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    <div class="mockup-phone-camera"></div>
+    <div class="mockup-phone-display">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    /// <summary>Content rendered inside the phone display area.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "mockup-phone",
+        Class);
+}

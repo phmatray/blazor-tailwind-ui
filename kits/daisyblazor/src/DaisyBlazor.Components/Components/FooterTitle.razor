@@ -1,0 +1,17 @@
+@namespace DaisyBlazor
+
+@* daisyUI footer-title. Renders an <h6> with the .footer-title utility class,
+   used as a section heading inside a <nav> within a Footer. *@
+
+<h6 class="@_cls" style="@Style" @attributes="UserAttributes">@ChildContent</h6>
+
+@code {
+    /// <summary>Text or markup content of the footer section title.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge("footer-title", Class);
+}

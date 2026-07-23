@@ -1,0 +1,74 @@
+@namespace DaisyBlazor
+
+@* A single speed-dial action inside a <Fab>. Wraps a .btn .btn-circle .btn-lg button and
+   an optional .tooltip label. Place as ChildContent of <Fab>. *@
+
+<div class="@_wrapCls">
+    @if (!string.IsNullOrWhiteSpace(Tooltip))
+    {
+        <div class="@_tooltipCls" data-tip="@Tooltip">
+            @_button
+        </div>
+    }
+    else
+    {
+        @_button
+    }
+</div>
+
+@code {
+    /// <summary>Material Symbols ligature shown inside the action button.</summary>
+    [Parameter] public string? Icon { get; set; }
+
+    /// <summary>Semantic color applied to the action button.</summary>
+    [Parameter] public Color Color { get; set; } = Color.Default;
+
+    /// <summary>Optional tooltip text displayed next to the button.</summary>
+    [Parameter] public string? Tooltip { get; set; }
+
+    /// <summary>Tooltip placement relative to the button (left / right / top / bottom).</summary>
+    [Parameter] public string TooltipPosition { get; set; } = "left";
+
+    /// <summary>Arbitrary child content (replaces the auto-rendered Icon when set).</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Click callback.</summary>
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _wrapCls => CssClass.Merge(Class);
+
+    private string _tooltipCls => CssClass.Merge(
+        "tooltip",
+        TooltipPosition switch
+        {
+            "right" => "tooltip-right",
+            "top" => "tooltip-top",
+            "bottom" => "tooltip-bottom",
+            _ => "tooltip-left"
+        });
+
+    private string _btnCls => CssClass.Merge(
+        "btn",
+        "btn-circle",
+        "btn-lg",
+        CssClass.ButtonColor(Color));
+
+    private RenderFragment _button => @<button type="button"
+        class="@_btnCls"
+        style="@Style"
+        @onclick="OnClick"
+        @attributes="UserAttributes">
+        @if (ChildContent is not null)
+        {
+            @ChildContent
+        }
+        else if (!string.IsNullOrWhiteSpace(Icon))
+        {
+            <Icon Name="@Icon" />
+        }
+    </button>;
+}

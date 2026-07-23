@@ -1,0 +1,105 @@
+@namespace DaisyBlazor
+@implements IDisposable
+@inject ISnackbar Snackbar
+
+@* MudSnackbarProvider replacement. Renders queued toasts bottom-end and auto-dismisses each
+   after its VisibleStateDuration. Place once in MainLayout (or App). *@
+
+<div class="@CssClass.Merge("toast toast-end toast-bottom z-50", Class)"
+     style="@Style"
+     role="status"
+     aria-live="polite"
+     aria-atomic="true"
+     @attributes="UserAttributes">
+    @foreach (SnackbarMessage message in Snackbar.Shown)
+    {
+        <div class="@AlertClass(message.Severity)" role="alert" @key="message.Id">
+            <Icon Name="@SeverityIcon(message.Severity)" Size="Size.Small" />
+            <span>@message.Message</span>
+            @if (message.Options.ShowCloseIcon)
+            {
+                <button type="button"
+                        class="btn btn-ghost btn-xs btn-circle"
+                        aria-label="Close"
+                        @onclick="() => Snackbar.Remove(message)">
+                    <Icon Name="@Icons.Material.Filled.Close" Size="Size.Small" />
+                </button>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private readonly HashSet<Guid> _scheduled = [];
+
+    protected override void OnInitialized()
+    {
+        Snackbar.OnChange += HandleChange;
+    }
+
+    private void HandleChange()
+    {
+        InvokeAsync(() =>
+        {
+            ScheduleDismissals();
+            StateHasChanged();
+        });
+    }
+
+    private void ScheduleDismissals()
+    {
+        foreach (SnackbarMessage message in Snackbar.Shown)
+        {
+            if (!_scheduled.Add(message.Id))
+            {
+                continue;
+            }
+
+            int duration = message.Options.VisibleStateDuration > 0
+                ? message.Options.VisibleStateDuration
+                : 5000;
+
+            _ = DismissAfterAsync(message, duration);
+        }
+    }
+
+    private async Task DismissAfterAsync(SnackbarMessage message, int delayMs)
+    {
+        try
+        {
+            await Task.Delay(delayMs);
+            Snackbar.Remove(message);
+        }
+        finally
+        {
+            _scheduled.Remove(message.Id);
+        }
+    }
+
+    private static string AlertClass(Severity severity) => severity switch
+    {
+        Severity.Info => "alert alert-info shadow-lg",
+        Severity.Success => "alert alert-success shadow-lg",
+        Severity.Warning => "alert alert-warning shadow-lg",
+        Severity.Error => "alert alert-error shadow-lg",
+        _ => "alert shadow-lg"
+    };
+
+    private static string SeverityIcon(Severity severity) => severity switch
+    {
+        Severity.Info => Icons.Material.Filled.Info,
+        Severity.Success => Icons.Material.Filled.CheckCircle,
+        Severity.Warning => Icons.Material.Filled.Warning,
+        Severity.Error => Icons.Material.Outlined.Error,
+        _ => Icons.Material.Filled.Notifications
+    };
+
+    public void Dispose()
+    {
+        Snackbar.OnChange -= HandleChange;
+    }
+}

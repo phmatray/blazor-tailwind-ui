@@ -1,0 +1,48 @@
+@namespace DaisyBlazor
+
+@* daisyUI .loading spinner/dots/ring/ball/bars/infinity indicator.
+   Requires exactly one animation class (loading-spinner, loading-dots, etc.),
+   an optional size (loading-xs .. loading-xl), and an optional text color. *@
+
+<span class="@_cls" style="@Style" @attributes="UserAttributes"></span>
+
+@code {
+    /// <summary>Animation style of the loading indicator.</summary>
+    [Parameter] public LoadingType Type { get; set; } = LoadingType.Spinner;
+
+    /// <summary>Size of the indicator using the standard Size enum (Small → loading-sm, Medium → loading-md, Large → loading-lg).
+    /// For xs or xl pass <see cref="SizeOverride"/> instead.</summary>
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+
+    /// <summary>Raw daisyUI size token when xs or xl is needed ("loading-xs" or "loading-xl").
+    /// When set, takes precedence over <see cref="Size"/>.</summary>
+    [Parameter] public string? SizeOverride { get; set; }
+
+    /// <summary>Semantic color applied as a Tailwind text-* utility (e.g. Color.Primary → "text-primary").</summary>
+    [Parameter] public Color Color { get; set; } = Color.Default;
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _typeClass => Type switch
+    {
+        LoadingType.Dots => "loading-dots",
+        LoadingType.Ring => "loading-ring",
+        LoadingType.Ball => "loading-ball",
+        LoadingType.Bars => "loading-bars",
+        LoadingType.Infinity => "loading-infinity",
+        _ => "loading-spinner"
+    };
+
+    private string _sizeClass => !string.IsNullOrWhiteSpace(SizeOverride)
+        ? SizeOverride!
+        : CssClass.LoadingSize(Size);
+
+    private string _cls => CssClass.Merge(
+        "loading",
+        _typeClass,
+        _sizeClass,
+        CssClass.TextColor(Color),
+        Class);
+}

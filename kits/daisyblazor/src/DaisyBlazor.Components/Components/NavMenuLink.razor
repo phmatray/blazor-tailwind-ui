@@ -1,0 +1,46 @@
+@namespace DaisyBlazor
+@using Microsoft.AspNetCore.Components.Routing
+@* Alias the framework NavLink so the unqualified <NavLink> in this file resolves to it,
+   not to this component (which is also named NavLink). *@
+
+@* MudNavLink replacement (named NavMenuLink to avoid the framework NavLink clash). Renders a Blazor NavLink styled as a daisyUI menu link.
+   The framework NavLink applies the "active" class when the route matches; daisyUI's
+   .menu styles ".menu li > a.active" so the active state is highlighted automatically. *@
+
+@if (Disabled)
+{
+    <span class="@_disabledCls" style="@Style" @attributes="UserAttributes">
+        @LinkInner
+    </span>
+}
+else
+{
+    <Microsoft.AspNetCore.Components.Routing.NavLink href="@Href" Match="Match" target="@Target"
+                   class="@_cls" ActiveClass="active" style="@Style" @attributes="UserAttributes">
+        @LinkInner
+    </Microsoft.AspNetCore.Components.Routing.NavLink>
+}
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Href { get; set; }
+    [Parameter] public string? Icon { get; set; }
+    [Parameter] public NavLinkMatch Match { get; set; } = NavLinkMatch.Prefix;
+    [Parameter] public string? Target { get; set; }
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge("flex items-center gap-2", Class);
+
+    private string _disabledCls => CssClass.Merge("flex items-center gap-2 opacity-50 pointer-events-none", Class);
+
+    private RenderFragment LinkInner => @<text>
+        @if (!string.IsNullOrEmpty(Icon))
+        {
+            <Icon Name="@Icon" Size="Size.Small" />
+        }
+        @ChildContent
+    </text>;
+}

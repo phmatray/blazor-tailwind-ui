@@ -1,0 +1,13 @@
+bin/
+obj/
+node_modules/
+npm-debug.log*
+
+# Generated CSS output (built from Styles/main.css)
+wwwroot/css/app.css
+wwwroot/css/app.css.map
+
+.vs/
+.idea/
+.DS_Store
+*.user

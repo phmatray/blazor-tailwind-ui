@@ -1,0 +1,28 @@
+@namespace DaisyBlazor
+
+@* MudDivider replacement. daisyUI .divider; horizontal layout when Vertical=true. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">@ChildContent</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Renders a vertical divider (between horizontally-laid-out siblings).</summary>
+    [Parameter] public bool Vertical { get; set; }
+
+    /// <summary>Prevents the divider from stretching to fill the flex cross axis.</summary>
+    [Parameter] public bool FlexItem { get; set; }
+
+    /// <summary>Accepted for MudBlazor compatibility; visual style is fixed.</summary>
+    [Parameter] public object? DividerType { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "divider",
+        Vertical ? "divider-horizontal" : null,
+        FlexItem ? "self-stretch" : null,
+        Class);
+}

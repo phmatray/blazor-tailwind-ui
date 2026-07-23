@@ -1,0 +1,22 @@
+@namespace DaisyBlazor
+
+@* MudContainer replacement. Centered, max-width-constrained content wrapper with optional gutters. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public MaxWidth MaxWidth { get; set; } = MaxWidth.Large;
+    [Parameter] public bool Gutters { get; set; } = true;
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "mx-auto w-full",
+        Gutters ? "px-4" : null,
+        CssClass.MaxWidthClass(MaxWidth),
+        Class);
+}

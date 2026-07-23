@@ -1,0 +1,5 @@
+/* FeatureNavCard visual styling lives in the package's global preset
+   (styles/preset.css, the ".nav-card*" block). Blazor scoped CSS cannot reliably
+   target the Card / CardContent / Typography root elements here because they are
+   rendered by child components and carry no scope attribute, so the gradient accent,
+   eyebrow/title and circular "go" affordance are styled globally instead. */

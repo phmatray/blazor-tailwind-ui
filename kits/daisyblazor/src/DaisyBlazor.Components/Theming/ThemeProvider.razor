@@ -1,0 +1,12 @@
+@namespace DaisyBlazor.Theming
+
+@* Theme provider (MudThemeProvider-compatible). Applies the daisyUI data-theme
+   attribute on the document element via IJSRuntime, resolves "system" via
+   prefers-color-scheme, and persists the preference to localStorage + cookies.
+   Cascades itself so descendants can read the current preference / dark-mode
+   state and call SetThemeAsync. The light/dark theme names and the selectable
+   theme list are parameter-driven, so any app can supply its own daisyUI themes. *@
+
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>

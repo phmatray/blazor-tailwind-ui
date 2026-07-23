@@ -1,0 +1,53 @@
+@namespace DaisyBlazor
+
+@* Feature-navigation card with a gradient identity accent, eyebrow label, title, description
+   and an optional circular "go" affordance. The whole card is clickable when Href is set.
+   Visual styling ships in the package preset (styles/preset.css, ".nav-card*"). *@
+
+<Card Elevation="0"
+      Class="@CardClass"
+      Style="@(HasGradient ? AccentStyle : null)"
+      OnClick="@(_ => OnCardClick())"
+      @attributes="CardAttributes">
+    @if (HasGradient)
+    {
+        <span class="nav-card__accent" aria-hidden="true"></span>
+    }
+    <CardContent>
+        <div class="nav-card__head">
+            @if (HasGradient)
+            {
+                <div class="nav-card__avatar" style="@AvatarStyle">
+                    <Icon Name="@Icon" />
+                </div>
+            }
+            else
+            {
+                <Avatar Color="AvatarColor" Size="Size.Large" Class="nav-card__avatar-flat">
+                    <Icon Name="@Icon" />
+                </Avatar>
+            }
+            <div class="nav-card__heading">
+                <span class="nav-card__eyebrow">@Subtitle</span>
+                <Typography Typo="Typo.h6" Class="nav-card__title">@Title</Typography>
+            </div>
+            @if (IsClickable)
+            {
+                <span class="nav-card__go" title="@ActionLabel" aria-hidden="true">
+                    <Icon Name="@Icons.Material.Filled.ArrowForward" />
+                </span>
+            }
+        </div>
+
+        <Typography Typo="Typo.body2" Class="nav-card__desc">
+            @Description
+        </Typography>
+
+        @if (ChildContent is not null)
+        {
+            <div class="nav-card__extra">
+                @ChildContent
+            </div>
+        }
+    </CardContent>
+</Card>

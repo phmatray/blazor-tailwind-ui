@@ -1,0 +1,72 @@
+@namespace DaisyBlazor
+
+@* MudTimelineItem replacement. A daisyUI .timeline <li> with a colored dot (middle),
+   opposite content (timeline-start) and main content (timeline-end). *@
+
+<li @attributes="UserAttributes">
+    <hr />
+    @if (ItemOpposite is not null)
+    {
+        <div class="timeline-start">
+            @ItemOpposite
+        </div>
+    }
+    <div class="timeline-middle">
+        @if (!string.IsNullOrEmpty(Icon))
+        {
+            <Icon Name="@Icon" Size="Size.Small" Color="@Color" />
+        }
+        else
+        {
+            <span class="@_dotCls"></span>
+        }
+    </div>
+    <div class="@_contentCls" style="@Style">
+        @if (ItemContent is not null)
+        {
+            @ItemContent
+        }
+        else
+        {
+            @ChildContent
+        }
+    </div>
+    <hr />
+</li>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? ItemContent { get; set; }
+    [Parameter] public RenderFragment? ItemOpposite { get; set; }
+    [Parameter] public Color Color { get; set; } = Color.Default;
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+    [Parameter] public string? Icon { get; set; }
+    [Parameter] public TimelineAlign TimelineAlign { get; set; } = TimelineAlign.Default;
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _dotSize => Size switch
+    {
+        Size.Small => "h-2 w-2",
+        Size.Large => "h-4 w-4",
+        _ => "h-3 w-3"
+    };
+
+    private string _dotColor => Color switch
+    {
+        Color.Primary => "bg-primary",
+        Color.Secondary => "bg-secondary",
+        Color.Tertiary => "bg-accent",
+        Color.Info => "bg-info",
+        Color.Success => "bg-success",
+        Color.Warning => "bg-warning",
+        Color.Error => "bg-error",
+        Color.Dark => "bg-neutral",
+        _ => "bg-base-300"
+    };
+
+    private string _dotCls => CssClass.Merge("inline-block rounded-full", _dotSize, _dotColor);
+
+    private string _contentCls => CssClass.Merge("timeline-end timeline-box", Class);
+}

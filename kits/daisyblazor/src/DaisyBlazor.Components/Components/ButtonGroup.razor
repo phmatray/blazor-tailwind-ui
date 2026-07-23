@@ -1,0 +1,26 @@
+@namespace DaisyBlazor
+
+@* MudButtonGroup replacement. daisyUI .join wrapper. Child buttons get .join-item
+   automatically via the ".join > .btn" rule in the daisyUI stylesheet, so just wrap
+   the ChildContent in a .join container. Variant/Color/Size/OverrideStyles are accepted
+   for source compatibility (children carry their own styling). *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public Variant Variant { get; set; } = Variant.Text;
+    [Parameter] public Color Color { get; set; } = Color.Default;
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+
+    /// <summary>Accepted for MudBlazor source compatibility; ignored.</summary>
+    [Parameter] public bool OverrideStyles { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge("join", Class);
+}

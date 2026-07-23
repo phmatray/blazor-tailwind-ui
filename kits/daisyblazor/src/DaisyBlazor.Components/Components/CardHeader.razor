@@ -1,0 +1,38 @@
+@namespace DaisyBlazor
+
+@* MudCardHeader replacement. Renders an optional avatar slot beside a title/content slot.
+   The CardHeaderAvatar and CardHeaderContent named fragments bind from the nested
+   <CardHeaderAvatar>/<CardHeaderContent> tags (MudBlazor compatibility). *@
+
+<div class="@CssClass.Merge("card-title-area flex items-center gap-3 px-6 pt-6", Class)"
+     style="@Style" @attributes="UserAttributes">
+    @if (CardHeaderAvatar is not null)
+    {
+        <div class="card-header-avatar flex items-center">
+            @CardHeaderAvatar
+        </div>
+    }
+    @if (CardHeaderContent is not null)
+    {
+        <div class="card-header-content flex-1">
+            @CardHeaderContent
+        </div>
+    }
+    @ChildContent
+    @if (CardHeaderActions is not null)
+    {
+        <div class="card-header-actions flex items-center gap-1 ml-auto">
+            @CardHeaderActions
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? CardHeaderAvatar { get; set; }
+    [Parameter] public RenderFragment? CardHeaderContent { get; set; }
+    [Parameter] public RenderFragment? CardHeaderActions { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+}

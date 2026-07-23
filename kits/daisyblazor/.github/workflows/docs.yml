@@ -1,0 +1,75 @@
+name: docs
+
+# Build the Starlight docs site and deploy it to GitHub Pages.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'docs/**'
+      - '.github/workflows/docs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel in-progress production deploys.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          global-json-file: global.json
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Build Components (XML docs)
+        run: dotnet build src/DaisyBlazor.Components/DaisyBlazor.Components.csproj -c Release
+
+      - name: Build Charts (XML docs)
+        run: dotnet build src/DaisyBlazor.Charts/DaisyBlazor.Charts.csproj -c Release
+
+      - name: Install dependencies
+        working-directory: website
+        run: npm ci
+
+      - name: Generate API reference
+        run: node website/scripts/gen-api.mjs
+
+      - name: Build site
+        working-directory: website
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: website/dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

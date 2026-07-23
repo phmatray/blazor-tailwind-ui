@@ -1,0 +1,32 @@
+@namespace DaisyBlazor
+
+@* Fixed bottom navigation bar. daisyUI .dock with optional .dock-xs / .dock-sm / .dock-md / .dock-lg / .dock-xl size modifier.
+   Place <DockItem> components as ChildContent. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    /// <summary>Items to render inside the dock (use <see cref="DockItem"/> components).</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Controls the dock height via daisyUI size modifiers (dock-xs … dock-xl). Null means no modifier (default daisyUI size).</summary>
+    [Parameter] public DockSize? Size { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string? _sizeClass => Size switch
+    {
+        DockSize.Xs => "dock-xs",
+        DockSize.Sm => "dock-sm",
+        DockSize.Md => "dock-md",
+        DockSize.Lg => "dock-lg",
+        DockSize.Xl => "dock-xl",
+        _ => null
+    };
+
+    private string _cls => CssClass.Merge("dock", _sizeClass, Class);
+}

@@ -1,0 +1,74 @@
+@namespace DaisyBlazor
+
+@* daisyUI range slider. Renders <input type="range" class="range"> with optional
+   color modifier (range-primary, range-secondary, etc.) and size modifier
+   (range-xs, range-sm, range-md, range-lg, range-xl). *@
+
+<input type="range"
+       class="@_cls"
+       style="@Style"
+       min="@Min"
+       max="@Max"
+       step="@Step"
+       value="@Value"
+       @oninput="OnInput"
+       @attributes="UserAttributes" />
+
+@code {
+    /// <summary>Current value of the range input.</summary>
+    [Parameter] public double Value { get; set; }
+
+    /// <summary>Raised when the user moves the slider.</summary>
+    [Parameter] public EventCallback<double> ValueChanged { get; set; }
+
+    /// <summary>Minimum allowed value. Defaults to 0.</summary>
+    [Parameter] public double Min { get; set; } = 0;
+
+    /// <summary>Maximum allowed value. Defaults to 100.</summary>
+    [Parameter] public double Max { get; set; } = 100;
+
+    /// <summary>Granularity of each step. Defaults to 1.</summary>
+    [Parameter] public double Step { get; set; } = 1;
+
+    /// <summary>Semantic color applied as range-{token} (e.g. range-primary).</summary>
+    [Parameter] public Color Color { get; set; } = Color.Default;
+
+    /// <summary>Size of the slider thumb: Small → range-sm, Medium → range-md, Large → range-lg.</summary>
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string? _colorClass
+    {
+        get
+        {
+            string? token = CssClass.ColorToken(Color);
+            return token is { } t ? $"range-{t}" : null;
+        }
+    }
+
+    private string _sizeClass => Size switch
+    {
+        Size.Small => "range-sm",
+        Size.Large => "range-lg",
+        _ => "range-md"
+    };
+
+    private string _cls => CssClass.Merge(
+        "range",
+        _colorClass,
+        _sizeClass,
+        Class);
+
+    private async Task OnInput(ChangeEventArgs e)
+    {
+        if (double.TryParse(e.Value?.ToString(), System.Globalization.NumberStyles.Any,
+                System.Globalization.CultureInfo.InvariantCulture, out double parsed))
+        {
+            Value = parsed;
+            await ValueChanged.InvokeAsync(parsed);
+        }
+    }
+}

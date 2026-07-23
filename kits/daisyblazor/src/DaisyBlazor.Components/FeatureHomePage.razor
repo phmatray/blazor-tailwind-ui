@@ -1,0 +1,128 @@
+@namespace DaisyBlazor
+
+@* MudFeatureHomePage replacement. Feature home-page scaffold: hero/title, optional header
+   actions, nav-cards grid, optional quick-access button strip, and an additional-content slot.
+   Wraps body content with an AuthorizeView when RequireAccessCheck is true. *@
+
+@if (RequireAccessCheck)
+{
+    <AuthorizeView>
+        <Authorized>
+            @if (IsAccessGranted)
+            {
+                @RenderBody()
+            }
+            else
+            {
+                @RenderAccessDenied()
+            }
+        </Authorized>
+        <NotAuthorized>
+            @RenderAccessDenied()
+        </NotAuthorized>
+    </AuthorizeView>
+}
+else
+{
+    @RenderBody()
+}
+
+@code
+{
+    private RenderFragment RenderAccessDenied() => __builder =>
+    {
+        if (AccessDeniedContent is not null)
+        {
+            @AccessDeniedContent
+        }
+        else
+        {
+            <Alert Severity="Severity.Warning" Variant="Variant.Filled">
+                @AccessDeniedText
+            </Alert>
+        }
+    };
+
+    private RenderFragment RenderBody() => __builder =>
+    {
+        @if (UseHero)
+        {
+            <FeatureHero Icon="@HeroIcon"
+                         Title="@Title"
+                         Subtitle="@Subtitle"
+                         Eyebrow="@Eyebrow"
+                         GradientStart="@GradientStart"
+                         GradientEnd="@GradientEnd"
+                         Actions="@HeaderActions"
+                         Stats="@HeroStats"
+                         class="mb-6" />
+        }
+        else if (HasHeaderActions)
+        {
+            <Stack Row="true" Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
+                <Stack Spacing="0">
+                    <Typography Typo="Typo.h4">@Title</Typography>
+                    @if (Subtitle is not null)
+                    {
+                        <Typography Typo="Typo.body2" Color="Color.Secondary">@Subtitle</Typography>
+                    }
+                </Stack>
+                @HeaderActions
+            </Stack>
+        }
+        else
+        {
+            <Typography Typo="Typo.h4">@Title</Typography>
+            @if (Subtitle is not null)
+            {
+                <Typography Typo="Typo.body1" Color="Color.Secondary">@Subtitle</Typography>
+            }
+            <Divider Class="my-4" />
+        }
+
+        @if (Error is not null)
+        {
+            <Alert Severity="Severity.Error" Variant="Variant.Filled" Class="mb-4">
+                @Error
+            </Alert>
+        }
+
+        @if (NavCards is not null)
+        {
+            @if (NavCardsTitle is not null)
+            {
+                <Typography Typo="Typo.h5" Class="mb-4">@NavCardsTitle</Typography>
+            }
+            <Grid Class="equal-height-cards">
+                @NavCards
+            </Grid>
+
+            @if (!HasHeaderActions && !UseHero)
+            {
+                <Divider Class="my-6" />
+            }
+        }
+
+        @if (QuickAccessButtons is not null)
+        {
+            <div class="@(NavCards is not null ? "mt-8" : null)">
+                @if (QuickAccessTitle is not null)
+                {
+                    <Typography Typo="Typo.h5" Class="mb-4">@QuickAccessTitle</Typography>
+                }
+                <Paper Elevation="2" Class="p-4">
+                    <Grid>
+                        @QuickAccessButtons
+                    </Grid>
+                </Paper>
+            </div>
+        }
+
+        @if (AdditionalContent is not null)
+        {
+            <div class="mt-6">
+                @AdditionalContent
+            </div>
+        }
+    };
+}

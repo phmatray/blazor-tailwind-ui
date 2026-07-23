@@ -1,0 +1,61 @@
+@namespace DaisyBlazor
+
+@* MudBadge replacement. daisyUI .indicator wrapper with an overlaid .badge on the child content. *@
+
+<span class="indicator @Class" style="@Style" @attributes="UserAttributes">
+    @if (Visible)
+    {
+        <span class="@_badgeCls">
+            @if (!Dot)
+            {
+                @_content
+            }
+        </span>
+    }
+    @ChildContent
+</span>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Badge content (number or text). Capped by <see cref="Max"/> when numeric.</summary>
+    [Parameter] public object? Content { get; set; }
+
+    [Parameter] public Color Color { get; set; } = Color.Primary;
+
+    /// <summary>Overlap the badge onto the child (kept for MudBlazor compatibility).</summary>
+    [Parameter] public bool Overlap { get; set; }
+
+    /// <summary>Render a small dot with no content.</summary>
+    [Parameter] public bool Dot { get; set; }
+
+    [Parameter] public bool Visible { get; set; } = true;
+    [Parameter] public bool Bordered { get; set; }
+
+    /// <summary>Maximum numeric value before showing "{Max}+".</summary>
+    [Parameter] public int Max { get; set; } = 99;
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _badgeCls => CssClass.Merge(
+        "indicator-item",
+        "badge",
+        CssClass.BadgeColor(Color),
+        Dot ? "badge-xs" : "badge-sm",
+        Bordered ? "border-2 border-base-100" : null);
+
+    private string? _content
+    {
+        get
+        {
+            if (Content is int n && n > Max)
+            {
+                return $"{Max}+";
+            }
+
+            return Content?.ToString();
+        }
+    }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "DaisyBlazor contributors",
+  "classifications": [ "Blazor", "Web", "daisyUI" ],
+  "identity": "DaisyBlazor.Template.WebApp",
+  "name": "DaisyBlazor Blazor Web App",
+  "description": "A Blazor Web App (Interactive Server) pre-wired with DaisyBlazor (Tailwind CSS v4 + daisyUI v5), the DaisyBlazor.Charts SVG charts, the ThemeProvider, and the Tailwind build pipeline.",
+  "shortName": "daisyblazor",
+  "sourceName": "DaisyBlazor.App",
+  "preferNameDirectory": true,
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/bin/**",
+            "**/obj/**",
+            "**/node_modules/**",
+            "wwwroot/css/app.css",
+            "wwwroot/css/app.css.map",
+            ".template.config/**"
+          ]
+        }
+      ]
+    }
+  ],
+  "primaryOutputs": [
+    { "path": "DaisyBlazor.App.csproj" }
+  ],
+  "symbols": {}
+}

@@ -1,0 +1,70 @@
+@namespace DaisyBlazor
+
+@* daisyUI chat row. Renders .chat.chat-start or .chat.chat-end containing:
+   optional .chat-image (avatar), .chat-header, .chat-bubble (+ .chat-bubble-{token}
+   for color), .chat-footer. Only sections with provided content are rendered. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+
+    @if (Image is not null)
+    {
+        <div class="chat-image">
+            @Image
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Header))
+    {
+        <div class="chat-header">@Header</div>
+    }
+
+    <div class="@_bubbleCls">
+        @ChildContent
+    </div>
+
+    @if (!string.IsNullOrEmpty(Footer))
+    {
+        <div class="chat-footer">@Footer</div>
+    }
+
+</div>
+
+@code {
+    /// <summary>Whether the bubble appears on the left (Start) or right (End) side.</summary>
+    [Parameter] public ChatPlacement Placement { get; set; } = ChatPlacement.Start;
+
+    /// <summary>Semantic color applied to the bubble via .chat-bubble-{token}.</summary>
+    [Parameter] public Color Color { get; set; } = Color.Default;
+
+    /// <summary>Optional text rendered in the .chat-header slot (e.g. sender name + timestamp).</summary>
+    [Parameter] public string? Header { get; set; }
+
+    /// <summary>Optional text rendered in the .chat-footer slot (e.g. "Delivered", "Seen").</summary>
+    [Parameter] public string? Footer { get; set; }
+
+    /// <summary>Optional avatar content rendered in the .chat-image slot.</summary>
+    [Parameter] public RenderFragment? Image { get; set; }
+
+    /// <summary>The message content rendered inside the .chat-bubble.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "chat",
+        Placement == ChatPlacement.End ? "chat-end" : "chat-start",
+        Class);
+
+    private string _bubbleCls
+    {
+        get
+        {
+            string? token = CssClass.ColorToken(Color);
+            return CssClass.Merge(
+                "chat-bubble",
+                token is { } t ? $"chat-bubble-{t}" : null);
+        }
+    }
+}

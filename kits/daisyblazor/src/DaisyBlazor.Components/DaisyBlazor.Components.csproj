@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>DaisyBlazor</RootNamespace>
+    <AssemblyName>DaisyBlazor.Components</AssemblyName>
+
+    <IsPackable>true</IsPackable>
+    <PackageId>DaisyBlazor.Components</PackageId>
+    <Description>A Tailwind CSS v4 + daisyUI v5 component kit for Blazor: 60+ daisyUI-native components, a MudBlazor-compatible API surface, dialog/snackbar/theming services, and a shippable CSS preset. Usable in any Blazor Server or WebAssembly app.</Description>
+
+    <!-- CA1711: *EventArgs names intentionally mirror MudBlazor's public API for drop-in parity.
+         IL2072: Blazor Server is not trimmed; the dialog host opens components reflectively by design. -->
+    <NoWarn>$(NoWarn);CA1711;IL2072</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <!-- Ship the Tailwind/daisyUI preset + base CSS as static web assets and inside the NuGet so
+       consumers can import them with one line (see styles/README for wiring). -->
+  <ItemGroup>
+    <None Include="styles\**\*.css" Pack="true" PackagePath="staticwebassets\styles\" />
+    <None Include="README.md" Pack="true" PackagePath="\" Condition="Exists('README.md')" />
+  </ItemGroup>
+
+</Project>

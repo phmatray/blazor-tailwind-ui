@@ -1,0 +1,38 @@
+@namespace DaisyBlazor
+
+@* MudQuickAccessButton replacement. Outlined full-width <Button> with optional badge,
+   tooltip and loading state, used as a quick-access shortcut on feature home pages. *@
+
+@if (BadgeText is not null)
+{
+    <Tooltip Text="@TooltipText">
+        <Badge Content="@BadgeText" Color="Color.Info" Overlap="true">
+            @RenderButton()
+        </Badge>
+    </Tooltip>
+}
+else
+{
+    @RenderButton()
+}
+
+@code
+{
+    private RenderFragment RenderButton() => __builder =>
+    {
+        <Button Variant="Variant.Outlined"
+                Color="Color"
+                StartIcon="@Icon"
+                FullWidth="true"
+                Class="py-4"
+                Href="@Href"
+                OnClick="@(async _ => await OnClick.InvokeAsync())"
+                Disabled="IsDisabled">
+            @if (Loading)
+            {
+                <ProgressCircular Size="Size.Small" Indeterminate="true" Class="mr-2" />
+            }
+            @Label
+        </Button>
+    };
+}

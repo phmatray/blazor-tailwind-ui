@@ -1,0 +1,19 @@
+@namespace DaisyBlazor.Layout
+
+@* DetailRow: single label/value table row for use inside a DetailCard. *@
+
+<tr class="@Class" style="@Style" @attributes="UserAttributes">
+    <td>
+        <Typography Color="Color.Secondary">@Label</Typography>
+    </td>
+    <td>
+        @if (ValueContent is not null)
+        {
+            @ValueContent
+        }
+        else
+        {
+            <Typography Typo="Typo.body1"><strong>@Value</strong></Typography>
+        }
+    </td>
+</tr>

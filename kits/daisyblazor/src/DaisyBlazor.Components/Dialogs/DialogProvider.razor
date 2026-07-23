@@ -1,0 +1,108 @@
+@namespace DaisyBlazor
+@using Microsoft.AspNetCore.Components.Rendering
+@implements IDisposable
+@inject IDialogService DialogService
+
+@* Host for IDialogService. Mount once near the app root. Renders each shown dialog inside a
+   daisyUI <dialog class="modal" open> + .modal-box, cascading an IMudDialogInstance. *@
+
+@foreach (DialogReference dialog in _dialogs)
+{
+    <dialog class="modal modal-open" open @key="dialog.Id">
+        <div class="@ModalBoxCss(dialog)"
+             role="dialog"
+             aria-modal="true"
+             aria-label="@AriaLabel(dialog)">
+            @if (ShowCloseButton(dialog))
+            {
+                <button type="button"
+                        class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                        @onclick="@(() => dialog.Cancel())"
+                        aria-label="Close">
+                    <Icon Name="@Icons.Material.Filled.Close" Size="Size.Small" />
+                </button>
+            }
+            <CascadingValue Value="@((IMudDialogInstance)dialog)" IsFixed="true">
+                @RenderDialogContent(dialog)
+            </CascadingValue>
+        </div>
+        <form method="dialog" class="modal-backdrop" @onclick="@(() => OnBackdrop(dialog))">
+            <button type="button" tabindex="-1">close</button>
+        </form>
+    </dialog>
+}
+
+@code {
+    private readonly List<DialogReference> _dialogs = [];
+
+    protected override void OnInitialized()
+    {
+        DialogService.OnDialogShown += HandleShown;
+    }
+
+    public void Dispose()
+    {
+        DialogService.OnDialogShown -= HandleShown;
+    }
+
+    private void HandleShown(DialogReference reference)
+    {
+        reference.OnClose += HandleClosed;
+        _dialogs.Add(reference);
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void HandleClosed(DialogReference reference)
+    {
+        reference.OnClose -= HandleClosed;
+        _dialogs.Remove(reference);
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void OnBackdrop(DialogReference dialog)
+    {
+        if (dialog.Options.BackdropClick != false)
+        {
+            dialog.Cancel();
+        }
+    }
+
+    private static bool ShowCloseButton(DialogReference dialog) =>
+        dialog.Options.CloseButton == true;
+
+    // Names the dialog for assistive technology. The title element itself lives inside the
+    // hosted component (Dialog.razor), so we surface the reference's title string as an
+    // aria-label here; returns null (attribute omitted) when no title was supplied.
+    private static string? AriaLabel(DialogReference dialog) =>
+        string.IsNullOrEmpty(dialog.Title) ? null : dialog.Title;
+
+    private static string ModalBoxCss(DialogReference dialog) => CssClass.Merge(
+        "modal-box relative",
+        MaxWidthCss(dialog.Options.MaxWidth),
+        dialog.Options.FullWidth == true ? "w-full" : null);
+
+    private static string? MaxWidthCss(MaxWidth? maxWidth) => maxWidth switch
+    {
+        MaxWidth.Small => "max-w-sm",
+        MaxWidth.Medium => "max-w-md",
+        MaxWidth.Large => "max-w-2xl",
+        MaxWidth.ExtraLarge => "max-w-4xl",
+        MaxWidth.ExtraExtraLarge => "max-w-6xl",
+        _ => null
+    };
+
+    private RenderFragment RenderDialogContent(DialogReference dialog) => builder =>
+    {
+        builder.OpenComponent(0, dialog.ComponentType);
+        int sequence = 1;
+        foreach (KeyValuePair<string, object?> parameter in dialog.Parameters)
+        {
+            if (parameter.Value is not null)
+            {
+                builder.AddAttribute(sequence++, parameter.Key, parameter.Value);
+            }
+        }
+
+        builder.CloseComponent();
+    };
+}

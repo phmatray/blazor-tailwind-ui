@@ -1,0 +1,28 @@
+@namespace DaisyBlazor
+
+@* MudStack replacement. Flex container; column by default, row when Row=true. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public bool Row { get; set; }
+    [Parameter] public bool Wrap { get; set; }
+    [Parameter] public int Spacing { get; set; } = 4;
+    [Parameter] public Justify? Justify { get; set; }
+    [Parameter] public AlignItems? AlignItems { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "flex",
+        Row ? "flex-row" : "flex-col",
+        Wrap ? "flex-wrap" : null,
+        $"gap-{Spacing}",
+        Justify is { } j ? CssClass.JustifyContent(j) : null,
+        AlignItems is { } a ? CssClass.AlignItemsClass(a) : null,
+        Class);
+}

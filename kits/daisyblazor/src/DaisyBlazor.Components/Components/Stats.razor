@@ -1,0 +1,29 @@
+@namespace DaisyBlazor
+
+@* Stats container. daisyUI .stats with optional shadow and direction modifier
+   (stats-horizontal / stats-vertical). Renders ChildContent as stat items. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    /// <summary>One or more &lt;Stat&gt; components placed inside this container.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Stack stats vertically instead of the default horizontal layout.</summary>
+    [Parameter] public bool Vertical { get; set; }
+
+    /// <summary>Apply the daisyUI shadow utility to the stats container.</summary>
+    [Parameter] public bool Shadow { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "stats",
+        Vertical ? "stats-vertical" : "stats-horizontal",
+        Shadow ? "shadow" : null,
+        Class);
+}

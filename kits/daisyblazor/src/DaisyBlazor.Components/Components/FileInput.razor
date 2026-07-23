@@ -1,0 +1,59 @@
+@namespace DaisyBlazor
+
+@* daisyUI file-input. Wraps Blazor's <InputFile> with class "file-input" plus optional
+   color modifier (file-input-primary, file-input-secondary, etc.), ghost modifier
+   (file-input-ghost), and size modifier (file-input-sm, file-input-md, file-input-lg). *@
+
+<InputFile class="@_cls"
+           style="@Style"
+           multiple="@Multiple"
+           accept="@Accept"
+           OnChange="OnChange"
+           @attributes="UserAttributes" />
+
+@code {
+    /// <summary>Semantic color applied as file-input-{token} (e.g. file-input-primary).</summary>
+    [Parameter] public Color Color { get; set; } = Color.Default;
+
+    /// <summary>Size of the control: Small → file-input-sm, Medium → file-input-md, Large → file-input-lg.</summary>
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+
+    /// <summary>Applies the ghost variant (file-input-ghost) for a borderless, transparent style.</summary>
+    [Parameter] public bool Ghost { get; set; }
+
+    /// <summary>When true the browser allows picking more than one file.</summary>
+    [Parameter] public bool Multiple { get; set; }
+
+    /// <summary>Constrains the file picker to specific MIME types or extensions (e.g. "image/*", ".pdf").</summary>
+    [Parameter] public string? Accept { get; set; }
+
+    /// <summary>Raised when the user selects one or more files.</summary>
+    [Parameter] public EventCallback<InputFileChangeEventArgs> OnChange { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string? _colorClass
+    {
+        get
+        {
+            string? token = CssClass.ColorToken(Color);
+            return token is { } t ? $"file-input-{t}" : null;
+        }
+    }
+
+    private string _sizeClass => Size switch
+    {
+        Size.Small => "file-input-sm",
+        Size.Large => "file-input-lg",
+        _ => "file-input-md"
+    };
+
+    private string _cls => CssClass.Merge(
+        "file-input",
+        _colorClass,
+        _sizeClass,
+        Ghost ? "file-input-ghost" : null,
+        Class);
+}

@@ -1,0 +1,311 @@
+@namespace DaisyBlazor.Charts
+
+@* Dependency-free bar chart. Renders vertical (default) or horizontal bars from either a flat
+   ChartDataPoint list or grouped ChartSeries. Values map to a gridded axis; colors follow the
+   active daisyUI theme via the cycling ChartPalette. *@
+
+<div class="@_cls" style="@_style" @attributes="UserAttributes">
+    @if (!string.IsNullOrEmpty(Title))
+    {
+        <div class="text-sm font-medium mb-2 text-base-content/80">@Title</div>
+    }
+
+    <svg viewBox="0 0 @_w.ToString(_ci) @_h.ToString(_ci)"
+         preserveAspectRatio="none"
+         role="img"
+         class="w-full"
+         style="@($"height:{Height};")"
+         aria-label="@_ariaLabel">
+        <title>@_ariaLabel</title>
+
+        @if (Horizontal)
+        {
+            @* Vertical gridlines + value labels along the bottom *@
+            @if (ShowGrid)
+            {
+                @foreach ((double pos, string label) in _valueGrid)
+                {
+                    <line x1="@pos.ToString(_ci)" y1="@_plotTop.ToString(_ci)"
+                          x2="@pos.ToString(_ci)" y2="@_plotBottom.ToString(_ci)"
+                          stroke="var(--color-base-content)" stroke-opacity="0.12" stroke-width="1" />
+                    <SvgText X="@pos" Y="@(_plotBottom + 16)" Anchor="middle" FillOpacity="0.6" Text="@label" />
+                }
+            }
+
+            @for (int c = 0; c < _categories.Count; c++)
+            {
+                <SvgText X="@(_padLeft - 4)" Y="@(_groupCenter(c) + 4)" Anchor="end" FillOpacity="0.6" Text="@_categories[c]" />
+
+                @for (int s = 0; s < _seriesCount; s++)
+                {
+                    double v = _value(c, s);
+                    double len = (_plotRight - _plotLeft) * _norm(v);
+                    double y = _barStart(c, s);
+                    <rect x="@_plotLeft.ToString(_ci)" y="@y.ToString(_ci)"
+                          width="@(System.Math.Max(0, len).ToString(_ci))" height="@_barThickness.ToString(_ci)"
+                          rx="2" fill="@_color(c, s)" />
+                }
+            }
+        }
+        else
+        {
+            @* Horizontal gridlines + value labels along the left *@
+            @if (ShowGrid)
+            {
+                @foreach ((double pos, string label) in _valueGrid)
+                {
+                    <line x1="@_plotLeft.ToString(_ci)" y1="@pos.ToString(_ci)"
+                          x2="@_plotRight.ToString(_ci)" y2="@pos.ToString(_ci)"
+                          stroke="var(--color-base-content)" stroke-opacity="0.12" stroke-width="1" />
+                    <SvgText X="@(_padLeft - 4)" Y="@(pos + 4)" Anchor="end" FillOpacity="0.6" Text="@label" />
+                }
+            }
+
+            @for (int c = 0; c < _categories.Count; c++)
+            {
+                <SvgText X="@_groupCenter(c)" Y="@(_plotBottom + 16)" Anchor="middle" FillOpacity="0.6" Text="@_categories[c]" />
+
+                @for (int s = 0; s < _seriesCount; s++)
+                {
+                    double v = _value(c, s);
+                    double len = (_plotBottom - _plotTop) * _norm(v);
+                    double x = _barStart(c, s);
+                    <rect x="@x.ToString(_ci)" y="@((_plotBottom - len).ToString(_ci))"
+                          width="@_barThickness.ToString(_ci)" height="@(System.Math.Max(0, len).ToString(_ci))"
+                          rx="2" fill="@_color(c, s)" />
+                }
+            }
+        }
+    </svg>
+
+    @if (ShowLegend && _seriesCount > 1)
+    {
+        <div class="flex flex-wrap gap-3 mt-2 text-xs">
+            @for (int s = 0; s < _seriesCount; s++)
+            {
+                <span class="inline-flex items-center gap-1.5">
+                    <span class="inline-block w-3 h-3 rounded-sm" style="@($"background:{ChartPalette.At(s, _series![s].Color)};")"></span>
+                    <span class="text-base-content/80">@(_series![s].Name)</span>
+                </span>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    /// <summary>Flat data points; used when no <see cref="Series"/> are supplied.</summary>
+    [Parameter] public IReadOnlyList<ChartDataPoint>? Data { get; set; }
+
+    /// <summary>Grouped series (one bar per series within each category). Takes precedence over <see cref="Data"/>.</summary>
+    [Parameter] public IReadOnlyList<ChartSeries>? Series { get; set; }
+
+    /// <summary>Category labels for grouped <see cref="Series"/> mode (index-aligned with series values).</summary>
+    [Parameter] public IReadOnlyList<string>? Labels { get; set; }
+
+    /// <summary>Render bars horizontally instead of vertically.</summary>
+    [Parameter] public bool Horizontal { get; set; }
+
+    /// <summary>Draw value gridlines and labels.</summary>
+    [Parameter] public bool ShowGrid { get; set; } = true;
+
+    /// <summary>Show a legend when more than one series is present.</summary>
+    [Parameter] public bool ShowLegend { get; set; } = true;
+
+    /// <summary>CSS width of the chart wrapper.</summary>
+    [Parameter] public string? Width { get; set; } = "100%";
+
+    /// <summary>CSS height of the SVG plot area.</summary>
+    [Parameter] public string? Height { get; set; } = "16rem";
+
+    /// <summary>Optional heading rendered above the chart.</summary>
+    [Parameter] public string? Title { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private const double _w = 600;
+    private const double _h = 300;
+    private const double _padLeft = 40;
+    private const double _padRight = 12;
+    private const double _padTop = 12;
+    private const double _padBottom = 28;
+    private const double _groupGap = 0.25; // fraction of slot reserved as gap between groups
+
+    private static readonly CultureInfo _ci = CultureInfo.InvariantCulture;
+
+    private IReadOnlyList<ChartSeries>? _series;
+    private IReadOnlyList<ChartDataPoint>? _points;
+    private List<string> _categories = new();
+    private double _max;
+    private double _min;
+    private List<(double Pos, string Label)> _valueGrid = new();
+
+    private bool _grouped => _series is { Count: > 0 };
+    private int _seriesCount => _grouped ? _series!.Count : 1;
+
+    private double _plotLeft => _padLeft;
+    private double _plotRight => _w - _padRight;
+    private double _plotTop => _padTop;
+    private double _plotBottom => _h - _padBottom;
+
+    private string _ariaLabel =>
+        string.IsNullOrEmpty(Title)
+            ? (Horizontal ? "Horizontal bar chart" : "Bar chart")
+            : Title!;
+
+    protected override void OnParametersSet()
+    {
+        _series = Series is { Count: > 0 } ? Series : null;
+        _points = Data;
+
+        // Build category list + value range.
+        List<double> allValues = new();
+        _categories = new List<string>();
+
+        if (_grouped)
+        {
+            int catCount = _series!.Max(s => s.Data?.Count ?? 0);
+            for (int i = 0; i < catCount; i++)
+            {
+                _categories.Add(Labels is { Count: > 0 } && i < Labels.Count
+                    ? Labels[i]
+                    : (i + 1).ToString(_ci));
+            }
+
+            foreach (ChartSeries s in _series!)
+            {
+                if (s.Data is null)
+                {
+                    continue;
+                }
+
+                allValues.AddRange(s.Data.Where(v => !double.IsNaN(v) && !double.IsInfinity(v)));
+            }
+        }
+        else if (_points is { Count: > 0 })
+        {
+            foreach (ChartDataPoint p in _points)
+            {
+                _categories.Add(p.Label);
+                if (!double.IsNaN(p.Value) && !double.IsInfinity(p.Value))
+                {
+                    allValues.Add(p.Value);
+                }
+            }
+        }
+
+        if (allValues.Count > 0)
+        {
+            _max = allValues.Max();
+            _min = allValues.Min();
+        }
+        else
+        {
+            _max = 1;
+            _min = 0;
+        }
+
+        // Bars baseline at zero unless data goes negative.
+        if (_min > 0)
+        {
+            _min = 0;
+        }
+
+        if (_max < 0)
+        {
+            _max = 0;
+        }
+
+        if (Math.Abs(_max - _min) < double.Epsilon)
+        {
+            _max = _min + 1; // flat data guard
+        }
+
+        BuildValueGrid();
+    }
+
+    private void BuildValueGrid()
+    {
+        _valueGrid.Clear();
+        const int ticks = 4;
+        for (int t = 0; t <= ticks; t++)
+        {
+            double value = _min + (_max - _min) * t / ticks;
+            double pos = Horizontal
+                ? _plotLeft + (_plotRight - _plotLeft) * (t / (double)ticks)
+                : _plotBottom - (_plotBottom - _plotTop) * (t / (double)ticks);
+            _valueGrid.Add((pos, value.ToString("0.##", _ci)));
+        }
+    }
+
+    private double _value(int category, int series)
+    {
+        if (_grouped)
+        {
+            IReadOnlyList<double>? d = _series![series].Data;
+            return d is not null && category < d.Count ? d[category] : 0;
+        }
+
+        return _points is not null && category < _points.Count ? _points[category].Value : 0;
+    }
+
+    private string _color(int category, int series)
+    {
+        if (_grouped)
+        {
+            return ChartPalette.At(series, _series![series].Color);
+        }
+
+        // Flat mode: each point cycles the palette unless it overrides.
+        string? ovr = _points is not null && category < _points.Count ? _points[category].Color : null;
+        return ChartPalette.At(category, ovr);
+    }
+
+    // Fraction of the value range a value occupies (0..1), measured from the zero/min baseline.
+    private double _norm(double value)
+    {
+        double clamped = value;
+        if (double.IsNaN(clamped) || double.IsInfinity(clamped))
+        {
+            clamped = 0;
+        }
+
+        double span = _max - _min;
+        double baseline = _min < 0 ? 0 : _min;
+        double frac = (clamped - baseline) / span;
+        return frac < 0 ? 0 : frac;
+    }
+
+    // Geometry along the category axis (x for vertical bars, y for horizontal bars).
+    private double _axisStart => Horizontal ? _plotTop : _plotLeft;
+    private double _axisEnd => Horizontal ? _plotBottom : _plotRight;
+    private double _slot => _categories.Count == 0 ? 0 : (_axisEnd - _axisStart) / _categories.Count;
+    private double _innerSlot => _slot * (1 - _groupGap);
+    private double _barThickness => _seriesCount == 0 ? 0 : _innerSlot / _seriesCount;
+
+    private double _groupCenter(int category) =>
+        _axisStart + _slot * category + _slot / 2;
+
+    private double _barStart(int category, int series)
+    {
+        double groupLeft = _axisStart + _slot * category + (_slot - _innerSlot) / 2;
+        return groupLeft + _barThickness * series;
+    }
+
+    private string _cls => CssClass.Merge("w-full", Class);
+
+    private string _style
+    {
+        get
+        {
+            string dim = string.Empty;
+            if (!string.IsNullOrEmpty(Width))
+            {
+                dim += $"width:{Width};";
+            }
+
+            return $"{dim}{Style}";
+        }
+    }
+}

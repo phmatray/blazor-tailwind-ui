@@ -1,0 +1,34 @@
+@namespace DaisyBlazor
+
+@* daisyUI .diff side-by-side comparison slider. Uses .diff-item-1, .diff-item-2, and
+   .diff-resizer. The aspect ratio is controlled by AspectClass (default "aspect-16/9"). *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    <div class="diff-item-1" role="img">
+        @Item1
+    </div>
+    <div class="diff-item-2" role="img">
+        @Item2
+    </div>
+    <div class="diff-resizer"></div>
+</div>
+
+@code {
+    /// <summary>Content rendered in the first (left/bottom) diff pane.</summary>
+    [Parameter] public RenderFragment? Item1 { get; set; }
+
+    /// <summary>Content rendered in the second (right/top) diff pane.</summary>
+    [Parameter] public RenderFragment? Item2 { get; set; }
+
+    /// <summary>Tailwind aspect-ratio utility applied to the root element (e.g. "aspect-16/9", "aspect-4/3", "aspect-square"). Defaults to "aspect-16/9".</summary>
+    [Parameter] public string? AspectClass { get; set; } = "aspect-16/9";
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge(
+        "diff",
+        AspectClass,
+        Class);
+}

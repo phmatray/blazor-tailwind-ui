@@ -1,0 +1,51 @@
+@namespace DaisyBlazor.Charts
+
+@* Filled area chart. A thin, discoverable wrapper over LineChart with the area fill enabled.
+   Same series/labels API; colors follow the active daisyUI theme. *@
+
+<LineChart Series="Series"
+           Labels="Labels"
+           Area="true"
+           Smooth="Smooth"
+           ShowGrid="ShowGrid"
+           ShowPoints="ShowPoints"
+           ShowLegend="ShowLegend"
+           Width="Width"
+           Height="Height"
+           Title="Title"
+           Class="Class"
+           Style="Style"
+           @attributes="UserAttributes" />
+
+@code {
+    /// <summary>One or more named series to plot.</summary>
+    [Parameter] public IReadOnlyList<ChartSeries> Series { get; set; } = new List<ChartSeries>();
+
+    /// <summary>X-axis category labels (index-aligned with each series' values).</summary>
+    [Parameter] public IReadOnlyList<string>? Labels { get; set; }
+
+    /// <summary>Smooth the line with cubic curves instead of straight segments.</summary>
+    [Parameter] public bool Smooth { get; set; }
+
+    /// <summary>Draw horizontal gridlines and value labels.</summary>
+    [Parameter] public bool ShowGrid { get; set; } = true;
+
+    /// <summary>Draw a marker at each data point.</summary>
+    [Parameter] public bool ShowPoints { get; set; }
+
+    /// <summary>Show a legend when more than one series is present.</summary>
+    [Parameter] public bool ShowLegend { get; set; } = true;
+
+    /// <summary>CSS width of the chart wrapper.</summary>
+    [Parameter] public string? Width { get; set; } = "100%";
+
+    /// <summary>CSS height of the SVG plot area.</summary>
+    [Parameter] public string? Height { get; set; } = "16rem";
+
+    /// <summary>Optional heading rendered above the chart.</summary>
+    [Parameter] public string? Title { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+}

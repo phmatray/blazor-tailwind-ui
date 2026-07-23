@@ -1,0 +1,8 @@
+::deep .equal-height-cards .card {
+    display: flex;
+    flex-direction: column;
+}
+
+::deep .equal-height-cards .card-body {
+    flex-grow: 1;
+}

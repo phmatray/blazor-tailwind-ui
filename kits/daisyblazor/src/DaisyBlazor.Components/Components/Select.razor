@@ -1,0 +1,154 @@
+@namespace DaisyBlazor
+@typeparam T
+
+@* MudSelect<T> replacement. daisyUI .select. SelectItem children register via a cascading
+   value; we render a native <select> of <option>s and map the chosen index back to T. *@
+
+<div class="@_fieldsetCls" style="@Style">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label class="label">
+            <span class="label-text">@Label@(Required ? " *" : null)</span>
+        </label>
+    }
+
+    <CascadingValue Value="this" IsFixed="true">
+        @* Hidden render pass so SelectItem children register their values + content. *@
+        <div style="display:none">@ChildContent</div>
+    </CascadingValue>
+
+    <select class="@_selectCls"
+            disabled="@Disabled"
+            multiple="@MultiSelection"
+            @onchange="OnSelectChanged"
+            @attributes="UserAttributes">
+        @if (!MultiSelection && Clearable)
+        {
+            <option value="" selected="@(SelectedIndex < 0)">@ClearText</option>
+        }
+        @for (int i = 0; i < _items.Count; i++)
+        {
+            int idx = i;
+            SelectItem<T> item = _items[idx];
+            <option value="@idx"
+                    disabled="@item.Disabled"
+                    selected="@IsSelected(idx)">@(item.ChildContent ?? RenderText(item.Value))</option>
+        }
+    </select>
+
+    @if (!string.IsNullOrEmpty(HelperText))
+    {
+        <span class="label-text text-xs opacity-70 mt-1">@HelperText</span>
+    }
+</div>
+
+@code {
+    [Parameter] public T? Value { get; set; }
+    [Parameter] public EventCallback<T?> ValueChanged { get; set; }
+    [Parameter] public IEnumerable<T>? SelectedValues { get; set; }
+    [Parameter] public EventCallback<IEnumerable<T>> SelectedValuesChanged { get; set; }
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public Variant Variant { get; set; } = Variant.Outlined;
+    [Parameter] public Margin Margin { get; set; } = Margin.Normal;
+    [Parameter] public bool Dense { get; set; }
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public bool Clearable { get; set; }
+    [Parameter] public bool MultiSelection { get; set; }
+    [Parameter] public bool Required { get; set; }
+    [Parameter] public bool FullWidth { get; set; } = true;
+    [Parameter] public string? HelperText { get; set; }
+    [Parameter] public string ClearText { get; set; } = "";
+    [Parameter] public object? For { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private readonly List<SelectItem<T>> _items = new();
+
+    private bool _isDense => Dense || Margin == Margin.Dense;
+
+    internal void RegisterItem(SelectItem<T> item)
+    {
+        if (!_items.Contains(item))
+        {
+            _items.Add(item);
+            StateHasChanged();
+        }
+    }
+
+    internal void UnregisterItem(SelectItem<T> item)
+    {
+        if (_items.Remove(item))
+        {
+            StateHasChanged();
+        }
+    }
+
+    private static RenderFragment RenderText(T? value) => builder =>
+    {
+        builder.AddContent(0, value?.ToString());
+    };
+
+    private int SelectedIndex => _items.FindIndex(it => EqualityComparer<T?>.Default.Equals(it.Value, Value));
+
+    private bool IsSelected(int idx)
+    {
+        if (MultiSelection)
+        {
+            return SelectedValues is { } sv && sv.Any(v => EqualityComparer<T?>.Default.Equals(v, _items[idx].Value));
+        }
+
+        return idx == SelectedIndex;
+    }
+
+    private string _fieldsetCls => CssClass.Merge(
+        "fieldset",
+        FullWidth ? "w-full" : null,
+        Class);
+
+    private string _selectCls => CssClass.Merge(
+        "select",
+        Variant == Variant.Outlined ? "select-bordered" : null,
+        Variant == Variant.Filled ? "select-bordered bg-base-200" : null,
+        _isDense ? "select-sm" : null,
+        FullWidth ? "w-full" : null);
+
+    private async Task OnSelectChanged(ChangeEventArgs args)
+    {
+        if (MultiSelection)
+        {
+            List<T> chosen = new();
+            if (args.Value is IEnumerable<string> raw)
+            {
+                foreach (string s in raw)
+                {
+                    if (int.TryParse(s, out int i) && i >= 0 && i < _items.Count)
+                    {
+                        T? v = _items[i].Value;
+                        if (v is not null)
+                        {
+                            chosen.Add(v);
+                        }
+                    }
+                }
+            }
+
+            SelectedValues = chosen;
+            await SelectedValuesChanged.InvokeAsync(chosen);
+            return;
+        }
+
+        string? rawValue = args.Value?.ToString();
+        if (string.IsNullOrEmpty(rawValue) || !int.TryParse(rawValue, out int idx) || idx < 0 || idx >= _items.Count)
+        {
+            Value = default;
+            await ValueChanged.InvokeAsync(default);
+            return;
+        }
+
+        Value = _items[idx].Value;
+        await ValueChanged.InvokeAsync(Value);
+    }
+}

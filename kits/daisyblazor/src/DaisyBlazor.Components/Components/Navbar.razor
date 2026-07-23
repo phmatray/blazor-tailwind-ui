@@ -1,0 +1,86 @@
+@namespace DaisyBlazor
+
+@* daisyUI .navbar wrapper with three named regions (navbar-start, navbar-center, navbar-end).
+   Each region div is only rendered when its RenderFragment is supplied.
+   When none of the three regions are provided, ChildContent is rendered directly inside
+   the navbar root (fallback for fully custom markup).
+   Color -> bg-base-100 / bg-primary / bg-secondary etc.
+   Bordered adds a bottom border; Shadow adds box-shadow via daisyUI's shadow-* utilities. *@
+
+<div class="@_cls" style="@Style" @attributes="UserAttributes">
+    @if (Start is not null || Center is not null || End is not null)
+    {
+        @if (Start is not null)
+        {
+            <div class="navbar-start">
+                @Start
+            </div>
+        }
+        @if (Center is not null)
+        {
+            <div class="navbar-center">
+                @Center
+            </div>
+        }
+        @if (End is not null)
+        {
+            <div class="navbar-end">
+                @End
+            </div>
+        }
+    }
+    else
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    /// <summary>Content rendered inside the <c>navbar-start</c> region. Omit to hide the region.</summary>
+    [Parameter] public RenderFragment? Start { get; set; }
+
+    /// <summary>Content rendered inside the <c>navbar-center</c> region. Omit to hide the region.</summary>
+    [Parameter] public RenderFragment? Center { get; set; }
+
+    /// <summary>Content rendered inside the <c>navbar-end</c> region. Omit to hide the region.</summary>
+    [Parameter] public RenderFragment? End { get; set; }
+
+    /// <summary>
+    /// Fallback content rendered directly inside the navbar when none of
+    /// <see cref="Start"/>, <see cref="Center"/> or <see cref="End"/> are provided.
+    /// </summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Background color of the navbar. Maps to daisyUI semantic bg utilities:
+    /// <see cref="Color.Default"/> -> <c>bg-base-100</c>,
+    /// <see cref="Color.Primary"/> -> <c>bg-primary</c>, etc.
+    /// </summary>
+    [Parameter] public Color Color { get; set; } = Color.Default;
+
+    /// <summary>Renders a bottom border (<c>border-b border-base-300</c>) under the navbar.</summary>
+    [Parameter] public bool Bordered { get; set; }
+
+    /// <summary>Adds a drop shadow (<c>shadow-md</c>) beneath the navbar.</summary>
+    [Parameter] public bool Shadow { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _bgClass
+    {
+        get
+        {
+            string? token = CssClass.ColorToken(Color);
+            return token is not null ? $"bg-{token}" : "bg-base-100";
+        }
+    }
+
+    private string _cls => CssClass.Merge(
+        "navbar",
+        _bgClass,
+        Bordered ? "border-b border-base-300" : null,
+        Shadow ? "shadow-md" : null,
+        Class);
+}

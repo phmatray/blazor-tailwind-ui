@@ -1,0 +1,35 @@
+@namespace DaisyBlazor
+
+@* daisyUI .carousel-item wrapper. Optionally constrains the item width via an inline style. *@
+
+<div class="@_cls" style="@_style" @attributes="UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    /// <summary>Child content rendered inside the carousel item.</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>CSS width for the item (e.g. "100%", "300px"); applied as inline style.</summary>
+    [Parameter] public string? Width { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge("carousel-item", Class);
+
+    private string _style
+    {
+        get
+        {
+            string inlineStyle = string.Empty;
+            if (!string.IsNullOrEmpty(Width))
+            {
+                inlineStyle += $"width:{Width};";
+            }
+
+            return $"{inlineStyle}{Style}";
+        }
+    }
+}

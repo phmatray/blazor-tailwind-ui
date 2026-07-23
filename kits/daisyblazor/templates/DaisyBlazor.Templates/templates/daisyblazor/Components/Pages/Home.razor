@@ -1,0 +1,76 @@
+@page "/"
+@rendermode InteractiveServer
+@inject ISnackbar Snackbar
+
+<PageTitle>DaisyBlazor.App</PageTitle>
+
+<div class="space-y-8">
+    <Hero Class="bg-base-100 rounded-box border border-base-300">
+        <div class="hero-content text-center py-12">
+            <div class="max-w-lg">
+                <h1 class="text-4xl font-bold font-heading">Hello, DaisyBlazor 🌼</h1>
+                <p class="py-4 text-base-content/70">
+                    A Blazor Web App wired with Tailwind CSS v4 + daisyUI v5, theme switching,
+                    and dependency-free SVG charts. Edit
+                    <code class="kbd kbd-sm">Components/Pages/Home.razor</code> to get started.
+                </p>
+                <div class="flex justify-center gap-2">
+                    <Button Color="Color.Primary"
+                            StartIcon="@Icons.Material.Filled.Check"
+                            OnClick="ShowToast">
+                        Say hello
+                    </Button>
+                    <Button Variant="Variant.Outlined" Href="https://daisyui.com" Target="_blank">
+                        daisyUI docs
+                    </Button>
+                </div>
+            </div>
+        </div>
+    </Hero>
+
+    <div class="grid gap-6 md:grid-cols-2">
+        <Card>
+            <CardContent>
+                <h2 class="card-title">Components</h2>
+                <p class="text-base-content/70">
+                    60+ daisyUI components with a MudBlazor-compatible API surface — rename
+                    <code>MudX</code> to <code>X</code> and keep your enums.
+                </p>
+                <CardActions>
+                    <Button Size="Size.Small" Color="Color.Secondary"
+                            StartIcon="@Icons.Material.Filled.Add">Action</Button>
+                    <Badge Color="Color.Accent">Live</Badge>
+                </CardActions>
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardContent>
+                <h2 class="card-title">Charts</h2>
+                <p class="text-base-content/70">
+                    Theme-aware SVG charts from <code>DaisyBlazor.Charts</code> — colors follow the
+                    active daisyUI theme automatically.
+                </p>
+                <LineChart Title="Weekly visitors"
+                           Labels="@_labels"
+                           Series="@_series"
+                           Height="10rem"
+                           Smooth Area />
+            </CardContent>
+        </Card>
+    </div>
+</div>
+
+@code {
+    private readonly string[] _labels = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+
+    private readonly ChartSeries[] _series =
+    {
+        new("Visitors", new double[] { 30, 42, 38, 51, 49, 62, 58 })
+    };
+
+    private void ShowToast()
+    {
+        Snackbar.Add("Hello from DaisyBlazor!", Severity.Success);
+    }
+}

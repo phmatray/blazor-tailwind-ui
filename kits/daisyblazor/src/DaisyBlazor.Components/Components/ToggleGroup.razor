@@ -1,0 +1,64 @@
+@namespace DaisyBlazor
+@typeparam T
+
+@* MudToggleGroup<T> replacement. A segmented control (daisyUI .join of buttons).
+   Single-selection two-way binding via Value/ValueChanged. *@
+
+<CascadingValue Value="this" IsFixed="true">
+    <div class="@_cls" style="@Style" role="group" @attributes="UserAttributes">
+        @ChildContent
+    </div>
+</CascadingValue>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public T? Value { get; set; }
+    [Parameter] public EventCallback<T?> ValueChanged { get; set; }
+    [Parameter] public SelectionMode SelectionMode { get; set; } = SelectionMode.SingleSelection;
+    [Parameter] public Color Color { get; set; } = Color.Primary;
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+    [Parameter] public bool CheckMark { get; set; }
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _cls => CssClass.Merge("join", Class);
+
+    internal string ActiveColor => Color switch
+    {
+        Color.Primary => "btn-primary",
+        Color.Secondary => "btn-secondary",
+        Color.Tertiary => "btn-accent",
+        Color.Info => "btn-info",
+        Color.Success => "btn-success",
+        Color.Warning => "btn-warning",
+        Color.Error => "btn-error",
+        _ => "btn-active"
+    };
+
+    internal string SizeClass => Size switch
+    {
+        Size.Small => "btn-sm",
+        Size.Large => "btn-lg",
+        _ => string.Empty
+    };
+
+    internal bool IsSelected(T? value) => EqualityComparer<T?>.Default.Equals(Value, value);
+
+    internal async Task SelectAsync(T? value)
+    {
+        if (Disabled)
+        {
+            return;
+        }
+
+        Value = value;
+        if (ValueChanged.HasDelegate)
+        {
+            await ValueChanged.InvokeAsync(value);
+        }
+
+        StateHasChanged();
+    }
+}

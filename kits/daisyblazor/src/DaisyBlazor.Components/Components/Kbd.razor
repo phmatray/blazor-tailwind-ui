@@ -1,0 +1,27 @@
+@namespace DaisyBlazor
+
+@* Keyboard key display component. daisyUI .kbd with optional size modifiers
+   kbd-xs / kbd-sm / kbd-md / kbd-lg / kbd-xl. *@
+
+<kbd class="@_cls" style="@Style" @attributes="UserAttributes">@ChildContent</kbd>
+
+@code {
+    /// <summary>Content displayed inside the key cap (text or nested elements).</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>Size of the key cap. Maps to kbd-xs / kbd-sm / kbd-md / kbd-lg / kbd-xl.</summary>
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _sizeClass => Size switch
+    {
+        Size.Small => "kbd-sm",
+        Size.Large => "kbd-lg",
+        _ => "kbd-md"
+    };
+
+    private string _cls => CssClass.Merge("kbd", _sizeClass, Class);
+}

@@ -1,0 +1,74 @@
+@namespace DaisyBlazor
+@typeparam T
+
+@* MudRadio<T> replacement. daisyUI .radio. Bound to a parent RadioGroup<T>; selecting it sets
+   the group's Value to this radio's Value/Option. *@
+
+<label class="@_labelCls" style="@Style">
+    <input type="radio"
+           class="@_cls"
+           name="@(Parent?.Name)"
+           checked="@_checked"
+           disabled="@Disabled"
+           @onchange="OnChange"
+           @attributes="UserAttributes" />
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <span class="label-text">@Label</span>
+    }
+    @ChildContent
+</label>
+
+@code {
+    /// <summary>The value this radio represents (MudBlazor: Value or Option).</summary>
+    [Parameter] public T? Value { get; set; }
+    [Parameter] public T? Option { get; set; }
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public Color Color { get; set; } = Color.Default;
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    [CascadingParameter] private RadioGroup<T>? Parent { get; set; }
+
+    private T? _option => Option is not null ? Option : Value;
+
+    private bool _checked => Parent?.IsSelected(_option) ?? false;
+
+    private string _labelCls => CssClass.Merge("flex items-center gap-2 cursor-pointer", Class);
+
+    private string _colorCls => Color switch
+    {
+        Color.Primary => "radio-primary",
+        Color.Secondary => "radio-secondary",
+        Color.Tertiary => "radio-accent",
+        Color.Info => "radio-info",
+        Color.Success => "radio-success",
+        Color.Warning => "radio-warning",
+        Color.Error => "radio-error",
+        _ => ""
+    };
+
+    private string _sizeCls => Size switch
+    {
+        Size.Small => "radio-sm",
+        Size.Large => "radio-lg",
+        _ => ""
+    };
+
+    private string _cls => CssClass.Merge("radio", _colorCls, _sizeCls);
+
+    private async Task OnChange(ChangeEventArgs args)
+    {
+        if (Disabled || Parent is null)
+        {
+            return;
+        }
+
+        await Parent.SelectAsync(_option);
+    }
+}

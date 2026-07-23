@@ -1,0 +1,97 @@
+@namespace DaisyBlazor.Data
+@typeparam T
+
+@* MudDataGridPager<T> replacement. Page-size select + prev/next + "x-y of z" text,
+   driven by the cascaded DataGrid<T>. *@
+
+@if (Grid is not null)
+{
+    <div class="@CssClass.Merge("flex flex-wrap items-center justify-end gap-4 px-2 py-2 text-sm", Class)"
+         style="@Style" @attributes="UserAttributes">
+        <div class="flex items-center gap-2">
+            <span class="text-base-content/70">@RowsPerPageText</span>
+            <select class="select select-bordered select-sm w-20" @onchange="OnPageSizeChanged">
+                @foreach (int option in Grid.PageSizeOptions)
+                {
+                    <option value="@option" selected="@(option == Grid.EffectivePageSize)">@option</option>
+                }
+            </select>
+        </div>
+
+        <span class="text-base-content/70">
+            @Grid.FirstItemIndex-@Grid.LastItemIndex @InfoSeparatorText @Grid.TotalItems
+        </span>
+
+        <div class="join">
+            <button type="button" class="btn btn-sm join-item"
+                    disabled="@(Grid.Page <= 0)"
+                    @onclick="PreviousPageAsync"
+                    aria-label="@PreviousPageText">
+                <Icon Name="@Icons.Material.Filled.ChevronLeft" Size="Size.Small" />
+            </button>
+            <button type="button" class="btn btn-sm join-item"
+                    disabled="@(Grid.Page >= Grid.PageCount - 1)"
+                    @onclick="NextPageAsync"
+                    aria-label="@NextPageText">
+                <Icon Name="@Icons.Material.Filled.ChevronRight" Size="Size.Small" />
+            </button>
+        </div>
+    </div>
+}
+
+@code {
+    /// <summary>Owning grid, supplied via cascading value.</summary>
+    [CascadingParameter]
+    public DataGrid<T>? Grid { get; set; }
+
+    /// <summary>Page-size options. When set, mirrored onto the grid.</summary>
+    [Parameter] public int[]? PageSizeOptions { get; set; }
+
+    /// <summary>Label shown before the page-size select.</summary>
+    [Parameter] public string RowsPerPageText { get; set; } = "Rows per page:";
+
+    /// <summary>Separator word in the range text (e.g. "of").</summary>
+    [Parameter] public string InfoSeparatorText { get; set; } = "of";
+
+    /// <summary>Accessible label for the previous-page navigation button.</summary>
+    [Parameter] public string PreviousPageText { get; set; } = "Previous page";
+
+    /// <summary>Accessible label for the next-page navigation button.</summary>
+    [Parameter] public string NextPageText { get; set; } = "Next page";
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (PageSizeOptions is not null && Grid is not null)
+        {
+            Grid.UsePageSizeOptions(PageSizeOptions);
+        }
+    }
+
+    private async Task OnPageSizeChanged(ChangeEventArgs args)
+    {
+        if (Grid is not null && int.TryParse(args.Value?.ToString(), out int size))
+        {
+            await Grid.SetPageSizeAsync(size);
+        }
+    }
+
+    private async Task PreviousPageAsync()
+    {
+        if (Grid is not null)
+        {
+            await Grid.SetPageAsync(Grid.Page - 1);
+        }
+    }
+
+    private async Task NextPageAsync()
+    {
+        if (Grid is not null)
+        {
+            await Grid.SetPageAsync(Grid.Page + 1);
+        }
+    }
+}

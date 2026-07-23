@@ -1,0 +1,92 @@
+@namespace DaisyBlazor
+@typeparam T
+
+@* MudSwitch<T> replacement. daisyUI .toggle. Same shape as Checkbox; Value/ValueChanged (bool). *@
+
+<label class="@_labelCls" style="@Style">
+    <input type="checkbox"
+           class="@_cls"
+           checked="@_checked"
+           disabled="@Disabled"
+           readonly="@ReadOnly"
+           @onchange="OnChange"
+           @attributes="UserAttributes" />
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <span class="label-text">@Label</span>
+    }
+    @ChildContent
+</label>
+
+@code {
+    [Parameter] public T? Value { get; set; }
+    [Parameter] public EventCallback<T?> ValueChanged { get; set; }
+    [Parameter] public T? Checked { get; set; }
+    [Parameter] public EventCallback<T?> CheckedChanged { get; set; }
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public Color Color { get; set; } = Color.Default;
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public bool ReadOnly { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private bool _usesChecked => CheckedChanged.HasDelegate || (Checked is not null && !ValueChanged.HasDelegate);
+
+    private bool _checked
+    {
+        get
+        {
+            object? source = _usesChecked ? Checked : Value;
+            return source is bool b && b;
+        }
+    }
+
+    private string _labelCls => CssClass.Merge("flex items-center gap-2 cursor-pointer", Class);
+
+    private string _colorCls => Color switch
+    {
+        Color.Primary => "toggle-primary",
+        Color.Secondary => "toggle-secondary",
+        Color.Tertiary => "toggle-accent",
+        Color.Info => "toggle-info",
+        Color.Success => "toggle-success",
+        Color.Warning => "toggle-warning",
+        Color.Error => "toggle-error",
+        _ => ""
+    };
+
+    private string _sizeCls => Size switch
+    {
+        Size.Small => "toggle-sm",
+        Size.Large => "toggle-lg",
+        _ => ""
+    };
+
+    private string _cls => CssClass.Merge("toggle", _colorCls, _sizeCls);
+
+    private async Task OnChange(ChangeEventArgs args)
+    {
+        if (ReadOnly || Disabled)
+        {
+            return;
+        }
+
+        bool isChecked = args.Value is bool b && b;
+        T? newValue = (T)(object)isChecked;
+
+        if (_usesChecked)
+        {
+            Checked = newValue;
+            await CheckedChanged.InvokeAsync(newValue);
+        }
+        else
+        {
+            Value = newValue;
+            await ValueChanged.InvokeAsync(newValue);
+        }
+    }
+}

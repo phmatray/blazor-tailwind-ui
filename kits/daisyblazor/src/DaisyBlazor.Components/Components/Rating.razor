@@ -1,0 +1,102 @@
+@namespace DaisyBlazor
+
+@* daisyUI rating widget. Renders a group of radio inputs styled with .rating,
+   mask-star-2 (or mask-heart / any other mask class), optional half-star via
+   rating-half, size via rating-xs/sm/md/lg/xl, and a bg-{token} fill color on
+   each mask input. A hidden radio at index 0 (value 0) lets the user clear the
+   selection. ReadOnly suppresses pointer events without changing markup. *@
+
+<div class="@_wrapperCls" style="@Style" @attributes="UserAttributes">
+    @* hidden zero-value radio so clicking the current star again can clear *@
+    <input type="radio"
+           name="@_groupName"
+           class="rating-hidden"
+           value="0"
+           checked="@(Value == 0)"
+           @onchange="@(() => OnRadioChange(0))"
+           disabled="@ReadOnly" />
+
+    @for (int i = 1; i <= Max; i++)
+    {
+        int star = i;
+        <input type="radio"
+               name="@_groupName"
+               class="@_inputCls"
+               value="@star"
+               checked="@(Value == star)"
+               @onchange="@(() => OnRadioChange(star))"
+               disabled="@ReadOnly" />
+    }
+</div>
+
+@code {
+    /// <summary>Current rating value (1–Max). 0 means no selection.</summary>
+    [Parameter] public int Value { get; set; }
+
+    /// <summary>Raised when the user selects a star.</summary>
+    [Parameter] public EventCallback<int> ValueChanged { get; set; }
+
+    /// <summary>Number of stars to render. Defaults to 5.</summary>
+    [Parameter] public int Max { get; set; } = 5;
+
+    /// <summary>
+    /// daisyUI mask class applied to each radio input (e.g. "mask-star-2", "mask-heart").
+    /// Defaults to "mask-star-2".
+    /// </summary>
+    [Parameter] public string? Mask { get; set; }
+
+    /// <summary>Size of the rating widget: maps to rating-xs / (default) / rating-sm / rating-md / rating-lg / rating-xl.</summary>
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+
+    /// <summary>Fill color for the selected stars via bg-{token} (e.g. Color.Warning → bg-warning).</summary>
+    [Parameter] public Color Color { get; set; } = Color.Warning;
+
+    /// <summary>When true the user cannot interact with the widget.</summary>
+    [Parameter] public bool ReadOnly { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _groupName = $"rating-{Guid.NewGuid():N}";
+
+    private string _maskClass => string.IsNullOrWhiteSpace(Mask) ? "mask-star-2" : Mask!;
+
+    private string? _colorClass
+    {
+        get
+        {
+            string? token = CssClass.ColorToken(Color);
+            return token is { } t ? $"bg-{t}" : null;
+        }
+    }
+
+    private string _sizeClass => Size switch
+    {
+        Size.Small => "rating-sm",
+        Size.Large => "rating-lg",
+        _ => string.Empty
+    };
+
+    private string _wrapperCls => CssClass.Merge(
+        "rating",
+        _sizeClass,
+        ReadOnly ? "pointer-events-none" : null,
+        Class);
+
+    private string _inputCls => CssClass.Merge(
+        "mask",
+        _maskClass,
+        _colorClass);
+
+    private async Task OnRadioChange(int star)
+    {
+        if (ReadOnly)
+        {
+            return;
+        }
+
+        Value = star;
+        await ValueChanged.InvokeAsync(star);
+    }
+}

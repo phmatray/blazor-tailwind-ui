@@ -1,0 +1,45 @@
+@namespace DaisyBlazor
+
+@* MudField replacement. Static labeled value display: a .fieldset wrapper with a .label and a
+   read-only bordered surface holding the ChildContent (and optional adornment). *@
+
+<div class="@_fieldsetCls" style="@Style" @attributes="UserAttributes">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label class="label">
+            <span class="label-text">@Label</span>
+        </label>
+    }
+    <div class="@_bodyCls">
+        @if (Adornment == Adornment.Start && !string.IsNullOrEmpty(AdornmentIcon))
+        {
+            <Icon Name="@AdornmentIcon" Size="Size.Small" />
+        }
+        <div class="grow">@ChildContent</div>
+        @if (Adornment == Adornment.End && !string.IsNullOrEmpty(AdornmentIcon))
+        {
+            <Icon Name="@AdornmentIcon" Size="Size.Small" />
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public Variant Variant { get; set; } = Variant.Text;
+    [Parameter] public Adornment Adornment { get; set; } = Adornment.None;
+    [Parameter] public string? AdornmentIcon { get; set; }
+    [Parameter] public string? AdornmentText { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? UserAttributes { get; set; }
+
+    private string _fieldsetCls => CssClass.Merge("fieldset w-full", Class);
+
+    private string _bodyCls => CssClass.Merge(
+        "flex items-center gap-2 min-h-10 px-3 py-2",
+        Variant == Variant.Outlined ? "border border-base-300 rounded-box" : null,
+        Variant == Variant.Filled ? "bg-base-200 rounded-box" : null,
+        Variant == Variant.Text ? "border-b border-base-300" : null);
+}
