@@ -18,6 +18,22 @@
 
 <!-- portfolio-toc:start -->
 
+
+## Features
+
+- **Three component kits** — daisyUI, Catalyst UI and shadcn-style, each an independent NuGet package
+- **A starter template** — `dotnet new` dashboard shell with Tailwind, transitions and Heroicons
+- **A setup CLI** — automates Tailwind CSS 4 wiring for Blazor / ASP.NET Core
+- **Shared tooling** — one build, CI, and versioning across the whole family
+
+## Getting Started
+
+```bash
+git clone https://github.com/phmatray/blazor-tailwind-ui.git
+cd blazor-tailwind-ui/kits/daisyblazor   # or catalyst-ui / shadbz
+dotnet build
+```
+
 ## Table of Contents
 
 - [Structure](#structure)
