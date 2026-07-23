@@ -1,0 +1,71 @@
+﻿@inject NavigationService NavigationService
+
+<div class="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
+  <div class="flex h-16 shrink-0 items-center">
+    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="Your Company">
+  </div>
+  <nav class="flex flex-1 flex-col">
+    <ul role="list" class="flex flex-1 flex-col gap-y-7">
+      <li>
+        <ul role="list" class="-mx-2 space-y-1">
+          @foreach(var item in Navigation)
+          {
+            <li @key="item.Href">
+              <CustomNavLink
+                href="@item.Href"
+                InactiveClass="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                ActiveClass="bg-indigo-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                Match="NavLinkMatch.All">
+                <DynamicComponent Type="item.Icon" Parameters="GetIconParameters(item.Href)" />
+                @item.Name
+              </CustomNavLink>
+            </li>
+          }
+        </ul>
+      </li>
+      <li>
+        <div class="text-xs font-semibold leading-6 text-indigo-200">Learn more</div>
+        <ul role="list" class="-mx-2 mt-2 space-y-1">
+          @foreach(var item in ExternalLinks)
+          {
+            <li @key="item.Href">
+              <a href="@item.Href" target="_blank" class="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">@item.Initial</span>
+                <span class="truncate">@item.Name</span>
+              </a>
+            </li>
+          }
+        </ul>
+      </li>
+      <li class="mt-auto">
+        <NavLink href="settings" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
+          <Cog6ToothIcon class="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white" aria-hidden="true"/>
+          Settings
+        </NavLink>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+@code
+{
+  
+  [Parameter] public NavigationItem[] Navigation { get; set; } = [];
+  [Parameter] public NavigationItem[] ExternalLinks { get; set; } = [];
+  
+  private Dictionary<string, object> GetIconParameters(string href)
+  {
+    var conditional = NavigationService.IsActivePage(href)
+      ? "text-white"
+      : "text-indigo-200 group-hover:text-white";
+
+    var className = $"{conditional} h-6 w-6 shrink-0 ";
+
+    return new Dictionary<string, object>
+    {
+      { "class", className },
+      { "aria-hidden", "true" }
+    };
+  }
+
+}

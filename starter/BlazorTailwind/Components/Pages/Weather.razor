@@ -1,0 +1,50 @@
+﻿@page "/weather"
+@attribute [StreamRendering]
+@inject WeatherForecastService ForecastService
+
+<PageTitle>Weather</PageTitle>
+
+<h1>Weather</h1>
+
+<p>This component demonstrates showing data.</p>
+
+@if (isLoading)
+{
+  <p>
+    <em>Loading...</em>
+  </p>
+}
+else
+{
+  <GenericTable Data="forecasts">
+    <RowTemplate>
+      <td class="bold">@context.Date.ToShortDateString()</td>
+      <td>@context.TemperatureC</td>
+      <td>@context.TemperatureF</td>
+      <td>@context.Summary</td>
+    </RowTemplate>
+  </GenericTable>
+}
+
+@code {
+  
+  private WeatherForecast[]? forecasts;
+  
+  private bool isLoading => forecasts is null;
+
+  protected override async Task OnInitializedAsync()
+  {
+    await foreach (WeatherForecast forecast in ForecastService.GetForecastsAsync(10))
+    {
+      // Simulate a delay between each forecast being received
+      await Task.Delay(250);
+      
+      // Append the new forecast to the existing list (or create a new list if this is the first forecast)
+      forecasts = forecasts?.Append(forecast).ToArray() ?? [forecast];
+      
+      // Tell the component to re-render
+      StateHasChanged();
+    }
+  }
+
+}

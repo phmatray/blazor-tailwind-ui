@@ -1,0 +1,40 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @onclick="IncrementCount">Click me</button>
+
+<button @onclick="Toggle">Toggle</button>
+
+<TwTransition Appear
+               Show="@isShowing"
+               Enter="transition-opacity duration-75"
+               EnterFrom="opacity-0"
+               EnterTo="opacity-100"
+               Leave="transition-opacity duration-150"
+               LeaveFrom="opacity-100"
+               LeaveTo="opacity-0"
+               As="p">
+  I will fade in and out
+</TwTransition>
+
+@code {
+  private int currentCount = 0;
+  private bool isShowing;
+
+  private void IncrementCount()
+  {
+    currentCount++;
+  }
+  
+  private void Toggle()
+  {
+    isShowing = !isShowing;
+    StateHasChanged();
+  }
+
+}
