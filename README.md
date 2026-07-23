@@ -43,6 +43,17 @@ share tooling, CI, and versioning but ship as independent packages.
 Each subfolder was merged with **full git history preserved** (`git subtree`).
 The original repositories are archived and redirect here.
 
+<!-- portfolio-techstack:start -->
+
+## Tech Stack
+
+- **.NET 10 · .NET 9**
+- Microsoft.AspNetCore.Components.Web
+- Microsoft.AspNetCore.Components.WebAssembly
+- Microsoft.AspNetCore.Components.WebAssembly.DevServer
+
+<!-- portfolio-techstack:end -->
+
 ## License
 
 MIT — see [`LICENSE`](LICENSE). Individual kits retain any license declared in their subfolder.
