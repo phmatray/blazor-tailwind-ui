@@ -15,6 +15,19 @@
 [![Last commit](https://img.shields.io/github/last-commit/phmatray/ShadBz)](https://github.com/phmatray/ShadBz/commits)
 <!-- portfolio-badges:end -->
 
+<!-- portfolio-toc:start -->
+
+## Table of Contents
+
+- [Description](#description)
+- [Stack / Tech](#stack--tech)
+- [Getting Started](#getting-started)
+- [License](#license)
+- [Contributing](#contributing)
+
+<!-- portfolio-toc:end -->
+
+
 
 > ShadCN-inspired UI component library for Blazor applications.
 
