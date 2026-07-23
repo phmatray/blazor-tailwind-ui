@@ -1,0 +1,81 @@
+@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<div class="space-y-8">
+    <div class="text-center py-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Welcome to Blazor with Tailwind CSS</h1>
+        <p class="text-xl text-gray-600">A modern web app template combining Blazor and Tailwind CSS</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-4 mb-4">
+                <div class="bg-blue-100 rounded-lg p-3">
+                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-semibold text-gray-900">Blazor</h2>
+            </div>
+            <p class="text-gray-600">
+                Build interactive web UIs using C# instead of JavaScript. Blazor apps are composed of reusable web UI components implemented using C#, HTML, and CSS.
+            </p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-4 mb-4">
+                <div class="bg-cyan-100 rounded-lg p-3">
+                    <svg class="w-8 h-8 text-cyan-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-semibold text-gray-900">Tailwind CSS</h2>
+            </div>
+            <p class="text-gray-600">
+                A utility-first CSS framework packed with classes that can be composed to build any design, directly in your markup.
+            </p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-4 mb-4">
+                <div class="bg-purple-100 rounded-lg p-3">
+                    <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-semibold text-gray-900">.NET 10</h2>
+            </div>
+            <p class="text-gray-600">
+                Built on the latest .NET 10 LTS release with improved performance, enhanced features, and long-term support until 2028.
+            </p>
+        </div>
+    </div>
+
+    <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-8 border border-blue-100">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Getting Started</h2>
+        <div class="space-y-4">
+            <div class="flex gap-4">
+                <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">1</div>
+                <div>
+                    <h3 class="font-semibold text-gray-900">Explore the Counter</h3>
+                    <p class="text-gray-600">Visit the Counter page to see an interactive component in action</p>
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">2</div>
+                <div>
+                    <h3 class="font-semibold text-gray-900">Check the Weather</h3>
+                    <p class="text-gray-600">View the Weather page to see data display with Tailwind styling</p>
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">3</div>
+                <div>
+                    <h3 class="font-semibold text-gray-900">Customize with Tailwind</h3>
+                    <p class="text-gray-600">Edit <code class="bg-white px-2 py-1 rounded text-sm">tailwind.config.js</code> to customize your design system</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

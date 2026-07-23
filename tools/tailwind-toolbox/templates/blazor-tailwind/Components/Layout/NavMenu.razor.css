@@ -1,0 +1,7 @@
+nav a.active {
+    @apply bg-gray-700 text-white;
+}
+
+nav a:not(.active) {
+    @apply text-gray-300;
+}

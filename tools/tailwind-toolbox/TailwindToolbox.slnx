@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/demos/">
+    <Project Path="demo/demo-blazor-server/demo-blazor-server.csproj" />
+    <Project Path="demo/demo-custom-target/demo-custom-target.csproj" />
+    <Project Path="demo/demo-e2e/demo-e2e.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="TailwindToolbox/TailwindToolbox.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="TailwindToolbox.Tests/TailwindToolbox.Tests.csproj" />
+  </Folder>
+</Solution>

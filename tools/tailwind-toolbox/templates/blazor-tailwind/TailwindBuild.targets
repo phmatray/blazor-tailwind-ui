@@ -1,0 +1,34 @@
+<Project>
+  <!--
+    Tailwind CSS MSBuild Integration
+
+    This file is imported by the project file to automatically compile Tailwind CSS during build.
+
+    How it works:
+    1. The BuildTailwindCSS target runs BEFORE the main Build target
+    2. It uses npx to run @tailwindcss/cli (Tailwind v4.x CLI)
+    3. Input: Styles/app.css (your Tailwind directives and custom CSS)
+    4. Output: wwwroot/css/app.css (generated CSS file)
+
+    Configuration-aware:
+    - Debug builds: Unminified CSS for easier debugging
+    - Release builds: Minified CSS for optimal production performance
+
+    Prerequisites:
+    - Node.js and npm must be installed
+    - Run 'npm install' to install Tailwind packages before building
+
+    Note: This uses @tailwindcss/cli package (separate from tailwindcss in v4.x)
+  -->
+  <Target Name="BuildTailwindCSS" BeforeTargets="Build">
+    <!-- Development build (unminified for debugging) -->
+    <Exec Command="npx @tailwindcss/cli -i Styles/app.css -o wwwroot/css/app.css"
+          Condition="'$(Configuration)' == 'Debug'"
+          WorkingDirectory="$(ProjectDir)" />
+
+    <!-- Production build (minified for performance) -->
+    <Exec Command="npx @tailwindcss/cli -i Styles/app.css -o wwwroot/css/app.css --minify"
+          Condition="'$(Configuration)' == 'Release'"
+          WorkingDirectory="$(ProjectDir)" />
+  </Target>
+</Project>

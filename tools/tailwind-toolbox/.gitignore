@@ -1,0 +1,26 @@
+# .NET Build Output
+bin/
+obj/
+/packages/
+nupkg/
+*.user
+*.suo
+
+# IDE
+.idea/
+.vscode/
+*.iml
+/_ReSharper.Caches/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env*
+
+# npm/node (for projects using Tailwind)
+node_modules/
