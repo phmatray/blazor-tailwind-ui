@@ -14,6 +14,21 @@
 [![Last commit](https://img.shields.io/github/last-commit/phmatray/blazor-tailwind-ui)](https://github.com/phmatray/blazor-tailwind-ui/commits)
 <!-- portfolio-badges:end -->
 
+<!-- portfolio-toc:start -->
+
+## Table of Contents
+
+- [Structure](#structure)
+- [Which kit should I use?](#which-kit-should-i-use)
+- [History](#history)
+- [Tech Stack](#tech-stack)
+- [Roadmap](#roadmap)
+- [License](#license)
+- [Contributing](#contributing)
+
+<!-- portfolio-toc:end -->
+
+
 
 > Everything for building **Tailwind CSS + Blazor** UIs — three component kits, a
 > starter template, and a setup CLI, in one workspace.
