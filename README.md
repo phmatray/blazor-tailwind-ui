@@ -141,6 +141,20 @@ scripts/    update-deps, build-css, pack
 - [Charts](https://phmatray.github.io/daisyblazor/charts/) — the dependency-free SVG charts.
 - [Migrating from MudBlazor](https://phmatray.github.io/daisyblazor/migration/) — the `MudX` → `X` map.
 
+<!-- portfolio-techstack:start -->
+
+## Tech Stack
+
+- **.NET 10**
+- DaisyBlazor.Components
+- DaisyBlazor.Charts
+- bunit
+- Shouldly
+- xunit.v3
+- xunit.runner.visualstudio
+
+<!-- portfolio-techstack:end -->
+
 ## Contributing & releasing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the branch strategy (`main` / `release` / feature branches)
