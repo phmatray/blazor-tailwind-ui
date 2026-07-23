@@ -374,6 +374,14 @@ TailwindToolbox/
 | Target CSS Framework | Tailwind CSS | v4.x |
 | Build Integration | MSBuild Targets | .NET 10 SDK |
 
+<!-- portfolio-roadmap:start -->
+
+## Roadmap
+
+Planned work and known limitations are tracked in the [open issues](https://github.com/phmatray/TailwindToolbox/issues). Contributions toward them are welcome.
+
+<!-- portfolio-roadmap:end -->
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, testing guide, and pull request process.
